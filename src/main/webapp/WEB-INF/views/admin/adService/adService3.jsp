@@ -86,7 +86,7 @@
 				    </div>
 				</div>
                 <br><br>
-                <img src = "${path}/resources/images/adminImages/인사관리-사원통합관리.JPG">
+                <img src = "${path}/resources/images/adminImages/서비스관리-팝업공지.JPG">
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
                 <!-- *************************************************************** -->

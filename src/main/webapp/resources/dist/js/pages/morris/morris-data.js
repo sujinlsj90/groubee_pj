@@ -2,58 +2,79 @@
 $(function () {
     "use strict";
 Morris.Area({
-        element: 'morris-area-chart',
-        data: [{
-            period: '2010',
-            iphone: 50,
-            ipad: 80,
-            itouch: 20
-        }, {
-            period: '2011',
-            iphone: 130,
-            ipad: 100,
-            itouch: 80
-        }, {
-            period: '2012',
-            iphone: 80,
-            ipad: 60,
-            itouch: 70
-        }, {
-            period: '2013',
-            iphone: 70,
-            ipad: 200,
-            itouch: 140
-        }, {
-            period: '2014',
-            iphone: 180,
-            ipad: 150,
-            itouch: 140
-        }, {
-            period: '2015',
-            iphone: 105,
-            ipad: 100,
-            itouch: 80
-        },
-         {
-            period: '2016',
-            iphone: 250,
-            ipad: 150,
-            itouch: 200
-        }],
-        xkey: 'period',
-        ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['iPhone', 'iPad', 'iPod Touch'],
-        pointSize: 3,
-        fillOpacity: 0,
-        pointStrokeColors:['#02cccd', '#3f50f6', '#2f3d4a'],
-        behaveLikeLine: true,
-        gridLineColor: '#e0e0e0',
-        lineWidth: 3,
-        hideHover: 'auto',
-        lineColors: ['#02cccd', '#3f50f6', '#2f3d4a'],
-        resize: true
-        
-    });
+   	        element: 'morris-area-chart',
+   	        data: [{
+   	            period: '2022-01',
+				사업부: 50,
+   	           	인사부: 80,
+				영업부: 60,
+				개발부: 30,
+				경영지원부: 40,
+				총무부: 30  	            
+   	        }, {
+   	            period: '2022-02',
+   	        	사업부: 50,
+	           	인사부: 80,
+				영업부: 60,
+				개발부: 30,
+				경영지원부: 40,
+				총무부: 30  	
+   	        }, {
+   	            period: '2022-03',
+   	         	사업부: 60,
+	           	인사부: 70,
+				영업부: 50,
+				개발부: 40,
+				경영지원부: 60,
+				총무부: 40  	
+   	        }, {
+   	            period: '2022-04',
+   	         	사업부: 40,
+	           	인사부: 40,
+				영업부: 80,
+				개발부: 40,
+				경영지원부: 50,
+				총무부: 20  	
+   	        }, {
+   	            period: '2022-05',
+   	         	사업부: 30,
+	           	인사부: 50,
+				영업부: 60,
+				개발부: 60,
+				경영지원부: 20,
+				총무부: 20  	
+   	        }, {
+   	            period: '2022-06',
+   	         	사업부: 50,
+	           	인사부: 80,
+				영업부: 60,
+				개발부: 30,
+				경영지원부: 40,
+				총무부: 30  	
+   	        },
+   	         {
+   	            period: '2022-07',
+   	         	사업부: 60,
+	           	인사부: 40,
+				영업부: 70,
+				개발부: 50,
+				경영지원부: 60,
+				총무부: 50  	
+   	        }],
+   	        xkey: 'period',
+   	        ykeys: ['사업부', '인사부', '영업부', '개발부', '경영지원부', '총무부'],
+   	        labels: ['사업부', '인사부', '영업부', '개발부', '경영지원부', '총무부'],
+   	        pointSize: 3,
+   	        fillOpacity: 0,
+   	        pointStrokeColors:['#02cccd', '#3f50f6', '#2f3d4a', '#FF3CA6', '#5099FF', '#FB8C00'],
+   	        behaveLikeLine: true,
+   	        gridLineColor: '#e0e0e0',
+   	        lineWidth: 3,
+   	        hideHover: 'auto',
+   	        lineColors: ['#02cccd', '#3f50f6', '#2f3d4a', '#FF3CA6', '#5099FF', '#FB8C00'],
+   	        resize: true
+   	        
+   	    });
 
 Morris.Area({
         element: 'morris-area-chart2',

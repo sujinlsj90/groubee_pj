@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
-    <title>Severny admin Template - The Ultimate Multipurpose admin template</title>	
+    <title>Admin Main</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
     <!-- Custom CSS -->
     <link href="${path}/resources/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -22,6 +22,9 @@
     <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${path}/resources/assets/extra-libs/prism/prism.css">
     <link href="${path}/resources/commonCSS/index.css" rel="stylesheet">
+    <!-- This Page CSS -->
+    <link rel="stylesheet" type="text/css" href="${path}/resources/assets/extra-libs/css-chart/css-chart.css">
+    <link href="${path}/resources/assets/libs/morris.js/morris.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -48,56 +51,348 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper">
-        <div class="app-container"></div>
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- 좌측고정 메뉴바 -->
-        <%@ include file="/WEB-INF/views/admin/adminMenu.jsp" %>
-        <!-- 좌측고정 메뉴바 -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- *************************************************************** -->
-                <!-- Start First Cards -->
-                <!-- *************************************************************** -->
-                <br><br>
-                <img src = "${path}/resources/images/adminImages/main.jpg">
-                <!-- *************************************************************** -->
-                <!-- End Top Leader Table -->
-                <!-- *************************************************************** -->
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <footer class="footer text-center text-muted">
-                Copyright 2019. All Rights Reserved by Severny Admin
-            </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
+	<div id="main-wrapper">
+		<div class="app-container"></div>
+		<!-- ============================================================== -->
+		<!-- Topbar header - style you can find in pages.scss -->
+		<!-- ============================================================== -->
+
+		<!-- ============================================================== -->
+		<!-- Left Sidebar - style you can find in sidebar.scss  -->
+		<!-- ============================================================== -->
+		<!-- 좌측고정 메뉴바 -->
+		<%@ include file="/WEB-INF/views/admin/adminMenu.jsp"%>
+		<!-- 좌측고정 메뉴바 -->
+		<!-- ============================================================== -->
+		<!-- Page wrapper  -->
+		<!-- ============================================================== -->
+		<div class="page-wrapper">
+			<!-- ============================================================== -->
+			<!-- Bread crumb and right sidebar toggle -->
+			<!-- ============================================================== -->
+			<div class="page-breadcrumb">
+				<div class="row">
+					<div class="col-7 align-self-center">
+						<h4
+							class="page-title text-truncate text-dark font-weight-medium mb-1">Admin
+							Details</h4>
+						<div class="d-flex align-items-center">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb m-0 p-0">
+									<li class="breadcrumb-item"><a href="${path}/adminMain.ad"
+										class="text-muted">Home</a></li>
+									<li class="breadcrumb-item text-muted active"
+										aria-current="page">index</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ============================================================== -->
+			<!-- Container fluid  -->
+			<!-- ============================================================== -->
+			<div class="container-fluid">
+				<!-- *************************************************************** -->
+				<!-- Start First Cards -->
+				<!-- *************************************************************** -->
+				<!-- Column -->
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12">
+									<h3 class="box-title mt-5">General Info</h3>
+									<div class="table-responsive">
+										<table class="table">
+											<tbody>
+												<tr>
+													<td width="390">Brand</td>
+													<td>Groubee</td>
+												</tr>
+												<tr>
+													<td>Type</td>
+													<td>Group Ware</td>
+												</tr>
+												<tr>
+													<td>URL</td>
+													<td>www.groubee.com</td>
+												</tr>
+												<tr>
+													<td>ID</td>
+													<td>admin</td>
+												</tr>
+												<tr>
+													<td>Since</td>
+													<td>2022-10-09</td>
+												</tr>
+												<tr>
+													<td>Storage</td>
+													<td>20G</td>
+												</tr>
+												<!-- Row -->
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<!-- Column -->
+								<div class="col-sm-12 col-md-6">
+									<div class="card bg-success">
+										<div class="card-body text-white">
+											<div class="d-flex flex-row">
+												<h2 class="align-self-center mb-0">
+													<i class="ti-wallet"></i>
+												</h2>
+												<div class="p-2 align-self-center">
+													<h4 class="mb-0">Total Income</h4>
+													<span>Income</span>
+												</div>
+												<div class="ml-auto align-self-center">
+													<h2 class="font-weight-medium mb-0">$2900</h2>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Column -->
+								<!-- Column -->
+								<div class="col-sm-12 col-md-6">
+									<div class="card bg-info">
+										<div class="card-body text-white">
+											<div class="d-flex flex-row">
+												<h2 class="align-self-center mb-0">
+													<i class="ti-user"></i>
+												</h2>
+												<div class="p-2 align-self-center">
+													<h4 class="mb-0">Members</h4>
+													<span>employee</span>
+												</div>
+												<div class="ml-auto align-self-center">
+													<h2 class="font-weight-medium mb-0">200</h2>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Column -->
+								<!-- Column -->
+								<div class="col-sm-12 col-md-6">
+									<div class="card bg-cyan">
+										<div class="card-body text-white">
+											<div class="d-flex flex-row">
+												<h2 class="align-self-center mb-0">
+													<i class="ti-calendar"></i>
+												</h2>
+												<div class="p-2 align-self-center">
+													<h4 class="mb-0">Total Attandence</h4>
+													<span>with annual</span>
+												</div>
+												<div class="ml-auto align-self-center">
+													<h2 class="font-weight-medium mb-0">2022-10-09</h2>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Column -->
+								<!-- Column -->
+								<div class="col-sm-12 col-md-6">
+									<div class="card bg-orange">
+										<div class="card-body text-white">
+											<div class="d-flex flex-row">
+												<h2 class="align-self-center mb-0">
+													<i class="ti-settings"></i>
+												</h2>
+												<div class="p-2 align-self-center">
+													<h4 class="mb-0">Total Tasks</h4>
+													<span>menu</span>
+												</div>
+												<div class="ml-auto align-self-center">
+													<h2 class="font-weight-medium mb-0">management</h2>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Column -->
+								<!-- Row -->
+								<div class="card-group">
+									<!-- Column -->
+									<div class="card">
+										<div class="card-body text-center">
+											<h4 class="text-center text-info">Total Member</h4>
+											<h2>256</h2>
+											<div class="row pt-2 pb-2">
+												<!-- Column -->
+												<div class="col text-center align-self-center">
+													<div data-label="78%"
+														class="css-bar mb-0 css-bar-primary css-bar-40">
+														<i class="display-4 mdi mdi-account-circle"></i>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6 col-sm-12">
+													<h4 class="font-weight-medium mb-0">
+														<i class="ti-angle-up text-success"></i> <br> 200
+													</h4>
+													<!-- 재직자 -->
+												</div>
+												<div class="col-md-6 col-sm-12">
+													<h4 class="font-weight-medium mb-0">
+														<i class="ti-angle-down text-danger"></i> <br> 56
+													</h4>
+													<!-- 휴직, 퇴사자 -->
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Column -->
+									<!-- Column -->
+									<div class="card">
+										<div class="card-body text-center">
+											<h4 class="text-center text-danger">Total Visit</h4>
+											<h2>1200</h2>
+											<div class="row pt-2 pb-2">
+												<!-- Column -->
+												<div class="col text-center align-self-center">
+													<div data-label="89%"
+														class="css-bar mb-0 css-bar-danger css-bar-40">
+														<i class="display-4 mdi mdi-star-circle"></i>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6 col-sm-12">
+													<h4 class="font-weight-medium mb-0">
+														<i class="ti-angle-up text-success"></i> <br> 1345
+													</h4>
+												</div>
+												<div class="col-md-6 col-sm-12">
+													<h4 class="font-weight-medium mb-0">
+														<i class="ti-angle-down text-danger"></i> <br> 145
+													</h4>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Column -->
+									<!-- Column -->
+									<div class="card">
+										<div class="card-body text-center">
+											<h4 class="text-center text-cyan">Storage rate</h4>
+											<h2>12000</h2>
+											<!-- 현재 저장소 사용중인 용량 -->
+											<div class="row pt-2 pb-2">
+												<!-- Column -->
+												<div class="col text-center align-self-center">
+													<div data-label="96%"
+														class="css-bar mb-0 css-bar-success css-bar-40">
+														<i class="display-4 mdi mdi-briefcase-check"></i>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6 col-sm-12">
+													<h4 class="font-weight-medium mb-0">
+														<i class="ti-angle-up text-success"></i> <br> 12465
+														MB
+													</h4>
+													<!-- 저장소에 올라간 데이터 총량 -->
+												</div>
+												<div class="col-md-6 col-sm-12">
+													<h4 class="font-weight-medium mb-0">
+														<i class="ti-angle-down text-danger"></i> <br> 465 MB
+													</h4>
+													<!-- 저장소에서 삭제 요청된 데이터 보관량 -->
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Column -->
+								</div>
+								<!-- End Row card group -->
+							</div>
+							<!-- Row -->
+						</div>
+					</div>
+				</div>
+				<!-- Column -->
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<h3 class="box-title mt-5">부서별 업무시간 통계</h3>
+							<div class="row">
+								<!-- column -->
+								<div class="col-lg-12">
+									<div class="card">
+										<div class="card-body">
+											<h4 class="card-title">WorkTime about Months</h4>
+											<ul class="list-inline text-right">
+												<li class="list-inline-item">
+													<h5>
+														<i class="fa fa-circle mr-1 text-inverse"></i>사업부
+													</h5>
+												</li>
+												<li class="list-inline-item">
+													<h5>
+														<i class="fa fa-circle mr-1 text-info"></i>인사부
+													</h5>
+												</li>
+												<li class="list-inline-item">
+													<h5>
+														<i class="fa fa-circle mr-1 text-success"></i>영업부
+													</h5>
+												</li>
+												<li class="list-inline-item">
+													<h5>
+														<i class="fa fa-circle mr-1 text-danger"></i>개발부
+													</h5>
+												</li>
+												<li class="list-inline-item">
+													<h5>
+														<i class="fa fa-circle mr-1 text-cyan"></i>경영지원부
+													</h5>
+												</li>
+												<li class="list-inline-item">
+													<h5>
+														<i class="fa fa-circle mr-1 text-orange"></i>총무부
+													</h5>
+												</li>
+											</ul>
+											<div id="morris-area-chart"></div>
+										</div>
+									</div>
+								</div>
+								<!-- column -->
+							</div>
+							<!-- row  -->
+						</div>
+					</div>
+				</div>
+			</div>			
+			<!-- *************************************************************** -->
+			<!-- End Top Leader Table -->
+			<!-- *************************************************************** -->
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Container fluid  -->
+		<!-- ============================================================== -->
+		<!-- ============================================================== -->
+		<!-- footer -->
+		<!-- ============================================================== -->
+		<footer class="footer text-center text-muted"> Copyright 2019. All Rights Reserved by Severny Admin </footer>
+		<!-- ============================================================== -->
+		<!-- End footer -->
+		<!-- ============================================================== -->
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Page wrapper  -->
+	<!-- ============================================================== -->
+
+	<!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
@@ -199,6 +494,90 @@
     <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
     <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
     <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
+    <!--Morris JavaScript -->
+    <script src="${path}/resources/assets/libs/raphael/raphael.min.js"></script>
+    <script src="${path}/resources/assets/libs/morris.js/morris.min.js"></script>
+    <script src="${path}/resources/dist/js/pages/morris/morris-data.js"></script>
+    
+   	<script type="text/javascript">
+   	/* $(function () {
+   	    "use strict";
+   	Morris.Area({
+   	        element: 'morris-area-chart',
+   	        data: [{
+   	            period: '2022-01',
+				사업부: 50,
+   	           	인사부: 80,
+				영업부: 60,
+				개발부: 30,
+				경영지원부: 40,
+				총무부: 30  	            
+   	        }, {
+   	            period: '2022-02',
+   	        	사업부: 50,
+	           	인사부: 80,
+				영업부: 60,
+				개발부: 30,
+				경영지원부: 40,
+				총무부: 30  	
+   	        }, {
+   	            period: '2022-03',
+   	         	사업부: 60,
+	           	인사부: 70,
+				영업부: 50,
+				개발부: 40,
+				경영지원부: 60,
+				총무부: 40  	
+   	        }, {
+   	            period: '2022-04',
+   	         	사업부: 40,
+	           	인사부: 40,
+				영업부: 80,
+				개발부: 40,
+				경영지원부: 50,
+				총무부: 20  	
+   	        }, {
+   	            period: '2022-05',
+   	         	사업부: 30,
+	           	인사부: 50,
+				영업부: 60,
+				개발부: 60,
+				경영지원부: 20,
+				총무부: 20  	
+   	        }, {
+   	            period: '2022-06',
+   	         	사업부: 50,
+	           	인사부: 80,
+				영업부: 60,
+				개발부: 30,
+				경영지원부: 40,
+				총무부: 30  	
+   	        },
+   	         {
+   	            period: '2022-07',
+   	         	사업부: 60,
+	           	인사부: 40,
+				영업부: 70,
+				개발부: 50,
+				경영지원부: 60,
+				총무부: 50  	
+   	        }],
+   	        xkey: 'period',
+   	        ykeys: ['사업부', '인사부', '영업부', '개발부', '경영지원부', '총무부'],
+   	        labels: ['사업부', '인사부', '영업부', '개발부', '경영지원부', '총무부'],
+   	        pointSize: 3,
+   	        fillOpacity: 0,
+   	        pointStrokeColors:['#02cccd', '#3f50f6', '#2f3d4a', '#FF3CA6', '#5099FF', '#FB8C00'],
+   	        behaveLikeLine: true,
+   	        gridLineColor: '#e0e0e0',
+   	        lineWidth: 3,
+   	        hideHover: 'auto',
+   	        lineColors: ['#02cccd', '#3f50f6', '#2f3d4a', '#FF3CA6', '#5099FF', '#FB8C00'],
+   	        resize: true
+   	        
+   	    });
+    }); */
+    </script>
 </body>
 
 </html>
