@@ -43,15 +43,15 @@
         <!-- Login box.scss -->
         <!-- ============================================================== -->
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
-            style="background:url(${path}/resources/assets/images/background/login-register.jpg) no-repeat center center;">
+            style="background-color:#ECECEC;">
             <div class="auth-box row text-center">
-                <div class="col-lg-5 col-md-3 modal-bg-img"
-                    style="background-image: url(${path}/resources/images/groubee_logo.png); width: 100%; height: auto;">
+                <div class="col-lg-5 col-md-3 modal-bg-img" style="background-color:#3f50f6;">
+                    <img src="${path}/resources/images/loginImg.png" style="width:100%; height:auto; margin-top:5%;">
                 </div>
                 <div class="col-lg-7 col-md-9 bg-white">
                     <div class="p-3">
                         <h2>
-                            Sign In
+                            Groubee Sign In
                         </h2>
                         <form name="loginform" class="mt-4" action="${path}/login_action.co" method="post">
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
@@ -67,13 +67,13 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 d-flex no-block">
-                                    <button type="submit" class="btn btn-dark">Sign In</button>                                    
+                                    <button type="submit" class="btn btn-dark">Log In</button>                                    
                                 </div>
                                 <div class="col-lg-12 mt-5">
                                     <h6 class="text-uppercase mb-0">Sign In With</h6>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6">
-                                            <a href="${path}/join.co" class="btn btn-block bg-facebook text-white mt-3">Sign Up</a>
+                                             <a href="${path}/join.co" class="btn btn-block bg-facebook text-white mt-3">JOIN</a>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <a href="#" class="btn btn-block bg-twitter text-white mt-3">EMAIL</a>

@@ -290,16 +290,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- ============================================================== -->
-				<!-- footer -->
-				<!-- ============================================================== -->
-				<footer class="footer text-center">
-					All Rights Reserved by Severny admin. Designed and Developed by <a
-						href="https://wrappixel.com">WrapPixel</a>.
-				</footer>
-				<!-- ============================================================== -->
-				<!-- End footer -->
-				<!-- ============================================================== -->
 				<!-- Modal Add notes -->
 				<div class="modal fade" id="addnotesmodal" tabindex="-1"
 					role="dialog" aria-labelledby="addnotesmodalTitle"

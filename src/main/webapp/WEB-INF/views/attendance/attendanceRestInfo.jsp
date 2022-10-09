@@ -57,7 +57,7 @@
 		<!-- ============================================================== -->
 		<!-- Page wrapper  -->
 		<!-- ============================================================== -->
-		<div class="page-wrapper">
+		<div class="page-wrapper" style="height:100%;">
 			<!-- ============================================================== -->
 			<!-- Container fluid  -->
 			<!-- ============================================================== -->
@@ -76,7 +76,7 @@
 				<!-- Right Part -->
 				<!-- ============================================================== -->
 			
-				<div class="right-part mail-list overflow-auto">
+				<div class="right-part mail-list overflow-auto" style="height:100%;">
                     <div class="card">
                         <div class="card-body">
   							<h4 class="card-title"><strong>나의 연차 내역</strong></h4>                                                               
@@ -85,7 +85,7 @@
 					</div>				
                     <!-- Action part -->
                     <div class="card">
-						<div class="card-body">
+						<div class="card-body"  style="height:100%;">
 							<div class="col-md-2">
 								<select class="form-control custom-select"
 									data-placeholder="연차 사용 기간" tabindex="1">

@@ -64,14 +64,11 @@
             var form = $("<form></form>");
             form.append("<div class='row'></div>");
             form.find(".row")
-                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Event Name</label><input class='form-control' placeholder='Insert Event Name' type='text' name='title'/></div></div>")
-                .append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Category</label><select class='form-control' name='category'></select></div></div>")
-                .find("select[name='category']")
-                .append("<option value='bg-danger'>Danger</option>")
-                .append("<option value='bg-success'>Success</option>")
-                .append("<option value='bg-primary'>Primary</option>")
-                .append("<option value='bg-info'>Info</option>")
-                .append("<option value='bg-warning'>Warning</option></div></div>");
+            	.append("<div class='col-md-6'><div class='form-group'><table><tr><td>리스트1</table></tr></td></div></div>")
+            	.append("<div class='col-md-6'><div class='form-group'><table><tr><td>리스트2</table></tr></td></div></div>")
+            	.append("<div class='col-md-6'><div class='form-group'><table><tr><td>리스트3</table></tr></td></div></div>")
+            	.append("<div class='col-md-6'><div class='form-group'><table><tr><td>리스트4</table></tr></td></div></div>")
+            	.append("<div class='col-md-6'><div class='form-group'><table><tr><td>리스트5</table></tr></td></div></div>")
             $this.$modal.find('.delete-event').hide().end().find('.save-event').show().end().find('.modal-body').empty().prepend(form).end().find('.save-event').unbind('click').click(function() {
                 form.submit();
             });
