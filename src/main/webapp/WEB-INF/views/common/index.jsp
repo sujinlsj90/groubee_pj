@@ -30,7 +30,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("sql");
+	// alert("sql");
 	
 </script>
 

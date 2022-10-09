@@ -30,7 +30,7 @@
 <link href="${path}/resources/commonCSS/attandance.css" rel="stylesheet">
 
 <script type="text/javascript">
-	alert("select * from grb_attendance a \n join grb_member m on a.id = m.id \n where  m.id = 1 \n order by today;");	
+	// alert("select * from grb_attendance a \n join grb_member m on a.id = m.id \n where  m.id = 1 \n order by today;");	
 </script>
 
 </head>
@@ -463,19 +463,18 @@
 								style="width: 5%; height: 6px;" role="progressbar">
 								<span class="sr-only">60% Complete</span>
 							</div>
-						</div>					
+						</div>										
 						<h5 class="mt-4">
-							누적 근무<span class="pull-right">85%</span>
+							연차<span class="pull-right">2%</span>
 						</h5>
-						<div class="progress ">
-							<div
-								class="progress-bar bg-danger wow animated progress-animated"
-								style="width: 85%; height: 6px;" role="progressbar">
+						<div class="progress">
+							<div class="progress-bar bg-info wow animated progress-animated"
+								style="width: 02%; height: 6px;" role="progressbar">
 								<span class="sr-only">60% Complete</span>
 							</div>
 						</div>
 						<h5 class="mt-4">
-							초과 근무<span class="pull-right">0%</span>
+							반차<span class="pull-right">%</span>
 						</h5>
 						<div class="progress">
 							<div class="progress-bar bg-info wow animated progress-animated"
@@ -484,12 +483,22 @@
 							</div>
 						</div>
 						<h5 class="mt-4">
-							연장 근무<span class="pull-right">65%</span>
+							연장 근무<span class="pull-right">15%</span>
 						</h5>
 						<div class="progress">
 							<div
 								class="progress-bar bg-success wow animated progress-animated"
-								style="width: 65%; height: 6px;" role="progressbar">
+								style="width: 15%; height: 6px;" role="progressbar">
+								<span class="sr-only">60% Complete</span>
+							</div>
+						</div>
+						<h5 class="mt-4">
+							누적 근무<span class="pull-right">85%</span>
+						</h5>
+						<div class="progress ">
+							<div
+								class="progress-bar bg-danger wow animated progress-animated"
+								style="width: 85%; height: 6px;" role="progressbar">
 								<span class="sr-only">60% Complete</span>
 							</div>
 						</div>						

@@ -30,7 +30,7 @@
 <link href="${path}/resources/commonCSS/attandance.css" rel="stylesheet">
 
 <script type="text/javascript">
-	alert("select * from grb_attendance a \n join grb_member m on a.id = m.id \n where m.id = 1;\n\n INSERT INTO grb_attendance (attend_id, id, attendin, RESULT, state) \n VALUES((SELECT NVL(Max(attend_id)+1,1) FROM grb_attendance), 1, sysdate, 1, '업무'); \n\n INSERT INTO grb_attendance (attend_id, id, attendout, RESULT, state) \n VALUES((SELECT NVL(Max(attend_id)+1,1) FROM grb_attendance), 1, sysdate, 0, '업무종료');");	
+	// alert("select * from grb_attendance a \n join grb_member m on a.id = m.id \n where m.id = 1;\n\n INSERT INTO grb_attendance (attend_id, id, attendin, RESULT, state) \n VALUES((SELECT NVL(Max(attend_id)+1,1) FROM grb_attendance), 1, sysdate, 1, '업무'); \n\n INSERT INTO grb_attendance (attend_id, id, attendout, RESULT, state) \n VALUES((SELECT NVL(Max(attend_id)+1,1) FROM grb_attendance), 1, sysdate, 0, '업무종료');");	
 </script>
 </head>
 

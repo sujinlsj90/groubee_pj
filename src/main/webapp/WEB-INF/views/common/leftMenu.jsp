@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
-    <title>leftMenu</title>	
+    <title>Severny admin Template - The Ultimate Multipurpose admin template</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
     <!-- Custom CSS -->
     <link href="${path}/resources/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -55,8 +55,10 @@
 				</div>
 			</div>
 			<div class="profile-section">
-				<p class="font-weight-light mb-0 font-18">Sandra Phillip</p>
-				<span class="op-7 font-14">Marketing Head</span>
+				<p class="font-weight-bold mb-0 font-18">김영수 사원</p>
+				<span class="op-7 font-14">생산본부</span><br>
+				<button type="button" id="btnLogout" class="btn waves-effect waves-light btn-rounded btn-outline-light" onClick="location.href='login.co'">logout</button>
+				<!-- <button id="logout" onClick="location.href='login.co'">logout</button> -->
 			</div>
 		</div>
 		<!-- Sidebar scroll-->
@@ -79,7 +81,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="chat.ch"
                                 aria-expanded="false"><i data-feather="message-circle" class="feather-icon"></i><span
                                     class="hide-menu">채팅</span></a></li>
-                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="msgInbox.me"
+                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="msgIndex.me"
                                 aria-expanded="false"><i data-feather="edit-3" class="feather-icon"></i><span
                                     class="hide-menu">쪽지</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="humanMain.hu"

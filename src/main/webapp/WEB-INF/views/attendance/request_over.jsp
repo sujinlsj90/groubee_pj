@@ -30,7 +30,7 @@
 <link href="${path}/resources/commonCSS/attandance.css" rel="stylesheet">
 
 <script type="text/javascript">
-	alert("INSERT INTO grb_attendance (attend_id, id, RESULT, reason, overtime, state) \n VALUES((SELECT NVL(Max(attend_id)+1,1) FROM grb_attendance), 1, 1, '하반기 SQL 프로젝트', sysdate, '연장');");
+	// alert("INSERT INTO grb_attendance (attend_id, id, RESULT, reason, overtime, state) \n VALUES((SELECT NVL(Max(attend_id)+1,1) FROM grb_attendance), 1, 1, '하반기 SQL 프로젝트', sysdate, '연장');");
 	
 </script>
 

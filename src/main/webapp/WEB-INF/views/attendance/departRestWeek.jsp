@@ -33,7 +33,7 @@
 <link href="${path}/resources/commonCSS/attandance.css" rel="stylesheet">
 
 <script type="text/javascript">
-	alert("select * from grb_annual a \n join grb_member m on a.id = m.id \n where  m.depart_id = 1 \n order by a.annual_id desc;");
+	// alert("select * from grb_annual a \n join grb_member m on a.id = m.id \n where  m.depart_id = 1 \n order by a.annual_id desc;");
 	
 </script>
 
@@ -52,7 +52,7 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-	<div id="main-wrapper">
+	<div id="main-wrapper" style="height:100%;">
 		<div class="app-container"></div>
 		<!-- 좌측고정 메뉴바 -->
         <%@ include file="/WEB-INF/views/common/leftMenu.jsp" %>
@@ -60,7 +60,7 @@
 		<!-- ============================================================== -->
 		<!-- Page wrapper  -->
 		<!-- ============================================================== -->
-		<div class="page-wrapper">
+		<div class="page-wrapper" style="height:100%;">
 			<!-- ============================================================== -->
 			<!-- Container fluid  -->
 			<!-- ============================================================== -->
@@ -70,7 +70,7 @@
 			<!-- ============================================================== -->
 			<!-- Email App Part -->
 			<!-- ============================================================== -->
-			<div class="email-app position-relative">
+			<div class="email-app position-relative" style="height:100%;">
 				<!-- ============================================================== -->
 				<!-- Left Part -->
 				<!-- ============================================================== -->
@@ -78,7 +78,7 @@
 				<!-- ============================================================== -->
 				<!-- Right Part -->
 				<!-- ============================================================== -->				
-				<div class="right-part mail-list overflow-auto">
+				<div class="right-part mail-list overflow-auto" style="height:100%;">
 				<!-- Action part -->					
 					<div class="card">
                         <div class="card-body">

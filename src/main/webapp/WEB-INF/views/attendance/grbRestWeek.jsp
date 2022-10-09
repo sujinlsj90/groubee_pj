@@ -33,7 +33,7 @@
 <link href="${path}/resources/commonCSS/attandance.css" rel="stylesheet">
 
 <script type="text/javascript">
-	alert("select * from grb_annual a \n join grb_member m on a.id = m.id \n order by a.annual_id desc;");
+	// alert("select * from grb_annual a \n join grb_member m on a.id = m.id \n order by a.annual_id desc;");
 	
 </script>
 
@@ -56,11 +56,11 @@
 		<div class="app-container"></div>
 		<!-- 좌측고정 메뉴바 -->
         <%@ include file="/WEB-INF/views/common/leftMenu.jsp" %>
-        <!-- 좌측고정 메뉴바 -->s
+        <!-- 좌측고정 메뉴바 -->
 		<!-- ============================================================== -->
 		<!-- Page wrapper  -->
 		<!-- ============================================================== -->
-		<div class="page-wrapper">
+		<div class="page-wrapper" style="height:100%;">
 			<!-- ============================================================== -->
 			<!-- Container fluid  -->
 			<!-- ============================================================== -->

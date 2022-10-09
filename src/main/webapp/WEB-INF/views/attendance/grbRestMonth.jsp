@@ -31,7 +31,7 @@
 <link href="${path}/resources/commonCSS/attandance.css" rel="stylesheet">
 
 <script type="text/javascript">
-	alert("select * from grb_annual a \n join grb_member m on a.id = m.id \n order by a.annual_id desc;");
+	// alert("select * from grb_annual a \n join grb_member m on a.id = m.id \n order by a.annual_id desc;");
 	
 </script>
 
@@ -160,26 +160,76 @@
 							
 							<!-- Table -->
                         <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Sortable table</h4>
-                                <h6 class="card-subtitle">Basic sortable table</h6>
-                                <table data-toggle="table"
-                                    data-url="https://api.github.com/users/wenzhixin/repos?type=owner&sort=full_name&direction=asc&per_page=100&page=1"
-                                    data-sort-name="stargazers_count" data-height="280" data-mobile-responsive="true"
-                                    data-sort-order="desc" class="table table-striped no-wrap">
-                                    <thead>
-                                        <tr>
-                                            <th data-field="name" data-sortable="true"> Name </th>
-                                            <th data-field="stargazers_count" data-sortable="true" data-width="100">
-                                                Stars </th>
-                                            <th data-field="forks_count" data-sortable="true" data-width="100"> Forks
-                                            </th>
-                                            <th data-field="description" data-sortable="true"> Description </th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
+								<div class="card-body">
+									<h4 class="card-title">부서원 연차 내역</h4>
+									<h6 class="card-subtitle">연차 사용 현황</h6>
+									<table data-toggle="table" class="table table-striped no-wrap">
+										<thead>
+											<tr>												
+												<th class="name" data-sortable="true">이름</th>
+												<th class="depart" data-sortable="true">부서</th>
+												<th class="hireday" data-sortable="true">입사일</th>
+												<th class="restday" data-sortable="true">연차일</th>
+												<th class="annualtotal" data-sortable="true">발생 연차</th>
+												<th class="annualtotal" data-sortable="true">총 연차</th>
+												<th class="annualuse" data-sortable="true">사용 연차</th>
+												<th class="annualrest" data-sortable="true">잔여 연차</th>
+												<th class="state" data-sortable="true">상태</th> <!-- 재직 휴직 퇴사 -->
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><img src="${path}/resources/assets/images/users/4.jpg"
+													alt="user" width="40" class="rounded-circle" name="profile">Genelia Deshmukh</td>
+												<td>개발부</td>
+												<td>2022-01-01</td>
+												<td>2022-10-04</td>
+												<td>15</td>
+												<td>15</td>
+												<td>2</td>
+												<td>13</td>
+												<td>재직</td>
+											</tr>
+											<tr>
+												<td><img src="${path}/resources/assets/images/users/3.jpg"
+													alt="user" width="40" class="rounded-circle" name="profile">Genelia Deshmukh</td>
+												<td>사업부</td>
+												<td>2022-01-02</td>
+												<td>2022-10-04</td>
+												<td>15</td>
+												<td>15</td>
+												<td>2</td>
+												<td>13</td>
+												<td>재직</td>
+											</tr>
+											<tr>
+												<td><img src="${path}/resources/assets/images/users/2.jpg"
+													alt="user" width="40" class="rounded-circle" name="profile">Genelia Deshmukh</td>
+												<td>총무부</td>
+												<td>2022-01-03</td>
+												<td>2022-10-05</td>
+												<td>15</td>
+												<td>15</td>
+												<td>2</td>
+												<td>13</td>
+												<td>재직</td>
+											</tr>
+											<tr>
+												<td><img src="${path}/resources/assets/images/users/1.jpg"
+													alt="user" width="40" class="rounded-circle" name="profile">Genelia Deshmukh</td>
+												<td>인사부</td>
+												<td>2022-01-04</td>
+												<td>2022-10-09</td>
+												<td>15</td>
+												<td>15</td>
+												<td>2</td>
+												<td>13</td>
+												<td>재직</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
                         <!-- Table -->	
                         <hr><br>						                                                        
                             	<!-- Accordian -->                            	
