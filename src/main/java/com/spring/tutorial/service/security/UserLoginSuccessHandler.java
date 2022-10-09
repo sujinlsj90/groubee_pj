@@ -49,7 +49,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 			dispatcher.forward(request, response);
 		} else { // 관리자
 			grade = 0;
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.co");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/adminMain.ad");
 			dispatcher.forward(request, response);
 		}
 

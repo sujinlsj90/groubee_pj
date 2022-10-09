@@ -29,7 +29,7 @@
 	<c:if test="${sessionScope.memberID == 'admin'}">
 		<script type="text/javascript"> 
 			alert("관리자 로그인");
-			window.location="${path}/index.co";
+			window.location="${path}/adminMain.ad";
 		</script>
 	</c:if>
 	<c:if test="${sessionScope.memberID == null}">

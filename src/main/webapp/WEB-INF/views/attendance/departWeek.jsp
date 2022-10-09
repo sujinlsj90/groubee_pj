@@ -14,7 +14,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
-    <title>Severny admin Template - The Ultimate Multipurpose admin template</title>	
+    <title>Groubee - 부서 근태 내역</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
     <!-- This Page CSS -->
     <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
@@ -101,7 +101,7 @@
 								</select>
 							</div>
 							<hr>
-                            <h4 class="card-title">부서별 근태 현황</h4>                           
+                            <h4 class="card-title">부서별 근태 내역</h4>                           
                             	<!-- Accordian -->                            	
                                 <div class="accordion" id="accordionTable">
                                 	<!-- 사업 -->

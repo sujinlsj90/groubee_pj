@@ -14,7 +14,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
-    <title>Severny admin Template - The Ultimate Multipurpose admin template</title>	
+    <title>Groubee - 부서 연차 통계</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
     <!-- This Page CSS -->
     <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
@@ -82,7 +82,7 @@
 					<!-- Button group part -->
 					<div class="bg-light p-3 d-flex align-items-center do-block">
 						<div>
-							<h4>부서 연차 내역</h4>
+							<h4>부서 연차 통계</h4>
 							<h1>2022.10</h1>							
 						</div>					
 					</div>
@@ -367,11 +367,11 @@
 	                legend: {
 	                    orient: 'vertical',
 	                    x: 'left',
-	                    data: ['출근','퇴근','지각','반차','연차']
+	                    data: ['반차','연차']
 	                },
 
 	                // Add custom colors
-	                color: ['#ffab2e', '#3f50f6', '#212529', '#ff3ca6', '#6610f2'],
+	                color: ['#ffab2e', '#6610f2'],
 
 	                // Display toolbox
 	                toolbox: {
@@ -454,12 +454,9 @@
 	                            }
 	                        },
 
-	                        data: [
-	                            {value: 35, name: '출근'},
-	                            {value: 27, name: '퇴근'},
-	                            {value: 5, name: '지각'},
-	                            {value: 10, name: '반차'},
-	                            {value: 2, name: '연차'}
+	                        data: [	                           
+	                            {value: 7, name: '반차'},
+	                            {value: 7, name: '연차'}
 	                        ]
 	                    }
 	                ]

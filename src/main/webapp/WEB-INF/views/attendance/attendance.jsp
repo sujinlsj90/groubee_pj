@@ -14,7 +14,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
-    <title>Severny admin Template - The Ultimate Multipurpose admin template</title>	
+    <title>Groubee - 일일 근태 현황</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
     <!-- This Page CSS -->
     <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">

@@ -97,16 +97,16 @@
 								style="color: #343a40;">
 								<li class="sidebar-item" style="color: #343a40;"><a
 									href="departWeek.at" class="sidebar-link"> <span
-										class="hide-menu" style="color: #343a40;"> 부서 근태 현황 </span></a></li>
+										class="hide-menu" style="color: #343a40;"> 부서 근태 내역 </span></a></li>
 								<li class="sidebar-item" style="color: #343a40;"><a
 									href="departMonth.at" class="sidebar-link"> <span
 										class="hide-menu" style="color: #343a40;"> 부서 근태 통계 </span></a></li>
 								<li class="sidebar-item" style="color: #343a40;"><a
 									href="departRestWeek.at" class="sidebar-link"> <span class="hide-menu"
-										style="color: #343a40;"> 부서 연차 현황 </span></a></li>
+										style="color: #343a40;"> 부서 연차 내역 </span></a></li>
 								<li class="sidebar-item" style="color: #343a40;"><a
 									href="departRestMonth.at" class="sidebar-link"> <span class="hide-menu"
-										style="color: #343a40;"> 부서 연차 내역 </span></a></li>
+										style="color: #343a40;"> 부서 연차 통계 </span></a></li>
 							</ul></li>
 
 						<li class="sidebar-item" style="color: #343a40;"><a
@@ -118,16 +118,16 @@
 								style="color: #343a40;">
 								<li class="sidebar-item" style="color: #343a40;"><a
 									href="grbWeek.at" class="sidebar-link"> <span class="hide-menu"
-										style="color: #343a40;"> 전사 근태 현황 </span></a></li>
+										style="color: #343a40;"> 전사 근태 내역 </span></a></li>
 								<li class="sidebar-item" style="color: #343a40;"><a
 									href="grbMonth.at" class="sidebar-link"> <span class="hide-menu"
 										style="color: #343a40;"> 전사 근태 통계 </span></a></li>
 								<li class="sidebar-item" style="color: #343a40;"><a
 									href="grbRestWeek.at" class="sidebar-link"> <span class="hide-menu"
-										style="color: #343a40;"> 전사 연차 현황 </span></a></li>
+										style="color: #343a40;"> 전사 연차 내역 </span></a></li>
 								<li class="sidebar-item" style="color: #343a40;"><a
 									href="grbRestMonth.at" class="sidebar-link"> <span class="hide-menu"
-										style="color: #343a40;"> 전사 연차 사용 </span></a></li>
+										style="color: #343a40;"> 전사 연차 통계 </span></a></li>
 							</ul></li>
 					</ul>
 				</nav>

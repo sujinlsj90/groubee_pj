@@ -39,7 +39,7 @@
 	        <div class="navbar-brand">
 	        	<!-- Logo icon -->
 	        	
-	            <a href="index.co">
+	            <a href="adminMain.ad">
 	            	<b class="logo-icon">
 	            		<img src="${path}/resources/images/groubee_logo3.png" alt="homepage" class="logo" />
 	            	</b>
