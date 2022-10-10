@@ -43,10 +43,10 @@
         <!-- Login box.scss -->
         <!-- ============================================================== -->
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center position-relative"
-            style="background:url(${path}/resources/assets/images/background/login-register.jpg) no-repeat center center;">
+            style="background-color:#ECECEC;">
             <div class="auth-box row text-center">
-                <div class="col-lg-5 col-md-3 modal-bg-img"
-                    style="background-image: url(${path}/resources/images/groubee_logo.png); width: 100%; height: auto;">
+                <div class="col-lg-5 col-md-3 modal-bg-img" style="background-color:#3f50f6;">
+                    <img src="${path}/resources/images/loginImg.png" style="width:100%; height:auto; margin-top:5%;">
                 </div>
                 <div class="col-lg-7 col-md-9 bg-white">
                     <div class="p-3">

@@ -79,10 +79,10 @@
 						<div class="d-flex align-items-center">
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb m-0 p-0">
-									<li class="breadcrumb-item active">
-									<a href="${path}/adminMain.ad">Home</a></li>
-									<li class="breadcrumb-item active"aria-current="page">
-									<a href="${path}/adAttend.ad">Attendance</a></li>
+									<li class="breadcrumb-item">
+									<a href="${path}/adminMain.ad" class="text-muted">Home</a></li>
+									<li class="breadcrumb-item"aria-current="page">
+									<a href="${path}/adAttend.ad" class="text-muted">Attendance</a></li>
 								</ol>
 							</nav>
 						</div>

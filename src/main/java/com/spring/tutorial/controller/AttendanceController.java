@@ -7,22 +7,30 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.tutorial.service.AttendanceServiceImpl;
+
 
 @Controller
 public class AttendanceController {
 
-	private static final Logger logger = LoggerFactory.getLogger(AttendanceController.class);
+	@Autowired
+	AttendanceServiceImpl service;
 	
+	private static final Logger logger = LoggerFactory.getLogger(AttendanceController.class);
+
 	// 나의 근태 현황 (일일 근태)
 	@RequestMapping("attendance.at")
 	public String attendance(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("controller > attendance.at");
+		service.attendance(req, model);
+		
 		return "attendance/attendance";
 	}
 	
@@ -30,7 +38,8 @@ public class AttendanceController {
 	@RequestMapping("attendanceWeek.at")
 	public String attendanceWeek(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
-		logger.info("controller > attendanceWeek.at");
+		logger.info("controller > attendanceWeek.at");		
+		
 		return "attendance/attendanceWeek";
 	}
 	

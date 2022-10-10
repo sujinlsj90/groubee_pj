@@ -25,7 +25,7 @@ public class CommonDTO {
 	private int company_id; // 회사
 	private String rank; // 직책명
 	private int salary; // 봉급
-	private String contract; // 계약직 정규직	
+	private String contract; // 0 계약직 1 정규직	
 	private Date hireday; // 입사일
 	private Date retireday; // 퇴사일
 	private String etc; // 비고

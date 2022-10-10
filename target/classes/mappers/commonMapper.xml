@@ -14,12 +14,12 @@
    		<!-- id 등록 여부 체크  -->
    		<select id="idCheck" parameterType="String" resultType="int">
    			select count(*) from grb_member where id=#{id}
-   		</select>
+   		</select>   		
    		
    		<!-- 사원 등록 처리 --><!-- 시큐리티 : key 컬럼 추가 -->
    		<insert id="insertMember" parameterType="com.spring.tutorial.dto.CommonDTO">   			
 		    INSERT INTO grb_member(id, pwd, name, jumin1, jumin2, gender, marry, frgn, nation, tel, email_in, email_out, address, depart_name, company_id, rank, hireday, state, key)
-			VALUES((SELECT NVL(Max(id)+1,1) FROM grb_member), #{pwd}, #{name}, #{jumin1}, #{jumin2}, #{gender}, #{marry}, #{frgn}, #{nation}, #{tel}, #{email_in}, #{email_out}, #{address}, #{depart_name}, 1, #{rank}, sysdate, '재직', #{key})
+			VALUES((SELECT NVL(Max(id)+1,20220001) FROM grb_member), #{pwd}, #{name}, #{jumin1}, #{jumin2}, #{gender}, #{marry}, #{frgn}, #{nation}, #{tel}, #{email_in}, #{email_out}, #{address}, #{depart_name}, 1, #{rank}, sysdate, '재직', #{key})
    		</insert>  		
    		
    		

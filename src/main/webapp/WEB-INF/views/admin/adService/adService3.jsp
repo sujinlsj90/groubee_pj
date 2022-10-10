@@ -174,9 +174,13 @@
 						    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						        <span aria-hidden="true">×</span>
 						    </button>
-						    <strong>[공지] 코로나 감염자 재택근무 안내</strong>
-						    - 코로나 감염자의 경우 7일 간의 격리 조치와 함께 재택근무를 실시하도록 하겠습니다
-						    - 이수진 팀장
+						   
+						    <strong>[공지] 코로나 감염자 재택근무 안내</strong>						    
+						    <p>	<br>
+						    	코로나 감염자의 경우 7일 간의 격리 조치와 함께 재택근무를 실시하도록 하겠습니다.<br>
+						    	확진자 증명서와 동거인 여부, 밀접촉자 여부 보고해주시기 바랍니다.<br>
+						    	- 이수진 팀장
+						    </p>
 						</div>                
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->

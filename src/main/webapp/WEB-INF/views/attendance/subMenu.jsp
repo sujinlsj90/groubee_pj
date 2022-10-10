@@ -43,13 +43,27 @@
 						<div class="carousel-inner">
 							<div class="carousel-item active">
 								<!-- <h4 class="card-title mt-4">Nkike Shoes</h4> -->
-								<p class="text-muted attendenceTime">2022년 10월 3일 (월)
-									17:36:52</p>
+								<p class="text-muted attendenceDay" id="today"></p>
+								<p class="text-muted attendenceTime" id="clock"></p>
 								<p class="text-muted">
-									출근시간<span class="attendenceChk"> : 미등록</span>
+									출근시간<span class="attendenceChk"> : 
+									<c:if test="${list[0].attendin == null}" >
+										<div id="attendin">미등록</div>
+									</c:if>
+									<c:if test="${list[0].attendin != null}" >
+										<div id="attendin">${list[0].attendin}</div>
+									</c:if>									
+									</span>
 								</p>
 								<p class="text-muted">
-									퇴근시간<span class="attendenceChk"> : 미등록</span>
+									퇴근시간<span class="attendenceChk"> : 
+									<c:if test="${list[1].attendout == null}" >
+										<div id="attendout">미등록</div>
+									</c:if>
+									<c:if test="${list[1].attendout != null}" >
+										<div id="attendout">${list[1].attendout}</div>
+									</c:if>
+									</span>
 								</p>
 							</div>
 						</div>
@@ -134,6 +148,7 @@
 			</div>
 		</div>
 	</div>
+	
 </body>
 
 </body>
