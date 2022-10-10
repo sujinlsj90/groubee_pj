@@ -32,15 +32,4 @@ public class BoardController {
 		
 		return "board/board";
 	}
-	
-	// 게시판 목록
-	@RequestMapping("board.bo")
-	public String chat(HttpServletRequest req, Model model) 
-			throws ServletException, IOException{
-		logger.info("BoardController -> board.bo");
-		
-		service.boardList(req, model);
-		
-		return "board/board";
-	}
 }
