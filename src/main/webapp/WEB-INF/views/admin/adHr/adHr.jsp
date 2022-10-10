@@ -67,6 +67,24 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+				<div class="row">
+					<div class="col-7 align-self-center">
+						<h4 class="page-title text-truncate text-dark font-weight-medium mb-1">
+							Admin HumanResources</h4>
+						<div class="d-flex align-items-center">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb m-0 p-0">
+									<li class="breadcrumb-item active">
+									<a href="${path}/adminMain.ad">Home</a></li>
+									<li class="breadcrumb-item active"aria-current="page">
+									<a href="${path}/adHr.ad">Employee Management</a></li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -76,10 +94,10 @@
                 <!-- *************************************************************** -->
                 <div class="row button-group">
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adHr.ad'">사원통합관리</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adHr.ad'">사원 통합 관리</button>
 				    </div>
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adHr2.ad'">사원등록</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/join.co'">사원 등록</button>
 				    </div>
 				</div>
                 <br><br>

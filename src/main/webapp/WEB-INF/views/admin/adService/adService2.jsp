@@ -22,6 +22,9 @@
     <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${path}/resources/assets/extra-libs/prism/prism.css">
     <link href="${path}/resources/commonCSS/index.css" rel="stylesheet">
+    <!-- This Page CSS -->
+    <link rel="stylesheet" type="text/css"
+        href="${path}/resources/assets/libs/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -67,6 +70,24 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+				<div class="row">
+					<div class="col-7 align-self-center">
+						<h4 class="page-title text-truncate text-dark font-weight-medium mb-1">
+							Admin Serivce</h4>
+						<div class="d-flex align-items-center">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb m-0 p-0">
+									<li class="breadcrumb-item active">
+									<a href="${path}/adminMain.ad">Home</a></li>
+									<li class="breadcrumb-item active"aria-current="page">
+									<a href="${path}/adService2.ad">Serivce Menu</a></li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -86,7 +107,32 @@
 				    </div>
 				</div>
                 <br><br>
-                <img src = "${path}/resources/images/adminImages/서비스관리-서비스메뉴관리.JPG">
+                <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">서비스 메뉴 관리</h4>
+                                <select multiple="multiple" size="10" class="duallistbox-dynamic">
+                                    <option value="1" selected="selected">홈</option>
+                                    <option value="2" selected="selected">전자결재</option>
+                                    <option value="3" selected="selected">조직도</option>
+                                    <option value="4" selected="selected">채팅</option>
+                                    <option value="5" selected="selected">게시판</option>
+                                    <option value="6" selected="selected">자료실</option>
+                                    <option value="7" selected="selected">쪽지</option>
+                                    <option value="8" selected="selected">캘린더</option>
+                                    <option value="9" selected="selected">근태관리</option>
+                                    <option value="10" selected="selected">인사관리</option>
+                                    <option value="11" selected="selected">급여관리</option>
+                                    <option value="12" selected="selected">전자우편</option>
+                                    <option value="13">직원검색</option>                                    
+                                </select>
+                                <div class="buttons block mt-3">
+                                    <button type="button" class="btn btn-success duallistbox-add">Save</button>
+                                    <button type="button" class="btn btn-dark duallistbox-add-clear">Cancel</button>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>               
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
                 <!-- *************************************************************** -->
@@ -198,18 +244,10 @@
     <!--Menu sidebar -->
     <script src="${path}/resources/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="${path}/resources/dist/js/custom.min.js"></script>
-    <!--This page JavaScript -->
-    <!--chartis chart-->
-    <script src="${path}/resources/assets/libs/chartist/dist/chartist.min.js"></script>
-    <script src="${path}/resources/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-    <!--c3 charts -->
-    <script src="${path}/resources/assets/extra-libs/c3/d3.min.js"></script>
-    <script src="${path}/resources/assets/extra-libs/c3/c3.min.js"></script>
-    <!--chartjs -->
-    <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
-    <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
-    <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
+    <script src="${path}/resources/dist/js/custom.min.js"></script>   
+    <!-- This Page JS -->
+    <script src="${path}/resources/assets/libs/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js"></script>
+    <script src="${path}/resources/dist/js/pages/forms/dual-listbox/dual-listbox.js"></script>
 </body>
 
 </html>

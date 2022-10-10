@@ -101,8 +101,8 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label for="jumin">* Jumin no</label> <br> 
-													<input type="text" id="jumin1" name="jumin1" placeholder="주민번호 앞자리" required> -
-													<input type="password" id="jumin2" name="jumin2" placeholder="주민번호 뒷자리" required>
+													<input type="text" id="jumin1" name="jumin1" placeholder="앞자리 6" required> -
+													<input type="password" id="jumin2" name="jumin2" placeholder="뒷자리 7	" required>
 												</div>
 											</div>
 											<!-- 프로필 사진 -->
@@ -116,7 +116,7 @@
 											<div class="col-md-6">										
 												<div class="form-group">
 													<label class="gender">* Gender</label> 
-													<select class="form-control custom-select" id="gender" name="gender" required>
+													<select class="form-control custom-select col-lg-2 col-md-4" id="gender" name="gender" required>
 														<option value="성별">성별</option>
 														<option value="남성">남성</option>
 														<option value="여성">여성</option>
@@ -129,7 +129,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="marry">* Marry</label> 
-													<select class="form-control custom-select" id="marry" name="marry" required>
+													<select class="form-control custom-select col-lg-2 col-md-4" id="marry" name="marry" required>
 														<option value="결혼 여부">결혼 여부</option>
 														<option value="기혼">기혼</option>
 														<option value="미혼">미혼</option>
@@ -141,7 +141,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="frgn">* foreignner</label> 
-													<select class="form-control custom-select" id="frgn" name="frgn" required>
+													<select class="form-control custom-select col-lg-2 col-md-4" id="frgn" name="frgn" required>
 														<option value="내외국인">내외국인</option>
 														<option value="내국인">내국인</option>
 														<option value="외국인">외국인</option>
@@ -153,7 +153,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="nation">* nation</label> 
-													<select	class="form-control custom-select" id="nation" name="nation" required>
+													<select	class="form-control custom-select col-lg-2 col-md-4" id="nation" name="nation" required>
 														<option value="국적">국적</option>
 														<option value="한국">한국</option>
 														<option value="미국">미국</option>
@@ -226,7 +226,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="depart_name">* depart</label><br>
-													<select	class="form-control custom-select" id="depart_name" name="depart_name" required>
+													<select	class="form-control custom-select col-lg-2 col-md-4" id="depart_name" name="depart_name" required>
 														<option value="0">부서 선택</option>
 														<option value="사업부">사업부</option>
 														<option value="인사부">인사부</option>
@@ -241,14 +241,14 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="rank">* rank</label><br>
-													<input type="text" class="form-control" id="rank" name="rank" value="사원" required>																										
+													<input type="text" class="form-control col-lg-2 col-md-4" id="rank" name="rank" value="사원" required>																										
 												</div>												
 											</div>
 											<!-- 입사일 -->
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="hireday">* hireday</label><br>
-													<input type="date" class="form-control" id="hireday" name="hireday" required>																										
+													<input type="date" class="form-control col-lg-4 col-md-6" id="hireday" name="hireday" required>																										
 												</div>												
 											</div>
 											<!-- 사인 -->
@@ -258,11 +258,11 @@
 													<input type="file" class="form-control" id="sign" name="sign">																										
 												</div>												
 											</div>
-											<!-- 계좌번호 -->
+											<!-- 계좌번호 -->											
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="account">account</label><br>
-													<select	id="bank" name="bank">
+													<select	class="form-control custom-select col-lg-2 col-md-4" id="bank" name="bank">
 														<option value="0">은행선택</option>
 														<option value="국민">국민</option>
 														<option value="신한">신한</option>
@@ -271,7 +271,7 @@
 														<option value="카카오뱅크">카카오뱅크</option>
 														<option value="농협">농협</option>														
 													</select>
-													<input type="text" id="account" name="account">																										
+													<input type="text" id="account" name="account" placeholder="계좌번호">																										
 												</div>												
 											</div>
 											<hr>
