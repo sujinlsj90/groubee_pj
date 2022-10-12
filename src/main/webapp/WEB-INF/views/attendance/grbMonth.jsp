@@ -14,7 +14,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
-    <title>Severny admin Template - The Ultimate Multipurpose admin template</title>	
+    <title>Groubee - 전사 근태 통계</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
     <!-- This Page CSS -->
     <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
@@ -28,10 +28,13 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<link href="${path}/resources/commonCSS/attandance.css" rel="stylesheet">
 
 <script type="text/javascript">
+<<<<<<< HEAD
 		
+=======
+	// alert("select * from grb_attendance a \n join grb_member m on a.id = m.id \n order by a.attend_id desc;");	
+>>>>>>> b4f3977aaa326688f4936a7984d699252978e042
 	
 </script>
 
@@ -68,31 +71,32 @@
 			<!-- ============================================================== -->
 			<!-- Email App Part -->
 			<!-- ============================================================== -->
-			<div class="email-app position-relative" style="height:100%;">
+			<div class="email-app position-relative" style="height: 100%;">
 				<!-- ============================================================== -->
 				<!-- Left Part -->
 				<!-- ============================================================== -->
-				<%@ include file="/WEB-INF/views/attendance/subMenu.jsp" %>
+				<%@ include file="/WEB-INF/views/attendance/subMenu.jsp"%>
 				<!-- ============================================================== -->
 				<!-- Right Part -->
 				<!-- ============================================================== -->
-			
-				<div class="right-part mail-list overflow-auto" style="height:100%;">
+
+				<div class="right-part mail-list overflow-auto"
+					style="height: 100%;">
 					<!-- Action part -->
 					<!-- Button group part -->
 					<div class="bg-light p-3 d-flex align-items-center do-block">
 						<div>
 							<h4>전사 근태 통계</h4>
-							<h1>2022.10</h1>							
-						</div>					
+							<h1>2022.10</h1>
+						</div>
 					</div>
-					<div class="card">						
-                        <div class="card-body">
-                        	<div class="col-md-2">
+					<div class="card">
+						<div class="card-body">
+							<div class="col-md-2">
 								<select class="form-control custom-select"
 									data-placeholder="부서 검색" tabindex="1">
 									<option value="부서 검색">부서 검색</option>
-									<option value="사업부">사업부</option>									
+									<option value="사업부">사업부</option>
 									<option value="인사부">인사부</option>
 									<option value="영업부">영업부</option>
 									<option value="개발부">개발부</option>
@@ -101,8 +105,8 @@
 								</select>
 							</div>
 							<hr>
-                            <h4 class="card-title">전사 근태 통계</h4>
-                            <div class="container" style="align: center">
+							<h4 class="card-title">전사 근태 통계</h4>
+							<div class="container" style="align: center">
 								<div class="row">
 									<div class="col bg-light border p-3">
 										<div>출근 미체크</div>
@@ -131,471 +135,242 @@
 									<div class="col bg-light border p-3">
 										<div>미인증</div>
 										<div>2</div>
-									</div>									
+									</div>
 								</div>
 							</div>
-							<hr><br>
+							<hr>
+							<br>
 							<!-- 부서 근태 통계 -->
 							<div class="col-lg-6">
-                       			<div class="card">
-                            		<div class="card-body">
-                               			<h4 class="card-title" style="width: 400px;">부서 근태 통계</h4>
-                                		<div>
-                                    		<canvas id="pie-chart" style="height: 400px;"></canvas>
-                               		 	</div>
-                            		</div>
-                        		</div>
-                    		</div>
-                    		
+								<div class="card">
+									<div class="card-body">
+										<h4 class="card-title" style="width: 400px;">전사 근태 통계</h4>
+										<div>
+											<canvas id="pie-chart" style="height: 400px;"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+
 							<div class="col-lg-12 col-xl-6">
 								<div class="card">
 									<div class="card-body analytics-info">
-										<h4 class="card-title">부서 근태 통계</h4>
+										<h4 class="card-title">전사 근태 통계</h4>
 										<div id="basic-doughnut" style="height: 400px;"></div>
 									</div>
 								</div>
 							</div>
 
-							<hr><br>
-							
+							<hr>
+							<br>
+
 							<!-- Table -->
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Sortable table</h4>
-                                <h6 class="card-subtitle">Basic sortable table</h6>
-                                <table data-toggle="table"
-                                    data-url="https://api.github.com/users/wenzhixin/repos?type=owner&sort=full_name&direction=asc&per_page=100&page=1"
-                                    data-sort-name="stargazers_count" data-height="280" data-mobile-responsive="true"
-                                    data-sort-order="desc" class="table table-striped no-wrap">
-                                    <thead>
-                                        <tr>
-                                            <th data-field="name" data-sortable="true"> Name </th>
-                                            <th data-field="stargazers_count" data-sortable="true" data-width="100">
-                                                Stars </th>
-                                            <th data-field="forks_count" data-sortable="true" data-width="100"> Forks
-                                            </th>
-                                            <th data-field="description" data-sortable="true"> Description </th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- Table -->	
-                        <hr><br>						                                                        
-                            	<!-- Accordian -->                            	
-                                <div class="accordion" id="accordionTable">
-                                	<!-- 사업 -->
-                                    <div class="card">
-                                        <div class="card-header" id="heading1">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link" type="button" data-toggle="collapse"
-                                                    data-target="#col1" aria-expanded="true" aria-controls="col1">
-                                                    * 사업부
-                                                </button>
-                                           </h5>
-                                        </div>
-                                        <div id="col1" class="collapse" aria-labelledby="heading1"
-                                            data-parent="#accordionTable">
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table id="demo-foo-accordion"
-                                                        class="table table-bordered mb-0 toggle-arrow-tiny no-wrap"
-                                                        data-filtering="true" data-paging="true" data-sorting="true"
-                                                        data-paging-size="5">
-                                                        <thead>
-                                                            <tr class="footable-filtering">
-                                                                <th data-toggle="true"> 프로필 </th>
-                                                                <th> 부서 </th>
-                                                                <th data-hide="phone"> 주간 누적 근무 </th>
-                                                                <th data-hide="all"> 월 </th>
-                                                                <th data-hide="all"> 화 </th>
-                                                                <th data-hide="all"> 수 </th>
-                                                                <th data-hide="all"> 목 </th>
-                                                                <th data-hide="all"> 금 </th>
-                                                                <th data-hide="all"> 토 </th>
-                                                                <th data-hide="all"> 일 </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                <img src="${path}/resources/assets/images/users/4.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
-                                                                </td>
-                                                                <td>사업부</td>
-                                                                <td>6h 28m 24s</td>
-                                                                <td>기본 2h 37m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 3h 51m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 9s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                <img src="${path}/resources/assets/images/users/3.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
-                                                                </td>
-                                                                <td>사업부</td>
-                                                                <td>6h 28m 24s</td>
-                                                                <td>기본 2h 37m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 3h 51m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 9s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                            </tr>                                                                                                                       
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 인사 -->
-                                    <div class="card">
-                                        <div class="card-header" id="heading2">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" type="button"
-                                                    data-toggle="collapse" data-target="#col2" aria-expanded="false"
-                                                    aria-controls="col2">
-                                                    * 인사부
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="col2" class="collapse" aria-labelledby="heading2"
-                                            data-parent="#accordionTable">
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table id="demo-foo-accordion2"
-                                                        class="table table-bordered mb-0 toggle-arrow-tiny no-wrap"
-                                                        data-filtering="true" data-paging="true" data-sorting="true"
-                                                        data-paging-size="5">
-                                                        <thead>
-                                                            <tr class="footable-filtering">
-                                                                <th data-toggle="true"> 프로필 </th>
-                                                                <th> 부서 </th>
-                                                                <th data-hide="phone"> 주간 누적 근무 </th>
-                                                                <th data-hide="all"> 월 </th>
-                                                                <th data-hide="all"> 화 </th>
-                                                                <th data-hide="all"> 수 </th>
-                                                                <th data-hide="all"> 목 </th>
-                                                                <th data-hide="all"> 금 </th>
-                                                                <th data-hide="all"> 토 </th>
-                                                                <th data-hide="all"> 일 </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                <img src="${path}/resources/assets/images/users/4.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
-                                                                </td>
-                                                                <td>인사부</td>
-                                                                <td>6h 28m 24s</td>
-                                                                <td>기본 2h 37m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 3h 51m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 9s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                <img src="${path}/resources/assets/images/users/3.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
-                                                                </td>
-                                                                <td>인사부</td>
-                                                                <td>6h 28m 24s</td>
-                                                                <td>기본 2h 37m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 3h 51m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 9s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                            </tr>                                                                                                                       
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 영업부 -->
-                                    <div class="card">
-                                        <div class="card-header" id="heading3">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" type="button"
-                                                    data-toggle="collapse" data-target="#col3" aria-expanded="false"
-                                                    aria-controls="col3">
-                                                    * 영업부
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="col3" class="collapse" aria-labelledby="heading3"
-                                            data-parent="#accordionTable">
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table id="demo-foo-accordion3"
-                                                        class="table table-bordered mb-0 toggle-arrow-tiny no-wrap"
-                                                        data-filtering="true" data-paging="true" data-sorting="true"
-                                                        data-paging-size="5">
-                                                        <thead>
-                                                            <tr class="footable-filtering">
-                                                                <th data-toggle="true"> 프로필 </th>
-                                                                <th> 부서 </th>
-                                                                <th data-hide="phone"> 주간 누적 근무 </th>
-                                                                <th data-hide="all"> 월 </th>
-                                                                <th data-hide="all"> 화 </th>
-                                                                <th data-hide="all"> 수 </th>
-                                                                <th data-hide="all"> 목 </th>
-                                                                <th data-hide="all"> 금 </th>
-                                                                <th data-hide="all"> 토 </th>
-                                                                <th data-hide="all"> 일 </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                <img src="${path}/resources/assets/images/users/4.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
-                                                                </td>
-                                                                <td>영업부</td>
-                                                                <td>6h 28m 24s</td>
-                                                                <td>기본 2h 37m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 3h 51m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 9s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                <img src="${path}/resources/assets/images/users/3.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
-                                                                </td>
-                                                                <td>영업부</td>
-                                                                <td>6h 28m 24s</td>
-                                                                <td>기본 2h 37m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 3h 51m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 9s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                            </tr>                                                                                                                       
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 개발부 -->
-                                    <div class="card">
-                                        <div class="card-header" id="heading4">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" type="button"
-                                                    data-toggle="collapse" data-target="#col4" aria-expanded="false"
-                                                    aria-controls="col4">
-                                                    * 개발부
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="col4" class="collapse" aria-labelledby="heading4"
-                                            data-parent="#accordionTable">
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table id="demo-foo-accordion4"
-                                                        class="table table-bordered mb-0 toggle-arrow-tiny no-wrap"
-                                                        data-filtering="true" data-paging="true" data-sorting="true"
-                                                        data-paging-size="5">
-                                                        <thead>
-                                                            <tr class="footable-filtering">
-                                                                <th data-toggle="true"> 프로필 </th>
-                                                                <th> 부서 </th>
-                                                                <th data-hide="phone"> 주간 누적 근무 </th>
-                                                                <th data-hide="all"> 월 </th>
-                                                                <th data-hide="all"> 화 </th>
-                                                                <th data-hide="all"> 수 </th>
-                                                                <th data-hide="all"> 목 </th>
-                                                                <th data-hide="all"> 금 </th>
-                                                                <th data-hide="all"> 토 </th>
-                                                                <th data-hide="all"> 일 </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                <img src="${path}/resources/assets/images/users/4.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
-                                                                </td>
-                                                                <td>개발부</td>
-                                                                <td>6h 28m 24s</td>
-                                                                <td>기본 2h 37m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 3h 51m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 9s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                <img src="${path}/resources/assets/images/users/3.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
-                                                                </td>
-                                                                <td>개발부</td>
-                                                                <td>6h 28m 24s</td>
-                                                                <td>기본 2h 37m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 3h 51m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 9s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                            </tr>                                                                                                                       
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 경영지원부 -->
-                                    <div class="card">
-                                        <div class="card-header" id="heading5">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" type="button"
-                                                    data-toggle="collapse" data-target="#col5" aria-expanded="false"
-                                                    aria-controls="col5">
-                                                    * 경영지원부
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="col5" class="collapse" aria-labelledby="heading5"
-                                            data-parent="#accordionTable">
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table id="demo-foo-accordion5"
-                                                        class="table table-bordered mb-0 toggle-arrow-tiny no-wrap"
-                                                        data-filtering="true" data-paging="true" data-sorting="true"
-                                                        data-paging-size="5">
-                                                        <thead>
-                                                            <tr class="footable-filtering">
-                                                                <th data-toggle="true"> 프로필 </th>
-                                                                <th> 부서 </th>
-                                                                <th data-hide="phone"> 주간 누적 근무 </th>
-                                                                <th data-hide="all"> 월 </th>
-                                                                <th data-hide="all"> 화 </th>
-                                                                <th data-hide="all"> 수 </th>
-                                                                <th data-hide="all"> 목 </th>
-                                                                <th data-hide="all"> 금 </th>
-                                                                <th data-hide="all"> 토 </th>
-                                                                <th data-hide="all"> 일 </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                <img src="${path}/resources/assets/images/users/4.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
-                                                                </td>
-                                                                <td>경영지원부</td>
-                                                                <td>6h 28m 24s</td>
-                                                                <td>기본 2h 37m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 3h 51m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 9s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                <img src="${path}/resources/assets/images/users/3.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
-                                                                </td>
-                                                                <td>경영지원부</td>
-                                                                <td>6h 28m 24s</td>
-                                                                <td>기본 2h 37m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 3h 51m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 9s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                            </tr>                                                                                                                       
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- 총무부 -->
-                                    <div class="card">
-                                        <div class="card-header" id="heading6">
-                                            <h5 class="mb-0">
-                                                <button class="btn btn-link collapsed" type="button"
-                                                    data-toggle="collapse" data-target="#col6" aria-expanded="false"
-                                                    aria-controls="col6">
-                                                    * 총무부
-                                                </button>
-                                            </h5>
-                                        </div>
-                                        <div id="col6" class="collapse" aria-labelledby="heading6"
-                                            data-parent="#accordionTable">
-                                            <div class="card-body">
-                                                <div class="table-responsive">
-                                                    <table id="demo-foo-accordion6"
-                                                        class="table table-bordered mb-0 toggle-arrow-tiny no-wrap"
-                                                        data-filtering="true" data-paging="true" data-sorting="true"
-                                                        data-paging-size="5">
-                                                        <thead>
-                                                            <tr class="footable-filtering">
-                                                                <th data-toggle="true"> 프로필 </th>
-                                                                <th> 부서 </th>
-                                                                <th data-hide="phone"> 주간 누적 근무 </th>
-                                                                <th data-hide="all"> 월 </th>
-                                                                <th data-hide="all"> 화 </th>
-                                                                <th data-hide="all"> 수 </th>
-                                                                <th data-hide="all"> 목 </th>
-                                                                <th data-hide="all"> 금 </th>
-                                                                <th data-hide="all"> 토 </th>
-                                                                <th data-hide="all"> 일 </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                <img src="${path}/resources/assets/images/users/4.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
-                                                                </td>
-                                                                <td>총무부</td>
-                                                                <td>6h 28m 24s</td>
-                                                                <td>기본 2h 37m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 3h 51m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 9s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                <img src="${path}/resources/assets/images/users/3.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
-                                                                </td>
-                                                                <td>총무부</td>
-                                                                <td>6h 28m 24s</td>
-                                                                <td>기본 2h 37m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 3h 51m 7s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 9s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                                <td>기본 0h 0m 0s<br>연장 0h 0m 0s</td>
-                                                            </tr>                                                                                                                       
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>												
-				</div>							
-			</div>										
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">전사 근태 내역</h4>
+									<h6 class="card-subtitle"></h6>
+									<table data-toggle="table" class="table table-striped no-wrap">
+										<thead>
+											<tr>
+												<th class="name" data-sortable="true">이름</th>
+												<th class="depart" data-sortable="true">부서</th>
+												<th class="workWeek" data-sortable="true">주간 누적 근무</th>
+												<th data-sortable="true">월</th>
+												<th data-sortable="true">화</th>
+												<th data-sortable="true">수</th>
+												<th data-sortable="true">목</th>
+												<th data-sortable="true">금</th>
+												<th data-sortable="true">토</th>
+												<th data-sortable="true">일</th>
+												<!-- 재직 휴직 퇴사 -->
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><img
+													src="${path}/resources/assets/images/users/4.jpg"
+													alt="user" width="40" class="rounded-circle" name="profile">Genelia
+													Deshmukh</td>
+												<td>사업부</td>
+												<td>6h 28m 24s</td>
+												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+											</tr>
+											<tr>
+												<td><img
+													src="${path}/resources/assets/images/users/3.jpg"
+													alt="user" width="40" class="rounded-circle" name="profile">Genelia
+													Deshmukh</td>
+												<td>사업부</td>
+												<td>6h 28m 24s</td>
+												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+											</tr>
+											<tr>
+												<td><img
+													src="${path}/resources/assets/images/users/2.jpg"
+													alt="user" width="40" class="rounded-circle" name="profile">Genelia
+													Deshmukh</td>
+												<td>사업부</td>
+												<td>6h 28m 24s</td>
+												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+											</tr>
+											<tr>
+												<td><img
+													src="${path}/resources/assets/images/users/1.jpg"
+													alt="user" width="40" class="rounded-circle" name="profile">Genelia
+													Deshmukh</td>
+												<td>사업부</td>
+												<td>6h 28m 24s</td>
+												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+											</tr>
+											<tr>
+												<td><img
+													src="${path}/resources/assets/images/users/4.jpg"
+													alt="user" width="40" class="rounded-circle" name="profile">Genelia
+													Deshmukh</td>
+												<td>인사부</td>
+												<td>6h 28m 24s</td>
+												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+											</tr>
+											<tr>
+												<td><img
+													src="${path}/resources/assets/images/users/3.jpg"
+													alt="user" width="40" class="rounded-circle" name="profile">Genelia
+													Deshmukh</td>
+												<td>인사부</td>
+												<td>6h 28m 24s</td>
+												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+											</tr>
+											<tr>
+												<td><img
+													src="${path}/resources/assets/images/users/2.jpg"
+													alt="user" width="40" class="rounded-circle" name="profile">Genelia
+													Deshmukh</td>
+												<td>인사부</td>
+												<td>6h 28m 24s</td>
+												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+											</tr>
+											<tr>
+												<td><img
+													src="${path}/resources/assets/images/users/1.jpg"
+													alt="user" width="40" class="rounded-circle" name="profile">Genelia
+													Deshmukh</td>
+												<td>인사부</td>
+												<td>6h 28m 24s</td>
+												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- Table -->
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->

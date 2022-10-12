@@ -29,45 +29,102 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
-function formselect(){
-	 var form = $("#selectform option:selected").val();
-	  if(form == "업무기안") {
-		  window.open('${path}/form1.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
-		  }
-	  if(form == "회의록") {
-		  window.open('${path}/form2.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
-		  }
-	  if(form == "계획보고") {
-		  window.open('${path}/form3.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
-		  }
-	  if(form == "결과보고") {
-		  window.open('${path}/form4.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
-		  }
-	  if(form == "교육신청") {
-		  window.open('${path}/form5.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
-		  }
-	  if(form == "교육보고서") {
-		  window.open('${path}/form6.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
-		  }
-	  
-}
-</script>
-
-<script type="text/javascript">
-	alert("INSERT INTO \ngrb_approvalinfo(\nid, getter_id, load_id, \nload_num, load_status, category) "+
-			"\nVALUES(\n1, 2, \n(SELECT NVL(Max(doc_id)+1,1) FROM grb_draft), \n(SELECT NVL(Max(load_num)+1,1) FROM grb_approvalinfo), \ndefault, '일반');");
-	
-</script>
  
 </head>		
-			<form name = "selectform" method = "post">
-              <div class="card">
+	<script>
+	$(function(){
+			loadline();
+	});	
+
+	function loadline(){
+		$.ajax({
+			url: "${path}/selectLineView.ap?${_csrf.parameterName}=${_csrf.token}",
+			type: "post",
+			success : function(result) {
+				$("#load_line").html(result);
+			},
+			error: function(){
+				alert("load_line 오류");
+			}
+		});
+	};	
+
+	
+	function formselect(){
+		 var form = $("#selectform option:selected").val();
+		  if(form == "업무기안") {
+			  window.open('${path}/form1.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
+			  }
+		  if(form == "회의록") {
+			  window.open('${path}/form2.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
+			  }
+		  if(form == "계획보고") {
+			  window.open('${path}/form3.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
+			  }
+		  if(form == "결과보고") {
+			  window.open('${path}/form4.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
+			  }
+		  if(form == "교육신청") {
+			  window.open('${path}/form5.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
+			  }
+		  if(form == "교육보고서") {
+			  window.open('${path}/form6.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
+			  }
+		   
+		};
+		
+
+	
+	</script>		
+              <div class="card" onload = "loadline();">
                  <div class="card-body">
+                    <form name = "selectform" action = "${path}/selectAppAction.ap" method = "post"> 
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">  
+                    <!-- selectAppAction.ap에서 insert완료하기, ajax로 결재선 노출하기 -->
+                     <div>
+                     <h5 class="card-title">카테고리선택</h5>
+                     <h6 class="card-subtitle">카테고리를 선택하세요</h6>
+                       <select class="select2 form-control custom-select" name = "category" id = "category" style="width: 100%; height:36px;" required>
+                         <optgroup label="일반">
+                             <option value="내부기안">내부기안</option>
+                             <option value="외부공문">외부공문</option>
+                         </optgroup>
+                         <optgroup label="교육">
+                             <option value="">교육</option>
+                             <option value="교육신청">교육신청</option>
+                             <option value="교육보고">교육보고</option>
+                         </optgroup>
+                         <optgroup label="사업진행">
+                             <option value="마케팅">마케팅</option>
+                             <option value="IT">IT</option>
+                         </optgroup>
+                      </select>
+                      </div>
+                      <br><hr><br> 
+		                <div class="row">
+		                    <div class="col-12">
+		                        <div class="card">
+		                            <div class="card-body">
+		                                <h4 class="card-title">결재선 선택</h4>
+		                                <select multiple="multiple" size="10" class="duallistbox" name = "getter_id">
+		                                 <c:forEach var="dto" items="${list}" varStatus = "status">
+		                                    <option value="${dto.id}">${dto.depart_name} ${dto.name} ${dto.rank}</option>
+		                                </c:forEach>   
+		                                </select>
+		                              	<!-- 결재선 표기 위치 -->
+		                              	<div id = "load_line"></div>
+		                                <br>
+		                            </div>
+		                        </div>
+		                    </div>
+		                 </div>
+                      	<button type = "submit" id = "load_line_select" class ="btn btn-secondary btn-sm">결재선선택</button>  
+             		  </form>
+             		<div>
+             		<br><hr><br> 
                      <h5 class="card-title">기안양식선택</h5>
                      <h6 class="card-subtitle">기안 양식을 선택하세요</h6>
                      <select class="select2 form-control custom-select" name = "selectform" id = "selectform" style="width: 100%; height:36px;">
-                         <option>Select</option>
                          <optgroup label="일반">
                              <option value="업무기안">업무기안</option>
                          </optgroup>
@@ -75,40 +132,17 @@ function formselect(){
                              <option value="회의록">회의록</option>
                              <option value="계획보고">사업계획보고</option>
                              <option value="결과보고">사업결과보고</option>
-                         </optgroup>
-                         <optgroup label="교육">
-                             <option value="교육신청">교육신청</option>
                              <option value="교육보고">교육보고서</option>
                          </optgroup>
+                         <optgroup label="신청">
+                             <option value="교육신청">교육신청</option>
+                         </optgroup>
                       </select>
-                      <br><hr><br> 
-                      
-		                <div class="row">
-		                    <div class="col-12">
-		                        <div class="card">
-		                            <div class="card-body">
-		                                <h4 class="card-title">결재선 선택</h4>
-		                                <select multiple="multiple" size="10" class="duallistbox">
-		                                    <option value="1">ㅁㅁㅁ</option>
-		                                    <option value="2">ㅇㅇㅇ</option>
-		                                    <option value="3" selected="selected">ㅇㅇㅇ</option>
-		                                    <option value="4">ㅇㅇㅇ</option>
-		                                    <option value="5">ㅇㅇㅇ</option>
-		                                    <option value="6" selected="selected">ㅇㅇㅇ</option>
-		                                    <option value="7">ㅇㅇㅇ</option>
-		                                    <option value="8">ㅇㅇㅇ</option>
-		                                    <option value="9">ㅇㅇㅇ</option>
-		                                    <option value="11">ㅇㅇㅇ</option>
-		                                </select>
-		                                <br>
-		                            </div>
-		                        </div>
-		                    </div>
-		                 </div>
-                      <button type = "button" class ="btn btn-secondary btn-sm" onclick = "formselect(); self.close();">기안문작성</button>  
+                      <br>
+                      <button type = "button" class ="btn btn-secondary btn-sm" onclick="formselect(); self.close();">기안문작성</button> 
+                     </div>
                        </div>
                    </div>
-               </form>
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->

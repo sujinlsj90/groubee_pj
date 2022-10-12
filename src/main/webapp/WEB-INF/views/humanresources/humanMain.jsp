@@ -25,7 +25,10 @@
 <![endif]-->
 
 <script type="text/javascript">
+<<<<<<< HEAD
 	
+=======
+>>>>>>> b4f3977aaa326688f4936a7984d699252978e042
 	
 </script>
 
@@ -68,40 +71,37 @@
 			<div class="row">
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-5">
+					                      
                         <div class="card">
                             <div class="card-body">
-                            
-                            
-                            
                                 <center class="mt-4"> <img src="${path}/resources/assets/images/users/5.jpg" class="rounded-circle" width="150" />
-                                    <h4 class="card-title mt-2">홍길동</h4>
+                                    <h4 class="card-title mt-2">${dto.name}</h4>
                                 </center>
                             </div>
                             <div>
                                 <hr>
                             </div>
                             <div class="card-body"> 
-                             <small class="text-muted pt-4 db">회사</small>
-                                <h6>그룹웨어</h6>
                                  <small class="text-muted pt-4 db">직책</small>
-                                <h6>이사</h6>
+                                <h6>${dto.rank}</h6>
                                  <small class="text-muted pt-4 db">부서</small>
-                                <h6>영업</h6>
+                                <h6>${dto.depart_name}</h6>
                                  <small class="text-muted pt-4 db">사번</small>
-                                <h6>4567</h6>
+                                <h6>${dto.id}</h6>
                             <small class="text-muted">이메일 </small>
-                              <h6>hannagover@gmail.com</h6> 
+                              <h6>${dto.email_in}</h6> 
                               <small class="text-muted pt-4 db">폰번호</small>
-                              <h6>+91 654 784 547</h6> 
+                              <h6>${dto.tel}</h6> 
                               <small class="text-muted pt-4 db">내선번호</small>
-                              <h6>070-123-4567</h6>
+                              <h6>${dto.in_tel}</h6>
                               
-                                <br />
-                                <button class="btn btn-circle btn-secondary"><i class="fab fa-facebook-f"></i></button>
-                                <button class="btn btn-circle btn-secondary"><i class="fab fa-twitter"></i></button>
-                                <button class="btn btn-circle btn-secondary"><i class="fab fa-youtube"></i></button>
+                             <br />
+                             <button class="btn btn-circle btn-secondary"><a href="#"><i class="mr-2 mdi mdi-email"></i></a></button>
+                             <button class="btn btn-circle btn-secondary"><a href="#"><i class="mr-2 mdi mdi-message-outline"></i></a></button>
+                             <button class="btn btn-circle btn-secondary"><a href="#"><i class="fab fa-youtube"></i></a></button>
                             </div>
                         </div>
+                       
                     </div>
                     <!-- Column -->
                     <!-- Column -->
@@ -137,40 +137,40 @@
                                             <div class="form-group">
                                                 <label class="col-md-12" style="font-weight:bold">이름</label>
                                                 <div class="col-md-12">
-                                                 	   홍길동
+                                                 	  ${dto.name}
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="example-email" style="font-weight:bold" class="col-md-12">이메일</label>
                                                 <div class="col-md-12">
-                                                    lee@naver.com
+                                                     ${dto.email_in}
                                                 </div>
                                             </div>
                                             
                                             <div class="form-group">
                                                 <label class="col-md-12" style="font-weight:bold">직책</label>
                                               	 <div class="col-sm-12">
-                                                  	과장
+                                                  	${dto.rank}
                                                 </div>
                                             </div>
                                             
                                               <div class="form-group">
                                                 <label class="col-sm-12" style="font-weight:bold" >채용구분</label>
                                                 <div class="col-sm-12">
-                                                  	경력
+                                                  	${dto.contract}
                                                 </div>
                                             </div>
                                          
                                             <div class="form-group">
                                                <label class="col-md-12" style="font-weight:bold">생년월일</label>
                                                 <div class="col-md-12">
-                                                   2001-01-01
+                                                   ${dto.jumin1}
                                                 </div>
                                             </div>
                                                <div class="form-group">
                                                 <label class="col-md-12" style="font-weight:bold">입사일</label>
                                                 <div class="col-md-12">
-                                                   2001-01-01
+                                                   ${dto.hireday}
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -198,7 +198,7 @@
                                                 <label class="col-sm-12" style="font-weight:bold">성별</label>
                                                 <div class="col-sm-12">
                                                     <select class="form-control form-control-line">
-                                                        <option>남자</option>
+                                                        <option>${dto.gender}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -206,7 +206,7 @@
                                                 <label class="col-sm-12" style="font-weight:bold">결혼여부</label>
                                                 <div class="col-sm-12">
                                                     <select class="form-control form-control-line">
-                                                        <option>미혼</option>
+                                                        <option>${dto.marry}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -231,16 +231,25 @@
                                                 <label for="inputEmail3"
                                                     class="col-sm-3 text-right control-label col-form-label" style="font-weight:bold">부서</label>
                                                 <div class="col-sm-9">
-                                                   IT부서
+                                                  ${dto3.depart_name}
                                                 </div>
                                             </div>
                                         </div>
                                           <div class="col-sm-12 col-lg-6">
                                             <div class="form-group row">
                                                 <label for="inputEmail3"
+                                                    class="col-sm-3 text-right control-label col-form-label" style="font-weight:bold">팀</label>
+                                                <div class="col-sm-9">
+                                                    	${dto3.team_name}
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="col-sm-12 col-lg-6">
+                                            <div class="form-group row">
+                                                <label for="inputEmail3"
                                                     class="col-sm-3 text-right control-label col-form-label" style="font-weight:bold">직책</label>
                                                 <div class="col-sm-9">
-                                                    	과장
+                                                    	${dto3.rank}
                                                 </div>
                                             </div>
                                         </div>
@@ -249,7 +258,7 @@
                                                 <label for="inputEmail3"
                                                     class="col-sm-3 text-right control-label col-form-label" style="font-weight:bold">업무</label>
                                                 <div class="col-sm-9">
-                                                    	개발
+                                                    	${dto3.jobs}
                                                 </div>
                                             </div>
                                         </div>
@@ -261,7 +270,7 @@
                                                 <label for="inputEmail3"
                                                     class="col-sm-3 text-right control-label col-form-label" style="font-weight:bold">발령일</label>
                                                 <div class="col-sm-9">
-                                                    <input type="Date" class="form-control" id="inputEmail3" readonly
+                                                    <input type="Date" class="form-control" id="inputEmail3" readonly value="${dto3.ap_day}"
                                                         placeholder="Username Here">
                                                 </div>
                                             </div>
@@ -274,7 +283,7 @@
                                                 <label class="col-md-12" style="font-weight:bold">담당업무</label>
                                                 <div class="col-md-12">
                                                     <textarea rows="10" cols="100" readonly
-                                                        class="form-control form-control-line"></textarea>
+                                                        class="form-control form-control-line"> ${dto3.contents}</textarea>
                                                 </div>
                                             </div>
                                     </div>
@@ -297,21 +306,21 @@
                                       <div class="form-group">
                                           <label class="col-md-12">평가자</label>
                                           <div class="col-md-12">
-                                              <input type="text" value="이사"
+                                              <input type="text" value="${dto2.p_name}"
                                                   class="form-control form-control-line" readonly>
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <label class="col-md-12">평가년도</label>
                                           <div class="col-md-12">
-                                              <input type="Date" readonly
+                                              <input type="Date" readonly value="${dto2.p_year}"
                                                   class="form-control form-control-line">
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <label for="example-email" class="col-md-12">역량</label>
                                           <div class="col-md-12">
-                                              <input type="text" value="좋음" readonly
+                                              <input type="text" value="좋음" readonly value="${dto2.p_able}"
                                                   class="form-control form-control-line" name="example-email"
                                                   id="example-email" readonly>
                                           </div>
@@ -319,16 +328,16 @@
                                       <div class="form-group">
                                           <label class="col-md-12">성과</label>
                                           <div class="col-md-12">
-                                              <input type="text" value=""
+                                              <input type="text" value="${dto2.p_output}"
                                                   class="form-control form-control-line" readonly>
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <label class="col-md-12" >의견</label>
                                           <div class="col-md-12">
-                                              <textarea rows="5"
+                                              <textarea rows="5" readonly	
                                                   class="form-control form-control-line">
-                                        select m.* , p.* from grb_member m join grb_personnel p on m.id = p.id where m.id = ?;
+                                       				${dto2.p_comment}
                                                   </textarea>
                                                 </div>
                                             </div>
@@ -343,14 +352,14 @@
                                       <div class="form-group">
                                           <label class="col-md-12">평가자</label>
                                           <div class="col-md-12">
-                                              <input type="text" value="이사"
+                                              <input type="text" value="${dto2.p_name}"
                                                   class="form-control form-control-line" readonly>
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <label for="example-email" class="col-md-12">평가대상자</label>
                                           <div class="col-md-12">
-                                              <input type="text" value="좋음" readonly
+                                              <input type="text" value="좋음" readonly value="${dto2.user_name}"
                                                   class="form-control form-control-line" name="example-email"
                                                   id="example-email" readonly>
                                           </div>
@@ -358,29 +367,29 @@
                                       <div class="form-group">
                                           <label class="col-md-12">평가년도</label>
                                           <div class="col-md-12">
-                                              <input type="Date" readonly
+                                              <input type="Date" readonly value="${dto2.p_year}"
                                                   class="form-control form-control-line">
                                           </div>
                                       </div>
                                        <div class="form-group">
                                           <label class="col-md-12">역량</label>
                                           <div class="col-md-12">
-                                              <input type="text" value=""
+                                              <input type="text" value="${dto2.p_able}"
                                                   class="form-control form-control-line" readonly>
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <label class="col-md-12">성과</label>
                                           <div class="col-md-12">
-                                              <input type="text" value=""
+                                              <input type="text" value="${dto2.p_output}"
                                                   class="form-control form-control-line" readonly>
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <label class="col-md-12" >의견</label>
                                           <div class="col-md-12">
-                                              <textarea rows="5"  readonly
-                                                  class="form-control form-control-line"></textarea>
+                                              <textarea rows="5"  readonly 
+                                                  class="form-control form-control-line">${dto2.p_comment}</textarea>
                                                 </div>
                                             </div>
                                         </form>
