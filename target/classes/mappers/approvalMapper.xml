@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     
+     <!-- namespace="패키지명.인터페이스" -->
+     <mapper namespace="com.spring.tutorial.dao.ApprovalDAO"> 
+   		
+   		<!-- id="메서드명" parameterType="매개변수 파일의 경로" resultTyple="자료형"
+   			insert, update, delete의 경우에는 int 반환이므로 Mybatis가 자동처리 (생략 가능)
+   			Mybatis에서 변수는 #{ }으로 표현한다
+   		-->
+   		
+   		<!-- 결재정보 => 사원정보 -->
+   		<select id = "selectMember" resultType="com.spring.tutorial.dto.CommonDTO">
+   			select id, name, depart_name, rank from grb_member where state = '재직' and show = 1 order by decode(depart_name, '사업부', 1), decode(rank, '사장', 5, '부서장', 4, '팀장', 3, '대리', 2, '사원', 1)
+   		</select>
+   		
+   		<!-- 결재라인 있는지 확인  -->
+		<select id = "approvalInfoDel_sel" resultType = "int">
+			select COUNT(*) from grb_approvalinfo where load_id = (SELECT NVL(Max(doc_id)+1,1) FROM grb_draft)
+		</select>
+				
+		<!-- 결재라인 삭제 (결재라인 있는지 확인 후 삭제 시 사용) -->
+		<delete id = "approvalInfoDelete">
+			delete from grb_approvalinfo where load_id = (SELECT NVL(Max(doc_id)+1,1) FROM grb_draft)
+		</delete>
+   		   		
+   		<!-- 결재정보 저장하기 -->
+   		<insert id = "approvalInfoInsert" parameterType="java.util.Map">
+   			INSERT INTO grb_approvalinfo(id, getter_id, load_id, load_num, load_status, co_approve, category) 
+			VALUES(#{id}, #{getter_id}, (SELECT NVL(Max(doc_id)+1,1) FROM grb_draft), (SELECT NVL(Max(load_num)+1,1) FROM grb_approvalinfo), default, default, #{category})
+   		</insert>
+   		
+   		<!-- 결재정보 출력 -->
+   		<select id = "selectLineView" resultType="com.spring.tutorial.dto.ApprovalInfoDTO">
+   			select m.*, a.* from grb_approvalinfo a join grb_member m on m.id = a.getter_id where load_id = (SELECT NVL(Max(doc_id)+1,1) FROM grb_draft) order by load_num desc
+   		</select>
+   		
+   		<!-- 결재, 협조 수정 -->
+   		<update id = "updateCoApproval" parameterType="java.util.Map">
+   			update grb_approvalInfo set co_approve = #{co_approve} where load_id = #{load_id} AND getter_id = #{getter_id}
+   		</update>
+   		
+		<!-- 결재라인 개별삭제 -->
+		<delete id = "deleteCoApproval" parameterType="java.util.Map">
+			delete from grb_approvalInfo where load_id = #{load_id} AND getter_id = #{getter_id}
+		</delete>
+		
+		<!-- 결재정보 => 기안사원정보 -->
+   		<select id = "selectapprover" resultType="com.spring.tutorial.dto.CommonDTO">
+   			select m.*, a.* from grb_member m join grb_approvalinfo a on a.id = m.id where load_id = (SELECT NVL(Max(doc_id)+1,1) FROM grb_draft)
+   		</select> 
+   		
+   		<!-- 기안정보 => 기안사원정보 -->
+   		<select id = "selectapproverAfterApp" resultType="com.spring.tutorial.dto.ApprovalInfoDTO">
+   			select m.*, a.* from grb_member m join grb_approvalinfo a on a.id = m.id where load_id = #{load_id}
+		</select>
+		
+		
+		<!-- 임시저장 -->
+   		<select id = "tempSave" parameterType="com.spring.tutorial.dto.ApproveDraftDTO">
+   			INSERT INTO grb_draft(doc_id, load_id, id, depart_name, category, title, content, show, state, upday, files)
+			VALUES(#{load_id}, #{load_id}, #{id}, #{depart_name}, #{category}, #{title}, #{content}, 1, '임시', sysdate, 'fileroot')
+   		</select> 
+		
+		<!-- 문서기안 -->
+   		<select id = "approvereq" parameterType="com.spring.tutorial.dto.ApproveDraftDTO">
+   			INSERT INTO grb_draft(doc_id, load_id, id, depart_name, category, title, content, show, state, upday, files)
+			VALUES(#{load_id}, #{load_id}, #{id}, #{depart_name}, #{category}, #{title}, #{content}, 1, '진행', sysdate, 'fileroot')
+   		</select> 
+   		
+   		<!-- 문서정보 -->
+   		<select id = "selectDraftInfo" resultType="com.spring.tutorial.dto.ApproveDraftDTO">
+   			select * from grb_draft where load_id = #{load_id}
+   		</select>
+   		
+   		<!-- 결재라인 사원정보 -->
+   		<!-- 기안정보 => 기안사원정보 -->
+   		<select id = "selectGetterInfo" resultType="com.spring.tutorial.dto.ApprovalInfoDTO">
+   			select m.*, a.* from grb_member m join grb_approvalinfo a on a.getter_id = m.id where load_id = #{load_id}
+		</select>
+		
+		
+   		<!-- 기안진행문서함 -->
+   		<select id = "onapproval" resultType="com.spring.tutorial.dto.ApproveDraftDTO">
+   			select * from grb_draft where id = #{id} and state = '진행' and show = '1' order by doc_id desc
+		</select>
+		
+		
+   		<!-- 완료문서함 -->
+   		<select id = "comapproval" resultType="com.spring.tutorial.dto.ApproveDraftDTO">
+   			select * from grb_draft where id = #{id} and state = '완료' and show = '1' order by doc_id desc
+		</select>
+		
+		
+   		<!-- 반려문서함 -->
+   		<select id = "rejapproval" resultType="com.spring.tutorial.dto.ApproveDraftDTO">
+   			select * from grb_draft where id = #{id} and state = '반려' and show = '1' order by doc_id desc
+		</select>
+		
+   		<!-- 임시보관함 -->
+   		<select id = "templist" resultType="com.spring.tutorial.dto.ApproveDraftDTO">
+   			select * from grb_draft where id = #{id} and state = '임시' and show = '1' order by doc_id desc
+		</select>
+		
+		
+		
+		
+     </mapper>
