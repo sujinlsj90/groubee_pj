@@ -27,6 +27,14 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<<<<<<< HEAD
+<script type="text/javascript">
+	
+	
+</script>
+
+=======
+>>>>>>> b4f3977aaa326688f4936a7984d699252978e042
 </head>
 
 <body>

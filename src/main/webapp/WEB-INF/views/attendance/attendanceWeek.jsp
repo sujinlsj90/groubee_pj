@@ -32,7 +32,11 @@
 <![endif]-->
 
 <script type="text/javascript">
+<<<<<<< HEAD
+	
+=======
 	// alert("select * from grb_attendance a \n join grb_member m on a.id = m.id \n where  m.id = 1 \n and today > '2022-10-01' and today < '2022-10-07' \n order by today;");
+>>>>>>> b4f3977aaa326688f4936a7984d699252978e042
 	
 </script>
 

@@ -33,7 +33,11 @@
 <![endif]-->
 
 <script type="text/javascript">
+<<<<<<< HEAD
+	
+=======
 	// alert("select * from grb_annual a \n join grb_member m on a.id = m.id \n where  m.depart_id = 1 \n order by a.annual_id desc;");
+>>>>>>> b4f3977aaa326688f4936a7984d699252978e042
 	
 </script>
 

@@ -16,6 +16,15 @@
     <title>그루비 그룹웨어</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
     <!-- This Page CSS -->
+<<<<<<< HEAD
+    <link rel="stylesheet" type="text/css" href="${path}/resources/assets/libs/select2/dist/css/select2.min.css">
+    
+<script type="text/javascript">
+	
+	
+</script>
+    
+=======
     <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
     <link href="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -26,6 +35,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+>>>>>>> b4f3977aaa326688f4936a7984d699252978e042
 </head>
 
 <body>

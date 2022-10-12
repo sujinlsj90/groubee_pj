@@ -28,7 +28,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("SELECT d.* \nFROM grb_draft d \nJOIN grb_approvalinfo a \nON d.load_id = a.load_id \nWHERE a.id = 1 \nAND d.state = '진행' \nAND a.load_num = 0");
+	
 	
 </script>
 

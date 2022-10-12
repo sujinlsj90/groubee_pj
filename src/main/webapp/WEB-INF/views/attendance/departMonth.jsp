@@ -30,7 +30,11 @@
 <![endif]-->
 
 <script type="text/javascript">
+<<<<<<< HEAD
+			
+=======
 	// alert("select * from grb_attendance a join grb_member m on a.id = m.id where m.depart_id = 1 order by a.attend_id desc;");		
+>>>>>>> b4f3977aaa326688f4936a7984d699252978e042
 </script>
 
 </head>

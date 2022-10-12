@@ -141,6 +141,12 @@
     </style>
 
 
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/humanresources/img.jsp
+<script type="text/javascript">
+		
+</script>
+=======
+>>>>>>> b4f3977aaa326688f4936a7984d699252978e042:src/main/webapp/WEB-INF/views/humanresources/groub.jsp
 
 </head>
 

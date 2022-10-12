@@ -30,7 +30,7 @@
 <![endif]-->
 </head>
 <script type="text/javascript">
-	alert("SELECT d.*, m.* \nFROM grb_draft d \nJOIN grb_member m \nON d.id = m.id \nWHERE doc_id = 1");
+	
 	
 </script>
 <body>

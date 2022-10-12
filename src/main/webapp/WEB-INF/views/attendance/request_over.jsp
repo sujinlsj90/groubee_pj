@@ -29,7 +29,11 @@
 <![endif]-->
 
 <script type="text/javascript">
+<<<<<<< HEAD
+	
+=======
 	// alert("INSERT INTO grb_attendance (attend_id, id, RESULT, reason, overtime, state) \n VALUES((SELECT NVL(Max(attend_id)+1,1) FROM grb_attendance), 1, 1, '하반기 SQL 프로젝트', sysdate, '연장');");
+>>>>>>> b4f3977aaa326688f4936a7984d699252978e042
 	
 </script>
 

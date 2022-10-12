@@ -30,8 +30,10 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("sql");
-	
+	function openWindowPop(url, name){
+	    var options = 'top=10, left=10, width=1000, height=800, status=no, menubar=no, toolbar=no, resizable=no';
+	    window.open(url, name, options);
+	}
 </script>
 
 </head>
@@ -80,7 +82,7 @@
                         <div class="card bg-light-info border-0">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
-                                    <a href="javascript:void(0)"
+                                    <a href="javascript:openWindowPop('http://mail.groubee.kr/roundcube', 'popup');" 
                                         class="btn btn-info rounded-circle btn-circle-lg text-white mb-2">
                                         <i data-feather="mail"></i>
                                     </a>
@@ -88,6 +90,7 @@
                                 <div>
                                     <h2 class="mb-0 font-weight-medium">이메일</h2>
                                     <h6 class="text-muted font-weight-normal mb-0">Email</h6>
+ 
                                 </div>
                             </div>
 	                	</div>

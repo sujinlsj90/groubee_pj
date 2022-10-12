@@ -28,7 +28,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("SELECT * \nFROM grb_draft \nWHERE depart_id = \n(SELECT depart_id FROM grb_member WHERE id = 1) \nAND state = '완료' AND show = 1");
+	
 	
 </script>
 
