@@ -27,10 +27,9 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<link href="${path}/resources/commonCSS/attandance.css" rel="stylesheet">
 
 <script type="text/javascript">
-	alert("select * from grb_annual a \n join grb_member m on a.id = m.id \n where m.id = 1;")
+	// alert("select * from grb_annual a \n join grb_member m on a.id = m.id \n where m.id = 1;")
 	
 </script>
 
@@ -57,7 +56,7 @@
 		<!-- ============================================================== -->
 		<!-- Page wrapper  -->
 		<!-- ============================================================== -->
-		<div class="page-wrapper" style="height:100%;">
+		<div class="page-wrapper">
 			<!-- ============================================================== -->
 			<!-- Container fluid  -->
 			<!-- ============================================================== -->
@@ -76,7 +75,7 @@
 				<!-- Right Part -->
 				<!-- ============================================================== -->
 			
-				<div class="right-part mail-list overflow-auto" style="height:100%;">
+				<div class="right-part mail-list overflow-auto">
                     <div class="card">
                         <div class="card-body">
   							<h4 class="card-title"><strong>나의 연차 내역</strong></h4>                                                               
@@ -85,7 +84,7 @@
 					</div>				
                     <!-- Action part -->
                     <div class="card">
-						<div class="card-body"  style="height:100%;">
+						<div class="card-body">
 							<div class="col-md-2">
 								<select class="form-control custom-select"
 									data-placeholder="연차 사용 기간" tabindex="1">
