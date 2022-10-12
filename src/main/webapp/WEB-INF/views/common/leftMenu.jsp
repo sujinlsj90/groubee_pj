@@ -56,7 +56,7 @@
 			</div>
 			<div class="profile-section">
 				<p class="font-weight-bold mb-0 font-18">김영수 사원</p>
-				<span class="op-7 font-14">생산본부</span>
+				<span class="op-7 font-14">생산본부</span><br>
 				<button type="button" id="btnLogout" class="btn waves-effect waves-light btn-rounded btn-outline-light" onClick="location.href='login.co'">logout</button>
 				<!-- <button id="logout" onClick="location.href='login.co'">logout</button> -->
 			</div>

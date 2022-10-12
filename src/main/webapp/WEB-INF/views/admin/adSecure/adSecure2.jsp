@@ -67,6 +67,24 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+				<div class="row">
+					<div class="col-7 align-self-center">
+						<h4 class="page-title text-truncate text-dark font-weight-medium mb-1">
+							Admin Security</h4>
+						<div class="d-flex align-items-center">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb m-0 p-0">
+									<li class="breadcrumb-item active">
+									<a href="${path}/adminMain.ad">Home</a></li>
+									<li class="breadcrumb-item active"aria-current="page">
+									<a href="${path}/adSecure2.ad">System Authority</a></li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -76,10 +94,10 @@
                 <!-- *************************************************************** -->
                 <div class="row button-group">
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure.ad'">관리자권한설정</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure.ad'">관리자 권한</button>
 				    </div>
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure2.ad'">기능접근제한</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure2.ad'">기능 접근 제한</button>
 				    </div>
 				</div>
                 <br><br>
