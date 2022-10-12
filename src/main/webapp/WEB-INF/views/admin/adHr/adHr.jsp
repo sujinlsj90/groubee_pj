@@ -48,7 +48,7 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper">
+    <div id="main-wrapper" style="height:100%;">
         <div class="app-container"></div>
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
@@ -63,48 +63,196 @@
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
-        <div class="page-wrapper">
+        <div class="page-wrapper" style="height:100%;">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <div class="container-fluid">
+            <div class="container-fluid" style="height:100%;">
                 <!-- *************************************************************** -->
                 <!-- Start First Cards -->
                 <!-- *************************************************************** -->
-                <div class="row button-group">
-				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adHr.ad'">사원통합관리</button>
-				    </div>
-				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adHr2.ad'">사원등록</button>
-				    </div>
-				</div>
-                <br><br>
-                <img src = "${path}/resources/images/adminImages/인사관리-사원통합관리.JPG">
+                <!-- 여기서 시작-->
+                <div class="row">
+                <div class="card-body">
+                  <h4 class="card-title">전체인사관리</h4>
+                  <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                  <table class="jsgrid-table table table-striped table-hover">
+                  <tr class="jsgrid-header-row">
+                  <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 150px;">Name</th>
+                  <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable" style="width: 70px;">Age</th>
+                  <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 200px;">Address</th>
+                  <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 100px;">Country</th>
+                  <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-mode-button jsgrid-search-mode-button jsgrid-mode-on-button" type="button" title="">
+                  </button></th>
+                  </tr>
+                  
+                  <tr class="jsgrid-filter-row"><td class="jsgrid-cell" style="width: 150px;">
+                  <input type="text" class="form-control input-sm"></td>
+                  <td class="jsgrid-cell jsgrid-align-right" style="width: 70px;">
+                  <input type="number" class="form-control input-sm"></td>
+                  <td class="jsgrid-cell" style="width: 200px;">
+                  <input type="text" class="form-control input-sm"></td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
+                  <select class="form-control input-sm"><option value="0"></option>
+                  <option value="1">United States</option><option value="2">Canada</option>
+                  <option value="3">United Kingdom</option><option value="4">France</option>
+                  <option value="5">Brazil</option><option value="6">China</option>
+                  <option value="7">Russia</option></select></td>
+                  <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-search-button" type="button" title="Search"></button>
+                  <button class="jsgrid-button jsgrid-clear-filter-button" type="button" title="Clear filter">
+                  </button></td></tr>
+                  <tr class="jsgrid-insert-row" style="display: none;">
+                  <td class="jsgrid-cell" style="width: 150px;">
+                  <input type="text" class="form-control input-sm"></td>
+                  <td class="jsgrid-cell jsgrid-align-right" style="width: 70px;">
+                  <input type="number" class="form-control input-sm"></td>
+                  <td class="jsgrid-cell" style="width: 200px;">
+                  <input type="text" class="form-control input-sm"></td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
+                  <select class="form-control input-sm"><option value="0"></option>
+                  <option value="1">United States</option><option value="2">Canada</option>
+                  <option value="3">United Kingdom</option><option value="4">France</option>
+                  <option value="5">Brazil</option><option value="6">China</option>
+                  <option value="7">Russia</option></select></td>
+                  <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-insert-button" type="button" title="Insert">
+                  </button></td></tr></table>
+                  </div>
+                  
+                  <div class="jsgrid-grid-body" style="height: 295.2px;">
+                  <table class="jsgrid-table table table-striped table-hover">
+                  <tbody>
+                  <tr class="jsgrid-row">
+                  <td class="jsgrid-cell" style="width: 150px;">Otto Clay</td>
+                  <td class="jsgrid-cell jsgrid-align-right" style="width: 70px;">61</td>
+                  <td class="jsgrid-cell" style="width: 200px;">Ap #897-1459 Quam Avenue</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">China</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"></td>
+                  <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button>
+                  <button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">
+                  </button></td></tr>
+                  
+                  <tr class="jsgrid-alt-row">
+                  <td class="jsgrid-cell" style="width: 150px;">Connor Johnston</td>
+                  <td class="jsgrid-cell jsgrid-align-right" style="width: 70px;">73</td>
+                  <td class="jsgrid-cell" style="width: 200px;">Ap #370-4647 Dis Av.</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">Russia</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"></td>
+                  <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button>
+                  <button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td></tr>
+                  
+                  <tr class="jsgrid-row">
+                  <td class="jsgrid-cell" style="width: 150px;">Lacey Hess</td>
+                  <td class="jsgrid-cell jsgrid-align-right" style="width: 70px;">29</td>
+                  <td class="jsgrid-cell" style="width: 200px;">Ap #365-8835 Integer St.</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">Russia</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"></td>
+                  <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button>
+                  <button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td></tr>
+                  
+                  <tr class="jsgrid-alt-row">
+                  <td class="jsgrid-cell" style="width: 150px;">Timothy Henson</td>
+                  <td class="jsgrid-cell jsgrid-align-right" style="width: 70px;">78</td>
+                  <td class="jsgrid-cell" style="width: 200px;">911-5143 Luctus Ave</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">United States</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
+                  </td>
+                  <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button>
+                  <button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">
+                  </button></td></tr>
+                 
+                  <tr class="jsgrid-row"><td class="jsgrid-cell" style="width: 150px;">Ramona Benton</td>
+                  <td class="jsgrid-cell jsgrid-align-right" style="width: 70px;">43</td>
+                  <td class="jsgrid-cell" style="width: 200px;">Ap #614-689 Vehicula Street</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">Brazil</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
+                  </td>
+                  <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button>
+                  <button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
+                  </tr>
+                  
+                  <tr class="jsgrid-alt-row">
+                  <td class="jsgrid-cell" style="width: 150px;">Ezra Tillman</td>
+                  <td class="jsgrid-cell jsgrid-align-right" style="width: 70px;">51</td>
+                  <td class="jsgrid-cell" style="width: 200px;">P.O. Box 738, 7583 Quisque St.</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">United States</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
+                  </td>
+                  <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button>
+                  <button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
+                  </tr>
+                  
+                  <tr class="jsgrid-row"><td class="jsgrid-cell" style="width: 150px;">Dante Carter</td>
+                  <td class="jsgrid-cell jsgrid-align-right" style="width: 70px;">59</td>
+                  <td class="jsgrid-cell" style="width: 200px;">P.O. Box 976, 6316 Lorem, St.</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">United States</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
+                  </td>
+                  <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button>
+                  <button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
+                  </tr>
+                  
+                  <tr class="jsgrid-alt-row"><td class="jsgrid-cell" style="width: 150px;">Christopher Mcclure</td>
+                  <td class="jsgrid-cell jsgrid-align-right" style="width: 70px;">58</td>
+                  <td class="jsgrid-cell" style="width: 200px;">847-4303 Dictum Av.</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">United States</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
+                  </td>
+                  <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button>
+                  <button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
+                  </tr>
+                  
+                  <tr class="jsgrid-row">
+                  <td class="jsgrid-cell" style="width: 150px;">Ruby Rocha</td>
+                  <td class="jsgrid-cell jsgrid-align-right" style="width: 70px;">62</td>
+                  <td class="jsgrid-cell" style="width: 200px;">5212 Sagittis Ave</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">Canada</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
+                  </td>
+                  <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button>
+                  <button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
+                  </tr>
+                  
+                  <tr class="jsgrid-alt-row">
+                  <td class="jsgrid-cell" style="width: 150px;">Imelda Hardin</td>
+                  <td class="jsgrid-cell jsgrid-align-right" style="width: 70px;">39</td>
+                  <td class="jsgrid-cell" style="width: 200px;">719-7009 Auctor Av.</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">Brazil</td>
+                  <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
+                  </td>
+                  <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                  <button class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></button>
+                  <button class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></button></td>
+                  </tr>
+                  </tbody>
+                  </table>
+                  </div>
+   				</div>
+              </div>
+              </div>
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
                 <!-- *************************************************************** -->
             </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <footer class="footer text-center text-muted">
-                Copyright 2019. All Rights Reserved by Severny Admin
-            </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
         </div>
+        
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-    </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -207,6 +355,11 @@
     <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
     <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
     <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
+    
+    
+    <script src="${path}/resources/assets/libs/jsgrid/db.js"></script>
+    <script src="${path}/resources/assets/libs/jsgrid/jsgrid.min.js"></script>
+    <script src="${path}/resources/dist/js/pages/tables/jsgrid-init.js"></script>
 </body>
 
 </html>

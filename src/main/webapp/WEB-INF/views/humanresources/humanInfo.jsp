@@ -25,10 +25,6 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("select m.*, c.* , d.* " +
-			"\nfrom grb_depart d \njoin grb_company c \non c.company_id = d.company_id" + 
-			"\njoin grb_member m \non d.depart_id = m.depart_id" +
-			"\nwhere  id = 123;");
 	
 </script>
 
