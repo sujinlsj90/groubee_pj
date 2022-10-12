@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     
+<!-- namespace="패키지명.인터페이스" -->
+<mapper namespace="com.spring.tutorial.dao.BoardDAO"> 
+   	
+	<!-- 게시물 목록 -->
+	<select id="boardList" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.BoardDTO">
+		<![CDATA[
+		SELECT *
+		 FROM (SELECT A.*, rownum as rn
+		            FROM (SELECT num, category, id, title, content, read_cnt, comment_cnt, reg_date, board_file, show
+		                    FROM grb_board b
+		                    WHERE show = 1
+		                      AND category IN (#{category},2)
+		                    ORDER BY category DESC, num DESC
+		                ) A
+		       )
+        WHERE rn >= #{start} AND rn <= #{end}
+		 ]]>
+	</select>
+	
+	<!-- 게시글 갯수 구하기 -->
+	<select id="boardCnt" resultType="int">
+		SELECT count(*) as cnt FROM grb_board
+	</select>
+   	
+     
+</mapper>	
