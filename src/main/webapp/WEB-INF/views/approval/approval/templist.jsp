@@ -27,13 +27,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
-	alert("임시보관하기: \nINSERT INTO \ngrb_draft\n(doc_id, load_id, id, \ndepart_id, category, title, \ncontent, show, state, upday, files) "+
-			" \nVALUES(\n(SELECT NVL(Max(doc_id)+1,1) FROM grb_draft), \n1, 3, 3, '일반', '제목', \n'내용', 1, '임시', sysdate, 'fileroot')");
-	alert("임시보관리스트: \nSELECT * \nFROM grb_draft \nWHERE state = '임시' \nAND id = 1 \nAND show = 1");
-	
-</script>
-
 </head>
 
 <body>
@@ -51,7 +44,7 @@
     <!-- ============================================================== -->
     <div id="main-wrapper" style="height:100%;">
         <div class="app-container"></div>
-        <!-- 좌측고정 메뉴바 -->
+       	<!-- 좌측고정 메뉴바 -->
         <%@ include file="/WEB-INF/views/common/leftMenu.jsp" %>
         <!-- 좌측고정 메뉴바 -->
         <!-- ============================================================== -->
@@ -71,8 +64,8 @@
                 <!-- ============================================================== -->
                 <!-- Left Part -->
                 <!-- ============================================================== -->
-                <div class="left-part">
-                <%@ include file = "/WEB-INF/views/approval/submenu.jsp" %>
+                <div class="left-part" style="height:100%;">
+                 <%@ include file = "/WEB-INF/views/approval/submenu.jsp" %>
                 </div>
                 <!-- ============================================================== -->
                 <!-- Right Part -->
@@ -81,7 +74,7 @@
                     <div class="p-3 b-b">
                         <div class="d-flex align-items-center">
                             <div>
-                                <h4> 임시보관함 </h4>
+                                <h4> 기안문서함 </h4>
                             </div>
                             <div class="ml-auto">
                                 <input placeholder="문서 제목 검색" type="text" class="form-control">
@@ -94,10 +87,15 @@
                         <div class="btn-group mt-1 mb-1">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input sl-all" id="cstall">
-                                <label class="custom-control-label" for="cstall">Check All  임시보관함 </label>
+                                <c:forEach var = "dto" items="${list}" begin="0" end ="0">
+                                <label class="custom-control-label" for="cstall">Check All  기안문서함 > ${dto.state}문서</label>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class="ml-auto">
+<%--                             <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                                <button type="button" class="btn btn-outline-secondary btn-sm font-18" onclick="location.href='${path}/onapproval.ap'">삭제</button>
+                            </div> --%>
 
                         </div>
                     </div>
@@ -105,7 +103,6 @@
                     <!-- list-->
                     <div class="table-responsive">
                         <table class="table email-table no-wrap table-hover v-middle">
-                            <tbody>
                                 <!-- row -->
                                 <tr class="unread">
                                     <!-- label -->
@@ -115,75 +112,41 @@
                                             <label class="custom-control-label" for="cst1">&nbsp;</label>
                                         </div>
                                     </td>
-                                    <td class="user-image p-2">진행</td>
+                                    <td class="user-image p-2">
+                                    	<h6 class="mb-0 text-truncate font-weight-medium">상태
+                                    </td>
                                     <td class="user-name px-1 py-2">
                                         <h6 class="mb-0 text-truncate font-weight-medium">문서번호</h6>
                                     </td>
                                     <td class="py-2 px-3 no-wrap text-truncate"> 
-                                            <span class="blue-grey-text text-darken-4">문서제목</span>
+                                        <h6 class="mb-0 text-truncate font-weight-medium">문서제목</h6>
                                     </td>
                                     <td class="clip px-1 py-2"><i class="fa fa-paperclip"></i></td>
-                                    <td class="time text-right"> 기안일 </td>
+                                    <td class="time text-right"> 
+                                    <h6 class="mb-0 text-truncate font-weight-medium">삭제</h6></td>
                                 </tr>
                                 <!-- row -->
+                                <c:forEach var = "dto" items="${list}">    
                                 <tr class="unread">
                                     <!-- label -->
-                                    <td class="chb">
+                                <td class="chb">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="cst1">
                                             <label class="custom-control-label" for="cst1">&nbsp;</label>
                                         </div>
                                     </td>
-                                    <td class="user-image p-2"><span class="badge badge-warning blue-grey-text text-darken-4 mr-2">진행</span> </td>
+                                    <td class="user-image p-2"><span class="badge badge-warning blue-grey-text text-darken-4 mr-2">${dto.state}</span> </td>
                                     <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate font-weight-medium">bee-22-0001</h6>
+                                        <h6 class="mb-0 text-truncate font-weight-medium">bee-22-${dto.doc_id}</h6>
                                     </td>
                                     <td class="py-2 px-3 no-wrap text-truncate"> 
-                                     <a class="link font-weight-medium"
-                                            href="#" onclick = "window.open('${path}/finishform_1.fo','결재정보','width=850,height=1000,location=no,status=no,scrollbars=yes');">
-                                            <span class="blue-grey-text text-darken-4">Spring project 진행 계획 보고</span>
-                                     </a>                                    </td>
+                                            <span class="blue-grey-text text-darken-4">${dto.title}</span>
+                                    </td>
                                     <td class="clip px-1 py-2"><i class="fa fa-paperclip"></i></td>
-                                    <td class="time text-right"> 22-10-03 </td>
+                                    <td class="time text-right"><button type = "button" id = "delete">삭제</button></td>
                                 </tr>
+                                </c:forEach>
                                 <!-- row -->
-                                <tr class="unread">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst1">
-                                            <label class="custom-control-label" for="cst1">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td class="user-image p-2"><span class="badge badge-warning blue-grey-text text-darken-4 mr-2">진행</span> </td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate font-weight-medium">bee-22-0001</h6>
-                                    </td>
-                                    <td class="py-2 px-3 no-wrap text-truncate"> 
-                                            <span class="blue-grey-text text-darken-4">JSP 프로젝트 회의록</span>
-                                    </td>
-                                    <td class="clip px-1 py-2"><i class="fa fa-paperclip"></i></td>
-                                    <td class="time text-right"> 22-10-03 </td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="unread">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst1">
-                                            <label class="custom-control-label" for="cst1">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td class="user-image p-2"><span class="badge badge-warning blue-grey-text text-darken-4 mr-2">진행</span> </td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate font-weight-medium">bee-22-0001</h6>
-                                    </td>
-                                    <td class="py-2 px-3 no-wrap text-truncate"> 
-                                            <span class="blue-grey-text text-darken-4">java 기초 교육 참여자 리스트 보고</span>
-                                    </td>
-                                    <td class="clip px-1 py-2"><i class="fa fa-paperclip"></i></td>
-                                    <td class="time text-right"> 22-10-03 </td>
-                                </tr>
 
                         </table>
                     </div>
@@ -199,57 +162,6 @@
                         </nav>
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- Right Part  Mail Compose -->
-                <!-- ============================================================== -->
-                <div class="right-part mail-compose overflow-auto" style="display: none;">
-                    <div class="p-4 border-bottom">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h4>Compose</h4>
-                                <span>create new message</span>
-                            </div>
-                            <div class="ml-auto">
-                                <button id="cancel_compose" class="btn btn-dark">Back</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Action part -->
-                    <!-- Button group part -->
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <input type="email" id="example-email" name="example-email" class="form-control"
-                                    placeholder="To">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="example-subject" name="example-subject" class="form-control"
-                                    placeholder="Subject">
-                            </div>
-                            <div id="summernote"></div>
-                            <h4>Attachment</h4>
-                            <div class="dropzone" id="dzid">
-                                <div class="fallback">
-                                    <input name="file" type="file" multiple />
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-success mt-3"><i class="far fa-envelope"></i>
-                                Send</button>
-                            <button type="submit" class="btn btn-dark mt-3">Discard</button>
-                        </form>
-                        <!-- Action part -->
-                    </div>
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <footer class="footer text-center">
-                   All Rights Reserved by Severny admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
-            </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
             <!-- ============================================================== -->
             <!-- End PAge Content -->
             <!-- ============================================================== -->
@@ -264,70 +176,6 @@
     <!-- ============================================================== -->
     <!-- customizer Panel -->
     <!-- ============================================================== -->
-    <aside class="customizer">
-        <a href="javascript:void(0)" class="service-panel-toggle"><i class="fa fa-spin fa-cog"></i></a>
-        <div class="customizer-body">
-            <div class="p-3 border-bottom">
-                <!-- Sidebar -->
-                <h5 class="font-weight-medium mb-2 mt-2">Layout Settings</h5>
-                <div class="custom-control custom-checkbox mt-2">
-                    <input type="checkbox" class="custom-control-input sidebartoggler" name="collapssidebar"
-                        id="collapssidebar">
-                    <label class="custom-control-label" for="collapssidebar">Collapse Sidebar</label>
-                </div>
-                <div class="custom-control custom-checkbox mt-2">
-                    <input type="checkbox" class="custom-control-input" name="sidebar-position" id="sidebar-position">
-                    <label class="custom-control-label" for="sidebar-position">Fixed Sidebar</label>
-                </div>
-                <div class="custom-control custom-checkbox mt-2">
-                    <input type="checkbox" class="custom-control-input" name="header-position" id="header-position">
-                    <label class="custom-control-label" for="header-position">Fixed Header</label>
-                </div>
-                <div class="custom-control custom-checkbox mt-2">
-                    <input type="checkbox" class="custom-control-input" name="boxed-layout" id="boxed-layout">
-                    <label class="custom-control-label" for="boxed-layout">Boxed Layout</label>
-                </div>
-            </div>
-            <div class="p-3 border-bottom">
-                <!-- Header BG -->
-                <h5 class="font-weight-medium mb-2 mt-2">Header Backgrounds</h5>
-                <ul class="theme-color">
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin1"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin2"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin3"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin4"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin5"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin6"></a>
-                    </li>
-                </ul>
-                <!-- Header BG -->
-            </div>
-            <div class="p-3 border-bottom">
-                <!-- Logo BG -->
-                <h5 class="font-weight-medium mb-2 mt-2">Sidebar Backgrounds</h5>
-                <ul class="theme-color">
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin1"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin2"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin3"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin4"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin5"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin6"></a>
-                    </li>
-                </ul>
-                <!-- Logo BG -->
-            </div>
-        </div>
-    </aside>
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
@@ -347,7 +195,10 @@
     <script src="${path}/resources/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="${path}/resources/dist/js/custom.min.js"></script>
-    </script>
+    <!-- This Page JS -->
+    <script src="${path}/resources/dist/js/pages/email/email.min.js"></script>
+    <script src="${path}/resources/assets/libs/summernote/dist/summernote-bs4.min.js"></script>
+    <script src="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.js"></script>
 </body>
 
 </html>
