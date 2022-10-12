@@ -30,7 +30,7 @@
 <link href="${path}/resources/commonCSS/attandance.css" rel="stylesheet">
 
 <script type="text/javascript">
-	alert("select * from grb_attendance a \n join grb_member m on a.id = m.id \n where  m.id = 1 \n order by today;");	
+		
 </script>
 
 </head>

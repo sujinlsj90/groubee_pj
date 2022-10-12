@@ -30,18 +30,7 @@
 <![endif]-->
 </head>
  <script type="text/javascript">
-	alert("SELECT m.*, a.* \nFROM grb_approvalinfo a \nJOIN grb_member m \nON a.id = m.id \nWHERE a.load_id = (SELECT NVL(Max(doc_id),0) \nFROM grb_draft)");
 	
-	function req() {
-	alert("INSERT INTO \ngrb_draft(doc_id, load_id, id, \ndepart_id, category, title, content, \nshow, state, upday, files)" +
-		"  \nVALUES(\n(SELECT NVL(Max(doc_id)+1,1) FROM grb_draft), \n1, 3, 3, '일반', '제목', '내용', 1, \ndefault, sysdate, 'fileroot');");	
-	alert("UPDATE grb_approvalinfo \nSET load_status = 1 \nWHERE load_id = 2 \nAND id = 1");	
-	}
-	
-	function temp() {
-		alert("INSERT INTO grb_draft\n(doc_id, load_id, id, depart_id, \ncategory, title, content, \nshow, state, upday, files) "+
-				"\nVALUES(\n(SELECT NVL(Max(doc_id)+1,1) FROM grb_draft), \n1, 3, 3, '일반', '제목', '내용', \n1, '임시', sysdate, 'fileroot');");
-	}
 </script>
 
 <body>

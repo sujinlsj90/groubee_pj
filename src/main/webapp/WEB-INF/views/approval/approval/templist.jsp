@@ -28,9 +28,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("임시보관하기: \nINSERT INTO \ngrb_draft\n(doc_id, load_id, id, \ndepart_id, category, title, \ncontent, show, state, upday, files) "+
-			" \nVALUES(\n(SELECT NVL(Max(doc_id)+1,1) FROM grb_draft), \n1, 3, 3, '일반', '제목', \n'내용', 1, '임시', sysdate, 'fileroot')");
-	alert("임시보관리스트: \nSELECT * \nFROM grb_draft \nWHERE state = '임시' \nAND id = 1 \nAND show = 1");
+	
 	
 </script>
 

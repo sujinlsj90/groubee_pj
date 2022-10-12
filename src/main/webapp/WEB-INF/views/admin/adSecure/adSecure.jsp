@@ -83,7 +83,56 @@
 				    </div>
 				</div>
                 <br><br>
-                <img src = "${path}/resources/images/adminImages/보안관리-관리자권한설정.JPG">
+                
+                <div class="left-part list-of-tasks">
+	                <a class="ti-menu ti-close btn btn-success show-left-part d-block d-md-none" href="javascript:void(0)"></a>
+	                <div class="scrollable" style="height:100%;">
+	                	<h4>권한 목록</h4>
+	                    <div class="p-3">
+	                        <a class="waves-effect waves-light btn btn-info d-block" href="javascript: void(0)" id="add-task"> + 추가</a>
+	                    </div>
+	                    <div class="divider"></div>
+	                    <ul class="list-group">
+	                       
+	                        <li class="list-group-item p-0 border-0">
+	                            <a href="javascript:void(0)" class="todo-link active list-group-item-action p-3 d-flex align-items-center" id="amin"> 기본 관리자 </a>
+	                        </li>
+	                        <li class="list-group-item p-0 border-0">
+	                            <a href="javascript:void(0)" class="todo-link list-group-item-action p-3 d-flex align-items-center" id="personnel_admin"> 인사 관리자 </a>
+	                        </li>
+	                        <li class="list-group-item p-0 border-0">
+	                            <a href="javascript:void(0)" class="todo-link list-group-item-action p-3 d-flex align-items-center" id="security_admin"> 보완 관리자 </a>
+	                        </li>
+	                        <li class="list-group-item p-0 border-0">
+	                            <a href="javascript:void(0)" class="todo-link list-group-item-action p-3 d-flex align-items-center" id="assets_admin"> 자산 관리자 </a>
+	                        </li>
+	                    </ul>
+	                </div>
+	            </div>
+	            
+	            <div class="right-part mail-list overflow-auto">
+                    
+                    <br><br>
+                    <div class="d-flex align-items-center">
+                            <div>
+                                <h4>기본 관리자 (모든 권한)</h4>
+                            </div>
+                    </div>
+                    <br><br>
+                    <div class="custom-control custom-checkbox">
+                    	<input type="checkbox" class="custom-control-input" id="drop-remove">
+                        <label class="custom-control-label" for="drop-remove">기본 관리</label>
+                    </div>
+                    <br>
+                    <h6>메뉴 관리, 메뉴별 운영자 설정 등 사이트의 기본적인 설정을 제어합니다.</h6>
+                    
+                    <div class="custom-control custom-checkbox">
+                   
+                  		<input type="checkbox" class="custom-control-input" id="drop-remove">
+                       	<label class="custom-control-label" for="drop-remove">서비스 메뉴관리</label>
+                
+                    </div>
+                </div>
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
                 <!-- *************************************************************** -->
@@ -207,6 +256,9 @@
     <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
     <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
     <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
+    <script src="../../dist/js/pages/email/email.min.js"></script>
+    <script src="../../assets/libs/summernote/dist/summernote-bs4.min.js"></script>
+    <script src="../../assets/libs/dropzone/dist/min/dropzone.min.js"></script>
 </body>
 
 </html>

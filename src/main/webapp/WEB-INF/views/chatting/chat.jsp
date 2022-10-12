@@ -26,7 +26,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("<채팅방목록>\nSELECT chatroom_name, chatroom_count\nFROM grb_chatroom\nORDER BY chatroom_num;");
+	
 </script>
 
 </head>

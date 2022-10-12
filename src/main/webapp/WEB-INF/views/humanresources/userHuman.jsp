@@ -25,7 +25,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("select \nm.id  ,m.name  ,m.email_in ,m.in_tel ,r.r_name ,d.d_name \nfrom grb_company c \njoin  grb_depart d \non c.company_id = d.company_id \njoin grb_rank r \non c.company_id = r.company_id \njoin grb_member m \non d.depart_id = m.depart_id \nwhere id = 123;");
+	
 	
 </script>
 

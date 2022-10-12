@@ -29,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="${path}/resources/assets/libs/select2/dist/css/select2.min.css">
     
 <script type="text/javascript">
-	alert("sql");
+	
 	
 </script>
     

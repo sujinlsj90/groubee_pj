@@ -28,9 +28,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("1. 삭제: \nDELETE FROM grb_approvalinfo \nWHERE load_id = \n(SELECT NVL(Max(doc_id),0) \nFROM grb_draft);");
-	alert("2. 다시insert: \nINSERT INTO grb_approvalinfo(\nid, getter_id, load_id, load_num, \nload_status, category) "+
-		  "\nVALUES(1, 2, 1, \n(SELECT NVL(Max(load_num)+1,1) FROM grb_approvalinfo), \ndefault, '일반');"); 
+
 	
 </script>
 

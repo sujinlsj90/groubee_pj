@@ -28,12 +28,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("<게시판목록>\nSELECT *\n FROM (SELECT A.*, rownum as rn \n          FROM (SELECT num, category, id, title, content, read_cnt, comment_cnt, reg_date, board_file, \nshow,"
-			+ "\n      (SELECT COUNT(*) \n      FROM grb_comment \n    WHERE board_num = b.num) comment_cnt"
-			+ "\n   FROM grb_board b \n   WHERE show = 1 AND category IN (0,2)"
-			                     + "\n  ORDER BY category DESC, num DESC) \n     A )"
-			                     + "\nWHERE rn BETWEEN 1 AND 10;");
-	alert("<댓글목록>\nSELECT comment_num, writer, content, reg_date \nFROM grb_comment \nWHERE board_num = 1001");
+	
 </script>
 
 </head>

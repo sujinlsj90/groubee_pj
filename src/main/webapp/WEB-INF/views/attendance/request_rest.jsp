@@ -30,7 +30,7 @@
 <link href="${path}/resources/commonCSS/attandance.css" rel="stylesheet">
 
 <script type="text/javascript">
-	alert("INSERT INTO grb_annual (annual_id, id, annual, annualuse, annualrest) \n VALUES((SELECT NVL(Max(annual_id)+1,1) FROM grb_annual), 1, 1, 1, 14); \n\n INSERT INTO grb_annual (annual_id, id, annual, annualuse, annualrest) \n VALUES((SELECT NVL(Max(annual_id)+1,1) FROM grb_annual), 2, 0, 0.5, 14.5);");
+	
 	
 </script>
 

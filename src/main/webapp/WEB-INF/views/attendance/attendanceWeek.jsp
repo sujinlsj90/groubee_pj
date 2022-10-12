@@ -33,7 +33,7 @@
 <link href="${path}/resources/commonCSS/attandance.css" rel="stylesheet">
 
 <script type="text/javascript">
-	alert("select * from grb_attendance a \n join grb_member m on a.id = m.id \n where  m.id = 1 \n and today > '2022-10-01' and today < '2022-10-07' \n order by today;");
+	
 	
 </script>
 
