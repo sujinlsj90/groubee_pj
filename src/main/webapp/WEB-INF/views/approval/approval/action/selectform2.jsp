@@ -30,12 +30,20 @@
 <![endif]-->
 
  
-</head>		
+</head>	
+
+	<script>
+	    let dlb4 = new DualListbox('.select4', {
+	        showSortButtons: true,
+	    });
+	</script>
+												    	
 	<script>
 	$(function(){
 			loadline();
 	});	
 
+		//지난구매 리스트
 	function loadline(){
 		$.ajax({
 			url: "${path}/selectLineView.ap?${_csrf.parameterName}=${_csrf.token}",
@@ -74,6 +82,24 @@
 		};
 		
 
+		function up(){
+			var selected = $j('#'+selectboxId+' option:selected'); /* <----- Selectbox의 객체 + 선택된 option을 구함.  */
+			if(selected[0].previousElementSibling == null) return; /* <----- 선택된 옵션중 가장 첫번째 옵션이 맨 위면 return. */
+			$j(selected).each(function(index, obj){
+			                    $j(obj).insertBefore($j(obj).prev());// 1. insertBefore : 선택된 option의 앞(위치)에 삽입.// 2. prev           : 선택된 option의 이전 요소를 반환// 결과              : insertBefore자리(위치)에 prev의 반환값이 삽입됨.
+			             
+			});
+			};
+
+
+			function down(){
+			var selected = $j('#'+selectboxId+' option:selected'); /* <----- Selectbox의 객체 + 선택된 option을 구함.  */
+			if(selected.last().next().length == 0) return;          /*     <----- 선택된 옵션중 가장 마지막 옵션이 맨 아래면 return. */
+			$j(selected.get().reverse()).each(function(index, obj){  /*  <----- 선택된 옵션을 reverse함.(선택된 순서를 거꾸로 함.) */
+				$j(obj).insertAfter($j(obj).next()); // 1. insertAfter : 선택된 option의 뒤(위치)에 삽입.// 2. next         : 선택된 option의 다음 요소를 반환// 결과            : insertAfter 자리(위치)에 next의 반환값이 삽입됨. */
+			});
+			};
+			
 	
 	</script>		
               <div class="card" onload = "loadline();">
@@ -106,11 +132,21 @@
 		                        <div class="card">
 		                            <div class="card-body">
 		                                <h4 class="card-title">결재선 선택</h4>
+		                                
 		                                <select multiple="multiple" size="10" class="duallistbox" name = "getter_id">
 		                                 <c:forEach var="dto" items="${list}" varStatus = "status">
 		                                    <option value="${dto.id}">${dto.depart_name} ${dto.name} ${dto.rank}</option>
 		                                </c:forEach>   
 		                                </select>
+		                                
+		                                <select class="select4" multiple>
+										    <option value="1">One</option>
+										    <option value="2">Two</option>
+										    <option value="3">Three</option>
+										</select>
+										
+                          	
+		                              	
 		                              	<!-- 결재선 표기 위치 -->
 		                              	<div id = "load_line"></div>
 		                                <br>
@@ -125,6 +161,7 @@
                      <h5 class="card-title">기안양식선택</h5>
                      <h6 class="card-subtitle">기안 양식을 선택하세요</h6>
                      <select class="select2 form-control custom-select" name = "selectform" id = "selectform" style="width: 100%; height:36px;">
+                         <option>Select</option>
                          <optgroup label="일반">
                              <option value="업무기안">업무기안</option>
                          </optgroup>
