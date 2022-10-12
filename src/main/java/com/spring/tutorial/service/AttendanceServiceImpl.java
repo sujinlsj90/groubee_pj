@@ -29,6 +29,47 @@ public class AttendanceServiceImpl implements AttendanceService {
 		model.addAttribute("list", list);
 	}
 	
+	// 업무 시작
+	@Override
+	public void attendin(HttpServletRequest req, Model model) {
+		System.out.println("service : 업무 시작 ");
+		String id = (String) req.getSession().getAttribute("memberID");
+		int insertCnt = dao.attendin(id);
+		
+		model.addAttribute("insertCnt", insertCnt);
+	}
+
+	// 업무 종료
+	@Override
+	public void attendout(HttpServletRequest req, Model model) {
+		System.out.println("service : 업무 종료 ");
+		String id = (String) req.getSession().getAttribute("memberID");
+		int insertCnt = dao.attendout(id);
+		
+		model.addAttribute("insertCnt", insertCnt);		
+	}
+
+	// 연장 시작
+	@Override
+	public void overin(HttpServletRequest req, Model model) {
+		System.out.println("service : 연장 시작 ");
+		String id = (String) req.getSession().getAttribute("memberID");
+		int insertCnt = dao.overin(id);
+		
+		model.addAttribute("insertCnt", insertCnt);		
+	}
+	
+	// 연장 종료
+	@Override
+	public void overout(HttpServletRequest req, Model model) {
+		System.out.println("service : 연장 종료");
+		String id = (String) req.getSession().getAttribute("memberID");
+		int insertCnt = dao.overout(id);
+		
+		model.addAttribute("insertCnt", insertCnt);		
+	}
+	
+	
 	// 나의 근무 조회
 	@Override
 	public void attendanceWeek(HttpServletRequest req, Model model) {

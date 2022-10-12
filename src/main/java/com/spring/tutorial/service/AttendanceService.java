@@ -9,6 +9,18 @@ public interface AttendanceService {
 	// 나의 근태 현황 
 	public void attendance(HttpServletRequest req, Model model);
 	
+	// 업무 시작
+	public void attendin(HttpServletRequest req, Model model);
+		
+	// 업무 종료
+	public void attendout(HttpServletRequest req, Model model);
+	
+	// 연장 시작
+	public void overin(HttpServletRequest req, Model model);
+	
+	// 연장 종료
+	public void overout(HttpServletRequest req, Model model);
+			
 	// 나의 근무 조회 (주간별)
 	public void attendanceWeek(HttpServletRequest req, Model model);
 	

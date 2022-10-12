@@ -26,6 +26,43 @@ public class AttendanceDAOImpl implements AttendanceDAO{
 		return list;
 	}
 	
+	// 업무 시작
+	@Override
+	public int attendin(String id) {
+		System.out.println("dao :업무 시작");			
+		int insertCnt = sqlSession.insert("com.spring.tutorial.dao.AttendanceDAO.attendin", id);
+		
+		return insertCnt;
+	}
+
+	// 업무 종료
+	@Override
+	public int attendout(String id) {
+		System.out.println("dao : 업무 종료");			
+		int insertCnt = sqlSession.insert("com.spring.tutorial.dao.AttendanceDAO.attendout", id);
+		
+		return insertCnt;
+	}
+	
+	// 연장 시작
+	@Override
+	public int overin(String id) {
+		System.out.println("dao : 연장 시작");			
+		int insertCnt = sqlSession.insert("com.spring.tutorial.dao.AttendanceDAO.overin", id);
+		
+		return insertCnt;
+	}
+
+	// 연장 종료
+	@Override
+	public int overout(String id) {
+		System.out.println("dao : 연장 종료");			
+		int insertCnt = sqlSession.insert("com.spring.tutorial.dao.AttendanceDAO.overout", id);
+		
+		return insertCnt;
+	} 	
+	
+	
 	// 나의 근무 조회 (주간별)
 	@Override
 	public List<AttendanceDTO> attendanceWeek(String id) {
@@ -91,7 +128,9 @@ public class AttendanceDAOImpl implements AttendanceDAO{
 	public List<AnnualDTO> annualGrb(int company_id) {
 		System.out.println("dao : 전사 연차 내역");	
 		return null;
-	} 	
+	}
+
+	
 	
 			
 	

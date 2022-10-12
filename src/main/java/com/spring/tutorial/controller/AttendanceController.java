@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,54 @@ public class AttendanceController {
 		
 		return "attendance/attendance";
 	}
+	
+	// 업무 시작
+	@RequestMapping("attendin.at")
+	public String attendin(HttpServletRequest req, HttpServletResponse res, Model model) 
+			throws ServletException, IOException{
+		logger.info("controller > attendin.at");
+		service.attendin(req, model);
+		
+		String viewPage = req.getContextPath() + "/attendance.at";
+		res.sendRedirect(viewPage);
+		return null;
+	}
+	
+	// 업무 종료
+	@RequestMapping("attendout.at")
+	public String attendout(HttpServletRequest req, HttpServletResponse res, Model model) 
+			throws ServletException, IOException{
+		logger.info("controller > attendout.at");
+		service.attendout(req, model);
+
+		String viewPage = req.getContextPath() + "/attendance.at";
+		res.sendRedirect(viewPage);
+		return null;
+	}
+	
+	// 연장 시작
+	@RequestMapping("overin.at")
+	public String overin(HttpServletRequest req, HttpServletResponse res, Model model) 
+			throws ServletException, IOException{
+		logger.info("controller > overin.at");
+		service.overin(req, model);
+
+		String viewPage = req.getContextPath() + "/attendance.at";
+		res.sendRedirect(viewPage);
+		return null;
+	}	
+	
+	// 연장 종료
+	@RequestMapping("overout.at")
+	public String overout(HttpServletRequest req, HttpServletResponse res, Model model) 
+			throws ServletException, IOException{
+		logger.info("controller > overout.at");
+		service.overout(req, model);
+
+		String viewPage = req.getContextPath() + "/attendance.at";
+		res.sendRedirect(viewPage);
+		return null;
+	}		
 	
 	// 나의 근무 조회 (주간 근태)
 	@RequestMapping("attendanceWeek.at")

@@ -78,7 +78,7 @@
 									<li class="breadcrumb-item active">
 									<a href="${path}/adminMain.ad">Home</a></li>
 									<li class="breadcrumb-item active"aria-current="page">
-									<a href="${path}/adSecure2.ad">Menu Authority</a></li>
+									<a href="${path}/adSecure2.ad">System Authority</a></li>
 								</ol>
 							</nav>
 						</div>
@@ -94,7 +94,7 @@
                 <!-- *************************************************************** -->
                 <div class="row button-group">
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure.ad'">메뉴 운영 권한</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure.ad'">관리자 권한</button>
 				    </div>
 				    <div class="col-lg-2 col-md-4">
 				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure2.ad'">기능 접근 제한</button>

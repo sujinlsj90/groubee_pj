@@ -37,12 +37,11 @@
 	        <!-- Logo -->
 	        <!-- ============================================================== -->
 	        <div class="navbar-brand">
-	        	<!-- Logo icon -->
-	        	
+	        	<!-- Logo icon -->	        	
 	            <a href="adminMain.ad">
 	            	<b class="logo-icon">
 	            		<img src="${path}/resources/images/groubee_logo3.png" alt="homepage" class="logo" />
-	            	</b>
+	            	</b>	            	
 	            </a>
 	        </div>
 			<!-- ============================================================== -->
@@ -51,6 +50,7 @@
 			<div class="profile-section">
 				<p class="font-weight-bold mb-0 font-18">ADMIN</p>
 			</div>
+			<button type="button" id="btnLogout" class="btn waves-effect waves-light btn-rounded btn-outline-light" onClick="location.href='login.co'">logout</button>
 		</div>
 		<!-- Sidebar scroll-->
 		<div class="scroll-sidebar">

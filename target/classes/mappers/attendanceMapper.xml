@@ -25,7 +25,7 @@
    			where id=#{id} AND today LIKE to_date(sysdate,'yyyy-MM-dd') 
    		</select> -->      		
    		
-   		<!-- 업무 처리 -->
+   		<!-- 업무 시작 처리 -->
    		<insert id="attendin" parameterType="String">   			
 		   	INSERT INTO grb_attendance (attend_id, id, attendin, RESULT, state)
 			VALUES((SELECT NVL(Max(attend_id)+1,1) FROM grb_attendance), #{id}, sysdate, 1, '업무');
@@ -37,4 +37,15 @@
 			VALUES((SELECT NVL(Max(attend_id)+1,1) FROM grb_attendance), #{id}, sysdate, 1, '업무종료');
    		</insert> 
    		
+   		<!-- 연장 근무 처리 -->
+   		<insert id="overin" parameterType="String">   			
+		   	INSERT INTO grb_attendance (attend_id, id, attendin, RESULT, state)
+			VALUES((SELECT NVL(Max(attend_id)+1,1) FROM grb_attendance), #{id}, sysdate, 1, '연장');
+   		</insert> 
+   		
+   		<!-- 연장 종료 처리 -->
+   		<insert id="overout" parameterType="String">   			
+		   	INSERT INTO grb_attendance (attend_id, id, attendout, RESULT, state)
+			VALUES((SELECT NVL(Max(attend_id)+1,1) FROM grb_attendance), #{id}, sysdate, 1, '연장종료');
+   		</insert> 
      </mapper>

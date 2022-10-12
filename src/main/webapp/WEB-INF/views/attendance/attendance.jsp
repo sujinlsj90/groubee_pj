@@ -74,7 +74,8 @@
 				<!-- ============================================================== -->
 				<!-- Right Part -->
 				<!-- ============================================================== -->
-			
+				<form name="attendform" method="post">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<div class="right-part mail-list overflow-auto" style="height:100%;">
 					<!-- Action part -->
 					<!-- Button group part -->
@@ -84,13 +85,7 @@
 							<div style="border:1px solid #dedede; width:400px; height:100px; line-height:100px; color:#666;font-size:60px; text-align:center; border:0;" id="clock2">
 							</div>
 						</div>
-						<div class="ml-auto">
-							<div class="btn-group mr-2" role="group"
-								aria-label="Button group with nested dropdown">
-								<button type="button" class="btn btn-outline-secondary font-18">
-									<i class="mdi mdi-reload"></i>
-								</button>
-							</div>
+						<div class="ml-auto">						
 							<div class="btn-group mr-2" role="group"
 								aria-label="Button group with nested dropdown">
 								<div class="btn-group" role="group">
@@ -110,6 +105,10 @@
 					</div>
 					
 					<div class="card">
+						<div class="button-group">
+							<button type="button" class="btn waves-effect waves-light btn-outline-info" id="attendin">업무시작</button>
+							<button type="button" class="btn waves-effect waves-light btn-outline-info" id="attendout">업무종료</button>													
+						</div>
 						<div class="card-body">
 							<h4 class="card-title" id="today2"></h4>							
 							<div class="container" style="align: center">
@@ -146,23 +145,23 @@
 										<div id="overtime">0h 0m 0s</div>
 									</div>
 									<div class="col order-1 bg-light border p-3">
-										<div>이번주 누적 시간</div>
+										<div>오늘 누적 시간</div>
 										<div id="accumulatetime"></div>
-									</div>
+									</div>									
 									<div class="col order-12 bg-light border p-3">
-										<div>이번주 연장 시간</div>
-										<div id="overtime">0h 0m 0s</div>
+										<div>이번주 누적 시간</div>
+										<div id="accumulweek"></div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<!-- 일일 근태 로그 확인 -->
 					<div class="card">
 						<div class="card-body">
-							<table data-toggle="table" class="table table-striped no-wrap">
+							<table class="table table-striped no-wrap" style="width:100%">
 								<thead>
-									<tr>
-										<th class="attend_id" data-sortable="true">근태로그</th>
+									<tr>										
 										<th class="id" data-sortable="true">사번</th>
 										<th class="today" data-sortable="true">등록일</th>
 										<th class="attendin" data-sortable="true">업무시작</th>
@@ -172,21 +171,29 @@
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach var="dto" items="${list}" varStatus="status">    
+								
+								<c:forEach var="dto" items="${list}" varStatus="status">
+									<c:if test="${dto.attend_id == null}" >
 									<tr>
-										<td>${dto.attend_id}</td>
+										<td colspan="6">등록하신 근태 로그가 없습니다.</td>																		
+									</tr>	
+									</c:if>
+									<c:if test="${dto.attend_id != null}" >
+									<tr>										
 										<td>${dto.id}</td>
 										<td>${dto.today}</td>
 										<td>${dto.attendin}</td>
 										<td>${dto.attendout}</td>
 										<td>${dto.state}</td>										
 									</tr>
+									</c:if>
 								</c:forEach>									
 								</tbody>
 							</table>
 						</div>						
 					</div>
 				</div>
+				</form>
 			</div>	
 			<!-- ============================================================== -->
             <!-- footer -->
@@ -322,8 +329,7 @@
 	 	var r_check = company_out - currentDate; // 일일 잔여 시간 계산
 	 	var r_h = Math.floor((r_check % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 	 	var r_m = Math.floor((r_check % (1000 * 60 * 60)) / (1000 * 60));
-	 	var r_s = Math.floor((r_check % (1000 * 60)) / 1000);	 	
-	 	console.log(r_h +"h "+ r_m +"m "+ r_s +"s");
+	 	var r_s = Math.floor((r_check % (1000 * 60)) / 1000);		 	
     	var remain = document.getElementById("remain");
     	if(r_s < 0){
     		remain.innerHTML = "0h 0m 0s";
@@ -351,10 +357,25 @@
     }
     	var currentDate = new Date(); 
 	    var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
-	    var attend_in = new Date('${list[0].attendin}'); // 출근 시간
-	    var attend_out = new Date('${list[1].attendout}'); // 퇴근 시간
-	    var in_clock = '${list[0].attendin}'.split(" ");
-	    var out_clock ='${list[1].attendout}'.split(" ");
+	    var attend_in; // 출근 시간 Date
+	    var attend_out; // 퇴근 시간 Date
+	    var in_clock; // 출근 시간만 추출
+	    var out_clock; // 퇴근 시간만 추출
+	    
+	    // 출퇴근 로그 순번에 따른 list 값 가져오기 
+	    if(${list[0].attendin == null}){
+	    	attend_in = new Date('${list[1].attendin}'); 
+	    	attend_out = new Date('${list[0].attendout}'); 
+	    	in_clock = '${list[1].attendin}'.split(" ");
+	    	out_clock = '${list[0].attendout}'.split(" ");
+	    } else{
+	    	attend_in = new Date('${list[0].attendin}'); // 출근 시간
+	    	attend_out = new Date('${list[1].attendout}'); // 퇴근 시간
+	    	in_clock = '${list[0].attendin}'.split(" ");
+	    	out_clock = '${list[1].attendout}'.split(" ");	    
+	    }   
+	    console.log(in_clock);
+	    console.log(out_clock);
 	    
 	 	var acc_check = attend_out - attend_in; // 누적 시간 계산
 	 	var acc_h = Math.floor((acc_check % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -364,7 +385,16 @@
 	 	
 	 	// 누적 시간 계산 (퇴근 - 출근)
     	var accumulate = document.getElementById("accumulatetime");
-    	accumulate.innerHTML = acc_h +"h "+ acc_m +"m "+ acc_s +"s";
+	 	var accumulweek = document.getElementById("accumulweek");
+	 	var accumulcheck = accumulweek.innerHTML; // 이번주 누적시간
+	 	if(accumulate.innerHTML == 'NaNh NaNm NaNs'){ // 출퇴근 기록이 둘 다 없으면 NaN > 0h 0m 0s 처리
+	 		accumulate.innerHTML = "0h 0m 0s";
+	 	}else{ // 출퇴근 기록이 있으면 누적 시간 계산
+    		accumulate.innerHTML = acc_h +"h "+ acc_m +"m "+ acc_s +"s";
+    		accumulcheck += accumulate; // 주간 누적 시간 += 일일 누적 시간
+    		//accumulweek.innerHTML = accumulcheck; // 갱신
+    		//console.log(accumulcheck);
+	 	}
     	// 출근 시간
     	var attendin = document.getElementById("attendin");
     	var attendin2 = document.getElementById("attendin2");
@@ -375,6 +405,24 @@
     	attendout.innerHTML = out_clock[1];
     	var attendout2 = document.getElementById("attendout2");
     	attendout2.innerHTML = out_clock[1];
+    	
+   	$(function(){
+   		// 업무 시작
+   		$("#attendin").click(function(){   			
+   			if(confirm("업무를 시작하시겠습니까?")){
+				document.attendform.action = "${path}/attendin.at";
+				document.attendform.submit();
+   			}
+   		});
+   		
+   		// 업무 종료
+   		$("#attendout").click(function(){   			
+   			if(confirm("업무를 종료하시겠습니까?")){
+				document.attendform.action = "${path}/attendout.at";
+				document.attendform.submit();
+   			}
+   		});   		
+    });    	
     </script>
 </body>
 </html>

@@ -9,6 +9,18 @@ public interface AttendanceDAO {
 	// 나의 근태 현황 
 	public List<AttendanceDTO> attendance(String id);
 	
+	// 업무 시작
+	public int attendin(String id);
+	
+	// 업무 종료
+	public int attendout(String id);
+	
+	// 연장 시작
+	public int overin(String id);
+	
+	// 연장 종료
+	public int overout(String id);
+	
 	// 나의 근무 조회 (주간)
 	public List<AttendanceDTO> attendanceWeek(String id);
 	
@@ -21,7 +33,7 @@ public interface AttendanceDAO {
 	// 연장 근무 신청 
 	public int request_over(String id);
 	
-	// 연장 근무 신청 
+	// 연차 반차 신청 
 	public int request_rest(String id);
 	
 	// 부서 근태 내역
