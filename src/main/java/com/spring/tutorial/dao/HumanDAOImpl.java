@@ -72,10 +72,10 @@ public class HumanDAOImpl implements HumanDAO{
 	
 	//조직도 팀
 	@Override
-	public List<TeamDTO> groubTeamInfo() {
+	public List<TeamDTO> groubTeamInfo(String depart_name) {
 		System.out.println("dao -> 조직도 팀 ");
 		
-		List<TeamDTO> list = sqlSession.selectList("com.spring.tutorial.dao.HumanDAO.groubTeamInfo");
+		List<TeamDTO> list = sqlSession.selectList("com.spring.tutorial.dao.HumanDAO.groubTeamInfo", depart_name);
 		
 		return list;
 	}

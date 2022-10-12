@@ -47,11 +47,11 @@ public class HumanController {
    
    //조직도
    @RequestMapping("groub.hu")
-   public String img(HttpServletRequest req , Model model) {
+   public String img(HttpServletRequest req , Model model)  throws ServletException , IOException{
       logger.info("url -> groub.hu");
       
-      //service.groubDepart(req, model);
-      //service_t.groubTeamInfo(req, model);
+      service.groubDepart(req, model);
+      service_t.groubTeamInfo(req, model);
       
       return  "humanresources/groub";
    }

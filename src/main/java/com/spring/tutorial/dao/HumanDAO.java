@@ -18,7 +18,7 @@ public interface HumanDAO {
 	public List<DepartDTO> groubdepart(); 
 	
 	//조직도 팀
-	public List<TeamDTO> groubTeamInfo();
+	public List<TeamDTO> groubTeamInfo(String depart_name);
 	
 	
 	//인사평가

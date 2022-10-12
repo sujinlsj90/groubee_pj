@@ -45,7 +45,9 @@
    
     <!-- 조직도 팀-->
    <select id="groubTeamInfo" parameterType="String" resultType="com.spring.tutorial.dto.TeamDTO">
-		select team_name from grd_team 
+		select team_name  
+		    from grd_team
+		where depart_name = '영업부'
    </select>
    
    		

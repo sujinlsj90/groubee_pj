@@ -190,7 +190,7 @@
             <c:forEach var="dto" items="${list}">
               <button id="spreadBtn01" class="btn1">${dto.depart_name}</button>
                 <ul id="hiddenList01" class="section">
-               <c:forEach var="dto2" items="${list2}">
+              <c:forEach var="dto2" items="${list2}">
                     <li id="spreadBtn11">
                         <a href="#">${dto2.team_name}</a>
                         <ul id="hiddenList11" class="btn1">
@@ -198,7 +198,7 @@
                         </ul>    
              		
                     </li>
-             </c:forEach>
+                </c:forEach>
                 </ul>
          </c:forEach> 
             </div>

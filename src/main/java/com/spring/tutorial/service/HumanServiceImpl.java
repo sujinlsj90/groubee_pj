@@ -27,7 +27,7 @@ public class HumanServiceImpl implements HumanService{
 	
 	//기본정보
 	@Override
-	public void memberInfo(HttpServletRequest req, Model model)  {
+	public void memberInfo(HttpServletRequest req, Model model) {
 		System.out.println("서비스 -> 기본정보");
 		
 		String id = (String) req.getSession().getAttribute("memberID");
@@ -52,13 +52,12 @@ public class HumanServiceImpl implements HumanService{
 
 	//조직도 팀
 	@Override
-	public void groubTeamInfo(HttpServletRequest req, Model model) {
+	public void groubTeamInfo(HttpServletRequest req, Model model) throws ServletException , IOException{
 		System.out.println("서비스 -> 조직도 팀");
+		String depart_name = req.getParameter("depart_name");
+		System.out.println(depart_name);
 		
-		
-		
-		List<TeamDTO> list2 = dao.groubTeamInfo();
-		
+		List<TeamDTO> list2 = dao.groubTeamInfo(depart_name);
 		model.addAttribute("list2", list2);
 		
 	}
