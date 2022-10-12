@@ -6,8 +6,9 @@ import java.sql.Date;
 public class BoardDTO {
 
 	private int num;
-	private int category;
+	private String category;
 	private String id;
+	private String name;
 	private String title;
 	private String content;
 	private int read_cnt;
@@ -15,17 +16,16 @@ public class BoardDTO {
 	private Date reg_date; 
 	private String board_file;
 	private int show;
-	
 	public int getNum() {
 		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public int getCategory() {
+	public String getCategory() {
 		return category;
 	}
-	public void setCategory(int category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 	public String getId() {
@@ -33,6 +33,12 @@ public class BoardDTO {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getTitle() {
 		return title;
@@ -76,12 +82,11 @@ public class BoardDTO {
 	public void setShow(int show) {
 		this.show = show;
 	}
-	
 	@Override
 	public String toString() {
-		return "BoardDTO [num=" + num + ", category=" + category + ", id=" + id + ", title=" + title + ", content="
-				+ content + ", read_cnt=" + read_cnt + ", comment_cnt=" + comment_cnt + ", reg_date=" + reg_date
-				+ ", board_file=" + board_file + ", show=" + show + "]";
+		return "BoardDTO [num=" + num + ", category=" + category + ", id=" + id + ", name=" + name + ", title=" + title
+				+ ", content=" + content + ", read_cnt=" + read_cnt + ", comment_cnt=" + comment_cnt + ", reg_date="
+				+ reg_date + ", board_file=" + board_file + ", show=" + show + "]";
 	}
 	
 	
