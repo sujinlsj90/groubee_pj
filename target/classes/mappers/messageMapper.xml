@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     
+     <!-- namespace="패키지명.인터페이스" -->
+     <mapper namespace="com.spring.tutorial.dao.MessageDAO"> 
+   		
+   		<!-- id="메서드명" parameterType="매개변수 파일의 경로" resultTyple="자료형"
+   			insert, update, delete의 경우에는 int 반환이므로 Mybatis가 자동처리 (생략 가능)
+   			Mybatis에서 변수는 #{ }으로 표현한다
+   		-->
+   		
+   		<!-- 받는사람 목록 - 부서 -->
+   		<select id="recipientList_depart" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
+   			SELECT name, depart_name FROM grb_member ORDER BY depart_name ASC
+   		</select>
+   		
+   		<!-- SELECT DISTINCT depart_name FROM grb_member -->
+   		
+   		<!-- 받는사람 목록 - 부서별 사원명 -->
+   		<!-- <select id="recipientList_person" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
+   			SELECT name, depart_name FROM grb_member WHERE depart_name = #{depart_name}
+   		</select> -->
+   			
+   		<!-- 메세지 개수 -->	
+   		<!-- <select id="messageInsert" resultType="int">
+   			SELECT COUNT(*) as selectCnt FROM grb_send_message
+   		</select> -->
+   		
+   		<!-- 메세지 보내기 -->
+   		<!-- <insert id="messageSend" parameterType="com.spring.tutorial.dto.MessageDTO">
+   			INSERT INTO grb_send_message(message_num, id, getter_id, title, contents, files, send_date, trash, holding)
+			VALUES((SELECT NVL(Max(message_num)+1, 1) FROM grb_get_message), #{id}, #{getter_id}, #{title}, #{contents}, #{files}, sysdate, 0, 0)
+   		</insert> -->
+   		
+   		<!-- 받은메세지 리스트 -->
+   		<!-- <select id="getMsgList" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
+   			SELECT message_num, 
+       			   (SELECT CONCAT(CONCAT(depart_name, ' '), name) AS 보낸사람 FROM grb_member WHERE id = #{id}),
+       			   title, contents, files, send_date, trash, holding
+  			  FROM grb_send_message
+ 			 WHERE getter_id = #{getter_id}
+   		</select> -->
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+	</mapper>	
