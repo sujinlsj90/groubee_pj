@@ -13,8 +13,8 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<!-- Favicon icon -->
-	<link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
-	<title>Severny admin Template - The Ultimate Multipurpose admin template</title>	
+	<link rel="icon" type="image/png" sizes="20x20" href="${path}/resources/images/groubee_pavicon_black.png">
+	<title>그루비 그룹웨어</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
 	<!-- Custom CSS -->
 	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/libs/quill/dist/quill.snow.css">
@@ -29,34 +29,86 @@
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 <script type="text/javascript">
-	function load() {
-		// sendRequest(callback, url, method, params)
-		sendRequest(getMsgList, "msgInbox.me", "post", "");
-	}
-	
-	// 콜백함수
-	function getMsgList{
-		var msgContainer = document.getElementById("note-full-container");
-		if(httpRequest.readyState == 4) {
-			if(httpRequest.status == 200) {
-				var data = httpRequest.responseText;
-				
-				// 배열 생성
-				var array = new Array();
-				var 
-				
-				// 배열 길이를 이용해서
+	$(function() {
+		$.ajax({ // sendRequest 호출하라는 의미
+			url: 'msgInbox.me', // 요청 보냄 , 요청을 JQueryController.java 한테 보냄
+			type: 'GET',						  // 요청 보냄
+			dataType: 'text',					  // 요청 보냄
+			success: function(result) { // 콜백함수 - 전송성공시 결과가 result에 전송된다. => result = httpRequest.responseText
+				$("#note-full-container").html(result);
+			},
+			error: function() {
+				alert("오류");
 			}
+		});
+		
+		// 받은쪽지함
+		$("#getMsg").click(function() {
 			
-		} else {
-			result.innerHTML = "status 상태 : " + httpRequest.status;
-		}	
-	} else {
-		result.innerHTML = "readyState 상태 : " + httpRequest.readyState;
-	}
-		}
-	}
-
+			$.ajax({ // sendRequest 호출하라는 의미
+				url: 'msgInbox.me', // 요청 보냄 , 요청을 JQueryController.java 한테 보냄
+				type: 'GET',						  // 요청 보냄
+				dataType: 'text',					  // 요청 보냄
+				success: function(result) { // 콜백함수 - 전송성공시 결과가 result에 전송된다. => result = httpRequest.responseText
+					$("#note-full-container").html(result);
+				},
+				error: function() {
+					alert("오류");
+				}
+			});
+		});
+		
+		// 보낸쪽지함
+		$("#sendMsg").click(function() {
+			$('#sendMsg a').addClass('.nav-link.active');
+			
+			$.ajax({ // sendRequest 호출하라는 의미
+				url: 'msgSendbox.me', // 요청 보냄 , 요청을 JQueryController.java 한테 보냄
+				type: 'GET',						  // 요청 보냄
+				dataType: 'text',					  // 요청 보냄
+				success: function(result) { // 콜백함수 - 전송성공시 결과가 result에 전송된다. => result = httpRequest.responseText
+					$("#note-full-container").html(result);
+				},
+				error: function() {
+					alert("오류");
+				}
+			});
+		});
+		
+		// 휴지통
+		$("#trashMsg").click(function() {
+			$.ajax({ // sendRequest 호출하라는 의미
+				url: 'msgTrash.me', // 요청 보냄 , 요청을 JQueryController.java 한테 보냄
+				type: 'GET',						  // 요청 보냄
+				dataType: 'text',					  // 요청 보냄
+				success: function(result) { // 콜백함수 - 전송성공시 결과가 result에 전송된다. => result = httpRequest.responseText
+					$("#note-full-container").html(result);
+				},
+				error: function() {
+					alert("오류");
+				}
+			});
+		});
+		
+		// 임시보관함
+		$("#tempoMsg").click(function() {
+			$.ajax({ // sendRequest 호출하라는 의미
+				url: 'msgTempbox.me', // 요청 보냄 , 요청을 JQueryController.java 한테 보냄
+				type: 'GET',						  // 요청 보냄
+				dataType: 'text',					  // 요청 보냄
+				success: function(result) { // 콜백함수 - 전송성공시 결과가 result에 전송된다. => result = httpRequest.responseText
+					$("#note-full-container").html(result);
+				},
+				error: function() {
+					alert("오류");
+				}
+			});
+		});
+		
+		
+		
+		
+	});
 </script>
 </head>
 
@@ -100,23 +152,23 @@
 	            <!-- ============================================================== -->
     			<div class="container-fluid note-has-grid">
     				<ul class="nav nav-pills p-3 bg-white mb-3 rounded-pill align-items-center">
-						<li class="nav-item"> 
-							<a href="msgInbox.me" class="nav-link rounded-pill note-link d-flex align-items-center active px-2 px-md-3 mr-0 mr-md-2"  id="getMsg">
+						<li class="nav-item" id="getMsg"> 
+							<a href="javascript:void(0)" class="nav-link rounded-pill note-link d-flex align-items-center active px-2 px-md-3 mr-0 mr-md-2">
 						  		<i class="icon-folder-alt mr-1"></i><span class="d-none d-md-block">받은쪽지함</span>
 						  	</a> 
 						</li>
-						<li class="nav-item"> 
-							<a href=".me" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" id="sendMsg">
+						<li class="nav-item" id="sendMsg"> 
+							<a href="javascript:void(0)" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2">
 						 		<i class="icon-folder mr-1"></i><span class="d-none d-md-block">보낸쪽지함</span>
 						  	</a> 
 						</li>
-						<li class="nav-item"> 
-							<a href=".me" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" id="trashMsg">
+						<li class="nav-item" id="trashMsg"> 
+							<a href="javascript:void(0)" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2">
 						  		<i class="icon-trash mr-1"></i><span class="d-none d-md-block">휴지통</span>
 						  	</a>
 						</li>
-						<li class="nav-item"> 
-							<a href=".me" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2" id="tempoMsg">
+						<li class="nav-item" id="tempoMsg"> 
+							<a href="javascript:void(0)" class="nav-link rounded-pill note-link d-flex align-items-center px-2 px-md-3 mr-0 mr-md-2">
 						  		<i class="icon-drawar mr-1"></i><span class="d-none d-md-block">임시보관함</span>
 						  	</a> 
 						</li>
@@ -128,10 +180,7 @@
 						</li>
                     </ul>
                     <div class="tab-content">
-                    	<div id="note-full-container" class="note-has-grid row">
-                        	
-                              
-                        </div>
+                    	<div id="note-full-container" class="note-has-grid row" style="width:100%;"></div>
                         <!-- ============================================================== -->
                         <!-- footer -->
                         <!-- ============================================================== -->

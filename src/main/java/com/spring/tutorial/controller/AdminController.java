@@ -22,7 +22,6 @@ public class AdminController {
 		return "admin/index";
 	}
 	
-	
 	@RequestMapping("adAttend.ad")
 	public String adAttend(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{

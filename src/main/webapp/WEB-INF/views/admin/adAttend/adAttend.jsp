@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
-    <title>Severny admin Template - The Ultimate Multipurpose admin template</title>	
+    <title>Admin 근태관리</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
     <!-- Custom CSS -->
     <link href="${path}/resources/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -22,6 +22,9 @@
     <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${path}/resources/assets/extra-libs/prism/prism.css">
     <link href="${path}/resources/commonCSS/index.css" rel="stylesheet">
+    <!-- This Page CSS -->
+    <link rel="stylesheet" type="text/css" href="${path}/resources/assets/extra-libs/css-chart/css-chart.css">
+    <link href="${path}/resources/assets/libs/morris.js/morris.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -48,56 +51,184 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper">
-        <div class="app-container"></div>
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- 좌측고정 메뉴바 -->
-        <%@ include file="/WEB-INF/views/admin/adminMenu.jsp" %>
-        <!-- 좌측고정 메뉴바 -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Bread crumb and right sidebar toggle -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">
-                <!-- *************************************************************** -->
-                <!-- Start First Cards -->
-                <!-- *************************************************************** -->
-                <br><br>
-                <img src = "${path}/resources/images/adminImages/근태관리-근무시간설정.JPG">
-                <!-- *************************************************************** -->
-                <!-- End Top Leader Table -->
-                <!-- *************************************************************** -->
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <footer class="footer text-center text-muted">
-                Copyright 2019. All Rights Reserved by Severny Admin
-            </footer>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
-    </div>
-    <!-- ============================================================== -->
+	<div id="main-wrapper">
+		<div class="app-container"></div>
+		<!-- ============================================================== -->
+		<!-- Topbar header - style you can find in pages.scss -->
+		<!-- ============================================================== -->
+
+		<!-- ============================================================== -->
+		<!-- Left Sidebar - style you can find in sidebar.scss  -->
+		<!-- ============================================================== -->
+		<!-- 좌측고정 메뉴바 -->
+		<%@ include file="/WEB-INF/views/admin/adminMenu.jsp"%>
+		<!-- 좌측고정 메뉴바 -->
+		<!-- ============================================================== -->
+		<!-- Page wrapper  -->
+		<!-- ============================================================== -->
+		<div class="page-wrapper">
+			<!-- ============================================================== -->
+			<!-- Bread crumb and right sidebar toggle -->
+			<!-- ============================================================== -->
+			<div class="page-breadcrumb">
+				<div class="row">
+					<div class="col-7 align-self-center">
+						<h4
+							class="page-title text-truncate text-dark font-weight-medium mb-1">Admin
+							Attendance</h4>
+						<div class="d-flex align-items-center">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb m-0 p-0">
+									<li class="breadcrumb-item active">
+									<a href="${path}/adminMain.ad">Home</a></li>
+									<li class="breadcrumb-item active"aria-current="page">
+									<a href="${path}/adAttend.ad">Attendance</a></li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ============================================================== -->
+			<!-- Container fluid  -->
+			<!-- ============================================================== -->
+			<div class="container-fluid">
+				<!-- *************************************************************** -->
+				<!-- Start First Cards -->
+				<!-- *************************************************************** -->
+				<!-- Column -->
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+							<form name="attendanceform" action="#" method="post">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+								<div class="col-lg-12 col-md-12 col-sm-12">
+									<h3 class="box-title mt-5">Attendance Info</h3>
+									<h4 class="box-title mt-5">Work Days</h4>
+									<div class="table-responsive">
+										<div class="btn-group" data-toggle="buttons">
+                                            <label class="btn btn-info active">
+                                                <div class="custom-control custom-checkbox mr-sm-4">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox0">
+                                                    <label class="custom-control-label" for="checkbox0">월</label>
+                                                </div>
+                                            </label>
+                                            <label class="btn btn-info">
+                                                <div class="custom-control custom-checkbox mr-sm-4">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox1">
+                                                    <label class="custom-control-label" for="checkbox1">화</label>
+                                                </div>
+                                            </label>
+                                            <label class="btn btn-info">
+                                                <div class="custom-control custom-checkbox mr-sm-4">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox2">
+                                                    <label class="custom-control-label" for="checkbox2">수</label>
+                                                </div>
+                                            </label>
+                                            <label class="btn btn-info">
+                                                <div class="custom-control custom-checkbox mr-sm-4">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox3">
+                                                    <label class="custom-control-label" for="checkbox3">목</label>
+                                                </div>
+                                            </label>
+                                            <label class="btn btn-info">
+                                                <div class="custom-control custom-checkbox mr-sm-4">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox4">
+                                                    <label class="custom-control-label" for="checkbox4">금</label>
+                                                </div>
+                                            </label>
+                                            <label class="btn btn-info">
+                                                <div class="custom-control custom-checkbox mr-sm-4">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox5">
+                                                    <label class="custom-control-label" for="checkbox5">토</label>
+                                                </div>
+                                            </label>
+                                            <label class="btn btn-info">
+                                                <div class="custom-control custom-checkbox mr-sm-4">
+                                                    <input type="checkbox" class="custom-control-input" id="checkbox6">
+                                                    <label class="custom-control-label" for="checkbox6">일</label>
+                                                </div>
+                                            </label>
+                                        </div>			
+										<table class="table">
+											<tbody>
+												<tr>
+													<td width="390">Group</td>
+													<td>Groubee</td>
+												</tr>												
+												<tr>
+													<td>Work Time</td>
+													<td>
+														업무 시작 시간<input class="col-lg-4 form-control" type="time" id="attendin">
+														업무 종료 시간<input class="col-lg-4 form-control" type="time" id="attendout">
+													</td>
+												</tr>
+												<tr>
+													<td>Over Time</td>
+													<td>
+														연장 근무 시작<input class="col-lg-4 form-control" type="time" id="over_in">
+														연장 근무 종료<input class="col-lg-4 form-control" type="time" id="over_out">
+													</td>
+												</tr>
+												<tr>
+													<td>Rest Time</td>
+													<td>
+														쉬는 시간 시작<input class="col-lg-4 form-control" type="time" placeholder="쉬는 시간 시작" id="rest_in">
+														쉬는 시간 종료<input class="col-lg-4 form-control" type="time" placeholder="쉬는 시간 종료" id="rest_out">
+													</td>
+												</tr>											
+																							
+												<!-- Row -->
+											</tbody>
+										</table>
+										
+									<h4 class="box-title mt-5">Options</h4>									
+                                    <div class="col-sm-4">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="52hour">
+                                            <label class="custom-control-label" for="52hour">52시간 초과근무 알림</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="work">
+                                            <label class="custom-control-label" for="work">업무 시작 알림</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="workout">
+                                            <label class="custom-control-label" for="workout">퇴근 시간 알림</label>
+                                        </div>
+                                    </div>                                                                  	
+                                	
+									</div>
+									<hr><br>
+									<button type="submit" class="btn btn-info">Submit</button>
+								</div>
+								</form>
+							</div>						
+						</div>
+					</div>
+				</div>
+			</div>			
+			<!-- *************************************************************** -->
+			<!-- End Top Leader Table -->
+			<!-- *************************************************************** -->
+		</div>
+		<!-- ============================================================== -->
+		<!-- End Container fluid  -->
+		<!-- ============================================================== -->
+		<!-- ============================================================== -->
+		<!-- footer -->
+		<!-- ============================================================== -->
+		<footer class="footer text-center text-muted"> Copyright 2019. All Rights Reserved by Severny Admin </footer>
+		<!-- ============================================================== -->
+		<!-- End footer -->
+		<!-- ============================================================== -->
+	</div>
+	<!-- ============================================================== -->
+	<!-- End Page wrapper  -->
+	<!-- ============================================================== -->
+
+	<!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
@@ -195,10 +326,8 @@
     <!--c3 charts -->
     <script src="${path}/resources/assets/extra-libs/c3/d3.min.js"></script>
     <script src="${path}/resources/assets/extra-libs/c3/c3.min.js"></script>
-    <!--chartjs -->
-    <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
-    <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
-    <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
+    
+   	
 </body>
 
 </html>

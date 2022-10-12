@@ -2,23 +2,23 @@ $(function() {
 
         var defaultData = [
           {
-            text: 'Parent 1',
+            text: '영업부',
             href: '#parent1',
             tags: ['4'],
             nodes: [
               {
-                text: 'Child 1',
+                text: '이수진',
                 href: '#child1',
                 tags: ['2'],
                 nodes: [
                   {
                     text: 'Grandchild 1',
-                    href: '#grandchild1',
+                    href: '/humanMain.hu',
                     tags: ['0']
                   },
                   {
                     text: 'Grandchild 2',
-                    href: '#grandchild2',
+                    href: 'http://www.naver.com',
                     tags: ['0']
                   }
                 ]
@@ -90,7 +90,7 @@ $(function() {
           {
             text: 'Parent 4',
             icon: 'glyphicon glyphicon-cloud-download',
-            href: '/demo.html',
+            href: '/humanMain.hu',
             tags: ['19'],
             selected: true
           },
@@ -99,7 +99,7 @@ $(function() {
             icon: 'glyphicon glyphicon-certificate',
             color: 'pink',
             backColor: 'red',
-            href: 'http://www.tesco.com',
+            href: 'http://www.naver.com',
             tags: ['available','0']
           }
         ];
@@ -179,16 +179,17 @@ $(function() {
           data: defaultData
         });
 
-        $('#treeview5').treeview({
+       $('#treeview5').treeview({
          
           expandIcon: 'ti-angle-right',
           onhoverColor: "rgba(0, 0, 0, 0.05)",
           selectedBackColor: "#03a9f3",
           collapseIcon: 'ti-angle-down',
-          nodeIcon: 'fa fa-bookmark',
+          nodeIcon: 'ti-user',
           data: defaultData
         });
-
+       
+      
         $('#treeview6').treeview({
          selectedBackColor: "#03a9f3",
          onhoverColor: "rgba(0, 0, 0, 0.05)",
@@ -220,22 +221,23 @@ $(function() {
           selectedBackColor: "darkorange",
           data: defaultData
         });
-
+        
         $('#treeview9').treeview({
-          expandIcon: "fa fa-circle",
-          collapseIcon: "fa fa-check-circle-o",
-          nodeIcon: "glyphicon glyphicon-user",
-          color: "yellow",
-          backColor: "purple",
-          onhoverColor: "orange",
-          borderColor: "red",
-          showBorder: false,
-          showTags: true,
-          highlightSelected: true,
-          selectedColor: "yellow",
-          selectedBackColor: "darkorange",
-          data: alternateData
-        });
+            expandIcon: "fa fa-circle",
+            collapseIcon: "fa fa-check-circle-o",
+            nodeIcon: "glyphicon glyphicon-user",
+            color: "yellow",
+            backColor: "purple",
+            onhoverColor: "orange",
+            borderColor: "red",
+            showBorder: false,
+            showTags: true,
+            highlightSelected: true,
+            selectedColor: "yellow",
+            selectedBackColor: "darkorange",
+            data: alternateData
+          });
+
 
         $('#treeview10').treeview({
           color: "#428bca",

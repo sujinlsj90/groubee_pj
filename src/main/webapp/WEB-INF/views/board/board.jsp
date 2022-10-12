@@ -28,12 +28,9 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("<게시판목록>\nSELECT *\n FROM (SELECT A.*, rownum as rn \n          FROM (SELECT num, category, id, title, content, read_cnt, comment_cnt, reg_date, board_file, \nshow,"
-			+ "\n      (SELECT COUNT(*) \n      FROM grb_comment \n    WHERE board_num = b.num) comment_cnt"
-			+ "\n   FROM grb_board b \n   WHERE show = 1 AND category IN (0,2)"
-			                     + "\n  ORDER BY category DESC, num DESC) \n     A )"
-			                     + "\nWHERE rn BETWEEN 1 AND 10;");
-	alert("<댓글목록>\nSELECT comment_num, writer, content, reg_date \nFROM grb_comment \nWHERE board_num = 1001");
+
+
+
 </script>
 
 </head>
@@ -59,7 +56,7 @@
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
-        <div class="page-wrapper">
+        <div class="page-wrapper" style="height:100%;">
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -73,13 +70,13 @@
                 <!-- ============================================================== -->
                 <!-- Left Part -->
                 <!-- ============================================================== -->
-                <div class="left-part">
+                <div class="left-part" style="height:100%;">
                     <a class="ti-menu ti-close btn btn-success show-left-part d-block d-md-none"
                         href="javascript:void(0)"></a>
                     <div class="scrollable" style="height:100%;">
                         <div class="p-3">
                             <a id="compose_mail" class="waves-effect waves-light btn btn-danger d-block"
-                                href="javascript: void(0)">글쓰기</a>
+                                href="${path}/insert.bo">글쓰기</a>
                         </div>
                         <div class="divider"></div>
                         <ul class="list-group">
@@ -87,11 +84,11 @@
                                 <small class="p-3 grey-text text-lighten-1 db">Category</small>
                             </li>
                             <li class="list-group-item p-0 border-0">
-                                <a href="board.bo" class="active list-group-item-action p-3 d-block"><i
+                                <a href="board.bo?category=0" class="list-group-item-action p-3 d-block"><i
                                         class="mdi mdi-inbox font-18 v-middle mr-1"></i> 자유게시판</a>
                             </li>
                             <li class="list-group-item p-0 border-0">
-                                <a href="board.bo" class="list-group-item-action p-3 d-block"> <i
+                                <a href="board.bo?category=1" class="list-group-item-action p-3 d-block"> <i
                                         class="mdi mdi-star font-18 v-middle mr-1"></i> 공지사항 </a>
                             </li>
                         </ul>
@@ -100,12 +97,19 @@
                 <!-- ============================================================== -->
                 <!-- Right Part -->
                 <!-- ============================================================== -->
-                <div class="right-part mail-list overflow-auto">
+                <div class="right-part mail-list overflow-auto" style="height:100%;">
                     <div class="p-3 b-b">
                         <div class="d-flex align-items-center">
                             <div>
-                                <h4>자유게시판 </h4>
-                                <span>자유롭게 소통하는 공간입니다.</span>
+                            <c:if test="${category==0}">
+	                            <h4>자유게시판</h4>
+	                            <span>자유롭게 소통하는 공간입니다.</span>
+                            </c:if>
+                            <c:if test="${category==1}">
+	                            <h4>공지사항</h4>
+	                            <span>공지사항 게시판 입니다.</span>
+                            </c:if>
+                                
                             </div>
                             <div class="ml-auto">
                                 <input placeholder="검색어 입력" type="text" class="form-control">
@@ -155,64 +159,12 @@
                     <!-- Action part -->
                     <!-- Mail list-->
                     <div class="table-responsive">
-                        <table class="table email-table no-wrap table-hover v-middle">
+                        <table class="table email-table no-wrap table-hover v-middle" style="width:99%;">
                             <tbody>
-                                <!-- row -->
-                                <tr class="unread">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst1">
-                                            <label class="custom-control-label" for="cst1">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><!-- <i class="far fa-star"></i> --></td>
-                                    <!-- User -->
-                                    <td class="user-image p-2"><%-- <img src="${path}/resources/assets/images/users/1.jpg" alt="user"
-                                            class="rounded-circle" width="30"> --%></td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate font-weight-medium">관리자</h6>
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link  font-weight-medium"
-                                            href="javascript: void(0)"><span class="badge badge-danger mr-2">필독</span>
-                                            <span class="blue-grey-text text-darken-4">Groubee 필독 공지사항입니다.</span>
-                                            unde omnis iste natus error sit voluptatem</a></td>
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"></td>
-                                    <!-- Time -->
-                                    <td class="time text-right"> 12:30 PM </td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="unread">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst2">
-                                            <label class="custom-control-label" for="cst2">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><!-- <i class="far fa-star"></i> --></td>
-                                    <!-- User -->
-                                    <td class="user-image p-2"><%-- <img src="${path}/resources/assets/images/users/2.jpg" alt="user"
-                                            class="rounded-circle" width="30"> --%></td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate font-weight-medium">관리자</h6>
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link font-weight-medium"
-                                            href="javascript: void(0)"><span class="badge badge-danger mr-2">필독</span><span
-                                                class="blue-grey-text text-darken-4">Groubee 필독 공지사항입니다.</span>for
-                                            Admin Template please provide us the license detail </a></td>
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"></td>
-                                    <!-- Time -->
-                                    <td class="time text-right"> 11:30 AM </td>
-                                </tr>
-                                <!-- row -->
-                                <!-- row -->
+<!-- 게시판 목록 -->
+                                
+                               <c:forEach var="dto" items="${list}">
+                               <!-- row -->
                                 <tr class="">
                                     <!-- label -->
                                     <td class="chb">
@@ -227,266 +179,51 @@
                                     <td class="user-image p-2"><%-- <img src="${path}/resources/assets/images/users/4.jpg" alt="user"
                                             class="rounded-circle" width="30"> --%></td>
                                     <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate">Akshay Kumar</h6>
+                                        <h6 class="mb-0 text-truncate">${dto.id}</h6>
                                     </td>
                                     <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link"
-                                            href="javascript: void(0)">Perspiciatis unde omnis- iste
-                                            Lorem ipsum perspiciatis unde omnis iste natus error sit voluptatem</a></td>
+                                    <c:if test="${dto.category == 2}">
+                                    	<td class="py-2 px-3 no-wrap text-truncate" style="widht:50%;">
+											<a class="link font-weight-medium" href="detail.bo?num=${dto.num}">
+											<span class="badge badge-danger mr-2">필독</span>
+											<span class="blue-grey-text text-darken-4">${dto.title} [${dto.comment_cnt}]</span>
+	                                        </a>
+                                    	</td>
+                                    </c:if>
+                                    
+                                    <c:if test="${dto.category != 2}">
+	                                    <td class="py-2 px-3 no-wrap text-truncate">
+	                                    	<a class="link" href="detail.bo?num=${dto.num}">${dto.title} [${dto.comment_cnt}]</a>
+	                                    </td>
+                                    </c:if>        
+                                    
+                                                
                                     <!-- Attachment -->
                                     <td class="clip px-1 py-2"></td>
                                     <!-- Time -->
-                                    <td class="time text-right"> 9:30 AM </td>
+                                    <td class="time text-right">${dto.reg_date}</td>
                                 </tr>
+                                </c:forEach>
                                 <!-- row -->
-                                <tr class="">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst5">
-                                            <label class="custom-control-label" for="cst5">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><!-- <i class="far fa-star"></i> --></td>
-                                    <!-- User -->
-                                    <td class="user-image p-2"><img src="${path}/resources/assets/images/users/5.jpg" alt="user"
-                                            class="rounded-circle" width="30"></td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate">John Abraham</h6>
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link"
-                                            href="javascript: void(0)">Lorem ipsum perspiciatis-
-                                            unde omnis iste natus error sitnatus error sit voluptatem voluptatem</a>
-                                    </td>
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"></td>
-                                    <!-- Time -->
-                                    <td class="time text-right"> Mar 10 </td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst6">
-                                            <label class="custom-control-label" for="cst6">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><!-- <i class="far fa-star"></i> --></td>
-                                    <!-- User -->
-                                    <td class="user-image p-2"><img src="${path}/resources/assets/images/users/4.jpg" alt="user"
-                                            class="rounded-circle" width="30"></td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate">Akshay Kumar</h6>
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link"
-                                            href="javascript: void(0)"> Lorem ipsum
-                                            perspiciatis - unde omnis iste natus error sit voluptatem</a></td>
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"></td>
-                                    <!-- Time -->
-                                    <td class="time text-right"> Mar 09 </td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst7">
-                                            <label class="custom-control-label" for="cst7">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><!-- <i class="far fa-star"></i> --></td>
-                                    <!-- User -->
-                                    <td class="user-image p-2"><img src="${path}/resources/assets/images/users/1.jpg" alt="user"
-                                            class="rounded-circle" width="30"></td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate">Hanna Gover</h6>
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link"
-                                            href="javascript: void(0)"> Unde omnis Lorem
-                                            ipsum perspiciatis - unde omnis iste natus error sit voluptatem</a></td>
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"></td>
-                                    <!-- Time -->
-                                    <td class="time text-right"> Mar 09 </td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst8">
-                                            <label class="custom-control-label" for="cst8">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><!-- <i class="far fa-star"></i> --></td>
-                                    <!-- User -->
-                                    <td class="user-image p-2"><img src="${path}/resources/assets/images/users/4.jpg" alt="user"
-                                            class="rounded-circle" width="30"></td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate">Akshay Kumar</h6>
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link"
-                                            href="javascript: void(0)"> Iste natus error
-                                            sit lorem - ipsum perspiciatis unde omnis iste natus error sit
-                                            voluptatem</a></td>
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"></td>
-                                    <!-- Time -->
-                                    <td class="time text-right"> Mar 09 </td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst9">
-                                            <label class="custom-control-label" for="cst9">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><!-- <i class="far fa-star"></i> --></td>
-                                    <!-- User -->
-                                    <td class="user-image p-2"><img src="${path}/resources/assets/images/users/1.jpg" alt="user"
-                                            class="rounded-circle" width="30"></td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate">Hanna Gover</h6>
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link"
-                                            href="javascript: void(0)">
-                                            Lorem ipsum perspiciatis unde
-                                            omnis iste natus error sit voluptatem</a></td>
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"></td>
-                                    <!-- Time -->
-                                    <td class="time text-right"> 12:30 PM </td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst10">
-                                            <label class="custom-control-label" for="cst10">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><!-- <i class="far fa-star"></i> --></td>
-                                    <!-- User -->
-                                    <td class="user-image p-2"><img src="${path}/resources/assets/images/users/4.jpg" alt="user"
-                                            class="rounded-circle" width="30"></td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate">Akshay Kumar</h6>
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link"
-                                            href="javascript: void(0)"> Lorem ipsum
-                                            perspiciatis - unde omnis iste natus error sit voluptatem</a></td>
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"></td>
-                                    <!-- Time -->
-                                    <td class="time text-right"> Mar 09 </td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst11">
-                                            <label class="custom-control-label" for="cst11">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><!-- <i class="far fa-star"></i> --></td>
-                                    <!-- User -->
-                                    <td class="user-image p-2"><img src="${path}/resources/assets/images/users/1.jpg" alt="user"
-                                            class="rounded-circle" width="30"></td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate">Hanna Gover</h6>
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link"
-                                            href="javascript: void(0)"> Unde omnis Lorem
-                                            ipsum perspiciatis - unde omnis iste natus error sit voluptatem</a></td>
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"></td>
-                                    <!-- Time -->
-                                    <td class="time text-right"> Mar 09 </td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst12">
-                                            <label class="custom-control-label" for="cst12">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><!-- <i class="far fa-star"></i> --></td>
-                                    <!-- User -->
-                                    <td class="user-image p-2"><img src="${path}/resources/assets/images/users/4.jpg" alt="user"
-                                            class="rounded-circle" width="30"></td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate">Akshay Kumar</h6>
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link"
-                                            href="javascript: void(0)"> Iste natus error
-                                            sit lorem - ipsum perspiciatis unde omnis iste natus error sit
-                                            voluptatem</a></td>
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"></td>
-                                    <!-- Time -->
-                                    <td class="time text-right"> Mar 09 </td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst13">
-                                            <label class="custom-control-label" for="cst13">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><!-- <i class="far fa-star"></i> --></td>
-                                    <!-- User -->
-                                    <td class="user-image p-2"><img src="${path}/resources/assets/images/users/1.jpg" alt="user"
-                                            class="rounded-circle" width="30"></td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate">Hanna Gover</h6>
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link"
-                                            href="javascript: void(0)">Lorem ipsum
-                                            perspiciatis unde omnis iste natus error sit voluptatem</a></td>
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"></td>
-                                    <!-- Time -->
-                                    <td class="time text-right"> 12:30 PM </td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
+<!-- 페이징  -->                    
                     <div class="p-3 mt-4">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">Previous</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">Next</a></li>
+                            	<!-- 이전 버튼 -->
+                            	<c:if test="${paging.startPage > 10}">
+                            		<li class="page-item"><a class="page-link" href="${path}/board.bo?category=${category}&pageNum=${paging.prev}">Previous</a></li>
+								</c:if>
+								<!-- 페이지 -->
+								<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+									<li class="page-item"><a class="page-link" href="${path}/board.bo?category=${category}&pageNum=${num}">${num}</a></li>
+								</c:forEach>
+								<!-- 다음 버튼 -->
+								<c:if test="${paging.endPage < paging.pageCount}">
+									<li class="page-item"><a class="page-link" href="${path}/board.bo?category=${category}&pageNum=${paging.next}">Next</a></li>
+								</c:if>
                             </ul>
                         </nav>
                     </div>
@@ -494,7 +231,9 @@
                 <!-- ============================================================== -->
                 <!-- Right Part  Mail Compose -->
                 <!-- ============================================================== -->
-                <div class="right-part mail-compose overflow-auto" style="display: none;">
+                
+<!-- 글쓰기 -->                
+                <%-- <div class="right-part mail-compose overflow-auto" style="display: none;">
                     <div class="p-4 border-bottom">
                         <div class="d-flex align-items-center">
                             <div>
@@ -510,6 +249,8 @@
                     <!-- Button group part -->
                     <div class="card-body">
                         <form>
+                        <!-- 시큐리티 적용 -->
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <div class="form-group">
                                 <input type="text" id="example-subject" name="example-subject" class="form-control"
                                     placeholder="제목을 입력하세요">
@@ -563,77 +304,94 @@
                                         href="javascript:void(0)">Dropdown link</a> </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <h4 class="mb-0">게시물 제목 입력</h4>
+                    </div> --%>
+                    
+                    
+<!-- 게시물 상세 페이지 -->
+                    <%-- <div class="card-body border-bottom">
+                        <h4 class="mb-0">${dto.title}</h4>
                     </div>
                     <div class="card-body border-bottom">
                         <div class="d-flex no-block align-items-center mb-5">
                             <div class="mr-2"><img src="${path}/resources/assets/images/users/1.jpg" alt="user"
                                     class="rounded-circle" width="45"></div>
                             <div class="">
-                                <h5 class="mb-0 font-16 font-weight-medium">작성자 이름<small> ( hgover@gmail.com
+                                <h5 class="mb-0 font-16 font-weight-medium">${dto.name}<small> ( hgover@gmail.com
                                         )</small>
-                                </h5><span>작성일 2022.10.05</span>
+                                </h5><span>${dto.reg_date}</span>
                             </div>
                         </div>
-                        <h4 class="mb-3">게시물 상세페이지</h4>
-                        <p>게시판 상세 페이지</p>
-						<p>SELECT m.name, b.title, b.content, b.read_cnt, b.comment_cnt, b.reg_date, b.board_file</p>
-						<p>FROM grb_board b</p>
-						<p>JOIN grb_member m</p>
-						<p>ON b.id = m.id</p>
-						<p>WHERE num=1;</p>
-						
+                        <p>${dto.content}</p>
                     </div>
-                    
                     
                     <div class="card-body">
                         <h4><i class="fa fa-paperclip mr-2 mb-2"></i> Attachments <span>(3)</span></h4>
                         <div class="row">
                             <div class="col-md-2">
-                                <a href="javascript:void(0)"> <img class="img-thumbnail img-fluid" alt="attachment"
-                                        src="${path}/resources/assets/images/big/img1.jpg"> </a>
+                                <a href="${dto.board_file}" download> <img class="img-thumbnail img-fluid" alt="attachment"
+                                        src="${dto.board_file}"> </a>
                             </div>
                             <div class="col-md-2">
-                                <a href="javascript:void(0)"> <img class="img-thumbnail img-fluid" alt="attachment"
+                                <a href="#" download> <img class="img-thumbnail img-fluid" alt="attachment"
                                         src="${path}/resources/assets/images/big/img2.jpg"> </a>
-                            </div>
-                            <div class="col-md-2">
-                                <a href="javascript:void(0)"> <img class="img-thumbnail img-fluid" alt="attachment"
-                                        src="${path}/resources/assets/images/big/img3.jpg"> </a>
                             </div>
                         </div>
                         <div class="card-body border-bottom">
 	                        <div class="border mt-3 p-3">
-	                            <p class="pb-3">닉네임</p>
-	                            <textarea class="form-control"></textarea>
+		                        <form>
+	                            	<p class="pb-3" style="float:left">닉네임</p>
+	                            	<button class="btn btn-primary" type="submit" style="float:right">등록</button>
+		                            <textarea class="form-control" placeholder="댓글을 입력하세요."></textarea>
+		                        </form>
 	                        </div>
                         </div>
                         <div class="card-body border-bottom">
-                       		<table>
-                       			<tr>
-                       				<td>x</td>
-                       				<td>작성자</td>
-                       			</tr>
-                       			<tr>
-                       				<td colspan="2" style="padding-left:10px">댓글내용</td>
-                       			</tr>
-                       		</table>
+                        	<div>
+                       				<p class="pb-3" style="float:left">닉네임</p>
+                       				<button type="submit" class="btn waves-effect waves-light btn-outline-secondary" style="float:right"><i class="fas fa-times"></i></button>
+                        	</div>
+                        	<div style="clear:both">
+                       				<p>댓글내용</p>
+                        	</div>
                         </div>
                         <div class="card-body border-bottom">
-                       		<table>
-                       			<tr>
-                       				<td></td>
-                       				<td style="padding-left:10px">작성자</td>
-                       			</tr>
-                       			<tr>
-                       				<td colspan="2" style="padding-left:10px">댓글내용</td>
-                       			</tr>
-                       		</table>
+                        	<div>
+                       				<strong class="pb-3" style="float:left">닉네임</strong>
+                       				<button type="submit" class="btn waves-effect waves-light btn-outline-secondary" style="float:right"><i class="fas fa-times"></i></button>
+                        	</div>
+                        	<div style="clear:both">
+                       				<p>댓글내용</p>
+                        	</div>
+                        </div>
+                        <div class="card-body border-bottom">
+                        	<div>
+                       				<strong class="pb-3" style="float:left">닉네임</strong>
+                       				<button type="submit" class="btn waves-effect waves-light btn-outline-secondary" style="float:right"><i class="fas fa-times"></i></button>
+                        	</div>
+                        	<div style="clear:both">
+                       				<p>댓글내용</p>
+                        	</div>
+                        </div>
+                        <div class="card-body border-bottom">
+                        	<div>
+                       				<strong class="pb-3" style="float:left">닉네임</strong>
+                       				<button type="submit" class="btn waves-effect waves-light btn-outline-secondary" style="float:right"><i class="fas fa-times"></i></button>
+                        	</div>
+                        	<div style="clear:both">
+                       				<p>댓글내용</p>
+                        	</div>
+                        </div>
+                        <div class="card-body border-bottom">
+                        	<div>
+                       				<strong class="pb-3" style="float:left">닉네임</strong>
+                       				<button type="submit" class="btn waves-effect waves-light btn-outline-secondary" style="float:right"><i class="fas fa-times"></i></button>
+                        	</div>
+                        	<div style="clear:both">
+                       				<p>댓글내용</p>
+                        	</div>
                         </div>
                     </div>
-                </div>
+                </div> --%>
             </div>
             <!-- ============================================================== -->
             <!-- footer -->

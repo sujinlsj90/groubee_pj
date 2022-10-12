@@ -14,19 +14,46 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
-    <title>Severny admin Template - The Ultimate Multipurpose admin template</title>	
+    <title>그루비 그룹웨어</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
     <!-- This Page CSS -->
     <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
     <link href="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
+    <!-- select2 -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script>
+$(document).ready(function() {
+	/* 받는사람 입력창 */
+	$('#msgPerson').select2({
+	    placeholder: '  받는사람'
+	});
+
+	$('#msgPerson').on('select2:select', function(e) {
+		var id = e.params.data.id;
+		var value = $(this).val();
+		if (id == 'ALL') {
+			$('#example').val(null);
+		  $('#example').val('ALL').trigger('change');
+		} else {
+			$('#all').prop('selected', false).trigger('change');
+		}
+	});
+	
+	
+	
+	
+});
+</script>
+
 </head>
 
 <body>
@@ -74,15 +101,27 @@
                     <div class="card-body">
                         <form>
                             <div class="form-group">
-                                <input type="email" id="example-email" name="example-email" class="form-control"
-                                    placeholder="받는사람">
+                            	<select id="msgPerson" multiple="multiple" name="msgPerson" style="width:100%;" required>
+                            		<%-- 
+                            		<c:forEach var="dto" items="${list}" var="dto2" items="${list2}">
+	                            		<optgroup label="${dto.depart_name}">
+										    <option value="${dto.depart_name}|${dto2.name}">${dto2.name}</option>
+										</optgroup>
+									</c:forEach>
+									 --%>
+									<c:forEach var="dto" items="${list}">
+										<%-- <optgroup label="${dto.depart_name}"> --%>
+									    	<option value="${dto.depart_name}|${dto.name}">${dto.depart_name} ${dto.name}</option>
+									   <!--  </optgroup> -->
+									</c:forEach>
+								</select>
                             </div>
                             <div class="form-group">
-                                <input type="text" id="example-subject" name="example-subject" class="form-control"
+                                <input type="text" id="example-subject" name="example-subject msgTitle" class="form-control"
                                     placeholder="제목">
                             </div>
-                            <div id="summernote"></div>
-                            <h4>첨부파일</h4>
+                            <textarea cols="80" id="testedit1" name="testedit1 msgContent" rows="10" data-sample="2" data-sample-short></textarea>
+                            <h4 style="margin-top:10px;">첨부파일</h4>
                             <div class="dropzone" id="dzid">
                                 <div class="fallback">
                                     <input name="file" type="file" multiple />
@@ -90,6 +129,8 @@
                             </div>
                             <button type="submit" class="btn btn-success mt-3" onclick="window.open('about:blank', '_self').close()"><i class="far fa-envelope"></i>
                                 보내기</button>
+                            <button type="button" class="btn btn-success mt-3" onclick="window.open('about:blank', '_self').close()"><i class="far fa-envelope"></i>
+                            	임시저장</button>
                             <button type="button" class="btn btn-dark mt-3" onclick="self.close()">닫기</button>
                         </form>
                         <!-- Action part -->
@@ -138,17 +179,69 @@
     <script src="${path}/resources/dist/js/pages/email/email.min.js"></script>
     <script src="${path}/resources/assets/libs/summernote/dist/summernote-bs4.min.js"></script>
     <script src="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.js"></script>
-    <script>
-        $('#summernote').summernote({
-            placeholder: '내용을 입력하세요.',
-            tabsize: 2,
-            height: 250
+    <!-- This Page JS -->
+    <script src="${path}/resources/assets/libs/ckeditor/ckeditor.js"></script>
+    <script src="${path}/resources/assets/libs/ckeditor/samples/js/sample.js"></script>
+    <script src="${path}/resources/dist/js/custom.min.js "></script>
+    <!-- select2 -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+        <script>
+        //default
+        initSample();
+
+        //inline editor
+        // We need to turn off the automatic editor creation first.
+        CKEDITOR.disableAutoInline = true;
+
+        CKEDITOR.inline('editor2', {
+            extraPlugins: 'sourcedialog',
+            removePlugins: 'sourcearea'
         });
-        Dropzone.autoDiscover = false;
-        $(document).ready(function() {
-            var myDrop= new Dropzone("#dzid", {
-            url: '/file/post'
-            });
+
+        var editor1 = CKEDITOR.replace('editor1', {
+            extraAllowedContent: 'div',
+            height: 460
+        });
+        editor1.on('instanceReady', function () {
+            // Output self-closing tags the HTML4 way, like <br>.
+            this.dataProcessor.writer.selfClosingEnd = '>';
+
+            // Use line breaks for block elements, tables, and lists.
+            var dtd = CKEDITOR.dtd;
+            for (var e in CKEDITOR.tools.extend({}, dtd.$nonBodyContent, dtd.$block, dtd.$listItem, dtd.$tableContent)) {
+                this.dataProcessor.writer.setRules(e, {
+                    indent: true,
+                    breakBeforeOpen: true,
+                    breakAfterOpen: true,
+                    breakBeforeClose: true,
+                    breakAfterClose: true
+                });
+            }
+            // Start in source mode.
+            this.setMode('source');
+        });
+    </script>
+    <script data-sample="1">
+        CKEDITOR.replace('testedit', {
+            height: 150
+        });
+    </script>
+    <script data-sample="2">
+        CKEDITOR.replace('testedit1', {
+            height: 400
+        });
+    </script>
+    <script data-sample="3">
+        CKEDITOR.replace('testedit2', {
+            height: 400
+        });
+    </script>
+    <script data-sample="4">
+        CKEDITOR.replace('tool-location', {
+            toolbarLocation: 'bottom',
+            // Remove some plugins that would conflict with the bottom
+            // toolbar position.
+            removePlugins: 'elementspath,resize'
         });
     </script>
 </body>
