@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+     
+ <!-- namespace="패키지명.인터페이스" -->
+ <mapper namespace="com.spring.tutorial.dao.HumanDAO"> 
+   		
+    <!-- 기본정보  -->
+    <select id="selecthuman" parameterType="String" resultType="com.spring.tutorial.dto.CommonDTO">
+		select *
+		    from grb_member
+		where id = #{id}
+   	</select>
+   	
+   	<!-- 인사평가 -->
+   	<select id="assessment" parameterType="String" resultType="com.spring.tutorial.dto.PersonnelDTO">
+   		select * from grb_personnel
+		where id= #{id}
+   	</select>
+   	
+   	<!-- 직무&담당 -->
+   	<select id="jobsfao" parameterType="String" resultType="com.spring.tutorial.dto.TeamDTO">
+   		select m.rank ,t.*
+		  from grb_member m join grd_team t
+		  on m.id = t.id 
+		where m.id = #{id}
+   	</select>
+   		
+   
+   <!-- 개인프로필  -->
+   <select id="myHuman" parameterType="String" resultType="com.spring.tutorial.dto.CommonDTO">
+   		select *
+		    from grb_member
+		where id = #{id}
+   </select>
+   
+   
+   <!-- 조직도 부서-->
+   <select id="groubdepart" resultType="com.spring.tutorial.dto.DepartDTO">
+	  select depart_name from grb_depart
+   </select>
+   
+   
+    <!-- 조직도 팀-->
+   <select id="groubTeamInfo" parameterType="String" resultType="com.spring.tutorial.dto.TeamDTO">
+		select team_name from grd_team 
+   </select>
+   
+   		
+   		
+ </mapper>
