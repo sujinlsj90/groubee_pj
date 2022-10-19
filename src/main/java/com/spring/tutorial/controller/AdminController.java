@@ -4,16 +4,29 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.tutorial.service.AdminHumanServiceImpl;
+
+
+
 @Controller
 public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+	
+
+	  @Autowired 
+	  AdminHumanServiceImpl service;
+	  
+	 
+	
 	
 	@RequestMapping("adminMain.ad")
 	public String approvallist(HttpServletRequest req, Model model) 
@@ -21,7 +34,6 @@ public class AdminController {
 		logger.info("AdminController -> adminMain.ap");
 		return "admin/index";
 	}
-	
 	
 	@RequestMapping("adAttend.ad")
 	public String adAttend(HttpServletRequest req, Model model) 
@@ -36,6 +48,8 @@ public class AdminController {
 	public String adDepart(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("AdminController -> adminMain.ap");
+		
+		service.departsAction(req, model);
 		return "admin/adDepart/adDepart";
 	}
 	
@@ -63,8 +77,43 @@ public class AdminController {
 	public String adHr(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("AdminController -> adHr.ap");
+		
+		service.memberInfoAction(req, model);
 		return "admin/adHr/adHr";
 	}
+	
+	//인사 개인정보 상세페이지
+	@RequestMapping("joinDetail.ad")
+	public String joinDetail(HttpServletRequest req, Model model) 
+			throws ServletException, IOException{
+		logger.info("url -> joinDetail.ad");
+		
+		service.usersDetailAction(req, model);
+				
+		return "admin/adHr/joinDetail";
+	}
+	
+	//인사 개인정보 수정
+	@RequestMapping("joinUpdate.ad")
+	public String joinUpdate(HttpServletRequest req ,Model model) 
+			throws ServletException, IOException{
+		logger.info("url -> joinUpdate.ad");
+		
+		service.usersUpdateAction(req ,model);
+		return "admin/adHr/joinUpdate";
+	}
+	
+	//인사관리 - 개인정보 삭제
+	@RequestMapping("joinDelete.ad")
+	public void joinDelete(HttpServletRequest req, HttpServletResponse res ,Model model) 
+			throws ServletException, IOException{
+		logger.info("url-> joinDelete");
+		
+		service.usersDeleteAction(req, res, model);
+		String viewPage = req.getContextPath() + "/adHr.ad";
+		res.sendRedirect(viewPage);
+	}
+	
 	
 	//인사관리-사원등록
 	@RequestMapping("adHr2.ad")

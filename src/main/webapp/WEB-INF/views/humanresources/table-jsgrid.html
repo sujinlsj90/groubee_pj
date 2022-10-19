@@ -9,11 +9,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
     <title>Severny admin Template - The Ultimate Multipurpose admin template</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
+    <link href="../../assets/libs/jsgrid/jsgrid.min.css" rel="stylesheet">
+    <link href="../../assets/libs/jsgrid/jsgrid-theme.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
+    <link href="../../dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -55,17 +57,17 @@
                             <b class="logo-icon">
                                 <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                                 <!-- Dark Logo icon -->
-                                <img src="${path}/resources/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+                                <img src="../../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
                                 <!-- Light Logo icon -->
-                                <img src="${path}/resources/assets/images/logo-icon.png" alt="homepage" class="light-logo" />
+                                <img src="../../assets/images/logo-icon.png" alt="homepage" class="light-logo" />
                             </b>
                             <!--End Logo icon -->
                             <!-- Logo text -->
                             <span class="logo-text">
                                 <!-- dark Logo text -->
-                                <img src="${path}/resources/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
+                                <img src="../../assets/images/logo-text.png" alt="homepage" class="dark-logo" />
                                 <!-- Light Logo text -->
-                                <img src="${path}/resources/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                                <img src="../../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
                             </span>
                         </a>
                         <a class="d-none d-md-block op-7 sidebartoggler" href="javascript:void(0)">
@@ -355,7 +357,7 @@
                                             <a href="javascript:void(0)"
                                                 class="message-item d-flex align-items-center border-bottom px-3 py-2">
                                                 <img class="img-fluid rounded-circle" alt="img" width="40" style="height:40px"
-                                                    src="${path}/resources/assets/images/users/widget-table-pic1.jpg">
+                                                    src="../../assets/images/users/widget-table-pic1.jpg">
                                                 <div class="w-75 d-inline-block v-middle pl-2">
                                                     <h6 class="message-title mb-0 mt-1">John Smith</h6>
                                                     <span class="font-12 text-nowrap d-block text-muted">Just see
@@ -369,7 +371,7 @@
                                             <a href="javascript:void(0)"
                                                 class="message-item d-flex align-items-center border-bottom px-3 py-2">
                                                 <img class="img-fluid rounded-circle" alt="img" width="40" style="height:40px"
-                                                    src="${path}/resources/assets/images/users/widget-table-pic2.jpg">
+                                                    src="../../assets/images/users/widget-table-pic2.jpg">
                                                 <div class="w-75 d-inline-block v-middle pl-2">
                                                     <h6 class="message-title mb-0 mt-1">Peter John</h6>
                                                     <span
@@ -383,7 +385,7 @@
                                             <a href="javascript:void(0)"
                                                 class="message-item d-flex align-items-center border-bottom px-3 py-2">
                                                 <img class="img-fluid rounded-circle" alt="img" width="40" style="height:40px"
-                                                    src="${path}/resources/assets/images/users/widget-table-pic3.jpg">
+                                                    src="../../assets/images/users/widget-table-pic3.jpg">
                                                 <div class="w-75 d-inline-block v-middle pl-2">
                                                     <h6 class="message-title mb-0 mt-1">Steve Jobs</h6>
                                                     <span
@@ -398,7 +400,7 @@
                                             <a href="javascript:void(0)"
                                                 class="message-item d-flex align-items-center border-bottom px-3 py-2">
                                                 <img class="img-fluid rounded-circle" alt="img" width="40" style="height:40px"
-                                                    src="${path}/resources/assets/images/users/widget-table-pic4.jpg">
+                                                    src="../../assets/images/users/widget-table-pic4.jpg">
                                                 <div class="w-75 d-inline-block v-middle pl-2">
                                                     <h6 class="message-title mb-0 mt-1">John Deo</h6> <span
                                                         class="font-12 text-nowrap d-block text-muted">Just
@@ -1116,7 +1118,7 @@
                         <li class="list-divider"></li>
                         <li class="nav-small-cap"><span class="hide-menu">Extra</span></li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link"
-                                href="${path}/resources/../documentation/documentation.html" aria-expanded="false"><i
+                                href="../../../documentation/documentation.html" aria-expanded="false"><i
                                     data-feather="edit-3" class="feather-icon"></i><span
                                     class="hide-menu">Documentation</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="authentication-login1.html"
@@ -1136,162 +1138,98 @@
         <!-- ============================================================== -->
         <div class="page-wrapper">
             <!-- ============================================================== -->
-            <!-- Left Part  -->
+            <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-            <div class="left-part bg-white pb-5">
-                <!-- Mobile toggle button -->
-                <a class="ti-menu ti-close btn btn-success show-left-part d-block d-md-none"
-                    href="javascript:void(0)"></a>
-                <!-- Mobile toggle button -->
-                <div class="scrollable position-relative" style="height:100%;">
-                    <div class="p-3">
-                        <h5 class="card-title">Card example</h5>
-                        <img src="${path}/resources/assets/images/users/2.jpg" class="img-fluid " alt="users">
-                        <p class="mt-2">This is example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                        <button type="button" class="btn waves-effect waves-light btn-info">Info</button>
+            <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-7 align-self-center">
+                        <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Table Jsgrid</h4>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb m-0 p-0">
+                                    <li class="breadcrumb-item"><a href="index.html" class="text-muted">Home</a></li>
+                                    <li class="breadcrumb-item text-muted active" aria-current="page">Library</li>
+                                </ol>
+                            </nav>
+                        </div>
                     </div>
-                    <hr>
-                    <div class="p-3">
-                        <h5 class="card-title">Form example</h5>
-                        <form class="mt-3">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Enter email">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="Password">
-                            </div>
-                            <div class="custom-control custom-checkbox mr-sm-2 mb-3">
-                                <input type="checkbox" class="custom-control-input" id="checkbox0" value="check">
-                                <label class="custom-control-label" for="checkbox0">Check Me Out !</label>
-                            </div>
-                            <button type="submit" class="btn btn-success">Submit</button>
-                        </form>
-                    </div>
-                    <hr>
-                    <div class="p-3">
-                        <h5 class="card-title">Recent News</h5>
-                        <ul class="list-unstyled mt-3">
-                            <li class="media">
-                                <a href=""><img class="d-flex mr-3" src="${path}/resources/assets/images/users/1.jpg" width="60"
-                                        alt="Generic placeholder image"></a>
-                                <div class="media-body">
-                                    <h6 class="mb-1">Here is the title you can add</h6>
-                                    <span>2 hours ago</span>
-                                </div>
-                            </li>
-                            <li class="media my-4">
-                                <a href=""><img class="d-flex mr-3" src="${path}/resources/assets/images/users/2.jpg" width="60"
-                                        alt="Generic placeholder image"></a>
-                                <div class="media-body">
-                                    <h6 class="mb-1">Here is the title you can add</h6>
-                                    <span>3 hours ago</span>
-                                </div>
-                            </li>
-                            <li class="media">
-                                <a href=""><img class="d-flex mr-3" src="${path}/resources/assets/images/users/4.jpg" width="60"
-                                        alt="Generic placeholder image"></a>
-                                <div class="media-body">
-                                    <h6 class="mb-1">Here is the title you can add</h6>
-                                    <span>4 hours ago</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Left Part  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right Part  Mail Compose -->
-            <!-- ============================================================== -->
-            <div class="right-part overflow-auto">
-                <div class="p-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">This is the sample page with sticky inner left part </h4> Here is the
-                            example that you can copy whole part of this left and right part panel, so you just need to
-                            use this page for your further developement
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br /> this left and right part panel, so you just need to use.
+                    <div class="col-5 align-self-center">
+                        <div class="customize-input float-right">
+                            <select class="custom-select form-control">
+                                <option selected>June 19</option>
+                                <option value="1">July 19</option>
+                                <option value="2">Aug 19</option>
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Column -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Editable with Datatable</h4>
+                                <div id="basicgrid"></div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <!-- Column -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Static</h4>
+                                <div id="staticgrid"></div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <!-- Column -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Shorting</h4>
+                                <div class="col-md-2 row">
+                                    <select id="sortingField" class="custom-select form-control input-sm mb-2">
+                                        <option>Name</option>
+                                        <option>Age</option>
+                                        <option>Address</option>
+                                        <option>Country</option>
+                                        <option>Married</option>
+                                    </select>
+                                </div>
+                                <div id="exampleSorting"></div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center">
-                   All Rights Reserved by Severny admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
+            <footer class="footer text-center text-muted">
+                Copyright 2019. All Rights Reserved by Severny Admin
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -1376,24 +1314,28 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="${path}/resources/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="${path}/resources/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="${path}/resources/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- apps -->
-    <script src="${path}/resources/dist/js/app.min.js"></script>
-    <script src="${path}/resources/dist/js/app.init-menusidebar.js"></script>
-    <script src="${path}/resources/dist/js/app-style-switcher.js"></script>
-    <script src="${path}/resources/dist/js/feather.min.js"></script>
+    <script src="../../dist/js/app.min.js"></script>
+    <script src="../../dist/js/app.init-menusidebar.js"></script>
+    <script src="../../dist/js/app-style-switcher.js"></script>
+    <script src="../../dist/js/feather.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="${path}/resources/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="${path}/resources/assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="../../assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+    <script src="../../assets/extra-libs/sparkline/sparkline.js"></script>
     <!--Wave Effects -->
     <!-- themejs -->
     <!--Menu sidebar -->
-    <script src="${path}/resources/dist/js/sidebarmenu.js"></script>
+    <script src="../../dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="${path}/resources/dist/js/custom.min.js"></script>
+    <script src="../../dist/js/custom.min.js"></script>
+    <!--This page JavaScript -->
+    <script src="../../assets/libs/jsgrid/db.js"></script>
+    <script src="../../assets/libs/jsgrid/jsgrid.min.js"></script>
+    <script src="../../dist/js/pages/tables/jsgrid-init.js"></script>
 </body>
 
 </html>

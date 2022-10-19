@@ -26,8 +26,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("<사원목록>\nSELECT m.name, m.image, r.r_name, d.d_name\nFROM grb_member m\nJOIN grb_rank r\n"
-			+"ON m.rank = r.RANK\nJOIN grb_depart d\nON d.depart_id = m.depart_id\nWHERE state = '재직'\nAND show = 1;");
+
 </script>
 
 </head>

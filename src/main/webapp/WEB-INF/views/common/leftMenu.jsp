@@ -56,7 +56,7 @@
 			</div>
 			<div class="profile-section">
 				<p class="font-weight-bold mb-0 font-18">김영수 사원</p>
-				<span class="op-7 font-14">생산본부</span>
+				<span class="op-7 font-14">생산본부</span><br>
 				<button type="button" id="btnLogout" class="btn waves-effect waves-light btn-rounded btn-outline-light" onClick="location.href='login.co'">logout</button>
 				<!-- <button id="logout" onClick="location.href='login.co'">logout</button> -->
 			</div>
@@ -69,7 +69,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="index.co"
                                 aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
                                     class="hide-menu">홈</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="img.hu"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="groub.hu"
                                 aria-expanded="false"><i data-feather="users" class="feather-icon"></i><span
                                     class="hide-menu">조직도</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="approvallist.ap"

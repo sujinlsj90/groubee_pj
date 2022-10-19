@@ -22,6 +22,7 @@
     <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${path}/resources/assets/extra-libs/prism/prism.css">
     <link href="${path}/resources/commonCSS/index.css" rel="stylesheet">
+    <link href="${path}/resources/assets/libs/tablesaw/dist/tablesaw.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -67,6 +68,24 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+				<div class="row">
+					<div class="col-7 align-self-center">
+						<h4 class="page-title text-truncate text-dark font-weight-medium mb-1">
+							Admin Serivce</h4>
+						<div class="d-flex align-items-center">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb m-0 p-0">
+									<li class="breadcrumb-item active">
+									<a href="${path}/adminMain.ad">Home</a></li>
+									<li class="breadcrumb-item active"aria-current="page">
+									<a href="${path}/adSerivce.ad">Menu Authority</a></li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -85,8 +104,108 @@
 				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adService3.ad'">팝업공지</button>
 				    </div>
 				</div>
-                <br><br>
-                <img src = "${path}/resources/images/adminImages/서비스관리-메뉴운영권한.JPG">
+				<hr><br>
+				<div class="card social-widget">
+                        <div class="card-body">
+                            <div class="d-md-flex align-items-center">
+                                <div>
+                                    <h4 class="mb-0">Menu Search</h4>
+                                </div>                                
+                            </div>
+                            <form class="mt-4 mb-3">                                                    							
+                                <div class="input-group"> 
+		                            <select class="form-control custom-select col-lg-2 col-md-4" id="menu" name="menu">
+										<option value="전자결재">전자결재</option>								
+										<option value="게시판">게시판</option>
+										<option value="캘린더">캘린더</option>
+										<option value="자료실">자료실</option>								
+										<option value="조직도">조직도</option>
+										<option value="조직도">조직도</option>
+										<option value="근태관리">근태관리</option>
+										<option value="인사관리">인사관리</option>
+									</select>                              
+                                    <input type="text" class="form-control col-lg-2 col-md-4" placeholder="Search" aria-label="">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-light" type="button"><i class="ti-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>                        
+                    </div>				
+					<div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">메뉴 운영 권한 관리</h4>
+                                <br>
+                                <a class="btn btn-secondary" href="#" role="button">운영자 추가</a>
+                                <a class="btn btn-secondary" href="#" role="button">운영자 삭제</a>                      	                                 
+                                <br><br>
+                                <div class="table-responsive">
+                                    <table class="tablesaw no-wrap table-bordered table-hover table" data-tablesaw>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="border">
+                                                	<label>
+                                                		<input type="checkbox" data-tablesaw-checkall>
+                                                		<span class="sr-only">Check All</span>
+                                                	</label>
+                                                </th>
+                                                <th scope="col" class="border">
+                                                	메뉴명                                                	                                          
+                                                </th>
+                                                <th scope="col" class="border">상세</th>
+                                                <th scope="col" class="border">운영자</th>                                              
+                                            </tr>
+                                        </thead>
+                                        <tbody id="checkall-target">
+                                            <tr>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>
+                                                	</label>
+                                                </td>
+                                                <td>전자결재</td>                                                
+                                                <td>전자결재 운영자</td>
+                                                <td>이수진</td>                                                
+                                            </tr>	
+                                            <tr>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>
+                                                	</label>
+                                                </td>
+                                                <td>근태관리</td>                                                
+                                                <td>근태관리 운영자</td>
+                                                <td>김영수</td>                                                
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>
+                                                	</label>
+                                                </td>
+                                                <td>근태관리</td>                                                
+                                                <td>연차관리 운영자</td>
+                                                <td>김영수</td>                                                
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>
+                                                	</label>
+                                                </td>
+                                                <td>인사관리</td>                                                
+                                                <td>인사관리 운영자</td>
+                                                <td>이건호</td>                                                
+                                            </tr>                                                                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>               
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
                 <!-- *************************************************************** -->
@@ -199,17 +318,8 @@
     <script src="${path}/resources/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="${path}/resources/dist/js/custom.min.js"></script>
-    <!--This page JavaScript -->
-    <!--chartis chart-->
-    <script src="${path}/resources/assets/libs/chartist/dist/chartist.min.js"></script>
-    <script src="${path}/resources/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-    <!--c3 charts -->
-    <script src="${path}/resources/assets/extra-libs/c3/d3.min.js"></script>
-    <script src="${path}/resources/assets/extra-libs/c3/c3.min.js"></script>
-    <!--chartjs -->
-    <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
-    <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
-    <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
+    <script src="${path}/resources/assets/libs/tablesaw/dist/tablesaw.jquery.js"></script>
+    <script src="${path}/resources/assets/libs/tablesaw/dist/tablesaw-init.js"></script>
 </body>
 
 </html>

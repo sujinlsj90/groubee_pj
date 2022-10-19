@@ -29,8 +29,9 @@
 <![endif]-->
 </head>
  <script type="text/javascript">
-	alert("SELECT m.*, a.* \nFROM grb_approvalinfo a \nJOIN grb_member m \nON a.id = m.id \nWHERE a.load_id = (SELECT NVL(Max(doc_id),0) \nFROM grb_draft)");
 	
+<<<<<<< HEAD
+=======
 	function req() {
 	alert("INSERT INTO \ngrb_draft(doc_id, load_id, id, \ndepart_id, category, title, content, \nshow, state, upday, files)" +
 		"  \nVALUES(\n(SELECT NVL(Max(doc_id)+1,1) FROM grb_draft), \n1, 3, 3, '일반', '제목', '내용', 1, \ndefault, sysdate, 'fileroot');");	
@@ -52,6 +53,7 @@
 		});
 	});
 		
+>>>>>>> b4f3977aaa326688f4936a7984d699252978e042
 </script>
 
 <body>

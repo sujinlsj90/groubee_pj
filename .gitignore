@@ -69,8 +69,6 @@ local.properties
 
 ### Java ###
 # Compiled class file
-*.xml
-
 # Log file
 *.log
 

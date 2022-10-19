@@ -67,6 +67,24 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+				<div class="row">
+					<div class="col-7 align-self-center">
+						<h4 class="page-title text-truncate text-dark font-weight-medium mb-1">
+							Admin Depart</h4>
+						<div class="d-flex align-items-center">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb m-0 p-0">
+									<li class="breadcrumb-item active">
+									<a href="${path}/adminMain.ad">Home</a></li>
+									<li class="breadcrumb-item active"aria-current="page">
+									<a href="${path}/adDepart.ad">Depart Select</a></li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -76,19 +94,49 @@
                 <!-- *************************************************************** -->
                 <div class="row button-group">
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adDepart.ad'">부서지정</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adDepart.ad'">부서 지정</button>
 				    </div>
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adDepart2.ad'">부서설계</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adDepart2.ad'">부서 설계</button>
 				    </div>
-				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adDepart3.ad'">부서원생성</button>
-				    </div>
-
 
 				</div>
                 <br><br>
-                <img src = "${path}/resources/images/adminImages/부서관리-부서미지정.JPG">
+                                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">전체부서</h4>
+                                <div class="table-responsive">
+                                    <table id="multi_col_order"
+                                        class="table table-striped table-bordered display no-wrap" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>노출</th>
+                                                <th>회사번호</th>
+                                                <th>부서명</th>
+                                                <th>수정</th>
+                                                <th>Salary</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach var="dto" items="${list}">
+                                            <tr>
+                                                <td>${dto.show}</td>
+                                                <td>${dto.company_id}</td>
+                                                <td>${dto.depart_name}</td>
+                                                <td>
+                                                <input type="button" name="" value="수정"></td>
+                                                <td>$320,800</td>
+                                            </tr>
+                        				  </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
                 <!-- *************************************************************** -->
@@ -212,6 +260,10 @@
     <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
     <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
     <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
+    <!--This page plugins -->
+    <script src="${path}/resources/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="${path}/resources/dist/js/pages/datatable/datatable-basic.init.js"></script>
+</body>
 </body>
 
 </html>

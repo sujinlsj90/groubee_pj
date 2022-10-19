@@ -40,4 +40,5 @@ public interface ApprovalService {
 	
 	//임시보관함리스트
 	public void templistAction(HttpServletRequest req, Model model);
+	
 }

@@ -5,7 +5,8 @@ import java.sql.Date;
 public class BoardCommentDTO {
 	private int comment_num;	// pk 댓글번호
 	private int board_num;		// fk 글번호
-	private String writer;		// 작성자
+	private String writer;		// 작성자(id 사번)
+	private String name;		// 작성자(이름)
 	private String content;		// 글내용
 	private Date reg_date;		// 작성일
 	
@@ -39,10 +40,16 @@ public class BoardCommentDTO {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	@Override
 	public String toString() {
 		return "BoardCommentDTO [comment_num=" + comment_num + ", board_num=" + board_num + ", writer=" + writer
-				+ ", content=" + content + ", reg_date=" + reg_date + "]";
+				+ ", name=" + name + ", content=" + content + ", reg_date=" + reg_date + "]";
 	}
 	
 	

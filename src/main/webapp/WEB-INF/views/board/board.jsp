@@ -28,12 +28,13 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("<게시판목록>\nSELECT *\n FROM (SELECT A.*, rownum as rn \n          FROM (SELECT num, category, id, title, content, read_cnt, comment_cnt, reg_date, board_file, \nshow,"
-			+ "\n      (SELECT COUNT(*) \n      FROM grb_comment \n    WHERE board_num = b.num) comment_cnt"
-			+ "\n   FROM grb_board b \n   WHERE show = 1 AND category IN (0,2)"
-			                     + "\n  ORDER BY category DESC, num DESC) \n     A )"
-			                     + "\nWHERE rn BETWEEN 1 AND 10;");
-	alert("<댓글목록>\nSELECT comment_num, writer, content, reg_date \nFROM grb_comment \nWHERE board_num = 1001");
+<<<<<<< HEAD
+	
+=======
+
+
+
+>>>>>>> b4f3977aaa326688f4936a7984d699252978e042
 </script>
 
 </head>
@@ -79,7 +80,7 @@
                     <div class="scrollable" style="height:100%;">
                         <div class="p-3">
                             <a id="compose_mail" class="waves-effect waves-light btn btn-danger d-block"
-                                href="javascript: void(0)">글쓰기</a>
+                                href="${path}/insert.bo">글쓰기</a>
                         </div>
                         <div class="divider"></div>
                         <ul class="list-group">
@@ -87,7 +88,7 @@
                                 <small class="p-3 grey-text text-lighten-1 db">Category</small>
                             </li>
                             <li class="list-group-item p-0 border-0">
-                                <a href="board.bo?category=0" class="active list-group-item-action p-3 d-block"><i
+                                <a href="board.bo?category=0" class="list-group-item-action p-3 d-block"><i
                                         class="mdi mdi-inbox font-18 v-middle mr-1"></i> 자유게시판</a>
                             </li>
                             <li class="list-group-item p-0 border-0">
@@ -104,8 +105,15 @@
                     <div class="p-3 b-b">
                         <div class="d-flex align-items-center">
                             <div>
-                                <h4>자유게시판 </h4>
-                                <span>자유롭게 소통하는 공간입니다.</span>
+                            <c:if test="${category==0}">
+	                            <h4>자유게시판</h4>
+	                            <span>자유롭게 소통하는 공간입니다.</span>
+                            </c:if>
+                            <c:if test="${category==1}">
+	                            <h4>공지사항</h4>
+	                            <span>공지사항 게시판 입니다.</span>
+                            </c:if>
+                                
                             </div>
                             <div class="ml-auto">
                                 <input placeholder="검색어 입력" type="text" class="form-control">
@@ -155,7 +163,7 @@
                     <!-- Action part -->
                     <!-- Mail list-->
                     <div class="table-responsive">
-                        <table class="table email-table no-wrap table-hover v-middle" style="width:98%;">
+                        <table class="table email-table no-wrap table-hover v-middle" style="width:99%;">
                             <tbody>
 <!-- 게시판 목록 -->
                                 
@@ -180,16 +188,16 @@
                                     <!-- Message -->
                                     <c:if test="${dto.category == 2}">
                                     	<td class="py-2 px-3 no-wrap text-truncate" style="widht:50%;">
-											<a class="link font-weight-medium" href="boardDetail.bo">
+											<a class="link font-weight-medium" href="detail.bo?num=${dto.num}">
 											<span class="badge badge-danger mr-2">필독</span>
-											<span class="blue-grey-text text-darken-4">${dto.title}</span>
+											<span class="blue-grey-text text-darken-4">${dto.title} [${dto.comment_cnt}]</span>
 	                                        </a>
                                     	</td>
                                     </c:if>
                                     
                                     <c:if test="${dto.category != 2}">
 	                                    <td class="py-2 px-3 no-wrap text-truncate">
-	                                    	<a class="link" href="javascript: void(0)">${dto.title}</a>
+	                                    	<a class="link" href="detail.bo?num=${dto.num}">${dto.title} [${dto.comment_cnt}]</a>
 	                                    </td>
                                     </c:if>        
                                     
@@ -210,15 +218,15 @@
                             <ul class="pagination justify-content-center">
                             	<!-- 이전 버튼 -->
                             	<c:if test="${paging.startPage > 10}">
-                            		<li class="page-item"><a class="page-link" href="${path}/board.bo?pageNum=${paging.prev}">Previous</a></li>
+                            		<li class="page-item"><a class="page-link" href="${path}/board.bo?category=${category}&pageNum=${paging.prev}">Previous</a></li>
 								</c:if>
 								<!-- 페이지 -->
 								<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
-									<li class="page-item"><a class="page-link" href="${path}/board.bo?pageNum=${num}">${num}</a></li>
+									<li class="page-item"><a class="page-link" href="${path}/board.bo?category=${category}&pageNum=${num}">${num}</a></li>
 								</c:forEach>
 								<!-- 다음 버튼 -->
 								<c:if test="${paging.endPage < paging.pageCount}">
-									<li class="page-item"><a class="page-link" href="${path}/board.bo?pageNum=${paging.next}">Next</a></li>
+									<li class="page-item"><a class="page-link" href="${path}/board.bo?category=${category}&pageNum=${paging.next}">Next</a></li>
 								</c:if>
                             </ul>
                         </nav>
@@ -227,7 +235,9 @@
                 <!-- ============================================================== -->
                 <!-- Right Part  Mail Compose -->
                 <!-- ============================================================== -->
-                <div class="right-part mail-compose overflow-auto" style="display: none;">
+                
+<!-- 글쓰기 -->                
+                <%-- <div class="right-part mail-compose overflow-auto" style="display: none;">
                     <div class="p-4 border-bottom">
                         <div class="d-flex align-items-center">
                             <div>
@@ -298,45 +308,36 @@
                                         href="javascript:void(0)">Dropdown link</a> </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <h4 class="mb-0">게시물 제목 입력</h4>
+                    </div> --%>
+                    
+                    
+<!-- 게시물 상세 페이지 -->
+                    <%-- <div class="card-body border-bottom">
+                        <h4 class="mb-0">${dto.title}</h4>
                     </div>
                     <div class="card-body border-bottom">
                         <div class="d-flex no-block align-items-center mb-5">
                             <div class="mr-2"><img src="${path}/resources/assets/images/users/1.jpg" alt="user"
                                     class="rounded-circle" width="45"></div>
                             <div class="">
-                                <h5 class="mb-0 font-16 font-weight-medium">작성자 이름<small> ( hgover@gmail.com
+                                <h5 class="mb-0 font-16 font-weight-medium">${dto.name}<small> ( hgover@gmail.com
                                         )</small>
-                                </h5><span>작성일 2022.10.05</span>
+                                </h5><span>${dto.reg_date}</span>
                             </div>
                         </div>
-                        <h4 class="mb-3">게시물 상세페이지</h4>
-                        <p>게시판 상세 페이지</p>
-						<p>SELECT m.name, b.title, b.content, b.read_cnt, b.comment_cnt, b.reg_date, b.board_file</p>
-						<p>FROM grb_board b</p>
-						<p>JOIN grb_member m</p>
-						<p>ON b.id = m.id</p>
-						<p>WHERE num=1;</p>
-						
+                        <p>${dto.content}</p>
                     </div>
-                    
                     
                     <div class="card-body">
                         <h4><i class="fa fa-paperclip mr-2 mb-2"></i> Attachments <span>(3)</span></h4>
                         <div class="row">
                             <div class="col-md-2">
-                                <a href="#" download> <img class="img-thumbnail img-fluid" alt="attachment"
-                                        src="${path}/resources/assets/images/big/img1.jpg"> </a>
+                                <a href="${dto.board_file}" download> <img class="img-thumbnail img-fluid" alt="attachment"
+                                        src="${dto.board_file}"> </a>
                             </div>
                             <div class="col-md-2">
                                 <a href="#" download> <img class="img-thumbnail img-fluid" alt="attachment"
                                         src="${path}/resources/assets/images/big/img2.jpg"> </a>
-                            </div>
-                            <div class="col-md-2">
-                                <a href="#" download> <img class="img-thumbnail img-fluid" alt="attachment"
-                                        src="${path}/resources/assets/images/big/img3.jpg"> </a>
                             </div>
                         </div>
                         <div class="card-body border-bottom">
@@ -394,7 +395,7 @@
                         	</div>
                         </div>
                     </div>
-                </div>
+                </div> --%>
             </div>
             <!-- ============================================================== -->
             <!-- footer -->

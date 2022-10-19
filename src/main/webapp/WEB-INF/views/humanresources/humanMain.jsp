@@ -25,10 +25,15 @@
 <![endif]-->
 
 <script type="text/javascript">
-	
+function openWindowPop(url, name){
+    var options = 'top=10, left=10, width=1000, height=800, status=no, menubar=no, toolbar=no, resizable=no';
+    window.open(url, name, options);
+}
+
 </script>
 
 </head>
+
 
 <body>
     <!-- ============================================================== -->
@@ -92,7 +97,10 @@
                               <h6>${dto.in_tel}</h6>
                               
                              <br />
-                             <button class="btn btn-circle btn-secondary"><a href="#"><i class="mr-2 mdi mdi-email"></i></a></button>
+                             <button class="btn btn-circle btn-secondary"> 
+                             <a href="javascript:openWindowPop('http://192.168.219.101/roundcube/', 'popup');" >
+                             <i data-feather="mail"></i>
+                             </a></button>
                              <button class="btn btn-circle btn-secondary"><a href="#"><i class="mr-2 mdi mdi-message-outline"></i></a></button>
                              <button class="btn btn-circle btn-secondary"><a href="#"><i class="fab fa-youtube"></i></a></button>
                             </div>
@@ -101,120 +109,116 @@
                     </div>
                     <!-- Column -->
                     <!-- Column -->
-                    <div class="col-lg-8 col-xlg-9 col-md-7" style="margin-top:20px;">
-                        <div class="card">
-                            <!-- Tabs -->
-                            <ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="pills-timeline-tab" data-toggle="pill"
-                                        href="#current-month" role="tab" aria-controls="pills-timeline"
-                                        aria-selected="true">기본</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#last-month"
-                                        role="tab" aria-controls="pills-profile" aria-selected="false">직무/담당</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#previous-month"
-                                        role="tab" aria-controls="pills-setting" aria-selected="false">인사평가</a>
-                                </li>
+         <div class="col-lg-8 col-xlg-9 col-md-7" style="margin-top:20px;">
+         <div class="card">
+             <!-- Tabs -->
+             <ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
+                 <li class="nav-item">
+                     <a class="nav-link active" id="pills-timeline-tab" data-toggle="pill"
+                         href="#current-month" role="tab" aria-controls="pills-timeline"
+                         aria-selected="true">기본</a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#last-month"
+                         role="tab" aria-controls="pills-profile" aria-selected="false">직무/담당</a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#previous-month"
+                         role="tab" aria-controls="pills-setting" aria-selected="false">인사평가</a>
+                 </li>
+                 
+             </ul>
+             <!-- Tabs -->
+             <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="current-month" role="tabpanel"
+                     aria-labelledby="pills-timeline-tab">
+           			  <div class="card-body">
+                         <form class="form-horizontal form-material"  action="${path}/memberUpdate.hu">
+                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                             <div class="form-group">
+                                 <label class="col-md-12">이름</label>
+                                 <div class="col-md-12">
+                                   ${dto.name}
+                                 </div>
+                             </div>
+                             <div class="form-group">
+                                 <label for="example-email" class="col-md-12">이메일</label>
+                                 <div class="col-md-12">
+                                 <input type="text" name="email_in" value="${dto.email_in}"
+                                         class="form-control form-control-line">
+                                 </div>
+                             </div>
+                             
+                             <div class="form-group">
+                                 <label class="col-md-12">주소</label>
+                                 <div class="col-md-12">
+                                     <input type="text" name="address" value="${dto.address}"
+                                         class="form-control form-control-line">
+                                 </div>
+                             </div>
+                             
+                              <div class="form-group">
+                                 <label class="col-md-12">핸드폰</label>
+                                 <div class="col-md-12">
+                                     <input type="text" name="tel" value="${dto.tel}"
+                                       class="form-control form-control-line">
+                                 </div>
+                             </div>
+                          
+                             <div class="form-group">
+                                <label class="col-md-12">생년월일</label>
+                                 <div class="col-md-12">
+                                 <input type="text" name="jumin1" value=" ${dto.jumin1}" readonly
+                                     class="form-control form-control-line">
+                                 
+                                 </div>
+                                 
+                           <div class="form-group">
+                            <label class="col-sm-12">채용구분</label>
+                            <div class="col-sm-12">
+                              ${dto.contract}
+                               </div>
+                             </div>
+                                 
+                             </div>
+                                <div class="form-group">
+                                 <label class="col-md-12">입사일</label>
+                                 <div class="col-md-12">
+                                     ${dto.hireday}
+                                 </div>
+                             </div>
+                             
+                             <div class="form-group">
+                               <label class="col-sm-12">성별</label>
+                               <div class="col-sm-12" >
+                                <select class="form-control form-control-line" id="gender" name="gender">
+                                    <option <c:if test="${dto.gender == '남자'}">selected</c:if> value="남자"> 남자</option>
+                                    <option <c:if test="${dto.gender == '여자'}">selected</c:if> value="여자"> 여자</option>
+                                   </select>
+                               </div>
+                             </div>
+                             <div class="form-group">
+                                 <label class="col-sm-12">결혼여부</label>
+                                 <div class="col-sm-12">
+                                     <select class="form-control form-control-line" id="marry" name="marry" >
+                                        <option <c:if test="${dto.marry == '미혼'}">selected</c:if> value="미혼"> 미혼</option>
+                                        <option <c:if test="${dto.marry == '기혼'}">selected</c:if> value="기혼"> 기혼</option>
+                                     </select>
+                                 </div>
+                             </div>
+                             <div class="form-group">
+                                 <div class="col-sm-12">
+                                     <button type="submit">저장</button>
+                                 </div>
+                             </div>
+                         </form>
+                     </div>
+                 </div>
                                 
-                                 <li class="nav-item">
-                                    <a class="nav-link" id="pills-insainfo-tab" data-toggle="pill" href="#insainfo-month"
-                                        role="tab" aria-controls="pills-setting" aria-selected="false">평가대상자</a>
-                                </li>
-                            </ul>
-                            <!-- Tabs -->
-                            <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="current-month" role="tabpanel"
-                                    aria-labelledby="pills-timeline-tab">
-                          			  <div class="card-body">
-                                        <form class="form-horizontal form-material">
-                                            <div class="form-group">
-                                                <label class="col-md-12" style="font-weight:bold">이름</label>
-                                                <div class="col-md-12">
-                                                 	  ${dto.name}
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="example-email" style="font-weight:bold" class="col-md-12">이메일</label>
-                                                <div class="col-md-12">
-                                                     ${dto.email_in}
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label class="col-md-12" style="font-weight:bold">직책</label>
-                                              	 <div class="col-sm-12">
-                                                  	${dto.rank}
-                                                </div>
-                                            </div>
-                                            
-                                              <div class="form-group">
-                                                <label class="col-sm-12" style="font-weight:bold" >채용구분</label>
-                                                <div class="col-sm-12">
-                                                  	${dto.contract}
-                                                </div>
-                                            </div>
-                                         
-                                            <div class="form-group">
-                                               <label class="col-md-12" style="font-weight:bold">생년월일</label>
-                                                <div class="col-md-12">
-                                                   ${dto.jumin1}
-                                                </div>
-                                            </div>
-                                               <div class="form-group">
-                                                <label class="col-md-12" style="font-weight:bold">입사일</label>
-                                                <div class="col-md-12">
-                                                   ${dto.hireday}
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-12" style="font-weight:bold">퇴사일</label>
-                                                <div class="col-md-12">
-                                                    <input type="Date"  readonly
-                                                        class="form-control form-control-line">
-                                                </div>
-                                            </div>
-                                            
-                                             <div class="card-body bg-light">
-			                                    <div class="row">
-			                                        <div class="form-group">
-			                                                <label class="col-md-12" style="font-weight:bold">퇴직사유</label>
-			                                                <div class="col-md-12">
-			                                                    <textarea rows="2" cols="30"
-			                                                     placeholder="재직중이면(해당사항없음)"
-			                                                        class="form-control form-control-line"></textarea>
-			                                                </div>
-			                                            </div>
-			                                    </div>
-				                                </div>
-                                            
-                                            <div class="form-group">
-                                                <label class="col-sm-12" style="font-weight:bold">성별</label>
-                                                <div class="col-sm-12">
-                                                    <select class="form-control form-control-line">
-                                                        <option>${dto.gender}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-12" style="font-weight:bold">결혼여부</label>
-                                                <div class="col-sm-12">
-                                                    <select class="form-control form-control-line">
-                                                        <option>${dto.marry}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="last-month" role="tabpanel"
-                                    aria-labelledby="pills-profile-tab">
-                                    <div class="card-body">
-                              <!-- Row 신상-->
+                 <div class="tab-pane fade" id="last-month" role="tabpanel"
+                     aria-labelledby="pills-profile-tab">
+                     <div class="card-body">
+                 <!-- Row 신상-->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -316,7 +320,7 @@
                                       <div class="form-group">
                                           <label for="example-email" class="col-md-12">역량</label>
                                           <div class="col-md-12">
-                                              <input type="text" value="좋음" readonly value="${dto2.p_able}"
+                                              <input type="text" readonly value="${dto2.p_able}"
                                                   class="form-control form-control-line" name="example-email"
                                                   id="example-email" readonly>
                                           </div>
@@ -341,56 +345,6 @@
                                     </div>
                                 </div>
                                 <!--인사평가자  -->
-                                 <div class="tab-pane fade" id="insainfo-month" role="tabpanel"
-                              aria-labelledby="pills-insainfo-tab">
-                              <div class="card-body">
-                                  <form class="form-horizontal form-material">
-                                      <div class="form-group">
-                                          <label class="col-md-12">평가자</label>
-                                          <div class="col-md-12">
-                                              <input type="text" value="${dto2.p_name}"
-                                                  class="form-control form-control-line" readonly>
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="example-email" class="col-md-12">평가대상자</label>
-                                          <div class="col-md-12">
-                                              <input type="text" value="좋음" readonly value="${dto2.user_name}"
-                                                  class="form-control form-control-line" name="example-email"
-                                                  id="example-email" readonly>
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <label class="col-md-12">평가년도</label>
-                                          <div class="col-md-12">
-                                              <input type="Date" readonly value="${dto2.p_year}"
-                                                  class="form-control form-control-line">
-                                          </div>
-                                      </div>
-                                       <div class="form-group">
-                                          <label class="col-md-12">역량</label>
-                                          <div class="col-md-12">
-                                              <input type="text" value="${dto2.p_able}"
-                                                  class="form-control form-control-line" readonly>
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <label class="col-md-12">성과</label>
-                                          <div class="col-md-12">
-                                              <input type="text" value="${dto2.p_output}"
-                                                  class="form-control form-control-line" readonly>
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <label class="col-md-12" >의견</label>
-                                          <div class="col-md-12">
-                                              <textarea rows="5"  readonly 
-                                                  class="form-control form-control-line">${dto2.p_comment}</textarea>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

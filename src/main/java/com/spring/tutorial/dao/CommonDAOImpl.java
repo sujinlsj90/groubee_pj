@@ -55,7 +55,7 @@ public class CommonDAOImpl implements CommonDAO {
 		int port = 465; // 포트번호
 
 		// 메일 내용
-		String recipient = "leegenho15@naver.com"; // 받는 사람의 메일주소를 입력해주세요.
+		String recipient = "sujinlsj@naver.com"; // 받는 사람의 메일주소를 입력해주세요.
 		String subject = "[인사팀]사원 등록 인증 메일"; // 메일 제목 입력해주세요.
 
 		String content = "사원 등록을 인증합니다. 링크를 눌러 사원 등록을 완료하세요." + "<a href='http://localhost/tutorial/emailChkAction.co?key="

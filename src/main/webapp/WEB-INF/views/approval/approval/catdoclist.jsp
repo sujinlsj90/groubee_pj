@@ -28,7 +28,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("SELECT * \nFROM grb_draft \nWHERE state = '완료' \nAND category = '일반' \nAND show = 1");
+
 </script>
 
 </head>

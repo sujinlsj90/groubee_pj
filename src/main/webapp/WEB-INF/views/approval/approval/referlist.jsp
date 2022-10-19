@@ -28,9 +28,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-	alert("회람하기: \nINSERT INTO grb_approvalinfo\n(id, getter_id, load_id, \nload_num, load_status, category)" +
-		" VALUES(1, 2, 2, 0, 2, '일반')");
-	alert("회람리스트: \nSELECT d.* \nFROM grb_draft d \nJOIN grb_approvalinfo a \nON d.load_id = a.load_id \nWHERE a.id = 1 \nAND a.load_num = 2 \nAND d.show = 1");
+	
 	
 </script>
 
