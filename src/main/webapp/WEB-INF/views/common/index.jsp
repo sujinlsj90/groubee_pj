@@ -82,7 +82,7 @@
                         <div class="card bg-light-info border-0">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
-                                    <a href="javascript:openWindowPop('http://mail.groubee.kr/roundcube', 'popup');" 
+                                    <a href="javascript:openWindowPop('http://192.168.219.101:80/roundcube/', 'popup');"
                                         class="btn btn-info rounded-circle btn-circle-lg text-white mb-2">
                                         <i data-feather="mail"></i>
                                     </a>

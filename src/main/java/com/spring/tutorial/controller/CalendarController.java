@@ -17,11 +17,19 @@ public class CalendarController {
 
 	private static final Logger logger = LoggerFactory.getLogger(CalendarController.class);
 	
+	//캘린더메인
 	@RequestMapping("calendar_main.ca")
 	public String main(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("Maincontroller -> calendar_main.ca");
 		return "calendar/calendar_main";
+	}
+	
+	@RequestMapping("calendar.ca")
+	public String calendar(HttpServletRequest req, Model model) 
+			throws ServletException, IOException{
+		logger.info("Maincontroller -> calendar_main.ca");
+		return "calendar/calendar";
 	}
 	
 	@RequestMapping("oneDayEvent.ca")

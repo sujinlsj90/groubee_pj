@@ -29,7 +29,6 @@ public class AdminController {
 		return "admin/adAttend/adAttend";
 	}
 	
-	
 	//부서미지정
 	@RequestMapping("adDepart.ad")
 	public String adDepart(HttpServletRequest req, Model model) 

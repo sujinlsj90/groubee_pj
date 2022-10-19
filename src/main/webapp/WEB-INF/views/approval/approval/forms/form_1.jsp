@@ -29,43 +29,34 @@
 <![endif]-->
 </head>
  <script type="text/javascript">
-	
-<<<<<<< HEAD
-=======
-	function req() {
-	alert("INSERT INTO \ngrb_draft(doc_id, load_id, id, \ndepart_id, category, title, content, \nshow, state, upday, files)" +
-		"  \nVALUES(\n(SELECT NVL(Max(doc_id)+1,1) FROM grb_draft), \n1, 3, 3, '일반', '제목', '내용', 1, \ndefault, sysdate, 'fileroot');");	
-	alert("UPDATE grb_approvalinfo \nSET load_status = 1 \nWHERE load_id = 2 \nAND id = 1");	
-	}
-	
 	$(function(){
 	$("#tempsave").click(function(){
 		if(confirm("임시보관을 하시겠습니까?")){
-			document.approvalForm.action = "${path}/tempSave.ap";
+			document.approvalForm.action = "${path}/tempSave.ap?${_csrf.parameterName}=${_csrf.token}";
 			document.approvalForm.submit();
 			}
 		});
 	$("#approvereq").click(function(){
 		if(confirm("문서를 기안 하시겠습니까?")){
-			document.approvalForm.action = "${path}/approvereq.ap";
+			document.approvalForm.action = "${path}/approvereq.ap?${_csrf.parameterName}=${_csrf.token}";
 			document.approvalForm.submit();
 			}
 		});
 	});
-		
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
 </script>
 
 <body>
 <span style="font-family: &quot;맑은 고딕&quot;; font-size: 10pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">
 <span style="font-family: &quot;맑은 고딕&quot;; font-size: 10pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"> 
  
-<form name = "approvalForm" method = "post">
+<form name = "approvalForm" method = "post" enctype = "multipart/form-data">
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
 <c:forEach var="dto" items="${list}" begin = "0" end = "0"> 
 <input type="hidden" name="load_id" value = "${dto.load_id}"> 
 <input type="hidden" name="category" value = "${dto.category}"> 
+<input type="hidden" name="form_name" value = "${dto.form_name}"> 
+
 </c:forEach>
 <c:forEach var="dto2" items="${list2}" begin = "0" end = "0"> 
 <input type="hidden" name="depart_name" value = "${dto2.depart_name}">
@@ -73,9 +64,8 @@
 <table style="border: 0px solid rgb(0, 0, 0); width: 800px; font-family: malgun gothic, dotum, arial, tahoma; margin-top: 1px; border-collapse: collapse;">
 <tr>
 <br>
-<button type="button" id = "approvereq">결재요청</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;&nbsp;<button type="button" id = "approvereq">결재요청</button> ;&nbsp;
 <button type="button" id = "tempsave">임시저장</button> &nbsp;
-<button type="button" onClick = "window.open('${path}/selectmemberLine.ap','결재선','width=800,height=400,location=no,status=no,scrollbars=yes');">결재정보변경</button>
 </tr>
 <hr>
 <!-- Header --> 
@@ -87,7 +77,10 @@
 	<tbody>
 		<tr>
 			<td style="background: rgb(255, 255, 255); padding: 0px !important; border: 0px currentColor; border-image: none; height: 70px; text-align: center; color: black; font-size: 36px; font-weight: bold; vertical-align: top;" colspan="2">
-			기안문
+			
+			<c:forEach var="dto" items="${list}" begin = "0" end = "0"> 
+				${dto.form_name} 
+			</c:forEach>
 			</td>
 		</tr>
 		<tr>

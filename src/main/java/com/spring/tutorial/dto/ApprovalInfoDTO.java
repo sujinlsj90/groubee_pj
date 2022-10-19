@@ -1,5 +1,7 @@
 package com.spring.tutorial.dto;
 
+import java.sql.Date;
+
 public class ApprovalInfoDTO extends CommonDTO{
 
 	
@@ -7,13 +9,35 @@ public class ApprovalInfoDTO extends CommonDTO{
 	private String id;
 	private String getter_id;
 	private int load_num;
+	private String form_name;
 	private String co_approve;
 	private String load_status;
 	private String category;
+	private Date checkday;
 	
 	public ApprovalInfoDTO() {}
 
 	
+	public Date getCheckday() {
+		return checkday;
+	}
+
+
+	public void setCheckday(Date checkday) {
+		this.checkday = checkday;
+	}
+
+
+	public String getForm_name() {
+		return form_name;
+	}
+
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
+	}
+
+
 	public int getLoad_id() {
 		return load_id;
 	}

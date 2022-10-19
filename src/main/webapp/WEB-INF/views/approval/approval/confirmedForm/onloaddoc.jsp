@@ -18,10 +18,10 @@
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
     <!-- This Page CSS -->
     <link rel="stylesheet" type="text/css"
-        href="${path}/resources/assets/libs/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
+        href="${path}/assets/libs/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css">
     <link rel="stylesheet" type="text/css" href="${path}/assets/libs/ckeditor/samples/css/samples.css">
     <!-- Custom CSS -->
-    <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
+    <link href="${path}/dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,30 +29,46 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-
+<script type="text/javascript">
+function rollbackdoc(doc_id) {
+	if(confirm("기안문을 회수하시겠습니까?")) {
+		location.href = "${path}/rollbackApproval.fo?doc_id="+doc_id+"&${_csrf.parameterName}=${_csrf.token}";
+		window.close();
+		
+	}
+}
+function modifyapp(doc_id) {
+	if(confirm("기안문을 수정하시겠습니까?")) {
+		location.href = "${path}/modifydocAction.fo?doc_id="+doc_id+"&${_csrf.parameterName}=${_csrf.token}";
+	}
+}
+</script>
 <body>
 <span style="font-family: &quot;맑은 고딕&quot;; font-size: 10pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">
 <span style="font-family: &quot;맑은 고딕&quot;; font-size: 10pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"> 
-  
+<form name = "draftdoc" method = "post"> 
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 <table style="border: 0px solid rgb(0, 0, 0); width: 800px; font-family: malgun gothic, dotum, arial, tahoma; margin-top: 1px; border-collapse: collapse;">
 <tr>
 <br>
-<button type="button">결재요청</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<button type="button">임시저장</button> &nbsp;
-<button type="button" onClick = "self.close();">결재요청</button> &nbsp;
-<button type="button" onClick = "window.open('${path}/selectmemberLine.ap','결재선','width=800,height=400,location=no,status=no,scrollbars=yes');">결재선변경</button>
+<c:if test = "${selectInt < 1}">
+<c:forEach var="dto" items="${list}" begin = "0" end = "0"> 
+<button type="button" onclick = "rollbackdoc(${dto.doc_id});"> 회수하기</button>
+&nbsp;<button type="button" onclick = "modifyapp(${dto.doc_id})"> 수정하기</button> 
 </tr>
-<hr>
+</c:forEach>
+</c:if>
 <!-- Header --> 
    <colgroup> 
     <col width="310"> 
     <col width="400"> 
    </colgroup> 
    
+	<c:forEach var="dto" items="${list}" begin = "0" end = "0"> 
 	<tbody>
 		<tr>
 			<td style="background: rgb(255, 255, 255); padding: 0px !important; border: 0px currentColor; border-image: none; height: 70px; text-align: center; color: black; font-size: 36px; font-weight: bold; vertical-align: top;" colspan="2">
-			교육신청
+				${dto.form_name} 
 			</td>
 		</tr>
 		<tr>
@@ -71,7 +87,7 @@
 			</td>
 			<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; text-align: left; color: rgb(0, 0, 0); font-size: 12px; font-weight: normal; vertical-align: middle; width: 269px;">
 				<span unselectable="on" contenteditable="false" class="comp_wrap" data-cid="0" data-dsl="{{label:docNo}}" data-wrapper="" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;" data-value="" data-autotype="">
-					<span class="comp_item" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">문서번호</span>
+					<span class="comp_item" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">${dto.doc_id}</span>
 						<span contenteditable="false" class="comp_active" style="display: none; font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"> 
 							<span class="Active_dot1" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span>
 							<span class="Active_dot2" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span> 
@@ -90,7 +106,7 @@
 			</td>
 			<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; height: 18px; text-align: left; color: rgb(0, 0, 0); font-size: 12px; font-weight: normal; vertical-align: middle; width: 269px;">
 				<span unselectable="on" contenteditable="false" class="comp_wrap" data-cid="1" data-dsl="{{label:draftDept}}" data-wrapper="" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;" data-value="" data-autotype="">
-				<span class="comp_item" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">기안부서</span>
+				<span class="comp_item" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">${dto.depart_name}</span>
 				<span contenteditable="false" class="comp_active" style="display: none; font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"> 
 					<span class="Active_dot1" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span>
 					<span class="Active_dot2" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span> 
@@ -107,7 +123,7 @@
 			</td>
 			<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; text-align: left; color: rgb(0, 0, 0); font-size: 12px; font-weight: normal; vertical-align: middle; width: 269px;">
 				<span unselectable="on" contenteditable="false" class="comp_wrap" data-cid="2" data-dsl="{{label:draftDate}}" data-wrapper="" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;" data-value="" data-autotype="">
-				<span class="comp_item" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">기안일</span>
+				<span class="comp_item" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">${dto.upday}</span>
 				<span contenteditable="false" class="comp_active" style="display: none; font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"> 
 					<span class="Active_dot1" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span>
 					<span class="Active_dot2" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span> 
@@ -127,7 +143,7 @@
 			</td>
 			<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; text-align: left; color: rgb(0, 0, 0); font-size: 12px; font-weight: normal; vertical-align: middle; width: 269px;">
 				<span unselectable="on" contenteditable="false" class="comp_wrap" data-cid="3" data-dsl="{{label:draftUser}}" data-wrapper="" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;" data-value="" data-autotype="">
-					<span class="comp_item" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">기안자</span>
+					<span class="comp_item" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"><c:forEach var = "dto" items="${list1}" begin = "0" end = "0">${dto.name}</c:forEach></span>
 						<span contenteditable="false" class="comp_active" style="display: none; font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"> 
 						<span class="Active_dot1" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span>
 						<span class="Active_dot2" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span> 
@@ -138,14 +154,14 @@
 				</span><br>
 			</td>
 		</tr>
-		<tr>
+<%-- 		<tr>
 			<td style="background: rgb(221, 221, 221); padding: 5px; border: 1px solid black; height: 18px; text-align: center; color: rgb(0, 0, 0); font-size: 12px; font-weight: bold; vertical-align: middle;">
 				
-			시행일자
+			기안일자
 			</td>
 			<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; text-align: left; color: rgb(0, 0, 0); font-size: 12px; font-weight: normal; vertical-align: middle; width: 269px;">
 				<span unselectable="on" contenteditable="false" class="comp_wrap" data-cid="4" data-dsl="{{calendar}}" data-wrapper="" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;" data-value="" data-autotype="">
-					<input class="ipt_editor ipt_editor_date" type="text">
+					${dto.upday}
 					<span contenteditable="false" class="comp_active" style="display: none; font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"> 
 						<span class="Active_dot1" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span>
 						<span class="Active_dot2" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span> 
@@ -157,26 +173,35 @@
 					</span>
 				</span><br>
 			</td>
-		</tr>
+		</tr> --%>
 		<tr>
 		</tr>
 	</tbody>
+	</c:forEach>
 </table>
 
 			</td>
-			<td style="background: white; padding: 0px !important; border: currentColor; text-align: right; color: black; font-size: 12px; font-weight: normal; vertical-align: top;">
+			<td style="background: white; padding: 0px !important; border: currentColor; align: right; color: black; font-size: 12px; font-weight: normal; vertical-align: top;">
 			<table style = "float:right">
 					<tr>
-						<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; color: rgb(0, 0, 0); font-size: 10px; font-weight: normal; vertical-align: middle;  text-align: center; width: 60px; height:10px;">직책</td>
-						<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; color: rgb(0, 0, 0); font-size: 10px; font-weight: normal; vertical-align: middle;  text-align: center; width: 60px; height:10px;">직책</td>
+					<c:forEach var="dto" items="${list2}"> 
+						<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; color: rgb(0, 0, 0); font-size: 10px; font-weight: normal; vertical-align: middle;  text-align: center; width: 60px; height:10px;">(${dto.co_approve})</td>
+					</c:forEach>
 					</tr>
 					<tr>
-						<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; color: rgb(0, 0, 0); font-size: 10px; font-weight: normal; vertical-align: middle;  text-align: center; width: 60px; height:60px;">이름<br>(인감)</td>
-						<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; color: rgb(0, 0, 0); font-size: 10px; font-weight: normal; vertical-align: middle;  text-align: center; width: 60px; height:60px;">이름<br>(인감)</td>
+					<c:forEach var="dto" items="${list2}"> 
+						<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; color: rgb(0, 0, 0); font-size: 10px; font-weight: normal; vertical-align: middle;  text-align: center; width: 60px; height:10px;">${dto.rank}</td>
+					</c:forEach>
 					</tr>
 					<tr>
-						<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; color: rgb(0, 0, 0); font-size: 10px; font-weight: normal; vertical-align: middle;  text-align: center; width: 60px; height:10px;">날짜</td>
-						<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; color: rgb(0, 0, 0); font-size: 10px; font-weight: normal; vertical-align: middle;  text-align: center; width: 60px; height:10px;">날짜</td>
+					<c:forEach var="dto" items="${list2}"> 
+						<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; color: rgb(0, 0, 0); font-size: 10px; font-weight: normal; vertical-align: top;  text-align: center; width: 60px; height:60px;">${dto.name}<br><c:if test = "${dto.load_status == '결재'}"><img src = "${path}/resources/images/adminImages/stamp.png"></c:if></td>
+					</c:forEach>
+					</tr>
+					<tr>
+					<c:forEach var="dto" items="${list2}">
+						<td style="background: rgb(255, 255, 255); padding: 5px; border: 1px solid black; color: rgb(0, 0, 0); font-size: 10px; font-weight: normal; vertical-align: middle;  text-align: center; width: 60px; height:10px;">${dto.checkday}</td>
+					</c:forEach>	
 					</tr>
 			</table>
 				<span unselectable="on" contenteditable="false" class="comp_wrap" data-wrapper="" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">
@@ -189,6 +214,7 @@
 						<a contenteditable="false" class="ic_prototype ic_prototype_trash" data-content-protect-cover="true" data-component-delete-button="true"></a> 
 					</span>
 				</span><!-- 에디터 &nbsp; 버그. 개행과 공백을 최소화 시키자. --><!-- 에디터 &nbsp; 버그. 개행과 공백을 최소화 시키자. --><br>
+				
 			</td>
 		</tr>
 	</tbody>
@@ -201,6 +227,7 @@
   </colgroup> 
   
 	<tbody>
+	  <c:forEach var = "dto" items = "${list}">
 		<tr>
 			<td style="background: rgb(221, 221, 221); padding: 5px; border: 1px solid black; height: 18px; text-align: center; color: rgb(0, 0, 0); font-size: 12px; font-weight: bold; vertical-align: middle;">
 				
@@ -208,7 +235,7 @@
 			</td>
 			<td style="background: rgb(255, 255, 255); padding: 5px;border:1px solid black; height: 18px; text-align: left; color: rgb(0, 0, 0); font-size: 12px; font-weight: normal; vertical-align: middle;">
 				<span unselectable="on" contenteditable="false" class="comp_wrap" data-cid="7" data-dsl="{{text:subject}}" data-wrapper="" style="width: 100%; font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;" data-value="" data-autotype="">
-					<input class="ipt_editor" type="text" size = "100">
+					${dto.title}
 					<span contenteditable="false" class="comp_active" style="display: none; font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"> 
 						<span class="Active_dot1" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span>
 						<span class="Active_dot2" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span> 
@@ -227,27 +254,31 @@
 			</td>
 		</tr>
 		<tr>
-			<td style="background: rgb(255, 255, 255); padding: 5px;border:1px solid black; height: 18px; text-align: left; color: rgb(0, 0, 0); font-size: 12px; font-weight: normal; vertical-align: middle;" colspan="2">
-				<span unselectable="on" contenteditable="false" class="comp_wrap" data-cid="8" data-dsl="{{editor}}" data-wrapper="" style="width: 100%; font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;" data-value="" data-autotype=""><span class="comp_editor" style="width: 100%; font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 11pt; line-height: 200px; margin-top: 0px; margin-bottom: 0px;">
-				<textarea cols="80" id="testedit1" name="testedit1" rows="10" data-sample="2"
-                                    data-sample-short>
-                                			1. 교육명: <br>
-                                			2. 주최측: <br>
-                                			3. 교육장소: <br>
-                                			4. 참여자: <br>
-                                			5. 교육비: <br>
-                                			6. 교육내용:  <br>
-                                			
-                </textarea>
+			<td style="background: rgb(255, 255, 255); padding: 5px;border:1px solid black; height: 30px; text-align: left; color: rgb(0, 0, 0); font-size: 12px; font-weight: normal; vertical-align: top;" colspan="2">
+                                			${dto.content}
                 
-                <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01" size = "100">
-                        <label class="custom-file-label" for="inputGroupFile01">파일첨부</label>
-                    </div>
-                
-				</span><span contenteditable="false" class="comp_active" style="display: none; font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"> <span class="Active_dot1" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span><span class="Active_dot2" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span> <span class="Active_dot3" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span><span class="Active_dot4" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span> </span> <span contenteditable="false" class="comp_hover" data-content-protect-cover="true" data-origin="8" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"> <a contenteditable="false" class="ic_prototype ic_prototype_trash" data-content-protect-cover="true" data-component-delete-button="true"></a> </span> </span><br>
+				<span contenteditable="false" class="comp_active" style="display: none; font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"> 
+				<span class="Active_dot1" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span>
+				<span class="Active_dot2" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span> 
+				<span class="Active_dot3" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span>
+				<span class="Active_dot4" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"></span> </span> 
+				<span contenteditable="false" class="comp_hover" data-content-protect-cover="true" data-origin="8" style="font-family: &quot;malgun gothic&quot;, dotum, arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"> 
+				<a contenteditable="false" class="ic_prototype ic_prototype_trash" data-content-protect-cover="true" data-component-delete-button="true"></a> </span> 
+				</span><br>
 
-			</td>
+		<tr>
+		<td style="background: rgb(255, 255, 255); padding: 5px; border-top:none; height: 15px; text-align: left; color: rgb(0, 0, 0); font-size: 12px; font-weight: normal; vertical-align: bottom;" colspan="2">
+					첨부파일 : <a class="btn" href="${dto.files}" download><p style="font-family: &quot;맑은 고딕&quot;; font-size: 10pt; line-height: 20px; margin-top: 0px; margin-bottom: 0px;">${dto.files}</p></a>
+		</td>
+		</tr>
+		<tr>
+		<td style="background: rgb(255, 255, 255); padding: 5px; border:1px solid black; height: 15px; text-align: left; color: rgb(0, 0, 0); font-size: 12px; font-weight: normal; vertical-align: bottom;" colspan="2">
+		<br>문서번호: groubee-22100${dto.doc_id}<br></forEach>
+		</c:forEach>
+		<c:forEach var = "dto" items="${list1}" begin = "0" end = "0">기안 ${dto.name}</c:forEach> / / / / / /  결재 <c:forEach var = "dto" items="${list2}"><c:if test = "${dto.load_num > 0}">${dto.name} /</c:if></c:forEach> //  협조<c:forEach var = "dto" items="${list2}"> <c:if test = "${dto.load_num == 0}">${dto.name} /</c:if></c:forEach>               /<br>
+		groubee   서울시 금천구 가산디지털로 월드메르디앙 2차 413호   02-1111-1111<br>
+		<br>
+		</td>
 		</tr>
 	</tbody>
 </table>

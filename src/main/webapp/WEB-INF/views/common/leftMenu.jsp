@@ -72,7 +72,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="img.hu"
                                 aria-expanded="false"><i data-feather="users" class="feather-icon"></i><span
                                     class="hide-menu">조직도</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="approvallist.ap"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="approvallist.ap?stateid=on"
                                 aria-expanded="false"><i data-feather="clipboard" class="feather-icon"></i><span
                                     class="hide-menu">전자결재</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="calendar_main.ca"

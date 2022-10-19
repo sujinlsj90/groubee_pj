@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.tutorial.service.ApprovalServiceImpl;
 
@@ -33,12 +34,21 @@ public class ApprovalController {
 		return "approval/approval/tables/onapproval";
 	}
 	
-	//새결제진행-경제정보선택리스트
+	//새결제진행-결제정보선택리스트
 	@RequestMapping("selectform.ap")
 	public String selectform(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("ApprovalController -> selectform.ap");
-		service.selectFormList(req, model); 
+		service.selectFormList(req, model);
+		return "approval/approval/action/selectform";
+	}
+	
+	//새결제진행-결재정보모든부서뜨기
+	@RequestMapping("selectAllmemform.ap")
+	public String selectAllmemform(HttpServletRequest req, Model model) 
+			throws ServletException, IOException{
+		logger.info("ApprovalController -> selectform.ap");
+		service.selectAllFormList(req, model);
 		return "approval/approval/action/selectform";
 	}
 	
@@ -66,7 +76,7 @@ public class ApprovalController {
 			throws ServletException, IOException{
 		logger.info("ApprovalController -> rejapproval.ap");
 		service.rejapprovalAction(req, model);
-		return "approval/approval/tables/comapproval";
+		return "approval/approval/tables/rejapproval";
 	}
 	
 	
@@ -78,22 +88,24 @@ public class ApprovalController {
 		service.templistAction(req,model);
 		return "approval/approval/templist";
 	}
-	
-	//참조(회람)문서함
-	@RequestMapping("referlist.ap")
-	public String referlist(HttpServletRequest req, Model model) 
-			throws ServletException, IOException{
-		logger.info("ApprovalController -> referlist.ap");
-		return "approval/approval/referlist";
-	}
-	
-	
-	// 결재문서함
+
+
+	// 결재대기문서함
 	@RequestMapping("checkoutlist.ap")
 	public String checkoutlist(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("ApprovalController -> checkoutlist.ap");
+		service.checkoutlistAction(req, model);
 		return "approval/approval/checkoutlist";
+	}
+	
+	// 결재완료문서함(결재자)
+	@RequestMapping("comcheckoutlist.ap")
+	public String comcheckoutlist(HttpServletRequest req, Model model) 
+			throws ServletException, IOException{
+		logger.info("ApprovalController -> comcheckoutlist.ap");
+		service.confirmedDraftlistActionGetter(req, model);
+		return "approval/approval/comcheckoutlist";
 	}
 	
 	
@@ -102,6 +114,7 @@ public class ApprovalController {
 	public String prechecklist(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("ApprovalController -> prechecklist.ap");
+		service.prechecklistAction(req, model);
 		return "approval/approval/prechecklist";
 	}
 	
@@ -111,9 +124,11 @@ public class ApprovalController {
 	public String departdoclist(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("ApprovalController -> departdoclist.ap");
+		service.departdoclist(req, model);
 		return "approval/approval/departdoclist";
 	}
 	
+	///////////////관리자페이지에서 진행예정
 	//카테고리별문서함
 	@RequestMapping("catdoclist.ap")
 	public String catdoclist(HttpServletRequest req, Model model) 
@@ -122,13 +137,35 @@ public class ApprovalController {
 		return "approval/approval/catdoclist";
 	}
 	
-	
-	//결재정보수정페이지
+	//결재정보수정페이지 
 	@RequestMapping("selectmemberLine.ap")
 	public String selectmemberLine(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("ApprovalController -> selectmember_Line.ap");
+		service.selectupdateFormList(req, model);
 		return "approval/approval/action/selectmemberline";
+	}
+	
+	
+	//결재정보수정 
+	@RequestMapping("updateAppAction.ap")
+	public void updateAppAction(HttpServletRequest req, HttpServletResponse res, Model model) 
+			throws ServletException, IOException{
+		logger.info("ApprovalController -> updateAppAction.ap");
+		service.updateAppAction(req, model);
+		int doc_id = Integer.parseInt(req.getParameter("doc_id"));
+		String viewPage = req.getContextPath() + "/selectmemberLine.ap?doc_id="+doc_id;
+		res.sendRedirect(viewPage);
+	}
+	
+	
+	//결재정보수정 뿌리기
+	@RequestMapping("reselectLineViewAction.ap")
+	public String reselectLineViewAction(HttpServletRequest req, HttpServletResponse res, Model model) 
+			throws ServletException, IOException{
+		logger.info("ApprovalController -> reselectLineViewAction.ap");
+		service.reselectLineViewAction(req, model);
+		return "approval/approval/action/selectline_view";
 	}
 	
 	
@@ -176,23 +213,80 @@ public class ApprovalController {
 	//임시저장
 	//기안문 작성 및 임시보관 완료 시 ActionPage
 	@RequestMapping("tempSave.ap")
-	public String tempSave(HttpServletRequest req, Model model) 
+	public String tempSave(MultipartHttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("ApprovalController -> tempSave.ap");
 		service.tempSaveAction(req, model);
 		return "approval/approval/action/draftInsertAction";
 	}
 	
+	//임시보관함 삭제
+	@RequestMapping("deleteTemp.ap")
+	public void deleteTemp(HttpServletRequest req, HttpServletResponse res, Model model) 
+			throws ServletException, IOException{
+		logger.info("ApprovalController -> deleteTemp.ap");
+		service.deleteTemp(req, model);
+		String viewPage = req.getContextPath() + "/templist.ap?stateid=temp";
+		res.sendRedirect(viewPage);
+	}
+	
+	//임시보관함 삭제
+	@RequestMapping("deleteTempchk.ap")
+	public void deleteTempchk(HttpServletRequest req, HttpServletResponse res, Model model) 
+			throws ServletException, IOException{
+		logger.info("ApprovalController -> deleteTempchk.ap");
+		service.deleteTempchkAction(req, model);
+		String viewPage = req.getContextPath() + "/templist.ap?stateid=temp";
+		res.sendRedirect(viewPage);
+	}
+	
 	//기안하기
 	//기안문 작성 및 기안 완료 시 ActionPage
 	@RequestMapping("approvereq.ap")
-	public String approvereq(HttpServletRequest req, Model model) 
+	public String approvereq(MultipartHttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("ApprovalController -> approvereq.ap");
 		service.approvereqAction(req, model);
 		return "approval/approval/action/draftInsertAction";
 	}
 	
+	//결재대기함뱃지 - submenu
+	@RequestMapping("checkoutBadgeAction.ap")
+	public String checkoutBadgeAction(HttpServletRequest req, Model model) 
+			throws ServletException, IOException{
+		logger.info("ApprovalController -> checkoutBadgeAction.ap");
+		service.checkoutBadgeAction(req, model);
+		return "approval/approval/action/badge";
+	}
+	
+	//회람직원 선택
+	@RequestMapping("selectReferAllmem.ap")
+	public String selectReferAllmem(HttpServletRequest req, Model model) 
+			throws ServletException, IOException{
+		logger.info("ApprovalController -> selectReferAllmem.ap");
+		service.refermemberlist(req, model);
+		return "approval/approval/action/selectrefermember";
+	}
+	
+	
+	//회람문서함
+	@RequestMapping("referlist.ap")
+	public String referlist(HttpServletRequest req, Model model) 
+			throws ServletException, IOException{
+		logger.info("ApprovalController -> referlist.ap");
+		service.referlist(req, model);
+		return "approval/approval/referlist";
+	}
+	
+	
+	//회람하기
+	@RequestMapping("referlineAction.ap")
+	public String referlineAction(HttpServletRequest req, HttpServletResponse res, Model model) 
+			throws ServletException, IOException{
+		logger.info("ApprovalController -> referlineAction.ap");
+		service.referAction(req, model);
+		return "approval/approval/action/referAction";
+	}
 	
 	
 }

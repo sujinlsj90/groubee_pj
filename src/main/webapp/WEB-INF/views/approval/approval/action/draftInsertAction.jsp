@@ -39,12 +39,12 @@
                         <div class="card">
                             <div class="card-header bg-info">
                                     <c:forEach var="dto" items="${list}" begin = "0" end = "0">	<!-- grb_draft 테이블 -->
-                                        <h4 class="mb-0 text-white">문서가 ${dto.state}보관함에 저장되었습니다</h4>
+                                        <h4 class="mb-0 text-white">처리정보 요약</h4>
                             </div>
                             <form class="form-horizontal">
                                 <div class="form-body">
                                     <div class="card-body">
-                                        <h4 class="card-title">문서요약</h4>
+                                        <h4 class="card-title">문서정보</h4>
                                     </div>
                                     <hr class="mt-0 mb-5">
                                     <div class="card-body">
@@ -131,7 +131,6 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                
                                                     <label class="control-label text-right col-md-3">협조자:</label>
                                                     <div class="col-md-9">
                                                         <p class="form-control-static">
@@ -145,6 +144,19 @@
                                                 </div>
                                             </div>
                                         </div>
+                                         <!--/span-->                                          
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="control-label text-right col-md-3">처리날짜:</label>
+                                                    <div class="col-md-9">
+                                                        <p class="form-control-static"> 
+	                                                        <c:forEach var="dto" items="${list}">
+	                                                        ${dto.upday}<br>
+	                                                        </c:forEach>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                     </div>
                                     <hr>
                                     <div class="form-actions">

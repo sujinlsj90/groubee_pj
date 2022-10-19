@@ -124,11 +124,12 @@
             var today = new Date($.now());
 
             var defaultEvents = [{
-                    title: 'Meeting #3',
-                    start: new Date($.now() + 506800000),
+                    title: '이수진',
+                    start: '2022-10-18T20:00:00',
+                    end: '2020-10-20T22:00:00',
                     className: 'bg-info'
                 }, {
-                    title: 'Submission #1',
+                    title: '1234 #1',
                     start: today,
                     end: today,
                     className: 'bg-danger'

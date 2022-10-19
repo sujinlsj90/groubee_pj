@@ -77,8 +77,8 @@
                 <div class="right-part mail-list overflow-auto" style="height:100%;">
                     <div class="p-3 b-b">
                         <div class="d-flex align-items-center">
-                            <div>
-                                <h4> </h4>
+                           <div>
+                                <h4> 카테고리별 문서함 </h4>
                             </div>
                             <div class="ml-auto">
                                 <input placeholder="문서 제목 검색" type="text" class="form-control">
@@ -98,7 +98,7 @@
                         <div class="ml-auto">
 <%--                             <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
                                 <button type="button" class="btn btn-outline-secondary font-18" onclick="location.href='${path}/onapproval.ap'">진행</button>
-                                <button type="button" class="btn btn-outline-secondary font-18" onclick="location.href='${path}/comapproval.ap'">완료</button>
+                                <button type="button" class="btn btn-outline-secondary font-18" onclick="location.href='${path}/catdoclist.ap'">완료</button>
                                 <button type="button" class="btn btn-outline-secondary font-18" onclick="location.href='${path}/rejapproval.ap'">반려</button>
                             </div> --%>
 
@@ -176,18 +176,12 @@
                                 </div>
                                 </div>
                     <!-- list-->
-                    <div class="table-responsive">
+                      <div class="table-responsive">
                         <table class="table email-table no-wrap table-hover v-middle">
                             <tbody>
                                 <!-- row -->
                                 <tr class="unread">
                                     <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst1">
-                                            <label class="custom-control-label" for="cst1">&nbsp;</label>
-                                        </div>
-                                    </td>
                                     <td class="user-image p-2">
                                     	<h6 class="mb-0 text-truncate font-weight-medium">상태
                                     </td>
@@ -202,76 +196,40 @@
                                     <h6 class="mb-0 text-truncate font-weight-medium">기안일 </h6></td>
                                 </tr>
                                 <!-- row -->
+                                <c:forEach var = "dto" items="${list}">    
                                 <tr class="unread">
                                     <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst1">
-                                            <label class="custom-control-label" for="cst1">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td class="user-image p-2"><span class="badge badge-warning blue-grey-text text-darken-4 mr-2">진행</span> </td>
+                                    <td class="user-image p-2"><span class="badge badge-warning blue-grey-text text-darken-4 mr-2">${dto.state}</span> </td>
                                     <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate font-weight-medium">bee-22-0001</h6>
+                                        <h6 class="mb-0 text-truncate font-weight-medium">bee-22-${dto.doc_id}</h6>
                                     </td>
                                     <td class="py-2 px-3 no-wrap text-truncate"> 
-                                     <a class="link font-weight-medium"
-                                            href="#" onclick = "window.open('${path}/finishform_1.fo','결재정보','width=850,height=1000,location=no,status=no,scrollbars=yes');">
-                                            <span class="blue-grey-text text-darken-4">Spring project 진행 계획 보고</span>
-                                     </a>
+                                           <a onclick="window.open('${path}/doc_detailAction.fo?doc_id=${dto.doc_id}','기안문서','width=850,height=1100,scrollbars=yes');" href="${path}/catdoclist.ap?stateid=com"> <span class="blue-grey-text text-darken-4">${dto.title}</span></a>
                                     </td>
                                     <td class="clip px-1 py-2"><i class="fa fa-paperclip"></i></td>
-                                    <td class="time text-right"> 22-10-03 </td>
+                                    <td class="time text-right">${dto.upday}</td>
                                 </tr>
-                                <!-- row -->
-                                <tr class="unread">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst1">
-                                            <label class="custom-control-label" for="cst1">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td class="user-image p-2"><span class="badge badge-warning blue-grey-text text-darken-4 mr-2">완료</span> </td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate font-weight-medium">bee-22-0001</h6>
-                                    </td>
-                                    <td class="py-2 px-3 no-wrap text-truncate"> 
-                                            <span class="blue-grey-text text-darken-4">JSP 프로젝트 회의록</span>
-                                    </td>
-                                    <td class="clip px-1 py-2"><i class="fa fa-paperclip"></i></td>
-                                    <td class="time text-right"> 22-10-03 </td>
-                                </tr>
-                                <!-- row -->
-                                <tr class="unread">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst1">
-                                            <label class="custom-control-label" for="cst1">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <td class="user-image p-2"><span class="badge badge-warning blue-grey-text text-darken-4 mr-2">진행</span> </td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate font-weight-medium">bee-22-0001</h6>
-                                    </td>
-                                    <td class="py-2 px-3 no-wrap text-truncate"> 
-                                            <span class="blue-grey-text text-darken-4">java 기초 교육 참여자 리스트 보고</span>
-                                    </td>
-                                    <td class="clip px-1 py-2"><i class="fa fa-paperclip"></i></td>
-                                    <td class="time text-right"> 22-10-03 </td>
-                                </tr>
-
+                                </c:forEach>
                         </table>
                     </div>
+                    <!-- 페이징  -->                    
                     <div class="p-3 mt-4">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">Previous</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">Next</a></li>
+                            	<!-- 이전 버튼 -->
+                            	<c:forEach var = "dto" items="${list}" begin = "0" end = "0">
+	                            	<c:if test="${paging.startPage > 10}">
+	                            		<li class="page-item"><a class="page-link" href="${path}/catdoclist.ap?stateid=${dto.stateid}&pageNum=${paging.prev}">Previous</a></li>
+									</c:if>
+									<!-- 페이지 -->
+									<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+										<li class="page-item"><a class="page-link" href="${path}/catdoclist.ap?stateid=${dto.stateid}&pageNum=${num}">${num}</a></li>
+									</c:forEach>
+									<!-- 다음 버튼 -->
+									<c:if test="${paging.endPage < paging.pageCount}">
+										<li class="page-item"><a class="page-link" href="${path}/catdoclist.ap?stateid=${dto.stateid}&pageNum=${paging.next}">Next</a></li>
+									</c:if>
+								</c:forEach>
                             </ul>
                         </nav>
                     </div>
@@ -290,70 +248,6 @@
     <!-- ============================================================== -->
     <!-- customizer Panel -->
     <!-- ============================================================== -->
-    <aside class="customizer">
-        <a href="javascript:void(0)" class="service-panel-toggle"><i class="fa fa-spin fa-cog"></i></a>
-        <div class="customizer-body">
-            <div class="p-3 border-bottom">
-                <!-- Sidebar -->
-                <h5 class="font-weight-medium mb-2 mt-2">Layout Settings</h5>
-                <div class="custom-control custom-checkbox mt-2">
-                    <input type="checkbox" class="custom-control-input sidebartoggler" name="collapssidebar"
-                        id="collapssidebar">
-                    <label class="custom-control-label" for="collapssidebar">Collapse Sidebar</label>
-                </div>
-                <div class="custom-control custom-checkbox mt-2">
-                    <input type="checkbox" class="custom-control-input" name="sidebar-position" id="sidebar-position">
-                    <label class="custom-control-label" for="sidebar-position">Fixed Sidebar</label>
-                </div>
-                <div class="custom-control custom-checkbox mt-2">
-                    <input type="checkbox" class="custom-control-input" name="header-position" id="header-position">
-                    <label class="custom-control-label" for="header-position">Fixed Header</label>
-                </div>
-                <div class="custom-control custom-checkbox mt-2">
-                    <input type="checkbox" class="custom-control-input" name="boxed-layout" id="boxed-layout">
-                    <label class="custom-control-label" for="boxed-layout">Boxed Layout</label>
-                </div>
-            </div>
-            <div class="p-3 border-bottom">
-                <!-- Header BG -->
-                <h5 class="font-weight-medium mb-2 mt-2">Header Backgrounds</h5>
-                <ul class="theme-color">
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin1"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin2"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin3"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin4"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin5"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin6"></a>
-                    </li>
-                </ul>
-                <!-- Header BG -->
-            </div>
-            <div class="p-3 border-bottom">
-                <!-- Logo BG -->
-                <h5 class="font-weight-medium mb-2 mt-2">Sidebar Backgrounds</h5>
-                <ul class="theme-color">
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin1"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin2"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin3"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin4"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin5"></a>
-                    </li>
-                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin6"></a>
-                    </li>
-                </ul>
-                <!-- Logo BG -->
-            </div>
-        </div>
-    </aside>
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
