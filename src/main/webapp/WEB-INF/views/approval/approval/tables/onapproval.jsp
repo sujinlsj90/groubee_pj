@@ -39,6 +39,7 @@
             <div class="lds-pos"></div>
         </div>
     </div>
+    
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -70,35 +71,29 @@
                 <!-- ============================================================== -->
                 <!-- Right Part -->
                 <!-- ============================================================== -->
+                <form method = "post">
+				<input type = "hidden" name = "${_csrf.parameterName}" value = "${_csrf.token}"> 
                 <div class="right-part mail-list overflow-auto" style="height:100%;">
                     <div class="p-3 b-b">
                         <div class="d-flex align-items-center">
                             <div>
                                 <h4> 기안문서함 </h4>
                             </div>
-                            <div class="ml-auto">
-                                <input placeholder="문서 제목 검색" type="text" class="form-control">
-                            </div>
                         </div>
                     </div>
                     <!-- Action part -->
                     <!-- Button group part -->
                     <div class="bg-light p-3 d-flex align-items-center do-block">
-                        <div class="btn-group mt-1 mb-1">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input sl-all" id="cstall">
-                                <c:forEach var = "dto" items="${list}" begin="0" end ="0">
-                                <label class="custom-control-label" for="cstall">Check All  기안문서함 > ${dto.state}문서</label>
-                                </c:forEach>
+                   
+                            <div>
+                             	   기안문서함 > 진행문서함  
                             </div>
-                        </div>
                         <div class="ml-auto">
-                            <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                                <button type="button" class="btn btn-outline-secondary font-18" onclick="location.href='${path}/onapproval.ap'">진행</button>
-                                <button type="button" class="btn btn-outline-secondary font-18" onclick="location.href='${path}/comapproval.ap'">완료</button>
-                                <button type="button" class="btn btn-outline-secondary font-18" onclick="location.href='${path}/rejapproval.ap'">반려</button>
+                             <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+                                <button type="button" class="btn btn-outline-secondary font-18" onclick="location.href='${path}/onapproval.ap?stateid=on'">진행</button>
+                                <button type="button" class="btn btn-outline-secondary font-18" onclick="location.href='${path}/comapproval.ap?stateid=com'">완료</button>
+                                <button type="button" class="btn btn-outline-secondary font-18" onclick="location.href='${path}/rejapproval.ap?stateid=rej'">반려</button>
                             </div>
-
                         </div>
                     </div>
                     <!-- Action part -->
@@ -109,7 +104,7 @@
                                 <tr class="unread">
                                     <!-- label -->
                                     <td class="user-image p-2">
-                                    	<h6 class="mb-0 text-truncate font-weight-medium">상태
+                                    	<h6 class="mb-0 text-truncate font-weight-medium">상태 
                                     </td>
                                     <td class="user-name px-1 py-2">
                                         <h6 class="mb-0 text-truncate font-weight-medium">문서번호</h6>
@@ -117,7 +112,6 @@
                                     <td class="py-2 px-3 no-wrap text-truncate"> 
                                         <h6 class="mb-0 text-truncate font-weight-medium">문서제목</h6>
                                     </td>
-                                    <td class="clip px-1 py-2"><i class="fa fa-paperclip"></i></td>
                                     <td class="time text-right"> 
                                     <h6 class="mb-0 text-truncate font-weight-medium">기안일 </h6></td>
                                 </tr>
@@ -130,28 +124,39 @@
                                         <h6 class="mb-0 text-truncate font-weight-medium">bee-22-${dto.doc_id}</h6>
                                     </td>
                                     <td class="py-2 px-3 no-wrap text-truncate"> 
-                                            <span class="blue-grey-text text-darken-4">${dto.title}</span>
+                                            <a onclick="window.open('${path}/ondoc_detailAction.fo?doc_id=${dto.doc_id}','기안문서','width=850,height=1100,scrollbars=yes');" href="${path}/onapproval.ap?stateid=on"> <span class="blue-grey-text text-darken-4">${dto.title}</span></a>
                                     </td>
-                                    <td class="clip px-1 py-2"><i class="fa fa-paperclip"></i></td>
                                     <td class="time text-right">${dto.upday}</td>
                                 </tr>
                                 </c:forEach>
                                 <!-- row -->
-
                         </table>
                     </div>
+ 					<!-- 페이징  -->                    
                     <div class="p-3 mt-4">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">Previous</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">Next</a></li>
+                            	<!-- 이전 버튼 -->
+                            	<c:forEach var = "dto" items="${list}" begin = "0" end = "0">
+	                            	<c:if test="${paging.startPage > 10}">
+	                            		<li class="page-item"><a class="page-link" href="${path}/onapproval.ap?stateid=${dto.stateid}&pageNum=${paging.prev}">Previous</a></li>
+									</c:if>
+									<!-- 페이지 -->
+									<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+										<li class="page-item"><a class="page-link" href="${path}/onapproval.ap?&stateid=${dto.stateid}&pageNum=${num}">${num}</a></li>
+									</c:forEach>
+									<!-- 다음 버튼 -->
+									<c:if test="${paging.endPage < paging.pageCount}">
+										<li class="page-item"><a class="page-link" href="${path}/onapproval.ap?&stateid=${dto.stateid}}&pageNum=${paging.next}">Next</a></li>
+									</c:if>
+								</c:forEach>
                             </ul>
                         </nav>
                     </div>
                 </div>
+        </form>
+                </div>
+                
             <!-- ============================================================== -->
             <!-- End PAge Content -->
             <!-- ============================================================== -->
@@ -160,6 +165,7 @@
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
+    
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->

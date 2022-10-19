@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/setting.jsp" %>
+<%@ include file="/WEB-INF/views/setting.jsp" %>   
+ 
 
 <!DOCTYPE html>
+<html dir="ltr" lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -27,33 +29,83 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
+ 
+</head>		
+	<script>
+	$(function(){
+			loadline();
+	});	
+
+	function loadline(){
+		$.ajax({
+			url: "${path}/reselectLineViewAction.ap?doc_id="+${doc_id}+"&${_csrf.parameterName}=${_csrf.token}",
+			type: "post",
+			success : function(result) {
+				$("#load_line").html(result);
+			},
+			error: function(){
+				alert("load_line 오류");
+			}
+		});
+	};	
 
 	
-</script>
-
-</head>
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">결재선 선택</h4>
-                                <select multiple="multiple" size="10" class="duallistbox">
-                                    <option value="1">ㅁㅁㅁ</option>
-                                    <option value="2">ㅇㅇㅇ</option>
-                                    <option value="3" selected="selected">ㅇㅇㅇ</option>
-                                    <option value="4">ㅇㅇㅇ</option>
-                                    <option value="5">ㅇㅇㅇ</option>
-                                    <option value="6" selected="selected">ㅇㅇㅇ</option>
-                                    <option value="7">ㅇㅇㅇ</option>
-                                    <option value="8">ㅇㅇㅇ</option>
-                                    <option value="9">ㅇㅇㅇ</option>
-                                    <option value="11">ㅇㅇㅇ</option>
-                                </select>
-                                <br>
-                                <button type = "button" id = "approvalListbtn" class ="btn btn-secondary btn-sm" onclick = "self.close(); opener.location.reload();">결재선 선택</button>
-                            </div>
-                        </div>
-                    </div>
+	function formselect(){
+		 var form = $("#selectform option:selected").val();
+			  window.open('${path}/form1.fo?form_name='+form,'문서기안','width=860,height=1100,location=no,status=no,scrollbars=yes');
+		};
+		
+	
+	</script>	
+              <div class="card" onload = "loadline();">
+                 <div class="card-body">
+                    <form name = "selectform" action = "${path}/updateAppAction.ap" method = "post"> 
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">  
+                    <input type="hidden" name="doc_id" value="${doc_id}">  
+                    <input type="hidden" name="load_id" value="${load_id}"> 
+                     <div>
+                     <h5 class="card-title">카테고리선택</h5>
+                       <select class="select2 form-control custom-select" name = "category" id = "category" style="width: 100%; height:36px;" required>
+                         <optgroup label="일반">
+                             <option value="내부기안">내부기안</option>
+                             <option value="외부공문">외부공문</option>
+                         </optgroup>
+                         <optgroup label="교육">
+                             <option value="">교육</option>
+                             <option value="교육신청">교육신청</option>
+                             <option value="교육보고">교육보고</option>
+                         </optgroup>
+                         <optgroup label="사업진행">
+                             <option value="마케팅">마케팅</option>
+                             <option value="IT">IT</option>
+                         </optgroup>
+                      </select>
+                      </div>
+                      <hr> 
+		                <div class="row">
+		                    <div class="col-12">
+		                        <div class="card">
+		                            <div class="card-body">
+		                                <h4 class="card-title">결재선 선택</h4>
+		                                <select multiple="multiple" size="10" class="duallistbox" name = "getter_id">
+		                                 <c:forEach var="dto" items="${list}" varStatus = "status">
+		                                    <option value="${dto.id}">${dto.id}  ${dto.depart_name} ${dto.name} ${dto.rank} </option>
+		                                </c:forEach>   
+		                                </select>
+		                              	<!-- 결재선 표기 위치 -->
+		                              	<div id = "load_line"></div>
+		                                <br>
+		                            </div>
+		                        </div>
+		                    </div>
+		                 </div>
+		                 <div id = "btn">
+                      	<button type = "submit" id = "load_line_select" class ="btn btn-secondary btn-sm">결재선선택</button>  
+                      <button type = "button" class ="btn btn-secondary btn-sm" onclick="self.close(); opener.location.reload();">확인</button> 
+             		  </div>
+             		  </form>
+                       </div>
+                   </div>
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->

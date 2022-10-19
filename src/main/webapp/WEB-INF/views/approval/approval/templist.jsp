@@ -27,15 +27,96 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<<<<<<< HEAD
 <script type="text/javascript">
-	
-	
+function delete_temp(doc_id) {
+	if(confirm("삭제할까요?")) {
+		location.href = "${path}/deleteTemp.ap?doc_id="+doc_id+"&${_csrf.parameterName}=${_csrf.token}";
+	}
+}
+
+
 </script>
 
-=======
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
-</head>
+<style>
+	input[type="checkbox"] {
+        -webkit-appearance: none;
+        position: relative;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        outline: none !important;
+        border: 1px solid #3e5569;
+        border-radius: 2px;
+        background: #fbfbfb;
+    }
+ 
+    input[type="checkbox"]::before {
+        content: "\2713";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        overflow: hidden;
+        transform: scale(0) translate(-50%, -50%);
+        line-height: 1;
+    }
+ 
+    input[type="checkbox"]:checked {
+        background-color: #3f50f6;
+        border-color: rgba(255, 255, 255, 0.3);
+        color: white;
+    }
+ 
+    input[type="checkbox"]:checked::before {
+        border-radius: 2px;
+        transform: scale(1) translate(-50%, -50%)
+    }
+</style>
+<script type="text/javascript">
+	$(function() {
+		// 전체 체크박스
+		let chkList = $('input[name=chkList]:checkbox');
+		
+		// 체크된 체크박스의 값
+		let iVal = $('input:checkbox[name=chkList]:checked').val();
+		
+		// checkbox의 전체 개수
+		let AllChkLeng = $('input:checkbox[name=chkList]').length;
+		
+		// 체크된 값의 개수
+		let chkLeng = $('input:checkbox[name=chkList]:checked').length;
+		
+		// 전체선택 버튼
+		$('#chkAll').click(function() {
+			let AllCheck = $(this).prop("checked");
+			
+			if(AllCheck == true) {
+				// checkbox의 전체 체크
+				chkList.prop('checked', true);
+			} else {
+				// checkbox의 전체 체크 해제
+				chkList.prop('checked', false);
+			}
+			
+		});
+		
+		// 개별 체크박스에 따른 전체체크박스 변경
+		$(".chkList").click(function() {
+			var total = $(".chkList").length;
+			var checked = $(".chkList:checked").length;
+			
+			if(total != checked) $("#chkAll").prop("checked", false);
+			else $("#chkAll").prop("checked", true); 
+		});
+		
+		// deleteBtn
+		$('#tempdeleteBtn').click(function() {
+			document.templistform.action ="${path}/deleteTempchk.ap";
+			document.templistform.submit();
+		});
+		
+	});
+	
+</script>
 
 <body>
     <!-- ============================================================== -->
@@ -82,7 +163,7 @@
                     <div class="p-3 b-b">
                         <div class="d-flex align-items-center">
                             <div>
-                                <h4> 기안문서함 </h4>
+                                <h4> 임시보관함 </h4>
                             </div>
                             <div class="ml-auto">
                                 <input placeholder="문서 제목 검색" type="text" class="form-control">
@@ -91,22 +172,24 @@
                     </div>
                     <!-- Action part -->
                     <!-- Button group part -->
-                    <div class="bg-light p-3 d-flex align-items-center do-block">
-                        <div class="btn-group mt-1 mb-1">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input sl-all" id="cstall">
-                                <c:forEach var = "dto" items="${list}" begin="0" end ="0">
-                                <label class="custom-control-label" for="cstall">Check All  기안문서함 > ${dto.state}문서</label>
+                    	<form name="templistform" method="post">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                    		 <div class="bg-light p-3 d-flex align-items-center do-block">
+		                        <div class="btn-group mt-1 mb-1">
+		                            <div class="custom-control custom-checkbox">
+		                                <input type="checkbox" id="chkAll" class="chk" name="chkAll">
+		                                <label for="chkAll">&nbsp;전체선택&nbsp;&nbsp;  <c:forEach var = "dto" items="${list}" begin="0" end ="0">
+                                	 기안문서함 > ${dto.state}문서</label>
                                 </c:forEach>
-                            </div>
-                        </div>
-                        <div class="ml-auto">
-<%--                             <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                                <button type="button" class="btn btn-outline-secondary btn-sm font-18" onclick="location.href='${path}/onapproval.ap'">삭제</button>
-                            </div> --%>
-
-                        </div>
-                    </div>
+		                            </div>
+		                        </div>
+		                        <div class="ml-auto">
+		                            <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+		                                <button type="button" id="tempdeleteBtn" class="btn btn-outline-secondary font-18">선택삭제</button>
+		                            </div>
+		                        </div>
+		                    </div>
+                    
                     <!-- Action part -->
                     <!-- list-->
                     <div class="table-responsive">
@@ -114,11 +197,8 @@
                                 <!-- row -->
                                 <tr class="unread">
                                     <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst1">
-                                            <label class="custom-control-label" for="cst1">&nbsp;</label>
-                                        </div>
+                                    <td class="chb" style="padding-right:0; color:#3f50f6; width:5%;">
+                                        
                                     </td>
                                     <td class="user-image p-2">
                                     	<h6 class="mb-0 text-truncate font-weight-medium">상태
@@ -129,18 +209,16 @@
                                     <td class="py-2 px-3 no-wrap text-truncate"> 
                                         <h6 class="mb-0 text-truncate font-weight-medium">문서제목</h6>
                                     </td>
-                                    <td class="clip px-1 py-2"><i class="fa fa-paperclip"></i></td>
                                     <td class="time text-right"> 
                                     <h6 class="mb-0 text-truncate font-weight-medium">삭제</h6></td>
                                 </tr>
                                 <!-- row -->
                                 <c:forEach var = "dto" items="${list}">    
                                 <tr class="unread">
-                                    <!-- label -->
-                                <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst1">
-                                            <label class="custom-control-label" for="cst1">&nbsp;</label>
+                                    <td class="chb" style="padding-right:0; color:#3f50f6; width:5%;">
+                                        <div class="custom-control custom-checkbox" style="width:0.1px;">
+                                            <input type="checkbox" name="chkList" class="chkList chk" value="${dto.doc_id}">
+                                            <label for="${dto.doc_id}"></label>
                                         </div>
                                     </td>
                                     <td class="user-image p-2"><span class="badge badge-warning blue-grey-text text-darken-4 mr-2">${dto.state}</span> </td>
@@ -148,27 +226,39 @@
                                         <h6 class="mb-0 text-truncate font-weight-medium">bee-22-${dto.doc_id}</h6>
                                     </td>
                                     <td class="py-2 px-3 no-wrap text-truncate"> 
-                                            <span class="blue-grey-text text-darken-4">${dto.title}</span>
+                                           
+                                            <%-- <a href = "${path}/doc_detailAction.fo?doc_id=${dto.doc_id}">${dto.title}</a></span> --%>
+                                            <a onclick="window.open('${path}/modifydocAction.fo?doc_id=${dto.doc_id}','기안문서','width=850,height=1100,scrollbars=yes');" href="${path}/templist.ap?stateid=temp"> <span class="blue-grey-text text-darken-4">${dto.title}</span></a>
                                     </td>
-                                    <td class="clip px-1 py-2"><i class="fa fa-paperclip"></i></td>
-                                    <td class="time text-right"><button type = "button" id = "delete">삭제</button></td>
+                                    <td class="time text-right"><button type = "button" onclick="delete_temp(${dto.doc_id});">삭제</button></td>
                                 </tr>
                                 </c:forEach>
                                 <!-- row -->
 
                         </table>
                     </div>
+                    <!-- 페이징  -->                    
                     <div class="p-3 mt-4">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">Previous</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">Next</a></li>
+                            	<!-- 이전 버튼 -->
+                            	<c:forEach var = "dto" items="${list}" begin = "0" end = "0">
+	                            	<c:if test="${paging.startPage > 10}">
+	                            		<li class="page-item"><a class="page-link" href="${path}/templist.ap?stateid=${dto.stateid}&pageNum=${paging.prev}">Previous</a></li>
+									</c:if>
+									<!-- 페이지 -->
+									<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+										<li class="page-item"><a class="page-link" href="${path}/templist.ap?stateid=${dto.stateid}&pageNum=${num}">${num}</a></li>
+									</c:forEach>
+									<!-- 다음 버튼 -->
+									<c:if test="${paging.endPage < paging.pageCount}">
+										<li class="page-item"><a class="page-link" href="${path}/templist.ap?stateid=${dto.stateid}&pageNum=${paging.next}">Next</a></li>
+									</c:if>
+								</c:forEach>
                             </ul>
                         </nav>
                     </div>
+                    </form>
                 </div>
             <!-- ============================================================== -->
             <!-- End PAge Content -->

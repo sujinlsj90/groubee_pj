@@ -32,4 +32,6 @@ public interface CommonDAO {
 	   
 	// 시큐리티
 	public int updateGrade(String key);
+	
+	//사원정
 }

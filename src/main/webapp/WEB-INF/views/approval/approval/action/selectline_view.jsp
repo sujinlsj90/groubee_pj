@@ -81,7 +81,9 @@ $(function(){
 		<tr>
 			<td>
 				<%-- ${sum} --%>
-				${fn:length(list) - status.index}
+				<!-- 역순 -->
+				<%-- ${fn:length(list) - status.index} --%>
+				${status.count}
 			</td>
 			<td>
 				${dto.depart_name} 

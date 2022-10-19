@@ -2,7 +2,7 @@ package com.spring.tutorial.dto;
 
 import java.sql.Date;
 
-public class ApproveDraftDTO extends CommonDTO{
+public class ApproveDraftDTO extends ApprovalInfoDTO{
 	
 	private int doc_id;
 	private int load_id;
@@ -13,10 +13,49 @@ public class ApproveDraftDTO extends CommonDTO{
 	private String content;
 	private int show;
 	private String state;
+	private String stateid;
 	private Date upday;
 	private String files;
+	private String nonfiles;
+	private String form_name;
 	
 	public ApproveDraftDTO() {}
+
+	
+
+	public String getNonfiles() {
+		return nonfiles;
+	}
+
+	public void setNonfiles(String nonfiles) {
+		this.nonfiles = nonfiles;
+	}
+
+	public String getStateid() {
+		return stateid;
+	}
+
+	public void setStateid(String stateid) {
+		this.stateid = stateid;
+	}
+
+
+	public Date getUpday() {
+		return upday;
+	}
+
+	public void setUpday(Date upday) {
+		this.upday = upday;
+	}
+
+	public String getForm_name() {
+		return form_name;
+	}
+
+	public void setForm_name(String form_name) {
+		this.form_name = form_name;
+	}
+
 
 	public int getDoc_id() {
 		return doc_id;
@@ -88,14 +127,6 @@ public class ApproveDraftDTO extends CommonDTO{
 
 	public void setState(String state) {
 		this.state = state;
-	}
-
-	public Date getupday() {
-		return upday;
-	}
-
-	public void setupday(Date upday) {
-		this.upday = upday;
 	}
 
 	public String getFiles() {

@@ -52,27 +52,18 @@
 	
 	function formselect(){
 		 var form = $("#selectform option:selected").val();
-		  if(form == "업무기안") {
-			  window.open('${path}/form1.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
-			  }
-		  if(form == "회의록") {
-			  window.open('${path}/form2.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
-			  }
-		  if(form == "계획보고") {
-			  window.open('${path}/form3.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
-			  }
-		  if(form == "결과보고") {
-			  window.open('${path}/form4.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
-			  }
-		  if(form == "교육신청") {
-			  window.open('${path}/form5.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
-			  }
-		  if(form == "교육보고서") {
-			  window.open('${path}/form6.fo','기안문','width=860,height=1100,location=no,status=no,scrollbars=yes');
-			  }
-		   
+			  window.open('${path}/form1.fo?form_name='+form,'문서기안','width=860,height=1100,location=no,status=no,scrollbars=yes');
 		};
 		
+	$(function(){
+		$("#all_loadline").click(function(){
+			location.href = "${path}/selectAllmemform.ap?${_csrf.parameterName}=${_csrf.token}";
+		});
+		$("#loadline").click(function(){
+			location.href = "${path}/selectform.ap?${_csrf.parameterName}=${_csrf.token}";
+		});
+	});
+	
 
 	
 	</script>		
@@ -80,7 +71,6 @@
                  <div class="card-body">
                     <form name = "selectform" action = "${path}/selectAppAction.ap" method = "post"> 
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">  
-                    <!-- selectAppAction.ap에서 insert완료하기, ajax로 결재선 노출하기 -->
                      <div>
                      <h5 class="card-title">카테고리선택</h5>
                      <h6 class="card-subtitle">카테고리를 선택하세요</h6>
@@ -106,9 +96,13 @@
 		                        <div class="card">
 		                            <div class="card-body">
 		                                <h4 class="card-title">결재선 선택</h4>
+		                                <div id = btn>
+		                                <button type = "button" id = "all_loadline" class ="btn btn-secondary btn-sm">모든 부서 리스트</button>
+		                                <button type = "button" id = "loadline" class ="btn btn-secondary btn-sm">해당 부서 리스트</button>
+		                                </div>
 		                                <select multiple="multiple" size="10" class="duallistbox" name = "getter_id">
 		                                 <c:forEach var="dto" items="${list}" varStatus = "status">
-		                                    <option value="${dto.id}">${dto.depart_name} ${dto.name} ${dto.rank}</option>
+		                                    <option value="${dto.id}">${dto.id}  ${dto.depart_name} ${dto.name} ${dto.rank} </option>
 		                                </c:forEach>   
 		                                </select>
 		                              	<!-- 결재선 표기 위치 -->

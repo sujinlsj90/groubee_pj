@@ -36,9 +36,9 @@
                   username-parameter="id" password-parameter="pwd" />
       <security:session-management>
          <!-- 같은 브라우저에서 여러창 동시접속수 / 세션만료시 이동할 주소 / 최대 세션 초과시 에러 옵션-->
-         <security:concurrency-control max-sessions="2" 
+         <security:concurrency-control max-sessions="10" 
             expired-url="/login.co"
-            error-if-maximum-exceeded="true"
+            error-if-maximum-exceeded="false"
          />
       </security:session-management>
       

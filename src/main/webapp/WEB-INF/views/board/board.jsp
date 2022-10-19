@@ -27,15 +27,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
-<<<<<<< HEAD
-	
-=======
-
-
-
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
-</script>
 
 </head>
 
