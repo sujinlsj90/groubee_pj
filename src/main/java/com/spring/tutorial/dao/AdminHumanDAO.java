@@ -20,9 +20,14 @@ public interface AdminHumanDAO {
 	//개인정보 삭제
 	public int usersDelete(String id);
 	
-	//전체부서명
+	//전체부서
 	public List<DepartDTO> departsInfo();
 	
+	//부서 상세
+	public DepartDTO departDetail(String id);
+	
+	//부서 수정
+	public int departUpdate(DepartDTO dto );
 	
 
 }

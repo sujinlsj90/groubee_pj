@@ -54,22 +54,35 @@ public class AdminController {
 	
 	
 	//부서설계
-	@RequestMapping("adDepart2.ad")
+	@RequestMapping("departInfo.ad")
 	public String adDepart2(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
-		logger.info("AdminController -> adDepart2.ap");
-		return "admin/adDepart/adDepart2";
+		logger.info("AdminController -> departInfo.ad");
+		return "admin/adDepart/departInfo";
 	}
 	
 	
-	//부서원생성
-	@RequestMapping("adDepart3.ad")
-	public String adDepart3(HttpServletRequest req, Model model) 
+	//부서 상세
+	@RequestMapping("d_update.ad")
+	public void d_update(HttpServletRequest req, HttpServletResponse res ,Model model) 
 			throws ServletException, IOException{
-		logger.info("AdminController -> adDepart3.ap");
-		return "admin/adDepart/adDepart3";
+		logger.info("AdminController -> d_update.ad");
+		
+		service.departDetailAction(req, res, model);
+		String viewPage = req.getContextPath() + "/adDepart.ad";
+		res.sendRedirect(viewPage);
 	}
 	
+	//부서 수정
+	@RequestMapping("update.ad")
+	public String update(HttpServletRequest req, HttpServletResponse res ,Model model) 
+			throws ServletException, IOException{
+		logger.info("AdminController -> update.ad");
+		
+		service.departUpdateAction(req, res, model);
+		
+		return "admin/adDepart/update";
+	}
 	
 	//인사관리-사원통합
 	@RequestMapping("adHr.ad")

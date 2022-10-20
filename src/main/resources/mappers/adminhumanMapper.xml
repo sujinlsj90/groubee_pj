@@ -35,7 +35,30 @@
     
     <!-- 관리자 전체부서명 -->
     <select id="departsInfo" resultType="com.spring.tutorial.dto.DepartDTO">
-    	select * from grb_depart
+    	select  m.id , d.depart_name, t.team_name , m.name ,d.show
+		    from  grb_member m join grb_depart d on m.depart_name = d.depart_name
+		    join grb_team t on m.id = t.id
+		order by d.depart_name ,t.team_name
     </select>
+    
+    <!-- 관리자 전체부서상세 -->
+    <select id="departDetail" parameterType="String" resultType="com.spring.tutorial.dto.DepartDTO">
+    	select  m.id , d.depart_name, t.team_name , m.name ,d.show
+		    from  grb_member m join grb_depart d on m.depart_name = d.depart_name
+		    join grb_team t on m.id = t.id
+		where m.id = #{id}
+    </select>
+    
+    <!-- 관리자 부서 수정 -->
+  <update id="departUpdate" parameterType="com.spring.tutorial.dto.DepartDTO">
+    	update grb_team
+			set depart_name= #{depart_name} , team_name = #{team_name}
+		where id = #{id}
+    </update> 
+    
+    <!-- 관리자 부서 삭제 -->
+    <!-- <update id="departDelete" parameterType="String">
+    	update grb_depart set show = 0 where depart_name= #{depart_name}
+    </update> -->
    		
  </mapper>

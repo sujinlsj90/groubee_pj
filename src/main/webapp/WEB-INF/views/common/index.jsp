@@ -82,13 +82,8 @@
                         <div class="card bg-light-info border-0">
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
-<<<<<<< HEAD
-                                    <a href="javascript:openWindowPop('http://192.168.219.101/roundcube/', 'popup');" 
-=======
                                     <a href="javascript:openWindowPop('http://192.168.219.101:80/roundcube/', 'popup');"
->>>>>>> d2d99a167819743c119e512e86d638129e6d5ec3
-                                        class="btn btn-info rounded-circle btn-circle-lg text-white mb-2">
-                                        <i data-feather="mail"></i>
+                                        ><i data-feather="mail"></i>
                                     </a>
                                 </div>
                                 <div>

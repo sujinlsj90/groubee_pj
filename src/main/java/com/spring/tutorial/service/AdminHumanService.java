@@ -22,5 +22,12 @@ public interface AdminHumanService {
 	
 	//전체부서정보
 	public void departsAction(HttpServletRequest req,Model model);
+	
+	//부서정보 상세
+	public void departDetailAction(HttpServletRequest req, HttpServletResponse res  ,Model model);
+	
+	//부서정보 수정
+	public void departUpdateAction(HttpServletRequest req, HttpServletResponse res  ,Model model);
+	
 
 }

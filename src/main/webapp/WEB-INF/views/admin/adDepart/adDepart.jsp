@@ -30,7 +30,21 @@
 <![endif]-->
 
 <script type="text/javascript">
-	
+function btnUpdate(id){
+	 $.ajax({
+	       url: "${path}/d_update.ad"+"&${_csrf.parameterName}=${_csrf.token}",
+	       type: "post",
+	       dateType: "html",
+	       success : function(result) {
+	    	   console.log(result)
+	          $("#btnUpdate").html(result);
+	       },
+	       error: function(){
+	          alert("btnUpdate 오류");
+	       }
+	    });
+}
+
 </script>
 
 </head>
@@ -97,12 +111,12 @@
 				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adDepart.ad'">부서 지정</button>
 				    </div>
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adDepart2.ad'">부서 설계</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/departInfo.ad'">부서 설계</button>
 				    </div>
 
 				</div>
                 <br><br>
-                                <div class="row">
+                   <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
@@ -112,22 +126,23 @@
                                         class="table table-striped table-bordered display no-wrap" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>노출</th>
-                                                <th>회사번호</th>
-                                                <th>부서명</th>
+                                                <th>사번</th>
+                                                <th>부서</th>
+                                                <th>팀</th>
+                                                <th>이름</th>
                                                 <th>수정</th>
-                                                <th>Salary</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <c:forEach var="dto" items="${list}">
                                             <tr>
-                                                <td>${dto.show}</td>
-                                                <td>${dto.company_id}</td>
+                                                <td>${dto.id}</td>
                                                 <td>${dto.depart_name}</td>
+                                                <td>${dto.team_name}</td>
+                                                <td>${dto.name}</td>
                                                 <td>
-                                                <input type="button" name="" value="수정"></td>
-                                                <td>$320,800</td>
+                                               		<input type="button" name="btnUpdate" id="btnUpdate" value="수정" onclick="btnUpdate(${dto.id})">
+                                                </td>
                                             </tr>
                         				  </c:forEach>
                                         </tbody>

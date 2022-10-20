@@ -74,7 +74,7 @@
 												<div class="form-group">
 													<label class="name">* User Name</label> <br>
 													<span id="id" name="id">${dto.id}</span>
-													<input type="hidden" name="id" value="${dto.id}">
+													<input type="hidden" name="id" value="${dto.id}" readonly>
 												</div>
 											</div>
 											<!-- 영문 이름 -->

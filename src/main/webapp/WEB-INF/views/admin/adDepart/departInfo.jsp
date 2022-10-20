@@ -30,7 +30,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-	
+
 </script>
 
 </head>
@@ -78,7 +78,7 @@
 									<li class="breadcrumb-item active">
 									<a href="${path}/adminMain.ad">Home</a></li>
 									<li class="breadcrumb-item active"aria-current="page">
-									<a href="${path}/adDepart2.ad">Depart Settings</a></li>
+									<a href="${path}/adDepart.ad">Depart Select</a></li>
 								</ol>
 							</nav>
 						</div>
@@ -97,12 +97,166 @@
 				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adDepart.ad'">부서 지정</button>
 				    </div>
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adDepart2.ad'">부서 설계</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/departInfo.ad'">부서 설계</button>
 				    </div>
 
 				</div>
                 <br><br>
-                <img src = "${path}/resources/images/adminImages/부서관리-부서설계.JPG">
+                
+                     
+			<!-- 여기부터 내용 넣으십시오 -->
+			<div class="row">
+                    <!-- Column -->
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card">
+                            <!-- Tabs -->
+                            <ul class="nav nav-pills custom-pills" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#last-month"
+                                        role="tab" aria-controls="pills-profile" aria-selected="false">부서설계</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-setting-tab" data-toggle="pill" href="#previous-month"
+                                        role="tab" aria-controls="pills-setting" aria-selected="false">인사평가</a>
+                                </li>
+                            </ul>
+                            <!-- Tabs -->
+                 <div class="tab-content" id="pills-tabContent">
+                 <div class="tab-pane fade" id="last-month" role="tabpanel"
+                     aria-labelledby="pills-profile-tab">
+                     <div class="card-body">
+                              <!-- Row 신상-->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <hr class="mt-0">
+                            <form class="form-horizontal r-separator">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-lg-6">
+                                            <div class="form-group row">
+                                                <label for="inputEmail3"
+                                                    class="col-sm-3 text-right control-label col-form-label">부서</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="inputEmail3"
+                                                        placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                          <div class="col-sm-12 col-lg-6">
+                                            <div class="form-group row">
+                                                <label for="inputEmail3"
+                                                    class="col-sm-3 text-right control-label col-form-label">팀</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="inputEmail3"
+                                                        placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                          <div class="col-sm-12 col-lg-6">
+                                            <div class="form-group row">
+                                                <label for="inputEmail3"
+                                                    class="col-sm-3 text-right control-label col-form-label">직책</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="inputEmail3"
+                                                        placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6">
+                                            <div class="form-group row">
+                                                <label for="inputEmail3"
+                                                    class="col-sm-3 text-right control-label col-form-label">업무</label>
+                                                <div class="col-sm-9">
+                                                    <input type="text" class="form-control" id="inputEmail3"
+                                                        placeholder="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="card-body bg-light">
+                                    <div class="row">
+                                        <div class="form-group">
+                                                <label class="col-md-12">담당업무</label>
+                                                <div class="col-md-12">
+                                                    <textarea rows="10" cols="100"
+                                                        class="form-control form-control-line"></textarea>
+                                                </div>
+                                            </div>
+                                    </div>
+	                                </div>
+                                <div class="card-body">
+                                    <div class="form-group mb-0 text-right">
+                                        <button type="submit"
+                                            class="btn btn-info waves-effect waves-light">저장</button>
+                                        <button type="submit"
+                                            class="btn btn-dark waves-effect waves-light">취소</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Row -->
+                <!-- 직무/담당  -->
+                                </div>
+                         </div>
+                         <div class="tab-pane fade" id="previous-month" role="tabpanel"
+                             aria-labelledby="pills-setting-tab">
+                             <div class="card-body">
+                                 <form class="form-horizontal form-material">
+                                     <div class="form-group">
+                                         <label class="col-md-12">평가자</label>
+                                         <div class="col-md-12">
+                                             <input type="text" value=""
+                                                 class="form-control form-control-line" readonly>
+                                         </div>
+                                     </div>
+                                     <div class="form-group">
+                                         <label class="col-md-12">평가년도</label>
+                                         <div class="col-md-12">
+                                             <input type="Date" placeholder=""
+                                                 class="form-control form-control-line">
+                                         </div>
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="example-email" class="col-md-12">역량</label>
+                                         <div class="col-md-12">
+                                             <input type="text" placeholder=""
+                                                 class="form-control form-control-line" name="example-email"
+                                                 id="example-email" readonly>
+                                         </div>
+                                     </div>
+                                     <div class="form-group">
+                                         <label class="col-md-12">성과</label>
+                                         <div class="col-md-12">
+                                             <input type="text" value=""
+                                                 class="form-control form-control-line" readonly>
+                                         </div>
+                                     </div>
+                                     <div class="form-group">
+                                         <label class="col-md-12">의견</label>
+                                         <div class="col-md-12">
+                                             <textarea rows="5"
+                                                 class="form-control form-control-line">
+                                                 select m.* , p.* from 
+												grb_member m join grb_personnel p on m.id = p.id
+												where m.id = 123;
+                                                 </textarea>
+                                             </div>
+                                         </div>
+                                     </form>
+                                 </div>
+                             </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Column -->
+                </div>
+                <!-- Row -->
+         
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
                 <!-- *************************************************************** -->
@@ -226,6 +380,10 @@
     <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
     <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
     <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
+    <!--This page plugins -->
+    <script src="${path}/resources/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="${path}/resources/dist/js/pages/datatable/datatable-basic.init.js"></script>
+</body>
 </body>
 
 </html>

@@ -527,9 +527,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 
 	}
 
-<<<<<<< HEAD
-	
-=======
+
 	// 임시보관함 개별삭제
 	@Override
 	public void deleteTemp(HttpServletRequest req, Model model) {
@@ -1117,6 +1115,5 @@ public class ApprovalServiceImpl implements ApprovalService {
 
 	}
 
->>>>>>> d2d99a167819743c119e512e86d638129e6d5ec3
 
 }

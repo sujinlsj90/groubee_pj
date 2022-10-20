@@ -11,7 +11,7 @@ public class TeamDTO {
 	private Date ap_day;       //발령이
 	private String contents;   //담당내용
 	private String rank;       //직책
-	private String name;	  //이름
+	private String name;	   //이름
 	
 	
 	public String getName() {

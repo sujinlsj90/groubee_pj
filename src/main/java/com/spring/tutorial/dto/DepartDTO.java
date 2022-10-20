@@ -2,7 +2,7 @@ package com.spring.tutorial.dto;
 
 
 //부서
-public class DepartDTO {
+public class DepartDTO extends TeamDTO{
 	
 	private String depart_name;  //부서명
 	private int company_id; 	//회사번호

@@ -133,4 +133,34 @@ public class AdminHumanServiceImpl implements AdminHumanService{
 		
 	}
 
+	//부서 상세
+	@Override
+	public void departDetailAction(HttpServletRequest req, HttpServletResponse res, Model model) {
+		System.out.println("관리자 서비스 -> 부서상세 ");
+		
+		String id = req.getParameter("id");
+		
+		DepartDTO dto = dao.departDetail(id);
+		
+		model.addAttribute("dto", dto);
+	}
+
+	//부서 수정
+	@Override
+	public void departUpdateAction(HttpServletRequest req, HttpServletResponse res, Model model) {
+		System.out.println("관리자 서비스 -> 부서 수정");
+		String id = req.getParameter("id");
+		
+		DepartDTO dto = new DepartDTO();
+		dto.setId(id);
+		dto.setDepart_name(req.getParameter("depart_name"));
+		dto.setTeam_name(req.getParameter("team_name"));
+		
+		int updateCnt = dao.departUpdate(dto);
+		
+		model.addAttribute("updateCnt",updateCnt );
+				
+		
+	}
+
 }

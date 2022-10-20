@@ -61,4 +61,22 @@ public class AdminHumanDAOImpl implements AdminHumanDAO{
 		return list;
 	}
 
+	//부서 상세
+	@Override
+	public DepartDTO departDetail(String id) {
+		System.out.println("관리자dao -> 부서상세");
+		
+		DepartDTO dto = sqlSession.selectOne("com.spring.tutorial.dao.AdminHumanDAO.departDetail", id);
+		return dto;
+	}
+
+	//부서 수정
+	@Override
+	public int departUpdate(DepartDTO dto) {
+		System.out.println("관리자 dao -> 부서 수정");
+		
+		int updateCnt = sqlSession.update("com.spring.tutorial.dao.AdminHumanDAO.departUpdate", dto);
+		return updateCnt;
+	}
+
 }
