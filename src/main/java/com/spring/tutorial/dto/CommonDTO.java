@@ -36,6 +36,7 @@ public class CommonDTO {
 	private String sign; // 사인, 인감
 	private String state; // 재직 여부 (재직, 휴직, 퇴직)
 	private int show; // 노출 여부 (0 : X, 1 : Y)
+	private String team_name;	//팀
 	// 추가 - 시큐리티
     private String key;   // 이메일인증
     private String authority;  // 권한등급 : ROLE_USER:customer, ROLE_ADMIN:관리자
@@ -290,6 +291,15 @@ public class CommonDTO {
 	public void setShow(int show) {
 		this.show = show;
 	}
+	
+
+	public String getTeam_name() {
+		return team_name;
+	}
+
+	public void setTeam_name(String team_name) {
+		this.team_name = team_name;
+	}
 
 	public String getKey() {
 		return key;
@@ -324,8 +334,9 @@ public class CommonDTO {
 				+ company_id + ", rank=" + rank + ", salary=" + salary + ", contract=" + contract + ", hireday="
 				+ hireday + ", retireday=" + retireday + ", etc=" + etc + ", sys_rank=" + sys_rank + ", bank=" + bank
 				+ ", account_number=" + account_number + ", image=" + image + ", sign=" + sign + ", state=" + state
-				+ ", show=" + show + ", key=" + key + ", authority=" + authority + ", enabled=" + enabled + "]";
+				+ ", show=" + show + ", team_name=" + team_name + ", key=" + key + ", authority=" + authority
+				+ ", enabled=" + enabled + "]";
 	}
-	
+
 	
 }

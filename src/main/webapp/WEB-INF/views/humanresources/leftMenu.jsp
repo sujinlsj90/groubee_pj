@@ -60,11 +60,6 @@
 										<span class="hide-menu" style="color: #343a40;">내인사정보 </span></a>
 									</li>
 									<li class="sidebar-item" style="color: #343a40;">
-										<a class="sidebar-link" href="${path}/humanInfo.hu"
-										aria-expanded="false" style="color: #343a40;">
-										<span class="hide-menu" style="color: #343a40;">인사정보 재등록 </span></a>
-									</li>
-									<li class="sidebar-item" style="color: #343a40;">
 										<a class="sidebar-link" href="${path}/groub.hu"
 										aria-expanded="false" style="color: #343a40;">
 										<span class="hide-menu" style="color: #343a40;">조직도 </span></a>

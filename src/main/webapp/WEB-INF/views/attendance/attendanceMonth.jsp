@@ -15,10 +15,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
     <title>Groubee - 월 근태 현황</title>	
-	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
-    <!-- This Page CSS -->
-    <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
-    <link href="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />    
     <!-- Custom CSS -->
     <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -28,13 +25,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
-<<<<<<< HEAD
-		
-=======
-	// alert("select * from grb_attendance a \n join grb_member m on a.id = m.id \n where  m.id = 1 \n order by today;");	
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
-</script>
 
 </head>
 
@@ -82,23 +72,21 @@
 					<div class="bg-light p-3 d-flex align-items-center do-block">
 						<div style="align: center">
 							<h4>월 근태 현황</h4>
-							<h1>2022.10</h1>
+							<h1 class="title"></h1>
 						</div>						
 					</div>
                     <!-- Action part -->
                     <div class="card">
-						<div class="card-body">
-							<h4 class="card-title">10월</h4>
-							<div class="container" style="align: center">								
-								<div class="p-0 border-0"><hr></div>
+						<div class="card-body">							
+							<div class="container" style="align: center">															
 								<div class="row">
 									<div class="col bg-light border p-3">
 										<div>이번달 누적 시간</div>
-										<div>08h 37m 7s</div>
+										<div>${workmonth}</div>
 									</div>
 									<div class="col order-12 bg-light border p-3">
 										<div>이번달 연장 시간</div>
-										<div>18h 00m 00s</div>
+										<div>${overmonth}</div>
 									</div>									
 								</div>
 							</div>							
@@ -111,11 +99,11 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-body">																		
-                                        <h4 class="card-title">10월 
+                                        <h4 class="month card-title"></h4>
+                                        <h4>
                                         	<a class="get-code" data-toggle="collapse" href="#pgr2" aria-expanded="true">
                                         	<i class="fa fa-code" title="월 근태 확인" data-toggle="tooltip"></i></a>
-                                        </h4>
-                                        <h6 class="card-subtitle">누적 근무 시간 33h 12m 53s(연장 근무 시간 0h 0m 0s)</h6>
+                                        </h4>                                       
                                         <div class="collapse mt-3 well" id="pgr2" aria-expanded="true">
                                             <div class="table-responsive">
 											<table id="lang_comma_deci" class="table table-striped table-bordered display no-wrap" style="width: 100%">
@@ -124,311 +112,76 @@
 													<th colspan="2">일자</th>
 													<th>업무시작</th>
 													<th>업무종료</th>
-													<th>총 근무시간</th>
-													<th>근무시간 상세</th>
-													<th>승인요청 내역</th>
+													<th>근무 시간</th>
+													<th>연장 시간</th>
+													<th>근무 형태</th>
 												</tr>
 											</thead>
 											<tbody>
+												<c:forEach var="dto" items="${month}" varStatus="status">
+												<c:if test="${dto.attend_id eq null}" >
 												<tr>
-													<td>1</td>
-													<td>토</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>일</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td>월</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>4</td>
-													<td>화</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>5</td>
-													<td>수</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>6</td>
-													<td>목</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>7</td>
-													<td>금</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>8</td>
-													<td>토</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>9</td>
-													<td>일</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>10</td>
-													<td>월</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>11</td>
-													<td>화</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>12</td>
-													<td>수</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>13</td>
-													<td>수</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>14</td>
-													<td>목</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>15</td>
-													<td>금</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>16</td>
-													<td>토</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>17</td>
-													<td>일</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>18</td>
-													<td>월</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>19</td>
-													<td>화</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>20</td>
-													<td>수</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>21</td>
-													<td>목</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>22</td>
-													<td>금</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>23</td>
-													<td>토</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>24</td>
-													<td>일</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>25</td>
-													<td>월</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>26</td>
-													<td>화</td>
-													<td>09:42:58 
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
+													<td colspan="6">등록된 근태 내역이 없습니다.</td>																		
+												</tr>	
+												</c:if>
+												<c:if test="${dto.attend_id ne null}" >
+												<tr id="attendweek">
+													<td>${dto.day}</td>
+													<td>${dto.dy}</td>
+													<td id="attendin${dto.attend_id}">
+														<script type="text/javascript">
+															var attendin = getTimeStamp('${dto.attendin}');
+															if (attendin == 'Invalid date'){
+																attendin = "";
+															}else{
+																document.getElementById("attendin${dto.attend_id}").innerHTML = attendin;
+															}
+														</script>											
 													</td>
-													<td>16:32:35
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
+													<td id="attendout${dto.attend_id}">
+														<script type="text/javascript">
+															var attendout = getTimeStamp('${dto.attendout}');
+															if (attendout == 'Invalid date'){
+																attendout = "";
+															}else{
+																document.getElementById("attendout${dto.attend_id}").innerHTML = attendout;
+															}
+														</script>											
+													</td>												
+													<td id="worktime${dto.attend_id}">
+														<script type="text/javascript">
+															var seconds = '${dto.worktime}';
+															var hour = parseInt(seconds / 3600);
+															var min = parseInt((seconds % 3600)/60);
+															var sec = seconds % 60;
+															if (hour.toString().length==1) hour = "0" + hour;
+															if (min.toString().length==1) min = "0" + min;
+															if (sec.toString().length==1) sec = "0" + sec;
+															var worktime = hour + ":" + min + ":" + sec;
+															if(worktime == "00:00:00"){ worktime = ""; }
+															console.log(worktime);															
+															document.getElementById("worktime" + ${dto.attend_id}).innerHTML = worktime;
+														</script>														
 													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>27</td>
-													<td>수</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>28</td>
-													<td>목</td>
-													<td>09:42:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
+													<td id="overtime${dto.attend_id}">
+														<script type="text/javascript">
+															var seconds = '${dto.overtime}';
+															var hour = parseInt(seconds / 3600);
+															var min = parseInt((seconds % 3600)/60);
+															var sec = seconds % 60;
+															if (hour.toString().length==1) hour = "0" + hour;
+															if (min.toString().length==1) min = "0" + min;
+															if (sec.toString().length==1) sec = "0" + sec;															
+															var overtime = hour + ":" + min + ":" + sec;
+															if( overtime == "00:00:00"){ overtime = ""; }
+															console.log(worktime);															
+															document.getElementById("overtime" + '${dto.attend_id}').innerHTML = overtime;
+														</script>
 													</td>
-													<td>16:00:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>29</td>
-													<td>금</td>
-													<td>13:23:02 
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>17:51:56
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>4h 28m 12s</td>
-													<td>기본 4h 28m 12s / 연장 0h 0m 0s</td>
-													<td>완료 (연차 8.00h)</td>
-												</tr>
-												<tr>
-													<td>30</td>
-													<td>토</td>
-													<td>12:06:12
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span> 
-													</td>
-													<td>19:12:29
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>0h 44m 7s</td>
-													<td>기본 0h 44m 7s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>31</td>
-													<td>일</td>
-													<td>09:42:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>16:32:35
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
+													<td id="state">${dto.state}</td>
 												</tr>												
+												</c:if>
+												</c:forEach>																						
 											</tbody>
 											</table>
 										</div>
@@ -448,60 +201,52 @@
 					
 						<h4 class="card-title">이번달 근태 현황</h4>	
 						<h5 class="mt-4">
-							출근<span class="pull-right">85%</span>
+							업무 <span class="pull-right">${attendinrate}%</span>
 						</h5>
 						<div class="progress ">
 							<div
 								class="progress-bar bg-info wow animated progress-animated"
-								style="width: 85%; height: 6px;" role="progressbar">
+								style="width: ${attendinrate}%; height: 6px;" role="progressbar">
 								<span class="sr-only">60% Complete</span>
 							</div>
 						</div>
 						<h5 class="mt-4">
-							지각<span class="pull-right">5%</span>
+							지각 <span class="pull-right">${laterate}%</span>
 						</h5>
 						<div class="progress ">
 							<div
 								class="progress-bar bg-warning wow animated progress-animated"
-								style="width: 5%; height: 6px;" role="progressbar">
+								style="width: ${laterate}%; height: 6px;" role="progressbar">
 								<span class="sr-only">60% Complete</span>
 							</div>
-						</div>										
+						</div>															
 						<h5 class="mt-4">
-							연차<span class="pull-right">2%</span>
-						</h5>
-						<div class="progress">
-							<div class="progress-bar bg-info wow animated progress-animated"
-								style="width: 02%; height: 6px;" role="progressbar">
-								<span class="sr-only">60% Complete</span>
-							</div>
-						</div>
-						<h5 class="mt-4">
-							반차<span class="pull-right">%</span>
-						</h5>
-						<div class="progress">
-							<div class="progress-bar bg-info wow animated progress-animated"
-								style="width: 00%; height: 6px;" role="progressbar">
-								<span class="sr-only">60% Complete</span>
-							</div>
-						</div>
-						<h5 class="mt-4">
-							연장 근무<span class="pull-right">15%</span>
+							연장 <span class="pull-right">${overrate}%</span>
 						</h5>
 						<div class="progress">
 							<div
 								class="progress-bar bg-success wow animated progress-animated"
-								style="width: 15%; height: 6px;" role="progressbar">
+								style="width: ${overrate}%; height: 6px;" role="progressbar">
 								<span class="sr-only">60% Complete</span>
 							</div>
 						</div>
 						<h5 class="mt-4">
-							누적 근무<span class="pull-right">85%</span>
+							기본 근무 <span class="pull-right">${workrate}%</span>
+						</h5>
+						<div class="progress ">
+							<div
+								class="progress-bar bg-facebook wow animated progress-animated"
+								style="width:${workrate}%; height: 6px;" role="progressbar">
+								<span class="sr-only">60% Complete</span>
+							</div>
+						</div>
+						<h5 class="mt-4">
+							누적 근무 <span class="pull-right">${monthrate}%</span>
 						</h5>
 						<div class="progress ">
 							<div
 								class="progress-bar bg-danger wow animated progress-animated"
-								style="width: 85%; height: 6px;" role="progressbar">
+								style="width:${monthrate}%; height: 6px;" role="progressbar">
 								<span class="sr-only">60% Complete</span>
 							</div>
 						</div>						
@@ -617,22 +362,22 @@
     <script src="${path}/resources/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="${path}/resources/dist/js/custom.min.js"></script>
-    <!-- This Page JS -->
-    <script src="${path}/resources/dist/js/pages/email/email.min.js"></script>
-    <script src="${path}/resources/assets/libs/summernote/dist/summernote-bs4.min.js"></script>
-    <script src="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.js"></script>
-    <script>
-        $('#summernote').summernote({
-            placeholder: 'Type your email Here',
-            tabsize: 2,
-            height: 250
-        });
-        Dropzone.autoDiscover = false;
-        $(document).ready(function () {
-            var myDrop = new Dropzone("#dzid", {
-                url: '/file/post'
-            });
-        });
-    </script>
+<script type="text/javascript">            
+	$(function() {
+		// 현재 날짜
+		var currentDate = new Date();
+		var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getDate();
+		var month = (currentDate.getMonth() + 1) + "월";
+		var title = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1);
+
+		$(".title").html(title);
+		$(".month").html(month);
+
+		// 월  근태 현황
+		$(".getmonth").click(function() {
+			location.href = '${path}/attendanceMonth.at';
+		});
+	});
+</script>  
 </body>
 </html>

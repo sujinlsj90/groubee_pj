@@ -15,27 +15,18 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
     <title>Groubee - 나의 연차 내역</title>	
-	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
-    <!-- This Page CSS -->
-    <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
-    <link href="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />   
     <!-- Custom CSS -->
-    <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
+    <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">    
+    <link rel="stylesheet" type="text/css"
+        href="${path}/resources/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/assets/extra-libs/date-paginator/date-paginator-custom.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-<script type="text/javascript">
-<<<<<<< HEAD
-	
-=======
-	// alert("select * from grb_annual a \n join grb_member m on a.id = m.id \n where m.id = 1;")
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
-	
-</script>
 
 </head>
 
@@ -89,43 +80,49 @@
                     <!-- Action part -->
                     <div class="card">
 						<div class="card-body">
-							<div class="col-md-2">
-								<select class="form-control custom-select"
-									data-placeholder="연차 사용 기간" tabindex="1">
-									<option value="연차 사용 기간">연차 사용 기간</option>
-									<option value="2022-01-01~2022-12-31" selected>2022-01-01~2022-12-31</option>
-									<option value="2021-01-01~2021-12-31">2021-01-01~2021-12-31</option>
-									<option value="2020-01-01~2020-12-31">2020-01-01~2020-12-31</option>
-									<option value="2019-01-01~2019-12-31">2019-01-01~2019-12-31</option>
-									<option value="2018-01-01~2018-12-31">2018-01-01~2018-12-31</option>
+							<div class="col-md-4">
+								<select class="year form-control custom-select" id="year" tabindex="1">
+									<option id="0" value="0">연도 선택</option>									
+									<option id="1" value="2022">2022</option>
+									<option id="2" value="2021">2021</option>
+									<option id="3" value="2020">2020</option>
+									<option id="4" value="2019">2019</option>
+									<option id="5" value="2018">2018</option>
 								</select>
 							</div>							
 							<hr>														
 							<!-- 연차 정보 div -->
 							<h4 class="card-title"></h4>
 							<div class="container" style="align: center">
+								
+								<c:if test="${year[0].annual_id eq null}" >
+								<div class="row">									
+									발생된 연차 내역이 없습니다.																	
+								</div>			
+								</c:if>
+								<c:if test="${year[0].annual_id ne null}" >
 								<div class="row">
 									<div class="col bg-light border p-3">
-										<div><img src="${path}/resources/assets/images/users/4.jpg" alt="user" width="40" class="rounded-circle">Genelia Deshmukh
+										<div>
+											<img src="${year[0].image}" alt="user" width="40" class="rounded-circle">
+											${year[0].name}
                                         </div>										
 									</div>
 									<div class="col bg-light border p-3">
 										<div>발생 연차</div>
-										<div>15</div>
-									</div>
-									<div class="col bg-light border p-3">
-										<div>총 연차</div>
-										<div>15</div>
-									</div>
+										<div>${year[0].annualtotal}</div>									
+									</div>									
 									<div class="col bg-light border p-3">
 										<div>사용 연차</div>
-										<div>2</div>
+										<div>${year[0].annualuse}</div>
 									</div>
 									<div class="col bg-light border p-3">
 										<div>잔여 연차</div>
-										<div>13</div>
-									</div>									
+										<div>${year[0].annualrest}</div>
+									</div>																
 								</div>
+								</c:if>
+							
 							</div>							
 							<hr>
 
@@ -142,40 +139,39 @@
 													<tr>
 														<th>이름</th>
 														<th>부서</th>
-														<th>연차 종류</th>
-														<th>사용 기간</th>
+														<th>종류</th>
+														<th>시작일</th>
+														<th>종료일</th>
 														<th>사용 연차</th>
 														<th>잔여 연차</th>
+														<th>상태</th>
 													</tr>
 												</thead>
 												<tbody>
 													<!-- 사용 이력 없을 시 -->
+												<c:forEach var="dto" items="${annual}">
+													<c:if test="${dto.annual_id eq null}" >
 													<tr>
-														<th colspan="6" align="center">연차 사용 이력이 없습니다.</th>
+														<th colspan="7" align="center">연차 사용 이력이 없습니다.</th>
 													</tr>
+													</c:if>
+													<c:if test="${dto.annual_id ne null}" >
 													<!-- 사용 이력 있을 시 -->
 													<tr>
 														<td>
-															<img src="${path}/resources/assets/images/users/4.jpg" alt="user" width="40" class="rounded-circle">
-															Genelia Deshmukh
+															<img src="${dto.image}" alt="user" width="40" class="rounded-circle">
+															${dto.name}
 														</td>
-														<td>개발부</td>
-														<td>연차</td>
-														<td>2022-09-29~2022-09-29</td>
-														<td>1</td>
-														<td>13</td>
+														<td>${dto.depart_name}</td>
+														<td>${dto.annual}</td>
+														<td>${dto.annual_in}</td>
+														<td>${dto.annual_out}</td>
+														<td>${dto.annualuse}</td>
+														<td>${dto.annualrest}</td>
+														<td>${dto.state}</td>
 													</tr>
-													<tr>
-														<td>
-															<img src="${path}/resources/assets/images/users/4.jpg" alt="user" width="40" class="rounded-circle">
-															Genelia Deshmukh
-														</td>
-														<td>개발부</td>
-														<td>연차</td>
-														<td>2022-09-27~2022-09-27</td>
-														<td>1</td>
-														<td>14</td>
-													</tr>
+													</c:if>
+												</c:forEach>
 												</tbody>
 											</table>
 										</div>
@@ -200,17 +196,21 @@
 													</tr>
 												</thead>
 												<tbody>
-													<!-- 생성 이력 없을 시 -->
+												<c:if test="${year[0].annual_id eq null}" >
+												<!-- 생성 이력 없을 시 -->
 													<tr>
 														<th colspan="6" align="center">연차 생성 이력이 없습니다.</th>
 													</tr>
+												</c:if>
+												<c:if test="${year[0].annual_id ne null}" >
 													<!-- 생성 이력 있을 시 -->
 													<tr>
-														<td>2022-01-01</td>
-														<td>2022-12-31</td>
-														<td>15</td>														
-														<td>2022년 연차 생성</td>
+														<td>${year[0].today}</td>
+														<td>${year[0].year}-12-31</td>
+														<td>${year[0].annualtotal}</td>														
+														<td>${year[0].year}년 연차 생성</td>
 													</tr>
+												</c:if>
 												</tbody>
 											</table>
 										</div>
@@ -328,8 +328,41 @@
     <!--Custom JavaScript -->
     <script src="${path}/resources/dist/js/custom.min.js"></script>
     <!-- This Page JS -->
-    <script src="${path}/resources/dist/js/pages/email/email.min.js"></script>
-    <script src="${path}/resources/assets/libs/summernote/dist/summernote-bs4.min.js"></script>
-    <script src="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.js"></script>
+    <script src="${path}/resources/assets/libs/moment/min/moment.min.js"></script>
+    <script src="${path}/resources/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="${path}/resources/assets/extra-libs/date-paginator/bootstrap-datepaginator.min.js"></script>
+   	<script type="text/javascript">
+        var datepaginator = function () {
+            return {
+                init: function () {
+                    $("#paginator1").datepaginator(),
+
+                        $("#paginator2").datepaginator({
+                            size: "large"
+                        }),
+
+                        $("#paginator3").datepaginator({
+                            size: "small"
+                        }),
+
+                        $("#paginator4").datepaginator({
+                            onSelectedDateChanged: function (a, t) {
+                                alert("Selected date: " + moment(t).format("Do, MMM YYYY"))
+                            }
+                        })
+                }
+            }
+        }();
+        $("#year").change(function(){
+            var yearVal =  $(this).val();                
+            location.href = '${path}/attendanceRestInfo.at?year='+yearVal;
+        })
+       
+        
+        $(document).ready(function(){
+            datepaginator.init();
+        });
+
+</script>              
 </body>
 </html>

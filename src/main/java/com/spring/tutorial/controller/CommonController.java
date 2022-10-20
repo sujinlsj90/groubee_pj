@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.spring.tutorial.service.ApprovalServiceImpl;
+import com.spring.tutorial.service.AttendanceServiceImpl;
 import com.spring.tutorial.service.CommonServiceImpl;
 
 
@@ -21,7 +21,9 @@ import com.spring.tutorial.service.CommonServiceImpl;
 public class CommonController {
 	@Autowired
 	CommonServiceImpl service;
-	ApprovalServiceImpl service_ap;
+	
+	@Autowired
+	AttendanceServiceImpl service_at;
 	
 	private static final Logger logger = LoggerFactory.getLogger(CommonController.class);
 	
@@ -30,6 +32,9 @@ public class CommonController {
 	public String index(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("Maincontroller > index.co");
+		service_at.attendance(req, model);
+		service_at.attendanceMonth(req, model);
+		
 		return "common/index";
 	}
 	

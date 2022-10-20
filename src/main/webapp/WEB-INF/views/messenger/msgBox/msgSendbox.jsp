@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/setting.jsp" %>   
- <!DOCTYPE html>
+<%@ include file="/WEB-INF/views/setting.jsp" %> 
+
+<!DOCTYPE html>
 <html dir="ltr" lang="en">
 
 <head>
@@ -11,215 +12,322 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
-    <title>그루비 그룹웨어</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
-    <!-- This Page CSS -->
-<<<<<<< HEAD
-    <link rel="stylesheet" type="text/css" href="${path}/resources/assets/libs/select2/dist/css/select2.min.css">
-    
-<script type="text/javascript">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" type="text/css" href="${path}/resources/assets/libs/quill/dist/quill.snow.css">
+	<!-- Custom CSS -->
+	<link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
 	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style>
+	input[type="checkbox"] {
+        -webkit-appearance: none;
+        position: relative;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        outline: none !important;
+        border: 1px solid #3e5569;
+        border-radius: 2px;
+        background: #fbfbfb;
+    }
+ 
+    input[type="checkbox"]::before {
+        content: "\2713";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        overflow: hidden;
+        transform: scale(0) translate(-50%, -50%);
+        line-height: 1;
+    }
+ 
+    input[type="checkbox"]:checked {
+        background-color: #3f50f6;
+        border-color: rgba(255, 255, 255, 0.3);
+        color: white;
+    }
+ 
+    input[type="checkbox"]:checked::before {
+        border-radius: 2px;
+        transform: scale(1) translate(-50%, -50%) 
+    }
+</style>
+<script type="text/javascript">
+	$(function() {
+		// 메세지 상단메뉴 활성화
+		$('#sendMsg a').addClass('active');
+		
+		// 체크박스
+		// 전체 체크박스
+		let chkList = $('input[name=chkList]:checkbox');
+		
+		// 체크된 체크박스의 값
+		let iVal = $('input:checkbox[name=chkList]:checked').val();
+		
+		// checkbox의 전체 개수
+		let AllChkLeng = $('input:checkbox[name=chkList]').length;
+		
+		// 체크된 값의 개수
+		let chkLeng = $('input:checkbox[name=chkList]:checked').length;
+		
+		// 전체선택 버튼
+		$('#chkAll').click(function() {
+			let AllCheck = $(this).prop("checked");
+			
+			if(AllCheck == true) {
+				// checkbox의 전체 체크
+				chkList.prop('checked', true);
+			} else {
+				// checkbox의 전체 체크 해제
+				chkList.prop('checked', false);
+			}
+			
+		});
+		
+		// 개별 체크박스에 따른 전체체크박스 변경
+		$(".chkList").click(function() {
+			var total = $(".chkList").length;
+			var checked = $(".chkList:checked").length;
+			
+			if(total != checked) $("#chkAll").prop("checked", false);
+			else $("#chkAll").prop("checked", true); 
+		});
+		
+		// deleteBtn
+		$('#deleteBtn').click(function() {
+			document.msgListForm.action ="${path}/goTrash.me";
+			document.msgListForm.submit();
+		});
+		
+	});
 	
 </script>
-    
-=======
-    <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
-    <link href="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
 </head>
 
 <body>
-           <!--  <div class="email-app position-relative" style="height:100%;"> -->
-                <!-- ============================================================== -->
-                <!-- Right Part -->
-                <!-- ============================================================== -->
-                <div class="right-part mail-list overflow-auto" style="width:100%; height:100%; margin-left:0;">
-                    <div class="p-3 b-b">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h4>보낸쪽지함</h4>
-                            </div>
-                            <div class="ml-auto">
-                                <input placeholder="Search Mail" type="text" class="form-control">
-                            </div>
+	<!-- ============================================================== -->
+	<!-- Preloader - style you can find in spinners.css -->
+	<!-- ============================================================== -->
+	<div class="preloader">
+		<div class="lds-ripple">
+			<div class="lds-pos"></div>
+			<div class="lds-pos"></div>
+		</div>
+	</div>
+	<!-- ============================================================== -->
+	<!-- Main wrapper - style you can find in pages.scss -->
+	<!-- ============================================================== -->
+	<div id="main-wrapper" style="height:100%;">
+        <div class="app-container"></div>
+		<!-- 좌측고정 메뉴바 -->
+        <%@ include file="/WEB-INF/views/common/leftMenu.jsp" %>
+        <!-- 좌측고정 메뉴바 -->
+		<!-- ============================================================== -->
+		<!-- Page wrapper  -->
+		<!-- ============================================================== -->
+		<div class="page-wrapper" style="height:100%;">
+			<!-- ============================================================== -->
+	            <!-- Bread crumb and right sidebar toggle -->
+	            <!-- ============================================================== -->
+	            <div class="page-breadcrumb">
+                    <div class="row">
+                        <div class="col-7 align-self-center">
+                            <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">쪽지</h4>
                         </div>
-                    </div>
-                    <!-- Action part -->
-                    <!-- Button group part -->
-                    <div class="bg-light p-3 d-flex align-items-center do-block">
-                        <div class="btn-group mt-1 mb-1">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input sl-all" id="cstall">
-                                <label class="custom-control-label" for="cstall">Check All</label>
-                            </div>
-                        </div>
-                        <div class="ml-auto">
-                            <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                                <button type="button" class="btn btn-outline-secondary font-18"><i
-                                        class="mdi mdi-reload"></i></button>
-                                <button type="button" class="btn btn-outline-secondary font-18"><i
-                                        class="mdi mdi-alert-octagon"></i></button>
-                                <button type="button" class="btn btn-outline-secondary font-18"><i
-                                        class="mdi mdi-delete"></i></button>
-                            </div>
-                            <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                                <div class="btn-group" role="group">
-                                    <button id="email-dd1" type="button"
-                                        class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false"> <i
-                                            class="mdi mdi-folder font-18 "></i> </button>
-                                    <div class="dropdown-menu" aria-labelledby="email-dd1"> <a class="dropdown-item"
-                                            href="javascript:void(0)">Dropdown link</a> <a class="dropdown-item"
-                                            href="javascript:void(0)">Dropdown link</a> </div>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button id="email-dd2" type="button"
-                                        class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false"> <i
-                                            class="mdi mdi-label font-18"></i> </button>
-                                    <div class="dropdown-menu" aria-labelledby="email-dd2"> <a class="dropdown-item"
-                                            href="javascript:void(0)">Dropdown link</a> <a class="dropdown-item"
-                                            href="javascript:void(0)">Dropdown link</a> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Action part -->
-                    <!-- Mail list-->
-                    <div class="table-responsive" style="height:100%;">
-                        <table class="table email-table no-wrap table-hover v-middle">
-                            <tbody>
-                                <!-- row -->
-                                <tr class="">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst13">
-                                            <label class="custom-control-label" for="cst13">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><i class="far fa-star"></i></td>
-                                    <!-- User -->
-                                    <td class="user-image p-2"><img src="${path}/resources/assets/images/users/1.jpg" alt="user"
-                                            class="rounded-circle" width="30"></td>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate">Hanna Gover</h6>
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate" style="width:50%;"> <a class="link"
-                                            href="javascript: void(0)"
-                                            onclick="window.open('${path}/messageDetail.me','New Message',
-                                            'left=500, top=100, width=850, height=810, location=no, status=no, scrollbars=yes');">
-                                            쪽지 제목입니다.</a></td>
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"><i class="fa fa-paperclip"></i></td>
-                                    <!-- Time -->
-                                    <td class="time text-right"> 12:30 PM </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="p-3 mt-4">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">Previous</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">Next</a></li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- Right Part  Mail Compose -->
-                <!-- ============================================================== -->
-                <div class="right-part mail-compose overflow-auto" style="display:none;">
-                    <div class="p-4 border-bottom">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h4>Compose</h4>
-                                <span>create new message</span>
-                            </div>
-                            <div class="ml-auto">
-                                <button id="cancel_compose" class="btn btn-dark">Back</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Action part -->
-                    <!-- Button group part -->
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <input type="email" id="example-email" name="example-email" class="form-control"
-                                    placeholder="To">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="example-subject" name="example-subject" class="form-control"
-                                    placeholder="Subject">
-                            </div>
-                            <div id="summernote"></div>
-                            <h4>Attachment</h4>
-                            <div class="dropzone" id="dzid">
-                                <div class="fallback">
-                                    <input name="file" type="file" multiple />
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-success mt-3"><i class="far fa-envelope"></i>
-                                Send</button>
-                            <button type="submit" class="btn btn-dark mt-3">Discard</button>
-                        </form>
-                        <!-- Action part -->
-                    </div>
-                </div>
-                
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
-    <script src="${path}/resources/assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="${path}/resources/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="${path}/resources/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- apps -->
-    <script src="${path}/resources/dist/js/app.min.js"></script>
-    <script src="${path}/resources/dist/js/app.init-menusidebar.js"></script>
-    <script src="${path}/resources/dist/js/app-style-switcher.js"></script>
-    <script src="${path}/resources/dist/js/feather.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="${path}/resources/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="${path}/resources/assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Menu sidebar -->
-    <script src="${path}/resources/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="${path}/resources/dist/js/custom.min.js"></script>
-    <!-- This Page JS -->
-<%--     <script src="${path}/resources/dist/js/pages/email/email.min.js"></script> --%>
-    <script src="${path}/resources/assets/libs/summernote/dist/summernote-bs4.min.js"></script>
-    <script src="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.js"></script>
-    <script>
-        $('#summernote').summernote({
-            placeholder: 'Type your email Here',
-            tabsize: 2,
-            height: 250
-        });
-        Dropzone.autoDiscover = false;
-        $(document).ready(function () {
-            var myDrop = new Dropzone("#dzid", {
-                url: '/file/post'
-            });
-        });
-    </script>
+	            <!-- ============================================================== -->
+	            <!-- End Bread crumb and right sidebar toggle -->
+	            <!-- ============================================================== -->
+	            <!-- ============================================================== -->
+	            <!-- Container fluid  -->
+	            <!-- ============================================================== -->
+    			<div class="container-fluid note-has-grid">
+                    <!-- 상단 메세지 메뉴바 -->
+			        <%@ include file="/WEB-INF/views/messenger/msgBox/msgMenu.jsp" %>
+			        <!-- 상단 메세지 메뉴바 -->
+                    <!-- ============================================================== -->
+	                <!-- Right Part -->
+	                <!-- ============================================================== -->
+	                <div class="right-part mail-list overflow-auto" style="width:100%; margin-left:0;">
+	                    <div class="p-3 b-b">
+	                        <div class="d-flex align-items-center">
+	                            <!-- <div>
+	                                <h4>Mailbox </h4>
+	                                <span>Here is the list of mail</span>
+	                            </div> -->
+	                            <!-- <div class="ml-auto" style="width:30%;">
+	                                <input placeholder="Search Mail" type="text" class="form-control">
+	                            </div> -->
+	                        </div>
+	                    </div>
+	                    <!-- Action part -->
+	                    <!-- Button group part -->
+	                    <form name="msgListForm" method="post">
+		                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+		                    <div class="bg-light p-3 d-flex align-items-center do-block">
+		                        <div class="btn-group mt-1 mb-1">
+		                            <div class="custom-control custom-checkbox">
+		                                <input type="checkbox" id="chkAll" class="chk" name="chkAll">
+		                                <label for="chkAll">&nbsp;전체선택</label>
+		                            </div>
+		                        </div>
+		                        <div class="ml-auto">
+		                            <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+		                                <button type="button" id="deleteBtn" class="btn btn-outline-secondary font-18"
+		                                onclick="location.href='${path}/deleteMsg.me'">삭제</button>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <!-- Action part -->
+		                    <!-- Mail list-->
+	                    	<div class="table-responsive">
+		                        <table class="table email-table no-wrap table-hover v-middle">
+		                            <tbody>
+		                            <c:forEach var="dto" items="${list}">
+		                                <!-- row -->
+		                                <tr class="unread">
+		                                    <!-- label -->
+                                       		<td class="chb" style="padding-right:0; width:5%;">
+	                                        	<div class="custom-control custom-checkbox" style="width:0.1px;">
+	                                            	<input type="checkbox" name="chkList" class="chkList" value="${dto.message_num}">
+	                                            	<label for="${dto.message_num}"></label>
+	                                        	</div>
+	                                    	</td>
+	                                    	<td class="py-2 px-3 no-wrap text-truncate" style="width:5%;">
+	                                        </td>  	
+	                                        <!-- User -->
+		                                    <td class="user-name px-1 py-2" style="width:10%;">
+		                                        <h6 class="mb-0 text-truncate font-weight-medium">${dto.id} ${dto.depart_name} ${dto.name}</h6>
+		                                    </td>
+		                                    <!-- Message -->
+		                                    <td class="py-2 px-3 no-wrap text-truncate">
+												<a href="javascript:void(0)" onclick="window.open('${path}/messageDetail_resend.me?message_num=${dto.message_num}',
+												'Message Detail','left=500, top=100, width=600, height=600, location=no, status=no, scrollbars=yes');"
+												style="color:#000;">
+	                                           		<span class="blue-grey-text text-darken-4">${dto.title}</span>
+	                                        	</a>
+                                        	</td> 		
+			                                    
+		                                    <!-- Attachment -->
+		                                    <td class="clip px-1 py-2">
+		                                    	<c:if test="${not empty dto.files}">
+		                                    	<i class="fa fa-paperclip"></i>
+		                                    	</c:if>
+		                                    </td>
+		                                    <!-- Time -->
+		                                    <td class="time text-right">${dto.send_date}</td>
+		                                </tr>
+		                            </c:forEach>
+		                    		</tbody>
+		                        </table>
+	                    	</div>
+	                    </form>
+	              	</div>
+	             </div>
+	            </div>
+	                    <!-- <div class="tab-content">
+	                    	<div id="note-full-container" class="note-has-grid row" style="width:100%;">
+	                    	</div>
+						</div> -->
+						<!-- ============================================================== -->
+						<!-- End Wrapper -->
+						<!-- ============================================================== -->
+						<!-- ============================================================== -->
+						<!-- customizer Panel -->
+						<!-- ============================================================== -->
+		<aside class="customizer">
+	        <a href="javascript:void(0)" class="service-panel-toggle"><i class="fa fa-spin fa-cog"></i></a>
+	        <div class="customizer-body">
+	            <div class="p-3 border-bottom">
+	                <!-- Sidebar -->
+	                <h5 class="font-weight-medium mb-2 mt-2">Layout Settings</h5>
+	                <div class="custom-control custom-checkbox mt-2">
+	                    <input type="checkbox" class="custom-control-input sidebartoggler" name="collapssidebar" id="collapssidebar">
+	                    <label class="custom-control-label" for="collapssidebar">Collapse Sidebar</label>
+	                </div>
+	                <div class="custom-control custom-checkbox mt-2">
+	                    <input type="checkbox" class="custom-control-input" name="sidebar-position" id="sidebar-position">
+	                    <label class="custom-control-label" for="sidebar-position">Fixed Sidebar</label>
+	                </div>
+	                <div class="custom-control custom-checkbox mt-2">
+	                    <input type="checkbox" class="custom-control-input" name="header-position" id="header-position">
+	                    <label class="custom-control-label" for="header-position">Fixed Header</label>
+	                </div>
+	                <div class="custom-control custom-checkbox mt-2">
+	                    <input type="checkbox" class="custom-control-input" name="boxed-layout" id="boxed-layout">
+	                    <label class="custom-control-label" for="boxed-layout">Boxed Layout</label>
+	                </div>
+	            </div>
+	            <div class="p-3 border-bottom">
+	                <!-- Header BG -->
+	                <h5 class="font-weight-medium mb-2 mt-2">Header Backgrounds</h5>
+	                <ul class="theme-color">
+	                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin1"></a>
+	                    </li>
+	                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin2"></a>
+	                    </li>
+	                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin3"></a>
+	                    </li>
+	                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin4"></a>
+	                    </li>
+	                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin5"></a>
+	                    </li>
+	                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-navbarbg="skin6"></a>
+	                    </li>
+	                </ul>
+	                <!-- Header BG -->
+	            </div>
+	            <div class="p-3 border-bottom">
+	                <!-- Logo BG -->
+	                <h5 class="font-weight-medium mb-2 mt-2">Sidebar Backgrounds</h5>
+	                <ul class="theme-color">
+	                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin1"></a>
+	                    </li>
+	                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin2"></a>
+	                    </li>
+	                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin3"></a>
+	                    </li>
+	                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin4"></a>
+	                    </li>
+	                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin5"></a>
+	                    </li>
+	                    <li class="theme-item"><a href="javascript:void(0)" class="theme-link" data-sidebarbg="skin6"></a>
+	                    </li>
+	                </ul>
+	                <!-- Logo BG -->
+	            </div>
+	        </div>
+	    </aside>
+	</div>
+		<!-- ============================================================== -->
+		<!-- All Jquery -->
+		<!-- ============================================================== -->
+		<script src="${path}/resources/assets/libs/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap tether Core JavaScript -->
+		<script src="${path}/resources/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+		<script src="${path}/resources/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- apps -->
+		<script src="${path}/resources/dist/js/app.min.js"></script>
+		<script src="${path}/resources/dist/js/app.init-menusidebar.js"></script>
+		<script src="${path}/resources/dist/js/app-style-switcher.js"></script>
+	    <script src="${path}/resources/dist/js/feather.min.js"></script>
+		<!-- slimscrollbar scrollbar JavaScript -->
+		<script src="${path}/resources/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+		<script src="${path}/resources/assets/extra-libs/sparkline/sparkline.js"></script>
+		<!--Menu sidebar -->
+		<script src="${path}/resources/dist/js/sidebarmenu.js"></script>
+		<!--Custom JavaScript -->
+		<script src="${path}/resources/dist/js/custom.min.js"></script>
+		<!--This page JavaScript -->
+		<script src="${path}/resources/dist/js/pages/notes/notes.js"></script>
 </body>
 
 </html>

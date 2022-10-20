@@ -16,9 +16,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
     <title>Groubee - 연차 반차 신청</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
-    <!-- This Page CSS -->
-    <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
-    <link href="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -28,14 +25,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
-<<<<<<< HEAD
-	
-=======
-	// alert("INSERT INTO grb_annual (annual_id, id, annual, annualuse, annualrest) \n VALUES((SELECT NVL(Max(annual_id)+1,1) FROM grb_annual), 1, 1, 1, 14); \n\n INSERT INTO grb_annual (annual_id, id, annual, annualuse, annualrest) \n VALUES((SELECT NVL(Max(annual_id)+1,1) FROM grb_annual), 2, 0, 0.5, 14.5);");
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
-	
-</script>
 
 </head>
 
@@ -77,8 +66,7 @@
 				<%@ include file="/WEB-INF/views/attendance/subMenu.jsp" %>
 				<!-- ============================================================== -->
 				<!-- Right Part -->
-				<!-- ============================================================== -->
-			
+				<!-- ============================================================== -->							
 				<div class="right-part mail-list overflow-auto" style="height:100%;">
 					<!-- Action part -->
 					<div class="row">
@@ -87,37 +75,39 @@
                             <div class="card-header bg-info">
                                 <h4 class="card-title text-white">연차 반차 신청</h4>
                             </div>
-                            <form action="#" class="form-horizontal">
+                            <form name="request_rest" method="post" class="form-horizontal">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">		
                                 <div class="form-body">                                    
                                     <hr class="mt-0 mb-5">
                                     <div class="card-body">
+                                    	<div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="control-label text-right col-md-3">사번</label>
+                                                    <div class="col-md-9">
+                                                        <span>${sessionScope.memberID}</span>                                                        
+                                                    </div>
+                                                </div>
+                                            </div>                                            
+                                        </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">신청자</label>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" placeholder="성함">
+                                                    <div class="col-md-9">                                                       
+                                                        <span>${dto.name}</span>
+                                                        <input type="hidden" name="name" class="form-control col-md-4">
                                                     </div>
                                                 </div>
                                             </div>                                            
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="control-label text-right col-md-3">결재자</label>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" placeholder="성함">
-                                                    </div>
-                                                </div>
-                                            </div>                                            
-                                        </div>
+                                        </div>                                       
                                         <!--/row-->
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">시작일</label>
                                                     <div class="col-md-9">
-                                                        <input type="date" class="form-control">
+                                                        <input type="date" name="annual_in" id="annual_in" class="form-control" required>
                                                     </div>                                                    
                                                 </div>
                                             </div>                                           
@@ -127,7 +117,7 @@
                                                 <div class="form-group row">                                                                                                                                                             
                                                     <label class="control-label text-right col-md-3">종료일</label>
                                                     <div class="col-md-9">                                                    
-                                                        <input type="date" class="form-control">
+                                                        <input type="date" name="annual_out" id="annual_out" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>                                           
@@ -139,10 +129,10 @@
                                                     <label class="control-label text-right col-md-3">신청 유형</label>
                                                     <div class="col-md-9">
                                                         <select class="form-control custom-select"
-                                                            data-placeholder="신청유형" tabindex="1">
-                                                             <option value="연차">연차</option>
-                                                            <option value="반차오전">반차(오전)</option>
-                                                            <option value="반차오후">반차(오후)</option>
+                                                            name="annual" id="annual" tabindex="1" required>
+                                                            <option id="0" value="0">유형</option>
+                                                            <option id="1" value="연차">연차</option>
+                                                            <option id="2" value="반차">반차</option>                                                           
                                                         </select>
                                                     </div>
                                                 </div>
@@ -151,9 +141,20 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="control-label text-right col-md-3">소진 연차</label>
+                                                    <label class="control-label text-right col-md-3">발생 연차</label>
                                                     <div class="col-md-9">
-                                                        <span>10</span>
+                                                        <span>${year[0].annualtotal}</span>
+                                                    </div>
+                                                </div>
+                                            </div>                                            
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="control-label text-right col-md-3">사용 연차</label>
+                                                    <div class="col-md-9">
+                                                        <span id="annualuse">${year[0].annualuse}</span>                                                        
+                                                        <input type="hidden" name="annualuse" class="form-control col-md-4">
                                                     </div>
                                                 </div>
                                             </div>                                            
@@ -163,7 +164,8 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">잔여 연차</label>
                                                     <div class="col-md-9">
-                                                       <span>5</span>
+                                                       <span id="annualrest">${year[0].annualrest}</span>                                                       
+                                                       <input type="hidden" name="annualrest" class="form-control col-md-4">
                                                     </div>
                                                 </div>
                                             </div>                                            
@@ -173,8 +175,8 @@
                                     <div class="form-actions">
                                         <div class="card-body">
                                             <div class="text-right">
-                                                <button type="submit" class="btn btn-info">Submit</button>
-                                                <button type="button" class="btn btn-dark">Cancel</button>
+                                                <button type="button" class="submit btn btn-info">Submit</button>
+                                                <button type="button" class="cancel btn btn-dark">Cancel</button>
                                             </div>
                                         </div>
                                     </div>
@@ -183,7 +185,7 @@
                         </div>
                     </div>
                 </div>
-				</div>
+				</div>				
 			</div>	
 			<!-- ============================================================== -->
             <!-- footer -->
@@ -291,22 +293,69 @@
     <script src="${path}/resources/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="${path}/resources/dist/js/custom.min.js"></script>
-    <!-- This Page JS -->
-    <script src="${path}/resources/dist/js/pages/email/email.min.js"></script>
-    <script src="${path}/resources/assets/libs/summernote/dist/summernote-bs4.min.js"></script>
-    <script src="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.js"></script>
-    <script>
-        $('#summernote').summernote({
-            placeholder: 'Type your email Here',
-            tabsize: 2,
-            height: 250
+   	<script type="text/javascript">
+   	$(document).ready(function(){
+   		
+   		var annual_in;
+   		var annual_out;
+   		var type;
+   		var use;
+   		var day;
+   		var annualuse = ${year[0].annualuse};
+   		var annualrest = ${year[0].annualrest};
+   		
+   		// 연차 사용일 계산 (종료일 - 시작일)
+   		const getDateDiff = (d1, d2) => {   			
+   		  	const date1 = new Date(d1);
+   		  	const date2 = new Date(d2);   		  
+   		  	const diffDate = date1.getTime() - date2.getTime();
+   		  
+   		  	return Math.abs(diffDate / (1000 * 60 * 60 * 24)); // 밀리세컨 * 초 * 분 * 시 = 일
+   		}
+   		
+   		// 시작일 변경
+        $("#annual_in").change(function(){
+            annual_in =  $(this).val();
+            console.log(annual_in);
         });
-        Dropzone.autoDiscover = false;
-        $(document).ready(function () {
-            var myDrop = new Dropzone("#dzid", {
-                url: '/file/post'
-            });
+        // 종료일 변경
+        $("#annual_out").change(function(){
+            annual_out =  $(this).val();
+            console.log(annual_out);
         });
-    </script>
+        // 유형 변경
+        $("#annual").change(function(){
+            type =  $(this).val();
+            if(type == '연차') { use = 1; }
+            else if(type == '반차') { use = 0.5; }
+            console.log(type);
+            console.log(use);
+        });
+        
+        // 신청
+        $(".submit").click(function(){       	        	
+        	if(annual_in != annual_out && use == 0.5){
+        		alert("반차는 동일한 날짜에 사용 가능합니다");
+        		return false;
+        	}        	
+        	else{       
+        		day = getDateDiff(annual_in, annual_out)+1;
+        		use = use * day;        		
+        		annualuse += use;
+        		annualrest -= use;
+        		alert("유형 : " + type + "\n기간 : " + day + "일\n사용 연차 : " + annualuse + "\n잔여 연차 : " + annualrest);
+        	}
+        	document.request_rest.action = "${path}/request_rest_action.at?annualuse="+use+"&annualrest="+annualrest;
+			document.request_rest.submit();
+        });
+        
+        // 취소
+		$(".cancel").click(function(){
+			location.href = '${path}/request_rest.at';
+        });
+       	
+   	}); 
+		
+</script>
 </body>
 </html>

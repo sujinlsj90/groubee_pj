@@ -26,7 +26,7 @@
 <![endif]-->
 </head>
 
-<body>
+<body onload="printClock()">
 
 	<div class="left-part bg-white pb-5" style="height:100%;">
 		<!-- Mobile toggle button -->
@@ -148,8 +148,89 @@
 			</div>
 		</div>
 	</div>
-	
-</body>
+	<script src="${path}/resources/assets/libs/moment/min/moment.min.js"></script>
+<!-- 날짜/시간 계산 -->
+<script type="text/javascript">
+	//입력 timestamp > date 24시간 변환
+	function getTimeStamp(timeStamp) {    	       
+	    var date = new Date(timeStamp); // 타임 스탬프 >> Date 로 변환
+	    // moment 라이브러리 사용해 24시간 형태 날짜 및 시간 확인
+	    var nowDate = moment(date).format("YYYY-MM-DD HH:mm:ss");
+	    
+	    console.log(nowDate);
+	    return nowDate;
+	  }
+    // 시간 출력
+    function printClock() {        
+       // 출력할 장소 선택        
+        var clock = document.getElementById("clock");
+        var today = document.getElementById("today");
+        var currentDate = new Date(); 
+        var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
+        
+		// 시,분,초
+        var currentHours = addZeros(currentDate.getHours(),2); 
+        var currentMinute = addZeros(currentDate.getMinutes(),2);
+        var currentSeconds =  addZeros(currentDate.getSeconds(),2);       
+    	// 날짜 시계 출력
+        clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds; // 시:분:초
+        today.innerHTML = calendar; // 오늘 날짜       
+        setTimeout("printClock()",1000); // 1초마다 printClock() 함수 호출               	
+    }
+
+    function addZeros(num, digit) { // 자릿수 맞춰주기
+      	var zero = '';
+      	num = num.toString();
+      	if (num.length < digit) {
+        	for (i = 0; i < digit - num.length; i++) {
+          	zero += '0';
+        	}
+      	}
+      	return zero + num;
+    }    	
+    	var attend_in; // 출근 시간 Date
+    	var attend_out; // 퇴근 시간 Date
+    	var in_clock; // 출근 시간만 추출
+    	var out_clock; // 퇴근 시간만 추출
+    	
+    	// 출퇴근 로그 순번에 따른 list 값 가져오기
+	    if(${list[2].attendin ne null}){
+	    	attend_in = new Date('${list[2].attendin}'); 
+	    	attend_out = new Date('${list[1].attendout}'); 
+	    	in_clock = getTimeStamp(attend_in).split(" ");
+	    	out_clock = getTimeStamp(attend_out).split(" ");
+	    }
+	    else if(${list[0].attendin eq null}){
+	    	attend_in = new Date('${list[1].attendin}'); 
+	    	attend_out = new Date('${list[0].attendout}'); 
+	    	in_clock = getTimeStamp(attend_in).split(" ");
+	    	out_clock = getTimeStamp(attend_out).split(" ");
+	    } else{
+	    	attend_in = new Date('${list[0].attendin}'); // 출근 시간
+	    	attend_out = new Date('${list[1].attendout}'); // 퇴근 시간
+	    	in_clock = getTimeStamp(attend_in).split(" ");
+	    	out_clock = getTimeStamp(attend_out).split(" ");
+	    }   
+	    console.log(in_clock);
+	    console.log(out_clock);
+	    
+    	// 출근 시간
+    	var attendin = document.getElementById("attendin");
+    	if(in_clock[1] == "date"){
+    		attendin.innerHTML = "미등록";    		
+    	} else{ 
+    		attendin.innerHTML = in_clock[1];   		
+    	}
+    
+    	// 퇴근 시간
+    	var attendout = document.getElementById("attendout");
+    	if(out_clock[1] == "date"){
+    		attendout.innerHTML = "미등록";    		
+    	} else{ 
+    		attendout.innerHTML = out_clock[1];    		
+    	}
+    
+</script>
 
 </body>
 </html>

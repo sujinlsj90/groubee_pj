@@ -29,9 +29,20 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+
 <script type="text/javascript">
+//삭제버튼 클릭시
+function memberDel(id){
+	if(confirm('삭제하시겠습니까?')== true){
+		location.href='${path}/joinDelete.ad?id='+id;
+	}else{
+		return;
+	}
 	
+}
+
 </script>
+
 
 </head>
 
@@ -101,7 +112,64 @@
 				    </div>
 				</div>
                 <br><br>
-                <img src = "${path}/resources/images/adminImages/인사관리-사원통합관리.JPG">
+                
+                 <!-- Individual column searching (text inputs) -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">전체인사정보  </h4>
+                                <div class="table-responsive">
+                                 <form name="amdinform" method="post">
+                                    <table class="table table-striped table-bordered text-inputs-searching no-wrap">
+                                        <thead>
+                                            <tr>
+                                                <th>사번</th>
+                                                <th>부서</th>
+                                                <th>직급</th>
+                                                <th>이름</th>
+                                                <th>이메일</th>
+                                                <th>핸드폰</th>
+                                                <th>수정</th>
+                                                <th>삭제</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach var="dto" items="${list}">
+                                            <tr>
+                                                <td>${dto.id}</td>
+                                                <td>${dto.depart_name} </td>
+                                                <td>${dto.rank}</td>
+                                                <td>${dto.name}</td>
+                                                <td>${dto.email_in}</td>
+                                                <td>${dto.tel}</td>
+                                                <td>
+													<input type="button" value="수정" onclick="window.location='${path}/joinDetail.ad?id=${dto.id}'">
+												</td>
+                                                <td>
+													<input class="btnDelete" type="button" value="삭제" onclick="memberDel(${dto.id})">
+												</td>
+                                            </tr>
+                                       	</c:forEach>
+                                        </tbody>
+                                       <tfoot>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Position</th>
+                                                <th>Office</th>
+                                                <th>Age</th>
+                                                <th>Start date</th>
+                                                <th>Salary</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                   </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
                 <!-- *************************************************************** -->
@@ -112,9 +180,6 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center text-muted">
-                Copyright 2019. All Rights Reserved by Severny Admin
-            </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
@@ -225,6 +290,10 @@
     <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
     <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
     <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
+    
+      <!--This page plugins -->
+    <script src="${path}/resources/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="${path}/resources/dist/js/pages/datatable/datatable-api.init.js"></script>
 </body>
 
 </html>

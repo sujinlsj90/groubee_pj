@@ -13,11 +13,16 @@ public class AttendanceDTO {
 	private Timestamp attendin; // 출근
 	private Timestamp attendout; // 퇴근
 	private int result; // 업무 여부 (0 업무종료 1 업무)
-	private Timestamp worktime; // 근무시간 (퇴근시간 - 출근시간)
-	private Timestamp overtime; // 연장시간 (오후 18:00 이후 연장 처리)
-	private Timestamp latetime; // 지각시간 (오전 9:30 이후 지각 처리)
-	private Timestamp departuretime; // 조퇴시간
+	private String worktime; // 근무시간 (퇴근시간 - 출근시간)
+	private String overtime; // 연장시간 (오후 18:00 이후 연장 처리)
+	private String latetime; // 지각시간 (오전 9:30 이후 지각 처리)
+	private String departuretime; // 조퇴시간
 	private String state; // 근무 상태 (업무, 업무종료, 반차, 연차, 외근, 연장)
+	private String year; // 연
+	private String month; // 월
+	private String day; // 일
+	private String dy; // 요일
+
 	
 	public AttendanceDTO() {}
 
@@ -85,35 +90,35 @@ public class AttendanceDTO {
 		this.result = result;
 	}
 
-	public Timestamp getWorktime() {
+	public String getWorktime() {
 		return worktime;
 	}
 
-	public void setWorktime(Timestamp worktime) {
+	public void setWorktime(String worktime) {
 		this.worktime = worktime;
 	}
 
-	public Timestamp getOvertime() {
+	public String getOvertime() {
 		return overtime;
 	}
 
-	public void setOvertime(Timestamp overtime) {
+	public void setOvertime(String overtime) {
 		this.overtime = overtime;
 	}
 
-	public Timestamp getLatetime() {
+	public String getLatetime() {
 		return latetime;
 	}
 
-	public void setLatetime(Timestamp latetime) {
+	public void setLatetime(String latetime) {
 		this.latetime = latetime;
 	}
 
-	public Timestamp getDeparturetime() {
+	public String getDeparturetime() {
 		return departuretime;
 	}
 
-	public void setDeparturetime(Timestamp departuretime) {
+	public void setDeparturetime(String departuretime) {
 		this.departuretime = departuretime;
 	}
 
@@ -125,13 +130,45 @@ public class AttendanceDTO {
 		this.state = state;
 	}
 
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
+	public String getDay() {
+		return day;
+	}
+
+	public void setDay(String day) {
+		this.day = day;
+	}
+
+	public String getDy() {
+		return dy;
+	}
+
+	public void setDy(String dy) {
+		this.dy = dy;
+	}
+
 	@Override
 	public String toString() {
 		return "AttendanceDTO [attend_id=" + attend_id + ", id=" + id + ", name=" + name + ", depart_name="
 				+ depart_name + ", today=" + today + ", attendin=" + attendin + ", attendout=" + attendout + ", result="
 				+ result + ", worktime=" + worktime + ", overtime=" + overtime + ", latetime=" + latetime
-				+ ", departuretime=" + departuretime + ", state=" + state + "]";
-	}
-
+				+ ", departuretime=" + departuretime + ", state=" + state + ", year=" + year + ", month=" + month
+				+ ", day=" + day + ", dy=" + dy + "]";
+	}		
 	
 }

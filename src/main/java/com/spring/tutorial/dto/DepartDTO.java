@@ -8,9 +8,23 @@ public class DepartDTO {
 	private int company_id; 	//회사번호
 	private String show;		//노출여부
 	private String id;			//사번
+	private String name;		//이름
+	private String team_name;  
 	
 	
 	
+	public String getTeam_name() {
+		return team_name;
+	}
+	public void setTeam_name(String team_name) {
+		this.team_name = team_name;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getId() {
 		return id;
 	}
@@ -35,12 +49,12 @@ public class DepartDTO {
 	public void setShow(String show) {
 		this.show = show;
 	}
-	
 	@Override
 	public String toString() {
 		return "DepartDTO [depart_name=" + depart_name + ", company_id=" + company_id + ", show=" + show + ", id=" + id
-				+ "]";
+				+ ", name=" + name + ", team_name=" + team_name + "]";
 	}
+	
 	
 	
 

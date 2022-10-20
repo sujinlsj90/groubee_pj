@@ -57,11 +57,42 @@
                 }
             });
         });
+        
+        $(document).ready(function(){
+            $("#spreadBtn4").click(function(){
+                if($("#hiddenList04").is(":visible")){
+                    $("#hiddenList04").slideUp();
+                }else{
+                    $("#hiddenList04").slideDown();
+                }
+            });
+        });
+        
+        $(document).ready(function(){
+            $("#spreadBtn5").click(function(){
+                if($("#hiddenList05").is(":visible")){
+                    $("#hiddenList05").slideUp();
+                }else{
+                    $("#hiddenList05").slideDown();
+                }
+            });
+        });
+        
+        $(document).ready(function(){
+            $("#spreadBtn6").click(function(){
+                if($("#hiddenList06").is(":visible")){
+                    $("#hiddenList06").slideUp();
+                }else{
+                    $("#hiddenList06").slideDown();
+                }
+            });
+        });
 
         $(document).ready(function(){
+        	
             $("#spreadBtn11").click(function(){
-                if($("#hiddenList11").is(":visible")){
-                    $("#hiddenList11").slideUp();
+               if($("#hiddenList11").is(":visible")){
+                	$("#hiddenList11").slideUp();
                 } else {
                     $("#hiddenList11").slideDown();
                 }
@@ -101,13 +132,341 @@
                       $("#hiddenList16").slideDown();
                    }
                }); 
-        });
-
+            $("#spreadBtn17").click(function(){
+                if($("#hiddenList17").is(":visible")){
+                      $("#hiddenList17").slideUp();
+                 }else{
+                      $("#hiddenList17").slideDown();
+                   }
+               }); 
+            $("#spreadBtn18").click(function(){
+                if($("#hiddenList18").is(":visible")){
+                      $("#hiddenList18").slideUp();
+                 }else{
+                      $("#hiddenList18").slideDown();
+                   }
+               }); 
+            $("#spreadBtn19").click(function(){
+                if($("#hiddenList19").is(":visible")){
+                      $("#hiddenList19").slideUp();
+                 }else{
+                      $("#hiddenList19").slideDown();
+                   }
+               }); 
+            $("#spreadBtn20").click(function(){
+                if($("#hiddenList20").is(":visible")){
+                      $("#hiddenList20").slideUp();
+                 }else{
+                      $("#hiddenList20").slideDown();
+                   }
+               }); 
+            $("#spreadBtn21").click(function(){
+                if($("#hiddenList21").is(":visible")){
+                      $("#hiddenList21").slideUp();
+                 }else{
+                      $("#hiddenList21").slideDown();
+                   }
+               }); 
+            $("#spreadBtn22").click(function(){
+                if($("#hiddenList22").is(":visible")){
+                      $("#hiddenList22").slideUp();
+                 }else{
+                      $("#hiddenList22").slideDown();
+                   }
+               }); 
+            $("#spreadBtn20").click(function(){
+                if($("#hiddenList20").is(":visible")){
+                      $("#hiddenList20").slideUp();
+                 }else{
+                      $("#hiddenList20").slideDown();
+                   }
+               }); 
+            $("#spreadBtn21").click(function(){
+                if($("#hiddenList21").is(":visible")){
+                      $("#hiddenList21").slideUp();
+                 }else{
+                      $("#hiddenList21").slideDown();
+                   }
+               }); 
+            $("#spreadBtn22").click(function(){
+                if($("#hiddenList22").is(":visible")){
+                      $("#hiddenList22").slideUp();
+                 }else{
+                      $("#hiddenList22").slideDown();
+                   }
+               }); 
+            $("#spreadBtn20").click(function(){
+                if($("#hiddenList20").is(":visible")){
+                      $("#hiddenList20").slideUp();
+                 }else{
+                      $("#hiddenList20").slideDown();
+                   }
+               }); 
+            $("#spreadBtn21").click(function(){
+                if($("#hiddenList21").is(":visible")){
+                      $("#hiddenList21").slideUp();
+                 }else{
+                      $("#hiddenList21").slideDown();
+                   }
+               }); 
+            $("#spreadBtn22").click(function(){
+                if($("#hiddenList22").is(":visible")){
+                      $("#hiddenList22").slideUp();
+                 }else{
+                      $("#hiddenList22").slideDown();
+                   }
+               }); 
+            $("#spreadBtn23").click(function(){
+                if($("#hiddenList23").is(":visible")){
+                      $("#hiddenList23").slideUp();
+                 }else{
+                      $("#hiddenList23").slideDown();
+                   }
+               }); 
+            $("#spreadBtn24").click(function(){
+                if($("#hiddenList24").is(":visible")){
+                      $("#hiddenList24").slideUp();
+                 }else{
+                      $("#hiddenList24").slideDown();
+                   }
+               }); 
+            $("#spreadBtn25").click(function(){
+                if($("#hiddenList25").is(":visible")){
+                      $("#hiddenList25").slideUp();
+                 }else{
+                      $("#hiddenList25").slideDown();
+                   }
+               }); 
+            $("#spreadBtn26").click(function(){
+                if($("#hiddenList26").is(":visible")){
+                      $("#hiddenList26").slideUp();
+                 }else{
+                      $("#hiddenList26").slideDown();
+                   }
+               }); 
+            $("#spreadBtn27").click(function(){
+                if($("#hiddenList27").is(":visible")){
+                      $("#hiddenList27").slideUp();
+                 }else{
+                      $("#hiddenList27").slideDown();
+                   }
+               }); 
+  });
+        
+        
     </script>
+    
+ <script>
+ /* 사업1팀 */
+ function b_Info(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ };   
+ 
+ /* 사업2팀  */
+ function b_Info2(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ };   
+ 
+ /* 경영지원1팀 */
+ function j_Info(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ };   
+ 
+ /* 경영지원2팀 */
+ function j_Info2(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ };   
+ 
+ /* 개발1팀 */
+ function i_Info(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ };   
+ /* 개발2팀 */
+ function i_Info2(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ };   
+ /* 개발3팀 */
+ function i_Info3(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ };   
+ 
+ /* 영업1팀 */
+ function o_Info(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ };   
+ /* 영업2팀 */
+ function o_Info2(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ }; 
+ 
+ /* 인사1팀 */
+  function p_Info(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ }; 
+ /* 인사2팀 */
+  function p_Info2(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ }; 
+ /* 인사3팀 */
+  function p_Info3(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ }; 
+ 
+ /* 총무1팀 */
+  function c_Info(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ }; 
+ /* 총무2팀 */
+  function c_Info2(id){
+    $.ajax({
+       url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
+       type: "post",
+       success : function(result) {
+    	   console.log(result)
+          $("#asdfg").html(result);
+       },
+       error: function(){
+          alert("boughtList 오류");
+       }
+    });
+ }; 
+    
+ 
+ </script>
 
     <style>
         *{margin: 0; padding: 0;text-decoration: none;list-style: none;}
-        .wrap{width:100%; margin: 0 auto; padding:20px;}
+        .wrap{width:100%; height:80%; margin:0 auto; padding:20px;}
         /* index_1 */
         .index_1{margin-bottom: 10px;}
 
@@ -116,14 +475,14 @@
 
         /* index_3 */
         .index_3{width:100%; height:100%; display: flex; justify-content: space-between;}
-        .index_3 .cosmo{ width: 100%; height: 100%; border: 1px solid lightgray;border-radius: 30px;padding: 20px; overflow:hidden}
+        .index_3 .cosmo{ width: 100%; height: 100%; border: 1px solid lightgray;border-radius: 30px;padding: 20px; overflow:scroll;}
         .index_3 .cosmo li{margin-left: 20px;}
         .index_3 .cosmo li a{color: black; display: block;}
         .index_3 .cosmo button{
-            width: 60px;height: 20px;border: 1px solid white;display: block;
+            width: 100px;height: 20px;border: 1px solid white;display: block;
             border-radius:15px;}
         .index_3 .cosmo button:hover{transition: all 0.3s;background:lightgray;}
-        .index_3 .cosmo_2{width: 45%;height: 100%; border: 1px solid lightgray;border-radius: 30px;padding: 20px;}
+        .index_3 .cosmo_2{width: 100%;height: 100%; border: 1px solid lightgray;border-radius: 30px;padding: 40px;}
         .index_3 .cosmo_2 ul{display: flex; justify-content: space-between;margin-top: 10px;}
         .index_3 .cosmo_2 li{width: 10.7%;}
         .index_3 .cosmo_2 li input{
@@ -132,21 +491,7 @@
         }    
         .index_3 .cosmo_2 li input:hover{transition: all 0.3s;background:lightgray;}
 
-        /* index_4 */
-        .index_4 {display: flex;margin: auto 0;justify-content: center;}
-        .index_4 input{
-            width: 100px;height: 50px;border: 1px solid white;display: block;
-            float:left; border-radius:15px;}
-        .index_4 input:hover{transition: all 0.3s;background:lightgray;}
     </style>
-
-
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/humanresources/img.jsp
-<script type="text/javascript">
-		
-</script>
-=======
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042:src/main/webapp/WEB-INF/views/humanresources/groub.jsp
 
 </head>
 
@@ -188,31 +533,240 @@
             <!-- Right Part -->
             <!-- ============================================================== -->
         <div class="right-part overflow-auto" style="height:100%;">
+        <br><Br><br>
           <h2 align="center" font-weight="bold">조직도</h2> <br><br>
-         
-          <div class="wrap">
-        <div class="index_3">
-          <div class="cosmo">
-            <c:forEach var="dto" items="${list}">
-              <button id="spreadBtn01" class="btn1">${dto.depart_name}</button>
-                <ul id="hiddenList01" class="section">
-               <c:forEach var="dto2" items="${list2}">
-                    <li id="spreadBtn11">
-                        <a href="#">${dto2.team_name}</a>
-                        <ul id="hiddenList11" class="btn1">
-                            <li><a href="#" onclick="window.open('${path}/myHuman.hu','인사정보','width=400,height=650,location=no,status=no,scrollbars=yes');">개인정보</a></li>
-                        </ul>    
-             		
+    <div class="wrap">
+      <div class="index_3"> 
+          <div class="cosmo" >
+      		      		
+          <!-- 사업부 -->
+          <button id="spreadBtn01" class="btn1">${b_list[0].depart_name}</button>
+           <ul id="hiddenList01" class="section">
+             <c:forEach var="b_dto" items="${b_list}">
+               <c:if test="${b_dto.team_name eq '사업1팀'}">
+                <li id="spreadBtn11">
+                 <a href="#">${b_dto.team_name}</a>
+                  <ul id="hiddenList11" class="btn1">
+                   <c:forEach var="b_one" items="${b_oneteam}">
+                       <li><a href="#" onclick = "b_Info(${b_one.id})">${b_one.name}</a></li>
+                    </c:forEach>
+                   </ul> 
+                  </li>
+                </c:if>
+                  
+                 <c:if test="${b_dto.team_name eq '사업2팀'}">
+                  <li id="spreadBtn12">
+                    <a href="#">${b_dto.team_name}</a>
+                     <ul id="hiddenList12" class="btn1">
+                      <c:forEach var="b_two" items="${b_twoteam}">
+                          <li><a href="#" onclick="b_Info2(${b_two.id})">${b_two.name}</a></li>
+                      </c:forEach> 
+                     </ul>   
+                 </li>
+               </c:if>
+          	 </c:forEach>
+            </ul>
+                
+                <!-- 경영지원부 -->
+            <button id="spreadBtn2" class="btn1">${j_list[0].depart_name}</button>
+             <ul id="hiddenList02" class="section">
+               <c:forEach var="j_dto" items="${j_list}">
+                 <c:if test="${j_dto.team_name eq '경영지원1팀'}">
+                  <li id="spreadBtn14">
+                    <a href="#">${j_dto.team_name}</a>
+                     <ul id="hiddenList14" class="btn1">
+                       <c:forEach var="j_one" items="${j_oneteam}">
+                          <li><a href="#" onclick="j_Info(${j_one.id})">${j_one.name}</a></li>
+                       </c:forEach>
+                      </ul> 
                     </li>
-             </c:forEach>
-                </ul>
-         </c:forEach> 
+                  </c:if>   
+                    
+                 <c:if test="${j_dto.team_name eq '경영지원2팀'}">
+                   <li id="spreadBtn15">
+                    <a href="#">${j_dto.team_name}</a>
+                      <ul id="hiddenList15" class="btn1">
+                       <c:forEach var="j_two" items="${j_twoteam}">
+                           <li><a href="#" onclick="j_Info2(${j_two.id})">${j_two.name}</a></li>
+                        </c:forEach>
+                       </ul>  
+                    </li>
+                  </c:if>  
+                </c:forEach>
+               </ul>
+              
+            <!-- 개발부 -->
+            <button id="spreadBtn3" class="btn1">${i_list[0].depart_name}</button>
+              <ul id="hiddenList03" class="section">
+             <c:forEach var="i_dto" items="${i_list}">
+               <c:if test="${i_dto.team_name eq '개발1팀'}">
+                <li id="spreadBtn17">
+                 <a href="#">${i_dto.team_name}</a>
+                  <ul id="hiddenList17" class="btn1">
+                    <c:forEach var="i_one" items="${i_oneteam}">
+                       <li><a href="#" onclick="i_Info2(${i_one.id})">${i_one.name}</a></li>
+                     </c:forEach>
+                    </ul> 
+                   </li>
+                  </c:if>   
+                   
+                 <c:if test="${i_dto.team_name eq '개발2팀'}" >
+                   <li id="spreadBtn18">
+                     <a href="#">${i_dto.team_name}</a>
+                      <ul id="hiddenList18" class="btn1">
+                       <c:forEach var="i_two" items="${i_twoteam}">
+                         <li><a href="#" onclick="i_Info2(${i_two.id})">${i_two.name}</a></li>
+                       </c:forEach>
+                     </ul>  
+                   	</li>
+                  </c:if>  
+                   
+                 <c:if test="${i_dto.team_name eq '개발3팀'}" >
+                  <li id="spreadBtn19">
+                   <a href="#">${i_dto.team_name}</a>
+                    <ul id="hiddenList19" class="btn1">
+                      <c:forEach var="i_three" items="${i_threeteam}">
+                        <li><a href="#" onclick="i_Info3(${i_three.id})">${i_three.name}</a></li>
+                      </c:forEach>  
+                    </ul>
+                  </li>
+                </c:if>  
+              </c:forEach> 
+               </ul>
+                
+                  <!-- 영업부 -->
+            <button id="spreadBtn4" class="btn1">${o_depart[0].depart_name}</button>
+             <ul id="hiddenList04" class="section">
+              <c:forEach var="o_dto" items="${o_depart}">
+               <c:if test="${o_dto.team_name eq '영업1팀'}">
+                <li id="spreadBtn20">
+                 <a href="#">${o_dto.team_name}</a>
+                  <ul id="hiddenList20" class="btn1">
+                   <c:forEach var="o_one" items="${o_oneteam}">
+                       <li><a href="#" onclick="o_Info(${o_one.id})">${o_one.name}</a></li>
+                   </c:forEach>     
+                 </ul> 
+                </li>
+              </c:if>
+               
+              <c:if test="${o_dto.team_name eq '영업2팀'}">
+               <li id="spreadBtn21">
+                <a href="#">${o_dto.team_name}</a>
+                 <ul id="hiddenList21" class="btn1">
+                  <c:forEach var="o_two" items="${o_twoteam}">
+                     <li><a href="#" onclick="o_Info2(${o_two.id})">${o_two.name}</a></li>
+				  </c:forEach>
+                 </ul>  
+                </li>
+               </c:if> 
+              </c:forEach>
+            </ul> 
+              
+                
+                  <!-- 인사부 -->
+            <button id="spreadBtn5" class="btn1">${p_list[0].depart_name}</button>
+             <ul id="hiddenList05" class="section">
+               <c:forEach var="p_dto" items="${p_list}">
+                  <c:if test="${p_dto.team_name eq '인사1팀'}">
+                    <li id="spreadBtn22">
+                      <a href="#">${p_dto.team_name}</a>
+                       <ul id="hiddenList22" class="btn1">
+                         <c:forEach var="p_one" items="${p_oneteam}">
+                            <li><a href="#" onclick="p_Info(${p_one.id})">${p_one.name}</a></li>
+                        </c:forEach>
+                      </ul> 
+                     </li>
+                   </c:if>   
+                    
+                   <c:if test="${p_dto.team_name eq '인사2팀'}">
+                     <li id="spreadBtn23">
+                      <a href="#">${p_dto.team_name}</a>
+                       <ul id="hiddenList23" class="btn1">
+                         <c:forEach var="p_two" items="${p_twoteam}">
+                            <li><a href="#" onclick="p_Info2(${p_two.id})">${p_two.name}</a></li>
+                        </c:forEach>
+                      </ul>   
+                     </li>
+                   </c:if> 
+                    
+                 <c:if test="${p_dto.team_name eq '인사3팀'}">
+                  <li id="spreadBtn24">
+                    <a href="#">${p_dto.team_name}</a>
+                      <ul id="hiddenList24" class="btn1">
+                        <c:forEach var="p_three" items="${p_threeteam}">
+                          <li><a href="#" onclick="p_Info3(${p_three.id})">${p_three.name}</a></li>
+                       </c:forEach>
+                     </ul>
+                   </li>
+                 </c:if>    
+                </c:forEach>
+               </ul> 
+                
+              <!-- 충무부 -->
+            <button id="spreadBtn6" class="btn1">${c_depart[0].depart_name}</button>
+             <ul id="hiddenList06" class="section">
+              <c:forEach var="c_dto" items="${c_depart}">
+               <c:if test="${c_dto.team_name eq '총무1팀'}">
+                <li id="spreadBtn25">
+                 <a href="#">${c_dto.team_name}</a>
+                  <ul id="hiddenList25" class="btn1">
+                   <c:forEach var="c_one" items="${c_oneteam}">
+                       <li><a href="#" onclick="c_Info(${c_one.id})">${c_one.name}</a></li>
+                   </c:forEach>  
+                  </ul>    
+                 </li>
+               </c:if>
+                  
+               <c:if test="${c_dto.team_name eq '총무2팀'}">
+                <li id="spreadBtn26">
+                 <a href="#">${c_dto.team_name}</a>
+                  <ul id="hiddenList26" class="btn1">
+                   <c:forEach var="c_two" items="${c_twoteam}">  
+                       <li><a href="#" onclick="c_Info2(${c_two.id})">${c_two.name}</a></li>
+                   </c:forEach>
+                 </ul>   
+                </li>
+               </c:if> 
+              </c:forEach>
+             </ul>  
             </div>
-        </div>
-    </div>
+             <!-- cosmo div close --> 
+      		<div class="cosmo_2">
+      		<div id = "asdfg">
+                 <div class="card-body">
+             <center class="mt-4"> <img src="${path}/resources/assets/images/users/5.jpg" class="rounded-circle" width="150" />
+                 <h4 class="card-title mt-2">${dto.name}</h4>
+             </center>
+               </div>
+               <div>
+                   <hr>
+               </div>
+               <div class="card-body"> 
+                    <small class="text-muted pt-4 db">직책</small>
+                   <h6>${dto.rank}</h6>
+                    <small class="text-muted pt-4 db">부서</small>
+                   <h6>${dto.depart_name}</h6>
+                    <small class="text-muted pt-4 db">사번</small>
+                   <h6>${dto.id}</h6>
+               <small class="text-muted">이메일 </small>
+                 <h6>${dto.email_in}</h6> 
+                 <small class="text-muted pt-4 db">폰번호</small>
+                 <h6>${dto.tel}</h6> 
+                 <small class="text-muted pt-4 db">내선번호</small>
+                 <h6>${dto.in_tel}</h6>
+                 
+                <br />
+                <button class="btn btn-circle btn-secondary"><a href="#"><i class="mr-2 mdi mdi-email"></i></a></button>
+                <button class="btn btn-circle btn-secondary"><a href="#"><i class="mr-2 mdi mdi-message-outline"></i></a></button>
+                <button class="btn btn-circle btn-secondary"><a href="#"><i class="fab fa-youtube"></i></a></button>
+               </div>
+      		</div>
+      		</div>
+        	 </div> 
+   			</div> 
           </div>
       </div>
-   </div>
+	</div>
    <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -319,6 +873,7 @@
  	<script src="${path}/resources/dist/js/custom.min.js"></script>
     <script src="${path}/resources/assets/libs/nestable/jquery.nestable.js"></script>
     <script src="${path}/resources/dist/js/sidebarmenu.js"></script>
+    
 </body>
 
 </html>

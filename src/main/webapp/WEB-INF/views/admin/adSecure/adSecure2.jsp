@@ -13,8 +13,8 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
-    <title>Severny admin Template - The Ultimate Multipurpose admin template</title>   
-   <link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
+    <title>Severny admin Template - The Ultimate Multipurpose admin template</title>	
+	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
     <!-- Custom CSS -->
     <link href="${path}/resources/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <link href="${path}/resources/assets/extra-libs/c3/c3.min.css" rel="stylesheet">
@@ -30,7 +30,7 @@
 <![endif]-->
 
 <script type="text/javascript">
-   
+	
 </script>
 
 </head>
@@ -68,25 +68,6 @@
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
             <div class="page-breadcrumb">
-<<<<<<< HEAD
-            <div class="row">
-               <div class="col-7 align-self-center">
-                  <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">
-                     Admin Security</h4>
-                  <div class="d-flex align-items-center">
-                     <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb m-0 p-0">
-                           <li class="breadcrumb-item active">
-                           <a href="${path}/adminMain.ad">Home</a></li>
-                           <li class="breadcrumb-item active"aria-current="page">
-                           <a href="${path}/adSecure2.ad">System Authority</a></li>
-                        </ol>
-                     </nav>
-                  </div>
-               </div>
-            </div>
-         </div>
-=======
 				<div class="row">
 					<div class="col-7 align-self-center">
 						<h4 class="page-title text-truncate text-dark font-weight-medium mb-1">
@@ -97,14 +78,13 @@
 									<li class="breadcrumb-item active">
 									<a href="${path}/adminMain.ad">Home</a></li>
 									<li class="breadcrumb-item active"aria-current="page">
-									<a href="${path}/adSecure2.ad">System Authority</a></li>
+									<a href="${path}/adSecure.ad">Admin Authority</a></li>
 								</ol>
 							</nav>
 						</div>
 					</div>
 				</div>
 			</div>
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -113,15 +93,6 @@
                 <!-- Start First Cards -->
                 <!-- *************************************************************** -->
                 <div class="row button-group">
-<<<<<<< HEAD
-                <div class="col-lg-2 col-md-4">
-                    <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure.ad'">관리자 권한</button>
-                </div>
-                <div class="col-lg-2 col-md-4">
-                    <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure2.ad'">기능 접근 제한</button>
-                </div>
-            </div>
-=======
 				    <div class="col-lg-2 col-md-4">
 				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure.ad'">관리자 권한</button>
 				    </div>
@@ -129,9 +100,87 @@
 				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure2.ad'">기능 접근 제한</button>
 				    </div>
 				</div>
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
                 <br><br>
-                <img src = "${path}/resources/images/adminImages/보안관리-기능접근제한.JPG">
+	            
+                    <div class="card">
+                            <div class="card-body">
+                                <br>
+                                <h4 class="card-title">기능 접근 제한</h4>
+                                <br>
+                                <hr>
+                                <br>
+                                <h4 class="card-title">기능 목록</h4>                    	                                 
+								<br>	                               
+                                <div class="table-responsive">
+                                    <table class="tablesaw no-wrap table-bordered table-hover table" data-tablesaw>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="border">
+                                                	기능 메뉴
+                                                </th>
+                                                <th scope="col" class="border">
+                                                	사용 여부                                               	                                          
+                                                </th>
+                                                <th scope="col" class="border">접근설정</th>
+                                                <th scope="col" class="border">설정</th>                                              
+                                            </tr>
+                                        </thead>
+                                        <tbody id="checkall-target">
+                                            <tr>
+                                                <td>
+                                                	대화
+                                                </td>
+                                                <td>사용</td>                                                                                                
+                                                <td>차단정책</td>
+                                                <td>설정</td>                                                
+                                            </tr>	
+                                            <tr>
+                                                <td>
+                                                	메신져
+                                                </td>
+                                                <td>사용</td>                                                
+                                                <td>차단정책</td>
+                                                <td>설정</td>                                                
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                	모바일 앱
+                                                </td>
+                                                <td>사용</td>                                                
+                                                <td>차단정책</td>
+                                                <td>설정</td>                                                
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                	조직도 웹서비스
+                                                </td>
+                                                <td>사용</td>                                               
+                                                <td>차단정책</td>
+                                                <td>설정</td>                                                
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                	조직도 모바일
+                                                </td>
+                                                <td>사용</td>                                               
+                                                <td>차단정책</td>
+                                                <td>설정</td>                                                
+                                            </tr>   
+                                             <tr>
+                                                <td>
+                                                	공지 사항
+                                                </td>
+                                                <td>사용</td>                                               
+                                                <td>차단정책</td>
+                                                <td>설정</td>                                                
+                                            </tr>                                                                                          
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>               
+                    <br><br>
+                
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
                 <!-- *************************************************************** -->
@@ -255,6 +304,9 @@
     <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
     <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
     <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
+    <script src="../../dist/js/pages/email/email.min.js"></script>
+    <script src="../../assets/libs/summernote/dist/summernote-bs4.min.js"></script>
+    <script src="../../assets/libs/dropzone/dist/min/dropzone.min.js"></script>
 </body>
 
 </html>

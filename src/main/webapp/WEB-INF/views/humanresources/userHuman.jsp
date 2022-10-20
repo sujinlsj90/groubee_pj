@@ -24,13 +24,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
-<<<<<<< HEAD
-	
-=======
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
-	
-</script>
 
 </head>
 
@@ -68,226 +61,48 @@
             <!-- ============================================================== -->
             <div class="right-part overflow-auto">
 			<div class="row">
-                    <!-- Column -->
-                <div class="card-body">
-			<!-- *********************여기부터 내용 넣으십시오 -->
-                    <h4 class="card-title">전체인사정보</h4>
-                    <div class="table-responsive">
-                        <div id="zero_config_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
-                        <div class="row">
-                        <div class="col-sm-12">
-                        <table id="zero_config" class="table table-striped table-bordered no-wrap dataTable" role="grid" aria-describedby="zero_config_info">
-                            <thead>
-                                <tr role="row"><th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" 
-                                colspan="1" aria-label="Name: activate to sort column ascending" style="width: 0px;">사번</th>
-                                <th class="sorting_desc" tabindex="0" aria-controls="zero_config" rowspan="1" 
-                                colspan="1" aria-label="Position: activate to sort column ascending" style="width: 0px;" aria-sort="descending">소속</th>
-                                <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" 
-                                colspan="1" aria-label="Office: activate to sort column ascending" style="width: 0px;">이름</th>
-                                <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" 
-                                colspan="1" aria-label="Age: activate to sort column ascending" style="width: 0px;">직위</th>
-                                <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" 
-                                colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 0px;">이메일</th>
-                                <th class="sorting" tabindex="0" aria-controls="zero_config" rowspan="1" 
-                                colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 0px;">내선번호</th></tr>
-                            </thead>
-                            <tbody>
-                            <tr role="row" class="odd">
-                                    <td class=""><a class="link" href="javascript:void(0)" onclick="">Prescott Bartlett</a></td>
-                                    <td class="sorting_1">Technical Author</td>
-                                    <td>London</td>
-                                    <td>27</td>
-                                    <td>2011/05/07</td>
-                                    <td>$145,000</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class=""><a class="link" href="#" onclick="window.open('${path}/myHuman.hu','인사정보','width=400,height=650,location=no,status=no,scrollbars=yes');">Avatar</a></td>
-                                    <td class="sorting_1">Team Leader</td>
-                                    <td>San Francisco</td>
-                                    <td>22</td>
-                                    <td>2008/10/26</td>
-                                    <td>$235,500</td>
-                                </tr>
-                                <tr role="row" class="odd">
-                                    <td class=""><a class="link" href="javascript:void(0)">Gloria Little</a></td>
-                                    <td class="sorting_1">Systems Administrator</td>
-                                    <td>New York</td>
-                                    <td>59</td>
-                                    <td>2009/04/10</td>
-                                    <td>$237,500</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class=""><a class="link" href="javascript:void(0)">Lael Greer</a></td>
-                                    <td class="sorting_1">Systems Administrator</td>
-                                    <td>London</td>
-                                    <td>21</td>
-                                    <td>2009/02/27</td>
-                                    <td>$103,500</td>
-                                </tr><tr role="row" class="odd">
-                                    <td class="">Tiger Nixon</td>
-                                    <td class="sorting_1">System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                </tr><tr role="row" class="even">
-                                    <td class="">Quinn Flynn</td>
-                                    <td class="sorting_1">Support Lead</td>
-                                    <td>Edinburgh</td>
-                                    <td>22</td>
-                                    <td>2013/03/03</td>
-                                    <td>$342,000</td>
-                                </tr><tr role="row" class="odd">
-                                    <td class="">Finn Camacho</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>San Francisco</td>
-                                    <td>47</td>
-                                    <td>2009/07/07</td>
-                                    <td>$87,500</td>
-                                </tr><tr role="row" class="even">
-                                    <td class="">Olivia Liang</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>Singapore</td>
-                                    <td>64</td>
-                                    <td>2011/02/03</td>
-                                    <td>$234,500</td>
-                                </tr><tr role="row" class="odd">
-                                    <td class="">Sakura Yamamoto</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>Tokyo</td>
-                                    <td>37</td>
-                                    <td>2009/08/19</td>
-                                    <td>$139,575</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="">Bradley Greer</td>
-                                    <td class="sorting_1">Software Engineer</td>
-                                    <td>London</td>
-                                    <td>41</td>
-                                    <td>2012/10/13</td>
-                                    <td>$132,000</td>
-                                </tr>
-                                
-                                  <tr role="row" class="even">
-                                    <td class="">Olivia Liang</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>Singapore</td>
-                                    <td>64</td>
-                                    <td>2011/02/03</td>
-                                    <td>$234,500</td>
-                                </tr><tr role="row" class="odd">
-                                    <td class="">Sakura Yamamoto</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>Tokyo</td>
-                                    <td>37</td>
-                                    <td>2009/08/19</td>
-                                    <td>$139,575</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="">Bradley Greer</td>
-                                    <td class="sorting_1">Software Engineer</td>
-                                    <td>London</td>
-                                    <td>41</td>
-                                    <td>2012/10/13</td>
-                                    <td>$132,000</td>
-                                </tr>
-                               <tr role="row" class="even">
-                                    <td class="">Olivia Liang</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>Singapore</td>
-                                    <td>64</td>
-                                    <td>2011/02/03</td>
-                                    <td>$234,500</td>
-                                </tr><tr role="row" class="odd">
-                                    <td class="">Sakura Yamamoto</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>Tokyo</td>
-                                    <td>37</td>
-                                    <td>2009/08/19</td>
-                                    <td>$139,575</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="">Bradley Greer</td>
-                                    <td class="sorting_1">Software Engineer</td>
-                                    <td>London</td>
-                                    <td>41</td>
-                                    <td>2012/10/13</td>
-                                    <td>$132,000</td>
-                                </tr>
-                             <tr role="row" class="even">
-                                    <td class="">Olivia Liang</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>Singapore</td>
-                                    <td>64</td>
-                                    <td>2011/02/03</td>
-                                    <td>$234,500</td>
-                                </tr><tr role="row" class="odd">
-                                    <td class="">Sakura Yamamoto</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>Tokyo</td>
-                                    <td>37</td>
-                                    <td>2009/08/19</td>
-                                    <td>$139,575</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="">Bradley Greer</td>
-                                    <td class="sorting_1">Software Engineer</td>
-                                    <td>London</td>
-                                    <td>41</td>
-                                    <td>2012/10/13</td>
-                                    <td>$132,000</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="">Olivia Liang</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>Singapore</td>
-                                    <td>64</td>
-                                    <td>2011/02/03</td>
-                                    <td>$234,500</td>
-                                </tr><tr role="row" class="odd">
-                                    <td class="">Sakura Yamamoto</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>Tokyo</td>
-                                    <td>37</td>
-                                    <td>2009/08/19</td>
-                                    <td>$139,575</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="">Bradley Greer</td>
-                                    <td class="sorting_1">Software Engineer</td>
-                                    <td>London</td>
-                                    <td>41</td>
-                                    <td>2012/10/13</td>
-                                    <td>$132,000</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="">Olivia Liang</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>Singapore</td>
-                                    <td>64</td>
-                                    <td>2011/02/03</td>
-                                    <td>$234,500</td>
-                                </tr><tr role="row" class="odd">
-                                    <td class="">Sakura Yamamoto</td>
-                                    <td class="sorting_1">Support Engineer</td>
-                                    <td>Tokyo</td>
-                                    <td>37</td>
-                                    <td>2009/08/19</td>
-                                    <td>$139,575</td>
-                                </tr>
-                                <tr role="row" class="even">
-                                    <td class="">Bradley Greer</td>
-                                    <td class="sorting_1">Software Engineer</td>
-                                    <td>London</td>
-                                    <td>41</td>
-                                    <td>2012/10/13</td>
-                                    <td>$132,000</td>
-                                </tr>
-                                
-                                </tbody>
-                        </table></div></div>
-                        </div>
-                    </div>
+                <!-- Column -->
+              <div class="col-12">
+                 <div class="card">
+                  <div class="card-body"><br><br>
+                    <h3 class="card-title" align="center" font-weight="bold">전체인사정보  </h3>
+                     <table class="table table-striped table-bordered text-inputs-searching no-wrap">
+                         <thead>
+                             <tr>
+                                 <th>사번</th>
+                                 <th>부서</th>
+                                 <th>직급</th>
+                                 <th>이름</th>
+                                 <th>이메일</th>
+                                 <th>핸드폰</th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                           <c:forEach var="dto" items="${list}">
+                              <tr>
+                                  <td onclick = "window.open('${path}/myHuman.hu?id=${dto.id}','인사정보','width=600,height=750,location=no,status=no,scrollbars=yes');">${dto.id}</td>
+                                  <td>${dto.depart_name}</td>
+                                  <td>${dto.rank}</td>
+                                  <td>${dto.name}</td>
+                                  <td>${dto.email_in}</td>
+                                  <td>${dto.tel}</td>
+                              </tr>
+                         
+                           </c:forEach>
+                          </tbody>
+                         <tfoot>
+                              <tr>
+                                  <th>Name</th>
+                                  <th>Position</th>
+                                  <th>Office</th>
+                                  <th>Age</th>
+                                  <th>Start date</th>
+                                  <th>Salary</th>
+                              </tr>
+                          </tfoot>
+                      </table>
+                     </div>
+                 </div>
                 </div>
               </div>
             </div>
@@ -389,6 +204,8 @@
   <!--This page plugins -->
     <script src="${path}/resources/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="${path}/resources/dist/js/pages/datatable/datatable-basic.init.js"></script>
+      <!--This page plugins -->
+    <script src="${path}/resources/dist/js/pages/datatable/datatable-api.init.js"></script>
 </body>
 
 </html>

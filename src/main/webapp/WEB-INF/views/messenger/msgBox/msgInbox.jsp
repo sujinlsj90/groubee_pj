@@ -32,170 +32,82 @@
 <![endif]-->
 </head>
 <body>
-	<%-- <c:forEach var="dto" items="${list}"> --%> <!-- 읽지않은 메세지만 -->
-		<div class="col-md-4 single-note-item all-category">
-			<div class="card card-body">
-	    		<span class="side-stick"></span>
-	    		<h5 class="note-title text-truncate w-75 mb-0">관련 자료 보내드립니다.</h5> <!-- 메세지 제목 ${dto.title} -->
-				<p class="note-date font-12 text-muted">인사부 곽보결</p> <!-- 인사부 홍길동 ${dto.depart_name} ${dto.name} -->
-				<div class="note-content">
-					<p class="note-inner-content text-muted">2022.10.12</p> <!-- 발송일시 ${dto.send_date} -->
-	      		</div>
-	        	<div class="d-flex align-items-center" style="float:right;">
-		        	<span class="mr-1"><i class="far fa-star favourite-note"></i></span>
-		        	<span class="mr-1"><i class="far fa-trash-alt remove-note"></i></span> <!-- 지우면 다음항목이 뜨게 할건지 -->
-	        	</div>
-			</div>
-		</div>
-	<%-- </c:forEach> --%>
-	
-	<!--  <div class="email-app position-relative" style="height:100%;"> -->
-                <!-- ============================================================== -->
-                <!-- Right Part -->
-                <!-- ============================================================== -->
-                <div class="right-part mail-list overflow-auto" style="width:100%; height:100%; margin-left:0;">
-                    <div class="p-3 b-b">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h4>받은쪽지함</h4>
-                            </div>
-                            <div class="ml-auto">
-                                <input placeholder="Search Mail" type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Action part -->
-                    <!-- Button group part -->
-                    <div class="bg-light p-3 d-flex align-items-center do-block">
-                        <div class="btn-group mt-1 mb-1">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input sl-all" id="cstall">
-                                <label class="custom-control-label" for="cstall">Check All</label>
-                            </div>
-                        </div>
-                        <div class="ml-auto">
-                            <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                                <button type="button" class="btn btn-outline-secondary font-18"><i
-                                        class="mdi mdi-reload"></i></button>
-                                <button type="button" class="btn btn-outline-secondary font-18"><i
-                                        class="mdi mdi-alert-octagon"></i></button>
-                                <button type="button" class="btn btn-outline-secondary font-18"><i
-                                        class="mdi mdi-delete"></i></button>
-                            </div>
-                            <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                                <div class="btn-group" role="group">
-                                    <button id="email-dd1" type="button"
-                                        class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false"> <i
-                                            class="mdi mdi-folder font-18 "></i> </button>
-                                    <div class="dropdown-menu" aria-labelledby="email-dd1"> <a class="dropdown-item"
-                                            href="javascript:void(0)">Dropdown link</a> <a class="dropdown-item"
-                                            href="javascript:void(0)">Dropdown link</a> </div>
-                                </div>
-                                <div class="btn-group" role="group">
-                                    <button id="email-dd2" type="button"
-                                        class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false"> <i
-                                            class="mdi mdi-label font-18"></i> </button>
-                                    <div class="dropdown-menu" aria-labelledby="email-dd2"> <a class="dropdown-item"
-                                            href="javascript:void(0)">Dropdown link</a> <a class="dropdown-item"
-                                            href="javascript:void(0)">Dropdown link</a> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Action part -->
-                    <!-- Mail list-->
-                    <div class="table-responsive" style="height:100%;">
-                        <table class="table email-table no-wrap table-hover v-middle">
-                            <tbody>
-                            	<%-- <c:forEach var="dto" items="${list}"> --%>
-                                <!-- row -->
-                                <tr class="">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst13">
-                                            <label class="custom-control-label" for="cst13">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><i class="far fa-star"></i></td>
-                                    <!-- User -->
-                                   <%--  <td class="user-image p-2"><img src="${path}/resources/assets/images/users/1.jpg" alt="user"
-                                            class="rounded-circle" width="30"></td> --%>
-                                    <td class="user-name px-1 py-2">
-                                        <h6 class="mb-0 text-truncate">인사부 곽보결</h6> <!-- ${dto.name} -->
-                                    </td>
-                                    <!-- Message -->
-                                    <td class="py-2 px-3 no-wrap text-truncate" style="width:50%;"> <a class="link"
-                                            href="javascript: void(0)"
-                                            onclick="window.open('${path}/messageDetail.me','New Message',
-                                            'left=500, top=100, width=850, height=810, location=no, status=no, scrollbars=yes');">
-                                            관련 자료 보내드립니다.</a></td> <!-- ${dto.title} -->
-                                    <!-- Attachment -->
-                                    <td class="clip px-1 py-2"><!-- <i class="fa fa-paperclip"></i> --></td>
-                                    <!-- Time -->
-                                    <td class="time text-right">2022.10.12</td> <!-- ${dto.send_date} -->
-                                </tr>
-                                <%-- </c:forEach> --%>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="p-3 mt-4">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">Previous</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">1</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                <li class="page-item"><a class="page-link" href="javascript:void(0)">Next</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- Right Part  Mail Compose -->
-                <!-- ============================================================== -->
-                <div class="right-part mail-compose overflow-auto" style="display:none;">
-                    <div class="p-4 border-bottom">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h4>Compose</h4>
-                                <span>create new message</span>
-                            </div>
-                            <div class="ml-auto">
-                                <button id="cancel_compose" class="btn btn-dark">Back</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Action part -->
-                    <!-- Button group part -->
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <input type="email" id="example-email" name="example-email" class="form-control"
-                                    placeholder="To">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="example-subject" name="example-subject" class="form-control"
-                                    placeholder="Subject">
-                            </div>
-                            <div id="summernote"></div>
-                            <h4>Attachment</h4>
-                            <div class="dropzone" id="dzid">
-                                <div class="fallback">
-                                    <input name="file" type="file" multiple />
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-success mt-3"><i class="far fa-envelope"></i>
-                                Send</button>
-                            <button type="submit" class="btn btn-dark mt-3">Discard</button>
-                        </form>
-                        <!-- Action part -->
-                    </div>
-                </div>
-                
+	<!-- ============================================================== -->
+	                <!-- Right Part -->
+	                <!-- ============================================================== -->
+	                <div class="right-part mail-list overflow-auto" style="width:100%; margin-left:0;">
+	                    <div class="p-3 b-b">
+	                        <div class="d-flex align-items-center">
+	                            <!-- <div>
+	                                <h4>Mailbox </h4>
+	                                <span>Here is the list of mail</span>
+	                            </div> -->
+	                            <!-- <div class="ml-auto" style="width:30%;">
+	                                <input placeholder="Search Mail" type="text" class="form-control">
+	                            </div> -->
+	                        </div>
+	                    </div>
+	                    <!-- Action part -->
+	                    <!-- Button group part -->
+	                    <div class="bg-light p-3 d-flex align-items-center do-block">
+	                        <div class="btn-group mt-1 mb-1">
+	                            <div class="custom-control custom-checkbox">
+	                                <input type="checkbox" class="custom-control-input sl-all" id="cstall">
+	                                <label class="custom-control-label" for="cstall">전체선택</label>
+	                            </div>
+	                        </div>
+	                        <div class="ml-auto">
+	                            <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+	                                <button type="button" class="btn btn-outline-secondary font-18">읽음</button>
+	                                <button type="button" class="btn btn-outline-secondary font-18">삭제</button>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <!-- Action part -->
+	                    <!-- Mail list-->
+	                    <div class="table-responsive">
+	                        <table class="table email-table no-wrap table-hover v-middle">
+	                            <tbody>
+	                            <c:forEach var="dto" items="${list}">
+	                                <!-- row -->
+	                                <tr class="unread">
+	                                    <!-- label -->
+	                                    <td class="chb" style="padding-right:0;">
+	                                        <div class="custom-control custom-checkbox" style="width:0.1px;">
+	                                            <input type="checkbox" class="custom-control-input" id="cst1">
+	                                            <label class="custom-control-label" for="cst1">&nbsp;</label>
+	                                        </div>
+	                                    </td>
+	                                    <!-- User -->
+	                                    <td class="user-name px-1 py-2" style="width:10%;">
+	                                        <h6 class="mb-0 text-truncate font-weight-medium">${dto.depart_name} ${dto.name}</h6>
+	                                    </td>
+	                                    <!-- Message -->
+	                                    <td class="py-2 px-3 no-wrap text-truncate"> <a class="link " href="javascript: void(0)"> 
+	                                    												<!--  font-weight-medium : 글씨 굵게 -->
+	                                            <span class="badge badge-danger mr-2">안읽음</span>
+	                                            <span class="blue-grey-text text-darken-4">${dto.title}</span></a></td>
+	                                    <!-- Attachment -->
+	                                    <td class="clip px-1 py-2">
+	                                    	<c:if test="${not empty dto.files}">
+	                                    	<i class="fa fa-paperclip"></i>
+	                                    	</c:if>
+	                                    </td>
+	                                    <!-- Time -->
+	                                    <td class="time text-right">${dto.send_date}</td>
+	                                </tr>
+	                            </c:forEach>
+	                    		</tbody>
+	                        </table>
+	                    </div>
+	                    </div>
+	                    <!-- <div class="tab-content">
+	                    	<div id="note-full-container" class="note-has-grid row" style="width:100%;">
+	                    	</div>
+						</div> -->
+						<!-- ============================================================== -->
+						<!-- End Wrapper -->
+						<!-- ============================================================== -->
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
