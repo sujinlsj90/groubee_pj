@@ -74,7 +74,11 @@
 												<div class="form-group">
 													<label class="name">* User Name</label> <br>
 													<span id="id" name="id">${dto.id}</span>
+<<<<<<< HEAD
 													<input type="hidden" name="id" value="${dto.id}" readonly>
+=======
+													<input type="hidden" name="id" value="${dto.id}">
+>>>>>>> c3a0afac0f9d9efa03819f80da60a2059002fd78
 												</div>
 											</div>
 											<!-- 영문 이름 -->

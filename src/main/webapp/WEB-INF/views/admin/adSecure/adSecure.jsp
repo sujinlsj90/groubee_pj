@@ -14,10 +14,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
     <title>Severny admin Template - The Ultimate Multipurpose admin template</title>	
-	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
-    <!-- Custom CSS -->
-    <link href="${path}/resources/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
-    <link href="${path}/resources/assets/extra-libs/c3/c3.min.css" rel="stylesheet">
+	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />    
     <!-- Custom CSS -->
     <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${path}/resources/assets/extra-libs/prism/prism.css">
@@ -30,7 +27,27 @@
 <![endif]-->
 
 <script type="text/javascript">
-	
+function openWindowPop(url, name){
+    var options = 'top=10, left=10, width=1000, height=800, status=no, menubar=no, toolbar=no, resizable=no';
+    window.open(url, name, options);
+}	
+
+$(function() {
+    $("#all_check").change(function() {
+       var is_checked = $("#all_check").is(":checked");
+       $(".p_selectChk").prop("checked", is_checked); // is_checked : true
+    });
+ });
+ 
+$(function(){
+	//수정
+$("#admin_del").click(function(){
+	if(confirm("관리자를 삭제하시겠습니까?")){
+	document.adSecureGroubee.action = "${path}/admin_del.ad?${_csrf.parameterName}=${_csrf.token}";
+	document.adSecureGroubee.submit();
+	} 
+});
+});
 </script>
 
 </head>
@@ -106,9 +123,9 @@
 	                <a class="ti-menu ti-close btn btn-success show-left-part d-block d-md-none" href="javascript:void(0)"></a>
 	                <div class="scrollable" style="height:100%;">
 	                	<h4>권한 목록</h4>
-	                    <div class="p-3">
+	                   <!--  <div class="p-3">
 	                        <a class="waves-effect waves-light btn btn-info d-block" href="javascript: void(0)" id="add-task"> + 추가</a>
-	                    </div>
+	                    </div> -->
 	                    <div class="divider"></div>
 	                    <ul class="list-group">
 	                       
@@ -116,40 +133,310 @@
 	                            <a href="javascript:void(0)" class="todo-link active list-group-item-action p-3 d-flex align-items-center" id="amin"> 기본 관리자 </a>
 	                        </li>
 	                        <li class="list-group-item p-0 border-0">
+	                            <a href="javascript:void(0)" class="todo-link list-group-item-action p-3 d-flex align-items-center" id="assiduity_admin"> 근태 관리자 </a>
+	                        </li>
+	                        <li class="list-group-item p-0 border-0">
 	                            <a href="javascript:void(0)" class="todo-link list-group-item-action p-3 d-flex align-items-center" id="personnel_admin"> 인사 관리자 </a>
 	                        </li>
 	                        <li class="list-group-item p-0 border-0">
-	                            <a href="javascript:void(0)" class="todo-link list-group-item-action p-3 d-flex align-items-center" id="security_admin"> 보완 관리자 </a>
+	                            <a href="javascript:void(0)" class="todo-link list-group-item-action p-3 d-flex align-items-center" id="document _admin"> 결재문서 관리자 </a>
 	                        </li>
 	                        <li class="list-group-item p-0 border-0">
-	                            <a href="javascript:void(0)" class="todo-link list-group-item-action p-3 d-flex align-items-center" id="assets_admin"> 자산 관리자 </a>
+	                            <a href="javascript:void(0)" class="todo-link list-group-item-action p-3 d-flex align-items-center" id=" board_admin"> 게시판 관리자 </a>
+	                        </li>
+	                        <li class="list-group-item p-0 border-0">
+	                            <a href="javascript:void(0)" class="todo-link list-group-item-action p-3 d-flex align-items-center" id="messenger_admin"> 메신저 관리자 </a>
+	                        </li>
+	                        <li class="list-group-item p-0 border-0">
+	                            <a href="javascript:void(0)" class="todo-link list-group-item-action p-3 d-flex align-items-center" id="service_admin"> 서비스 관리자 </a>
+	                        </li>
+	                        <li class="list-group-item p-0 border-0">
+	                            <a href="javascript:void(0)" class="todo-link list-group-item-action p-3 d-flex align-items-center" id="security_admin"> 보완 관리자 </a>
 	                        </li>
 	                    </ul>
 	                </div>
 	            </div>
 	            
 	            <div class="right-part mail-list overflow-auto">
-                    
-                    <br><br>
-                    <div class="d-flex align-items-center">
-                            <div>
-                                <h4>기본 관리자 (모든 권한)</h4>
+                    <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">기본 관리자 (모든권한)</h4>
+                                <br>
+                                <a class="btn btn-secondary" href="javascript:openWindowPop('${path}/adminAdd.ad', 'popup');" role="button">운영자 추가</a>
+                                <button type ="button" class="btn btn-secondary" id="admin_del">운영자 삭제</button>
+                                <%-- <a class="btn btn-secondary" href="${path}/adminDel.ad" role="button">운영자 삭제</a> --%>                      	                                 
+                                <br><br>
+                                <div class="table-responsive">
+                                	<form name="adSecureGroubee" method="post">
+                                	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                    <table class="tablesaw no-wrap table-bordered table-hover table" data-tablesaw>
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                	<label for="all_check">
+                                                		<input type="checkbox" id="all_check">
+                                                		<span class="sr-only"></span>
+                                                	</label>
+                                                </th>
+                                                <th>사번</th>
+                                                <th>
+                                                	이름(이메일)                                               	                                          
+                                                </th>
+                                                <th>부서</th>
+                                                <th>권한</th>
+                                                <th>관리자 등록일</th>                                              
+                                            </tr>
+                                        </thead>
+                                        <c:forEach var="dto" items="${list}">
+                                        
+                                            <tr>
+                                                <td>
+                                                	<label for="chk">
+                                                		<input type="checkbox" class="p_selectChk" name="chk_secureDel" id="chk" value="${dto.id}">
+                                                		<span class="sr-only"></span>
+                                                	</label>
+                                                </td>
+                                                <td>${dto.id}</td>
+                                                <td>${dto.name}
+                                                	(${dto.email_in})
+                                                </td>                                                
+                                                <td>${dto.depart_name}</td>
+                                                <td>${dto.administrator}</td>
+                                                <td>${dto.hireday}</td>                                                
+                                            </tr>	
+                                        
+                                        </c:forEach>
+                                    </table>
+                                    </form>
+                                </div>
                             </div>
-                    </div>
+                        </div>               
                     <br><br>
-                    <div class="custom-control custom-checkbox">
-                    	<input type="checkbox" class="custom-control-input" id="drop-remove">
-                        <label class="custom-control-label" for="drop-remove">기본 관리</label>
-                    </div>
-                    <br>
-                    <h6>메뉴 관리, 메뉴별 운영자 설정 등 사이트의 기본적인 설정을 제어합니다.</h6>
-                    
-                    <div class="custom-control custom-checkbox">
-                   
-                  		<input type="checkbox" class="custom-control-input" id="drop-remove">
-                       	<label class="custom-control-label" for="drop-remove">서비스 메뉴관리</label>
-                
-                    </div>
+                       <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">권한설정</h4>
+                                <br>
+                                <div class="table-responsive">
+                                    <table class="tablesaw no-wrap table-bordered table-hover table" data-tablesaw>
+                                        <thead>
+                                            <tr>
+                                                <th colspan="4" scope="col" class="border">
+                                                	<label>
+                                                		<input type="checkbox" data-tablesaw-checkall>
+                                                		<span class="sr-only">Check All</span>기본 관리
+                                                		<br><br>
+	                             						<h6>메뉴 관리, 메뉴별 운영자 설정 등 사이트의 기본적인 설정을 제어합니다.</h6>
+                                                	</label>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="checkall-target">
+                                            <tr>
+                                                <td style="width:20%">
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>서비스 메뉴관리
+                                                	</label>
+                                                </td>
+                                                <td style="width:20%">
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>공용용량 현황
+                                                	</label>
+                                                </td>                                               
+                                                <td style="width:20%">
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>메뉴 운영 권한 관리
+                                                	</label>
+                                                </td>
+                                                <td style="width:20%">
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>프로필 관리
+                                                	</label>
+                                                </td>                                                
+                                            </tr>	
+                                            <tr>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>공지 사항 관리
+                                                	</label>
+                                                </td>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>로고 및 테마
+                                                	</label>
+                                                </td>                                                
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>데이터 백업 관리
+                                                	</label>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="table-responsive">
+                                    <table class="tablesaw no-wrap table-bordered table-hover table" data-tablesaw>
+                                        <thead>
+                                            <tr>
+                                                <th colspan="4" scope="col" class="border">
+                                                	<label>
+                                                		<input type="checkbox" data-tablesaw-checkall>
+                                                		<span class="sr-only">Check All</span>보안 관리
+                                                		<br><br>
+	                             						<h6>로그인, 비밀번호 정택 설정, 접근 제한 등 보안에 관련된 부분을 제어합니다.</h6>
+                                                	</label>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                
+                                  <div class="table-responsive">
+                                    <table class="tablesaw no-wrap table-bordered table-hover table" data-tablesaw>
+                                        <thead>
+                                            <tr>
+                                                <th colspan="4" scope="col" class="border">
+                                                	<label>
+                                                		<input type="checkbox" data-tablesaw-checkall>
+                                                		<span class="sr-only">Check All</span>조직 관리
+                                                		<br><br>
+	                             						<h6>멤버, 부서, 직위 등 조직을 구성/관리 합니다.</h6>
+                                                	</label>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                
+                                <div class="table-responsive">
+                                    <table class="tablesaw no-wrap table-bordered table-hover table" data-tablesaw>
+                                        <thead>
+                                            <tr>
+                                                <th colspan="4" scope="col" class="border">
+                                                	<label>
+                                                		<input type="checkbox" data-tablesaw-checkall>
+                                                		<span class="sr-only">Check All</span>메뉴 관리
+                                                		<br><br>
+	                             						<h6>사이트에서 사용하는 각각의 메뉴를 설정/관리 합니다.</h6>
+                                                	</label>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="checkall-target">
+                                            <tr>
+                                                <td style="width:20%">
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>홈
+                                                	</label>
+                                                </td>
+                                                <td style="width:20%">
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>전자결재
+                                                	</label>
+                                                </td>                                               
+                                                <td style="width:20%">
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>게시판
+                                                	</label>
+                                                </td>
+                                                <td style="width:20%">
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>문서관리
+                                                	</label>
+                                                </td>                                                
+                                            </tr>	
+                                            <tr>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>메일
+                                                	</label>
+                                                </td>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>보고
+                                                	</label>
+                                                </td>                                                
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>Work
+                                                	</label>
+                                                </td>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>캘린더
+                                                	</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>예약
+                                                	</label>
+                                                </td>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>근태관리
+                                                	</label>
+                                                </td>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>설문
+                                                	</label>
+                                                </td>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>주소록
+                                                	</label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>커뮤니티
+                                                	</label>
+                                                </td>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>메신저/모바일
+                                                	</label>
+                                                </td>
+                                                <td>
+                                                	<label>
+                                                		<input type="checkbox">
+                                                		<span class="sr-only"> Select Row</span>자료실
+                                                	</label>
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>  
                 </div>
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
@@ -263,20 +550,6 @@
     <script src="${path}/resources/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="${path}/resources/dist/js/custom.min.js"></script>
-    <!--This page JavaScript -->
-    <!--chartis chart-->
-    <script src="${path}/resources/assets/libs/chartist/dist/chartist.min.js"></script>
-    <script src="${path}/resources/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-    <!--c3 charts -->
-    <script src="${path}/resources/assets/extra-libs/c3/d3.min.js"></script>
-    <script src="${path}/resources/assets/extra-libs/c3/c3.min.js"></script>
-    <!--chartjs -->
-    <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
-    <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
-    <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
-    <script src="../../dist/js/pages/email/email.min.js"></script>
-    <script src="../../assets/libs/summernote/dist/summernote-bs4.min.js"></script>
-    <script src="../../assets/libs/dropzone/dist/min/dropzone.min.js"></script>
 </body>
 
 </html>

@@ -10,9 +10,12 @@ public class MessageDTO {
 	private String title; // 메세지 제목
 	private String contents; // 메세지 내용
 	private String files; // 첨부파일
+	private String nonfiles; // 첨부파일이 없을때 사용
 	private Date send_date; // 발송일시
 	private int trash; // 노출0, 휴지통1
 	private int holding; // 노출0, 임시보관1
+	private int state; // 안읽음0, 읽음1
+	private Date read_date; // 메세지 읽은 일시
 	private String name; // 직원 이름
 	private String depart_name; // 부서 이름
 
@@ -67,6 +70,14 @@ public class MessageDTO {
 		this.files = files;
 	}
 
+	public String getNonfiles() {
+		return nonfiles;
+	}
+
+	public void setNonfiles(String nonfiles) {
+		this.nonfiles = nonfiles;
+	}
+
 	public Date getSend_date() {
 		return send_date;
 	}
@@ -91,6 +102,22 @@ public class MessageDTO {
 		this.holding = holding;
 	}
 
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
+	public Date getRead_date() {
+		return read_date;
+	}
+
+	public void setRead_date(Date read_date) {
+		this.read_date = read_date;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -110,10 +137,9 @@ public class MessageDTO {
 	@Override
 	public String toString() {
 		return "MessageDTO [message_num=" + message_num + ", id=" + id + ", getter_id=" + getter_id + ", title=" + title
-				+ ", contents=" + contents + ", files=" + files + ", send_date=" + send_date + ", trash=" + trash
-				+ ", holding=" + holding + ", name=" + name + ", depart_name=" + depart_name + "]";
+				+ ", contents=" + contents + ", files=" + files + ", nonfiles=" + nonfiles + ", send_date=" + send_date
+				+ ", trash=" + trash + ", holding=" + holding + ", state=" + state + ", read_date=" + read_date
+				+ ", name=" + name + ", depart_name=" + depart_name + "]";
 	}
 
-	
-	
 }

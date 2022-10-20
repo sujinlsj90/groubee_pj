@@ -15,10 +15,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
     <title>Groubee - 연장 근무 신청</title>	
-	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
-    <!-- This Page CSS -->
-    <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
-    <link href="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />    
     <!-- Custom CSS -->
     <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -28,14 +25,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
-<<<<<<< HEAD
-	
-=======
-	// alert("INSERT INTO grb_attendance (attend_id, id, RESULT, reason, overtime, state) \n VALUES((SELECT NVL(Max(attend_id)+1,1) FROM grb_attendance), 1, 1, '하반기 SQL 프로젝트', sysdate, '연장');");
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
-	
-</script>
 
 </head>
 
@@ -87,16 +76,17 @@
                             <div class="card-header bg-info">
                                 <h4 class="card-title text-white">연장 근무 신청</h4>
                             </div>
-                            <form action="#" class="form-horizontal">
+                            <form name="request_over" method="post" class="form-horizontal">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">		
                                 <div class="form-body">                                    
                                     <hr class="mt-0 mb-5">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="control-label text-right col-md-3">신청자</label>
+                                                    <label class="control-label text-right col-md-3">사번</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control" placeholder="성함">
+                                                        <span>${sessionScope.memberID}</span>                                                        
                                                     </div>
                                                 </div>
                                             </div>                                            
@@ -104,19 +94,20 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="control-label text-right col-md-3">결재자</label>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" placeholder="성함">
+                                                    <label class="control-label text-right col-md-3">신청자</label>
+                                                    <div class="col-md-9">                                                       
+                                                        <span>${dto.name}</span>
+                                                        <input type="hidden" name="name" class="form-control col-md-4">
                                                     </div>
                                                 </div>
                                             </div>                                            
-                                        </div>                                        
+                                        </div>                                         
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">날짜</label>
                                                     <div class="col-md-9">
-                                                        <input type="date" class="form-control" id="date">
+                                                        <input type="date" class="form-control" id="date" name="date" required>
                                                     </div>
                                                 </div>
                                             </div>                                            
@@ -126,7 +117,7 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">연장 시간</label>
                                                     <div class="col-md-9">
-                                                        <input type="time" class="form-control" id="stime">
+                                                        <input type="time" class="form-control" id="over_in" name="over_in" required>
                                                     </div>
                                                 </div>
                                             </div>                                            
@@ -136,7 +127,7 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">종료 시간</label>
                                                     <div class="col-md-9">
-                                                        <input type="time" class="form-control" id="etime">
+                                                        <input type="time" class="form-control" id="over_out" name="over_out" required>
                                                     </div>
                                                 </div>
                                             </div>                                            
@@ -146,7 +137,7 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">연장 사유</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control" id="note" placeholder="사유">
+                                                        <input type="text" class="form-control" id="content" name="content" placeholder="사유" required>
                                                     </div>
                                                 </div>
                                             </div>                                            
@@ -156,8 +147,8 @@
                                     <div class="form-actions">
                                         <div class="card-body">
                                             <div class="text-right">
-                                                <button type="submit" class="btn btn-info">Submit</button>
-                                                <button type="button" class="btn btn-dark">Cancel</button>
+                                                <button type="button" class="submit btn btn-info">Submit</button>
+                                                <button type="button" class="cancel btn btn-dark">Cancel</button>
                                             </div>
                                         </div>
                                     </div>
@@ -274,22 +265,81 @@
     <script src="${path}/resources/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="${path}/resources/dist/js/custom.min.js"></script>
-    <!-- This Page JS -->
-    <script src="${path}/resources/dist/js/pages/email/email.min.js"></script>
-    <script src="${path}/resources/assets/libs/summernote/dist/summernote-bs4.min.js"></script>
-    <script src="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.js"></script>
-    <script>
-        $('#summernote').summernote({
-            placeholder: 'Type your email Here',
-            tabsize: 2,
-            height: 250
+    <script type="text/javascript">
+   	$(function(){
+   		var currentDate = new Date(); 
+        var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate();	
+   		var over_in;
+   		var over_out;
+   		var date;
+   	
+   		// 연장 시작 시각
+        $("#over_in").change(function(){
+        	over_in =  $(this).val();
+            console.log(over_in);
         });
-        Dropzone.autoDiscover = false;
-        $(document).ready(function () {
-            var myDrop = new Dropzone("#dzid", {
-                url: '/file/post'
-            });
+   		
+        // 연장 종료 시각
+        $("#over_out").change(function(){
+        	over_out =  $(this).val();
+            console.log(over_out);
         });
-    </script>
+        
+        // 날짜 
+        $("#date").change(function(){
+        	date = $(this).val();
+            console.log(date);
+        });
+        
+     	// 연장 시각 계산 (종료 시각 - 시작 시간)
+   		const getTimeDiff = (d1, d2) => {
+   			// 날짜 + 시간 
+   			var in1 = calendar + " " + d1;
+   			var out1 = calendar + " " + d2;
+   			console.log(in1);
+   			console.log(out1);
+   		  	const date1 = new Date(in1);
+   		  	const date2 = new Date(out1);
+   		  	
+   		  	// 밀리 세컨드
+   		  	const diffDate = date2.getTime() - date1.getTime();  		   		 
+   		 	// 시 분 초 변환
+   			var h = Math.floor((diffDate % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	 		var m = Math.floor((diffDate % (1000 * 60 * 60)) / (1000 * 60));
+	 		var s = Math.floor((diffDate % (1000 * 60)) / 1000);
+	 		// 0 표기 만들어주기
+	 		if (h.toString().length==1) h = "0" + h;
+			if (m.toString().length==1) m = "0" + m;
+			if (s.toString().length==1) s = "0" + s;
+			
+		 	return diffDate / 1000;
+   		}
+        
+        // 신청
+        $(".submit").click(function(){       	
+            if(${cnt != 0}){
+            	alert("당일 연장 근무 신청 이력이 있습니다. \n연장 신청은 일일 1회 가능합니다.")
+        		return false;
+            } else if( date != calendar ){
+        		alert("연장 근무 신청은 당일에만 가능합니다.")
+        		return false;
+        	} else{
+        		
+        		var overtime = getTimeDiff(over_in, over_out);
+        		console.log(overtime);
+        		
+        		document.request_over.action = "${path}/request_over_action.at?overtime="+overtime;
+				document.request_over.submit();
+        	}
+        });
+        
+        // 취소
+		$(".cancel").click(function(){
+			location.href = '${path}/request_over.at';
+        });
+       	
+   	}); 
+		
+</script>
 </body>
 </html>

@@ -61,6 +61,7 @@ public class AdminHumanDAOImpl implements AdminHumanDAO{
 		return list;
 	}
 
+<<<<<<< HEAD
 	//부서 상세
 	@Override
 	public DepartDTO departDetail(String id) {
@@ -76,6 +77,14 @@ public class AdminHumanDAOImpl implements AdminHumanDAO{
 		System.out.println("관리자 dao -> 부서 수정");
 		
 		int updateCnt = sqlSession.update("com.spring.tutorial.dao.AdminHumanDAO.departUpdate", dto);
+=======
+	//부서 수정
+	@Override
+	public int departUpdate(String depart_name) {
+		System.out.println("관리자dao -> 부서수정");
+		
+	    int updateCnt = sqlSession.update("com.spring.tutorial.dao.AdminHumanDAO.departUpdate", depart_name);
+>>>>>>> c3a0afac0f9d9efa03819f80da60a2059002fd78
 		return updateCnt;
 	}
 

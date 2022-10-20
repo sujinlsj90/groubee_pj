@@ -12,12 +12,10 @@
    			Mybatis에서 변수는 #{ }으로 표현한다
    		-->
    		
-   		<!-- 받는사람 목록 - 부서 -->
+   		<!-- 메세지쓰기 - 받는사람 -->
    		<select id="recipientList_depart" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
-   			SELECT name, depart_name FROM grb_member ORDER BY depart_name ASC
+   			SELECT id, name, depart_name FROM grb_member ORDER BY depart_name ASC
    		</select>
-   		
-   		<!-- SELECT DISTINCT depart_name FROM grb_member -->
    		
    		<!-- 받는사람 목록 - 부서별 사원명 -->
    		<!-- <select id="recipientList_person" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
@@ -30,27 +28,143 @@
    		</select> -->
    		
    		<!-- 메세지 보내기 -->
-   		<!-- <insert id="messageSend" parameterType="com.spring.tutorial.dto.MessageDTO">
-   			INSERT INTO grb_send_message(message_num, id, getter_id, title, contents, files, send_date, trash, holding)
-			VALUES((SELECT NVL(Max(message_num)+1, 1) FROM grb_get_message), #{id}, #{getter_id}, #{title}, #{contents}, #{files}, sysdate, 0, 0)
-   		</insert> -->
+   		<insert id="messageSend" parameterType="com.spring.tutorial.dto.MessageDTO">
+   			INSERT INTO grb_message(message_num, id, getter_id, title, contents, files, send_date, trash, holding)
+			VALUES((SELECT NVL(Max(message_num)+1, 1) FROM grb_message), #{id}, #{getter_id}, #{title}, #{contents}, 
+			(SELECT NULLIF(#{files}, #{nonfiles}) FROM dual), sysdate, 0, 0)
+   		</insert>
    		
    		<!-- 받은메세지 리스트 -->
-   		<!-- <select id="getMsgList" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
-   			SELECT message_num, 
-       			   (SELECT CONCAT(CONCAT(depart_name, ' '), name) AS 보낸사람 FROM grb_member WHERE id = #{id}),
-       			   title, contents, files, send_date, trash, holding
-  			  FROM grb_send_message
- 			 WHERE getter_id = #{getter_id}
-   		</select> -->
+   		<select id="getMsgList" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
+   			SELECT ms.message_num, m.id, ms.getter_id, m.depart_name, m.name, ms.title, ms.contents, ms.files, ms.send_date, ms.trash, ms.holding, ms.state
+  			  FROM grb_message ms, grb_member m
+			 WHERE ms.id = m.id
+			   AND ms.getter_id = #{getter_id}
+			   AND ms.trash = 0
+			   AND ms.holding = 0
+			 ORDER BY ms.message_num DESC
+   		</select>
+   		
+   		<!-- 보낸메세지 리스트 -->
+   		<select id="sendMsgList" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
+	   		SELECT ms.message_num,
+	               m.depart_name,
+	       		   m.id,
+	               m.name,
+	               ms.title, ms.contents, ms.files, ms.send_date, ms.trash, ms.holding
+	          FROM grb_message ms, grb_member m
+	         WHERE ms.getter_id = m.id
+	           AND ms.id = #{id}
+	           AND ms.holding = 0
+	         ORDER BY ms.message_num DESC
+   		</select>
+   		
+   		<!-- 임시보관 리스트 -->
+   		<select id="tempoMsgList" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
+   			SELECT ms.message_num, m.id, m.depart_name, m.name, ms.title, ms.contents, ms.files, ms.send_date
+  			  FROM grb_message ms, grb_member m
+ 			 WHERE ms.getter_id = m.id
+   			   AND ms.id = #{id}
+   			   AND holding = 1
+ 			 ORDER BY ms.message_num DESC
+   		</select>
+   		
+   		<!-- 휴지통 리스트 -->
+   		<select id="trashMsgList" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
+   			SELECT ms.message_num, m.depart_name, m.name, ms.id, ms.getter_id, ms.title, ms.contents, ms.files, ms.send_date, ms.state
+			  FROM grb_message ms, grb_member m 
+			 WHERE ms.id = m.id
+			   AND (ms.getter_id = #{getter_id}
+			    OR ms.id = #{getter_id} )
+			   AND trash = 1 
+			 ORDER BY ms.message_num DESC
+   		</select>
+   		
+   		<!-- 메세지 읽기 -->
+   		<select id="readMsgDetail" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
+   			SELECT ms.message_num, ms.id, ms.getter_id, ms.title, ms.contents, ms.files, ms.send_date, ms.trash, ms.holding, ms.state, ms.trash, m.name, m.depart_name, ms.read_date
+  			  FROM grb_message ms, grb_member m
+ 			 WHERE ms.id = m.id
+   			   AND message_num = #{message_num}
+   		</select>
+   		
+   		<!-- 임시보관 메세지 읽기 -->
+   		<select id="readTempoDetail" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
+   			SELECT ms.message_num, m.id, ms.getter_id, ms.title, ms.contents, ms.files, ms.send_date, ms.trash, ms.holding, ms.state, ms.trash, m.name, m.depart_name, ms.read_date
+  			  FROM grb_message ms, grb_member m
+ 			 WHERE ms.getter_id = m.id
+   			   AND message_num =  #{message_num}
+   		</select>
+   		
+   		
+   		<!-- 메세지 읽음 상태변경 -->
+   		<update id="updateState_read" parameterType="int">
+   			UPDATE grb_message
+   			   SET state = 1
+ 			 WHERE message_num = #{message_num}
+   		</update>
+   		
+   		<!-- 메세지 안읽음 상태변경 -->
+   		<update id="updateState_unread" parameterType="int">
+   			UPDATE grb_message
+   			   SET state = 0
+ 			 WHERE message_num = #{message_num}
+   		</update>
    			
-   			
-   			
-   			
-   			
-   			
-   			
-   			
-   			
+   		<!-- 메세지 휴지통으로 이동 --> 
+   		<update id="deleteMessage" parameterType="int">
+   			UPDATE grb_message
+   			   SET trash = 1
+ 			 WHERE message_num = #{message_num}
+   		</update>
+   		
+   		<!-- 메세지 복원 --> 
+   		<update id="returnMessage" parameterType="int">
+   			UPDATE grb_message
+   			   SET trash = 0
+ 			 WHERE message_num = #{message_num}
+   		</update>
+   		
+   		<!-- 메세지 완전삭제 -->
+   		<delete id="completeDeleteMessage" parameterType="int">
+   			DELETE grb_message
+   			 WHERE message_num = #{message_num}
+   		</delete>
+   		
+   		<!-- 메세지 발신취소 여부 체크 -->
+   		<select id="cancleMsgChk" parameterType="int" resultType="Integer">
+   			SELECT COUNT(read_date) as cancleChk
+   			  FROM grb_message
+   			 WHERE message_num = #{message_num}
+   		</select>
+   		
+   		<!-- 메세지 읽은 날짜 생성 -->
+   		<update id="updateReadDate" parameterType="int">
+   			UPDATE grb_message
+   			   SET read_date = sysdate
+ 			 WHERE message_num = #{message_num}
+   		</update>
+   		
+   		<!-- 메세지 읽은날짜 확인 -->
+   		<select id="checkReadDate" parameterType="int" resultType="Integer">
+   			SELECT COUNT(read_date) as chkReadDate
+   			  FROM grb_message
+   			 WHERE message_num = #{message_num}
+   		</select>
+   		
+   		<!-- 메세지 임시저장 -->
+   		<insert id="sendTempoMsg" parameterType="com.spring.tutorial.dto.MessageDTO">
+   			INSERT INTO grb_message(message_num, id, getter_id, title, contents, files, send_date, trash, holding)
+			VALUES((SELECT NVL(Max(message_num)+1, 1) FROM grb_message), #{id}, #{getter_id}, #{title}, #{contents}, 
+			(SELECT NULLIF(#{files}, #{nonfiles}) FROM dual), sysdate, 0, 1)
+   		</insert>
+   		
+   		<!-- 메세지 임시저장 불러오기 -->
+   		<select id="getTempoMsg" parameterType="java.util.Map" resultType="com.spring.tutorial.dto.MessageDTO">
+   			SELECT ms.message_num, ms.id, ms.getter_id, ms.title, ms.contents, ms.files, ms.send_date, ms.trash, ms.holding, ms.state, m.name, m.depart_name
+  			  FROM grb_message ms, grb_member m
+ 			 WHERE ms.getter_id = m.id
+   			   AND message_num = #{message_num}
+   		</select>
    			
 	</mapper>	

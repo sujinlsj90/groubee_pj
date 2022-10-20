@@ -6,27 +6,58 @@ import com.spring.tutorial.dto.MessageDTO;
 
 public interface MessageDAO {
 	
-	// 받는사람 목록 - 부서
+	// 메세지쓰기 - 받는사람
 	public List<MessageDTO> recipientList_depart();
 	
-	// 받는사람 목록 - 부서별 사원명
-//	public List<MessageDTO> recipientList_person();
-	
-	// 메세지 개수
-//	public int messageInsert();
-	
 	// 메세지 보내기
-//	public int messageSend(MessageDTO dto);
+	public int messageSend(MessageDTO dto);
 	
 	// 받은메세지 리스트
-//	public List<MessageDTO> getMsgList();
+	public List<MessageDTO> getMsgList(String getter_id);
 	
 	// 보낸메세지 리스트
-//	public List<MessageDTO> sendMsgList();
+	public List<MessageDTO> sendMsgList(String id);
 		
 	// 임시보관함 리스트
-//	public List<MessageDTO> tempoMsgList();
+	public List<MessageDTO> tempoMsgList(String id);
 	
 	// 휴지통 리스트
-//	public List<MessageDTO> trashMsgList();
+	public List<MessageDTO> trashMsgList(String getter_id);
+	
+	// 메세지 읽기
+	public List<MessageDTO> readMsgDetail(int message_num);
+	
+	// 메세지 읽기 - 임시보관함
+	public List<MessageDTO> readTempoDetail(int message_num);
+	
+	// 메세지 읽음 상태변경
+	public int updateState_read(int message_num);
+	
+	// 메세지 안읽음 상태변경
+	public int updateState_unread(int message_num);
+	
+	// 메세지 휴지통으로 이동
+	public int deleteMessage(int message_num);
+	
+	// 메세지 복원
+	public int returnMessage(int message_num);
+	
+	// 메세지 완전삭제
+	public int completeDeleteMessage(int message_num);
+	
+	// 메세지 발신취소 가능여부 확인
+	public int cancleMsgChk(int message_num);
+	
+	// 메세지 읽은시간 입력
+	public int updateReadDate(int message_num);
+	
+	// 메세지 읽은날짜 확인
+	public int checkReadDate(int message_num);
+	
+	// 메세지 임시저장
+	public int sendTempoMsg(MessageDTO dto);
+	
+	// 메세지 임시저장 불러오기
+	public List<MessageDTO> getTempoMsg(int message_num);
+	
 }

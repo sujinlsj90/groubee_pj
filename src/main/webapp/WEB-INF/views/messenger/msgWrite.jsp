@@ -13,8 +13,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
-    <title>그루비 그룹웨어</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
     <!-- This Page CSS -->
     <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
@@ -30,6 +28,9 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+<style>
+	.select2-container--default .select2-selection--multiple .select2-selection__choice{color:#000;}
+</style>
 <script>
 $(document).ready(function() {
 	/* 받는사람 입력창 */
@@ -37,7 +38,7 @@ $(document).ready(function() {
 	    placeholder: '  받는사람'
 	});
 
-	$('#msgPerson').on('select2:select', function(e) {
+	/* $('#msgPerson').on('select2:select', function(e) {
 		var id = e.params.data.id;
 		var value = $(this).val();
 		if (id == 'ALL') {
@@ -48,9 +49,32 @@ $(document).ready(function() {
 		}
 	});
 	
+	$('select').change(function () {
+	    var opt = $(this).find(':selected');
+	    var sel = opt.text();
+	    var og = opt.closest('optgroup').attr('label');
+	    //var og = opt.parents('optgroup').prop('label');
+	    
+	    alert(sel);
+	    /* alert(og); */
+/*	}); */
 	
 	
 	
+});
+
+$(function() {
+	// sendBtn
+	$('#sendBtn').click(function() {
+		document.submitMsgForm.action ="${path}/sendMsg.me?${_csrf.parameterName}=${_csrf.token}";
+		document.submitMsgForm.submit();
+	});
+	
+	// cancleMsgBtn
+	$('#tempoBtn').click(function() {
+		document.submitMsgForm.action ="${path}/tempoMsg.me?${_csrf.parameterName}=${_csrf.token}";
+		document.submitMsgForm.submit();
+	});
 });
 </script>
 
@@ -99,7 +123,8 @@ $(document).ready(function() {
                     <!-- Action part -->
                     <!-- Button group part -->
                     <div class="card-body">
-                        <form>
+                        <form method="post" name="submitMsgForm" enctype="multipart/form-data">
+                        	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <div class="form-group">
                             	<select id="msgPerson" multiple="multiple" name="msgPerson" style="width:100%;" required>
                             		<%-- 
@@ -111,25 +136,26 @@ $(document).ready(function() {
 									 --%>
 									<c:forEach var="dto" items="${list}">
 										<%-- <optgroup label="${dto.depart_name}"> --%>
-									    	<option value="${dto.depart_name}|${dto.name}">${dto.depart_name} ${dto.name}</option>
+									    	<%-- <option value="${dto.depart_name}|${dto.name}">${dto.depart_name} ${dto.name}</option> --%>
+									    	<option value="${dto.id}">${dto.id} ${dto.depart_name} ${dto.name}</option>
 									   <!--  </optgroup> -->
 									</c:forEach>
 								</select>
                             </div>
                             <div class="form-group">
-                                <input type="text" id="example-subject" name="example-subject msgTitle" class="form-control"
+                                <input type="text" id="example-subject" name="example-subject" class="form-control"
                                     placeholder="제목">
                             </div>
-                            <textarea cols="80" id="testedit1" name="testedit1 msgContent" rows="10" data-sample="2" data-sample-short></textarea>
+                            <textarea cols="80" id="testedit1" name="testedit1" rows="10" data-sample="2" data-sample-short></textarea>
                             <h4 style="margin-top:10px;">첨부파일</h4>
                             <div class="dropzone" id="dzid">
                                 <div class="fallback">
                                     <input name="file" type="file" multiple />
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-success mt-3" onclick="window.open('about:blank', '_self').close()"><i class="far fa-envelope"></i>
+                            <button type="button" id="sendBtn" class="btn btn-success mt-3"><i class="far fa-envelope"></i>
                                 보내기</button>
-                            <button type="button" class="btn btn-success mt-3" onclick="window.open('about:blank', '_self').close()"><i class="far fa-envelope"></i>
+                            <button type="button" id="tempoBtn" class="btn btn-success mt-3"><i class="far fa-envelope"></i>
                             	임시저장</button>
                             <button type="button" class="btn btn-dark mt-3" onclick="self.close()">닫기</button>
                         </form>

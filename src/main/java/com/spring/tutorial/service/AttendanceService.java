@@ -13,13 +13,10 @@ public interface AttendanceService {
 	public void attendin(HttpServletRequest req, Model model);
 		
 	// 업무 종료
-	public void attendout(HttpServletRequest req, Model model);
+	public void attendout(HttpServletRequest req, Model model);	
 	
-	// 연장 시작
-	public void overin(HttpServletRequest req, Model model);
-	
-	// 연장 종료
-	public void overout(HttpServletRequest req, Model model);
+	// 누적 근무 계산
+	public void worktime(HttpServletRequest req, Model model);
 			
 	// 나의 근무 조회 (주간별)
 	public void attendanceWeek(HttpServletRequest req, Model model);
@@ -29,6 +26,9 @@ public interface AttendanceService {
 	
 	// 내 연차 내역
 	public void attendanceRestInfo(HttpServletRequest req, Model model);
+	
+	// 사원 등록 이메일 인증 > 연차 발생
+	public void newannual(HttpServletRequest req, Model model);
 	
 	// 연장 근무 신청 
 	public void request_over(HttpServletRequest req, Model model);

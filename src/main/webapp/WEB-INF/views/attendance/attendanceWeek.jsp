@@ -15,10 +15,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
     <title>Groubee - 나의 근무 조회</title>	
-	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
-    <!-- This Page CSS -->
-    <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
-    <link href="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
+	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />    
     <!-- Custom CSS -->
     <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css"
@@ -31,22 +28,13 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
-<<<<<<< HEAD
-	
-=======
-	// alert("select * from grb_attendance a \n join grb_member m on a.id = m.id \n where  m.id = 1 \n and today > '2022-10-01' and today < '2022-10-07' \n order by today;");
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
-	
-</script>
-
 </head>
 
 <body>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div class="preloader">
+    <div class="preloader">    
         <div class="lds-ripple">
             <div class="lds-pos"></div>
             <div class="lds-pos"></div>
@@ -81,41 +69,52 @@
                 <!-- ============================================================== -->
                 <!-- Right Part -->
                 <!-- ============================================================== -->
+                <form name="weekform" method="post">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                
                 <div class="right-part mail-list overflow-auto" style="height:100%;">
                     <div class="card">
                         <div class="card-body">
-  							<h4 class="card-title"><strong>나의 근무 조회</strong></h4>                                                               
+  							<h4 class="card-title"><strong>나의 근무 조회</strong></h4>  							                                                           
 							<div id="paginator2"></div>                                
 						</div>
 					</div>				
                     <!-- Action part -->
                     <div class="card">
 						<div class="card-body">
-							<h4 class="card-title">4주차</h4>
+							<select class="selectweek form-control custom-select col-md-4" id="selectweek" name="selectweek" required>
+								<option id="0" value="0">주간 선택</option>
+								<option id="1" value="1주차">1주차</option>
+								<option id="2" value="2주차">2주차</option>
+								<option id="3" value="3주차">3주차</option>
+								<option id="4" value="4주차">4주차</option>
+							</select> 
+							<small class="form-control-feedback"> Select Week </small><br><br>
+							<h4 class="week card-title">${selectweek}</h4>
+							<h4><a class="getweek" href="#pgr2"><small class="form-control-feedback">[Click]</small></a></h4>    						
 							<div class="container" style="align: center">
 								<div class="row">
 									<div class="col bg-light border p-3">
-										<div>이번주 누적 시간</div>										
-										<div>08h 37m 7s</div>
+										<div>주간별 누적 시간</div>										
+										<div id="accumulweek">${weektotal}</div>
 									</div>
 									<div class="col order-12 bg-light border p-3">
-										<div>이번주 연장 시간</div>										
-										<div>18h 00m 00s</div>
+										<div>주간별 연장 시간</div>										
+										<div id="overweek">${overweek}</div>
 									</div>
 									<div class="col order-1 bg-light border p-3">
-										<div>이번주 잔여 시간</div>
-										<div>09h 22m 53s</div>
+										<div>주간별 잔여 시간</div>
+										<div id="remainweek">${remainweek}</div>
 									</div>
 								</div>
-								<div class="p-0 border-0"><hr></div>
+								<br>
 								<div class="row">
 									<div class="col bg-light border p-3">
 										<div>이번달 누적 시간</div>
-										<div>08h 37m 7s</div>
+										<div id="workmonth">${workmonth}</div>
 									</div>
 									<div class="col order-12 bg-light border p-3">
 										<div>이번달 연장 시간</div>
-										<div>18h 00m 00s</div>
+										<div id="overmonth">${overmonth}</div>
 									</div>									
 								</div>
 							</div>							
@@ -128,11 +127,12 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-body">																		
-                                        <h4 class="card-title">1주차 
-                                        	<a class="get-code" data-toggle="collapse" href="#pgr2" aria-expanded="true">
-                                        	<i class="fa fa-code" title="1주차 근태 확인" data-toggle="tooltip"></i></a>
-                                        </h4>
-                                        <h6 class="card-subtitle">누적 근무 시간 33h 12m 53s(연장 근무 시간 0h 0m 0s)</h6>
+                                    <h4 class="card-title">주간별 근무 조회
+                                    	<a class="getweek" href="#pgr2"><small class="form-control-feedback">[Click]</small></a>										
+										<a class="get-code" data-toggle="collapse" href="#pgr2" aria-expanded="true">											
+											<i class="fa fa-code" title="주간 근태 확인" data-toggle="tooltip"></i><br><br>
+										</a>
+									</h4>                                       
                                         <div class="collapse mt-3 well" id="pgr2" aria-expanded="true">
                                             <div class="table-responsive">
 											<table id="lang_comma_deci" class="table table-striped table-bordered display no-wrap" style="width: 100%">
@@ -141,458 +141,84 @@
 													<th colspan="2">일자</th>
 													<th>업무시작</th>
 													<th>업무종료</th>
-													<th>총 근무시간</th>
-													<th>근무시간 상세</th>
-													<th>승인요청 내역</th>
+													<th>근무 시간</th>
+													<th>연장 시간</th>
+													<th>근무 형태</th>
 												</tr>
 											</thead>
 											<tbody>
+											<c:forEach var="dto" items="${week}" varStatus="status">
+												<c:if test="${dto.attend_id eq null}" >
 												<tr>
-													<td>26</td>
-													<td>월</td>
-													<td>09:42:58 
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
+													<td colspan="6">등록하신 근태 로그가 없습니다.</td>																		
+												</tr>	
+												</c:if>
+												<c:if test="${dto.attend_id ne null}" >
+												<tr id="attendweek">
+													<td>${dto.day}</td>
+													<td>${dto.dy}</td>
+													<td id="attendin${dto.attend_id}">
+														<script type="text/javascript">
+															var attendin = getTimeStamp('${dto.attendin}');
+															if (attendin == 'Invalid date'){
+																attendin = "";
+															}else{
+																document.getElementById("attendin${dto.attend_id}").innerHTML = attendin;
+															}
+														</script>											
 													</td>
-													<td>16:32:35
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
+													<td id="attendout${dto.attend_id}">
+														<script type="text/javascript">
+															var attendout = getTimeStamp('${dto.attendout}');
+															if (attendout == 'Invalid date'){
+																attendout = "";
+															}else{
+																document.getElementById("attendout${dto.attend_id}").innerHTML = attendout;
+															}
+														</script>											
+													</td>																							
+													<td id="worktime${dto.attend_id}">
+														<script type="text/javascript">
+															var seconds = '${dto.worktime}';
+															var hour = parseInt(seconds / 3600);
+															var min = parseInt((seconds % 3600)/60);
+															var sec = seconds % 60;
+															if (hour.toString().length==1) hour = "0" + hour;
+															if (min.toString().length==1) min = "0" + min;
+															if (sec.toString().length==1) sec = "0" + sec;
+															var worktime = hour + ":" + min + ":" + sec;
+															if(worktime == "00:00:00"){ worktime = ""; }
+															console.log(worktime);															
+															document.getElementById("worktime" + ${dto.attend_id}).innerHTML = worktime;
+														</script>														
 													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>27</td>
-													<td>화</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>28</td>
-													<td>수</td>
-													<td>09:42:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
+													<td id="overtime${dto.attend_id}">
+														<script type="text/javascript">
+															var seconds = '${dto.overtime}';
+															var hour = parseInt(seconds / 3600);
+															var min = parseInt((seconds % 3600)/60);
+															var sec = seconds % 60;
+															if (hour.toString().length==1) hour = "0" + hour;
+															if (min.toString().length==1) min = "0" + min;
+															if (sec.toString().length==1) sec = "0" + sec;															
+															var overtime = hour + ":" + min + ":" + sec;
+															if( overtime == "00:00:00"){ overtime = ""; }
+															console.log(worktime);															
+															document.getElementById("overtime" + '${dto.attend_id}').innerHTML = overtime;
+														</script>
 													</td>
-													<td>16:00:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>29</td>
-													<td>목</td>
-													<td>13:23:02 
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>17:51:56
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>4h 28m 12s</td>
-													<td>기본 4h 28m 12s / 연장 0h 0m 0s</td>
-													<td>완료 (연차 8.00h)</td>
-												</tr>
-												<tr>
-													<td>30</td>
-													<td>금</td>
-													<td>12:06:12
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span> 
-													</td>
-													<td>19:12:29
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>0h 44m 7s</td>
-													<td>기본 0h 44m 7s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>토</td>
-													<td>09:42:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>16:32:35
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>일</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
+													<td id="state">${dto.state}</td>
+												</tr>												
+												</c:if>
+											</c:forEach>
 											</tbody>
 											</table>
 										</div>
                                         </div>
                                         <div class="list-group"> 
                                         	<a href="javascript:void(0)" class="list-group-item active">Cras justo odio</a>
-                                        </div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-body">																		
-                                        <h4 class="card-title">2주차 
-                                        	<a class="get-code" data-toggle="collapse" href="#pgr2" aria-expanded="true">
-                                        	<i class="fa fa-code" title="2주차 근태 확인" data-toggle="tooltip"></i></a>
-                                        </h4>
-                                        <h6 class="card-subtitle">누적 근무 시간 33h 12m 53s(연장 근무 시간 0h 0m 0s)</h6>
-                                        <div class="collapse mt-3 well" id="pgr2" aria-expanded="true">
-                                            <div class="table-responsive">
-											<table id="lang_comma_deci" class="table table-striped table-bordered display no-wrap" style="width: 100%">
-											<thead>
-												<tr>
-													<th colspan="2">일자</th>
-													<th>업무시작</th>
-													<th>업무종료</th>
-													<th>총 근무시간</th>
-													<th>근무시간 상세</th>
-													<th>승인요청 내역</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>26</td>
-													<td>월</td>
-													<td>09:42:58 
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>16:32:35
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>27</td>
-													<td>화</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>28</td>
-													<td>수</td>
-													<td>09:42:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>16:00:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>29</td>
-													<td>목</td>
-													<td>13:23:02 
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>17:51:56
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>4h 28m 12s</td>
-													<td>기본 4h 28m 12s / 연장 0h 0m 0s</td>
-													<td>완료 (연차 8.00h)</td>
-												</tr>
-												<tr>
-													<td>30</td>
-													<td>금</td>
-													<td>12:06:12
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span> 
-													</td>
-													<td>19:12:29
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>0h 44m 7s</td>
-													<td>기본 0h 44m 7s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>토</td>
-													<td>09:42:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>16:32:35
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>일</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-											</tbody>
-											</table>
-										</div>
-                                        </div>
-                                        <div class="list-group"> 
-                                        	<a href="javascript:void(0)" class="list-group-item active">Cras justo odio</a>
-                                        </div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-body">									
-									
-                                        <h4 class="card-title">3주차 
-                                        	<a class="get-code" data-toggle="collapse" href="#pgr2" aria-expanded="true">
-                                        	<i class="fa fa-code" title="3주차 근태 확인" data-toggle="tooltip"></i></a>
-                                        </h4>
-                                        <h6 class="card-subtitle">누적 근무 시간 33h 12m 53s(연장 근무 시간 0h 0m 0s)</h6>
-                                        <div class="collapse mt-3 well" id="pgr2" aria-expanded="true">
-                                            <div class="table-responsive">
-											<table id="lang_comma_deci" class="table table-striped table-bordered display no-wrap" style="width: 100%">
-											<thead>
-												<tr>
-													<th colspan="2">일자</th>
-													<th>업무시작</th>
-													<th>업무종료</th>
-													<th>총 근무시간</th>
-													<th>근무시간 상세</th>
-													<th>승인요청 내역</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>26</td>
-													<td>월</td>
-													<td>09:42:58 
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>16:32:35
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>27</td>
-													<td>화</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>28</td>
-													<td>수</td>
-													<td>09:42:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>16:00:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>29</td>
-													<td>목</td>
-													<td>13:23:02 
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>17:51:56
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>4h 28m 12s</td>
-													<td>기본 4h 28m 12s / 연장 0h 0m 0s</td>
-													<td>완료 (연차 8.00h)</td>
-												</tr>
-												<tr>
-													<td>30</td>
-													<td>금</td>
-													<td>12:06:12
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span> 
-													</td>
-													<td>19:12:29
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>0h 44m 7s</td>
-													<td>기본 0h 44m 7s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>토</td>
-													<td>09:42:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>16:32:35
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>일</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-											</tbody>
-											</table>
-										</div>
-                                        </div>
-                                        <div class="list-group"> 
-                                        	<a href="javascript:void(0)" class="list-group-item active">Cras justo odio</a>
-                                        </div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-body">									
-									
-                                        <h4 class="card-title">4주차 
-                                        	<a class="get-code" data-toggle="collapse" href="#pgr2" aria-expanded="true">
-                                        	<i class="fa fa-code" title="4주차 근태 확인" data-toggle="tooltip"></i></a>
-                                        </h4>
-                                        <h6 class="card-subtitle">누적 근무 시간 33h 12m 53s(연장 근무 시간 0h 0m 0s)</h6>
-                                        <div class="collapse mt-3 well" id="pgr2" aria-expanded="true">
-                                            <div class="table-responsive">
-											<table id="lang_comma_deci" class="table table-striped table-bordered display no-wrap" style="width: 100%">
-											<thead>
-												<tr>
-													<th colspan="2">일자</th>
-													<th>업무시작</th>
-													<th>업무종료</th>
-													<th>총 근무시간</th>
-													<th>근무시간 상세</th>
-													<th>승인요청 내역</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>26</td>
-													<td>월</td>
-													<td>09:42:58 
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>16:32:35
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>27</td>
-													<td>화</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>28</td>
-													<td>수</td>
-													<td>09:42:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>16:00:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>29</td>
-													<td>목</td>
-													<td>13:23:02 
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>17:51:56
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>4h 28m 12s</td>
-													<td>기본 4h 28m 12s / 연장 0h 0m 0s</td>
-													<td>완료 (연차 8.00h)</td>
-												</tr>
-												<tr>
-													<td>30</td>
-													<td>금</td>
-													<td>12:06:12
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span> 
-													</td>
-													<td>19:12:29
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>0h 44m 7s</td>
-													<td>기본 0h 44m 7s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>1</td>
-													<td>토</td>
-													<td>09:42:58
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>16:32:35
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>1h 38m 14s</td>
-													<td>기본 1h 38m 14s / 연장 0h 0m 0s</td>
-													<td></td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>일</td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-											</tbody>
-											</table>
-										</div>
-                                        </div>
-                                        <div class="list-group"> 
-                                        	<a href="javascript:void(0)" class="list-group-item active">Cras justo odio</a>
-                                        </div>
-								</div>
+                                        </div>													
+									</div>
 							</div>
 						</div>
 					</div>
@@ -601,33 +227,34 @@
 					<div class="card">
                     	<div class="card-body">
 					
-						<h4 class="card-title">이번주 근태 현황</h4>						
+						<h4 class="card-title">주간별 근태 현황</h4>						
 						<h5 class="mt-4">
-							누적 근무<span class="pull-right">85%</span>
+							52시간 누적 근무<span class="pull-right">${weekrate}%</span>
+						</h5>
+						<div class="progress">
+							<div
+								class="progress-bar bg-danger wow animated progress-animated"
+								style="width: ${weekrate}%; height: 6px;" role="progressbar">
+								<span class="sr-only">60% Complete</span>
+							</div>
+						</div>
+						<h5 class="mt-4">
+							업무 시간<span class="pull-right">${workrate}%</span>
 						</h5>
 						<div class="progress ">
 							<div
-								class="progress-bar bg-danger wow animated progress-animated"
-								style="width: 85%; height: 6px;" role="progressbar">
+								class="progress-bar bg-info wow animated progress-animated"
+								style="width: ${workrate}%; height: 6px;" role="progressbar">
 								<span class="sr-only">60% Complete</span>
 							</div>
-						</div>
+						</div>						
 						<h5 class="mt-4">
-							초과 근무<span class="pull-right">0%</span>
-						</h5>
-						<div class="progress">
-							<div class="progress-bar bg-info wow animated progress-animated"
-								style="width: 00%; height: 6px;" role="progressbar">
-								<span class="sr-only">60% Complete</span>
-							</div>
-						</div>
-						<h5 class="mt-4">
-							연장 근무<span class="pull-right">65%</span>
+							연장 시간<span class="pull-right">${overrate}%</span>
 						</h5>
 						<div class="progress">
 							<div
 								class="progress-bar bg-success wow animated progress-animated"
-								style="width: 65%; height: 6px;" role="progressbar">
+								style="width: ${overrate}%; height: 6px;" role="progressbar">
 								<span class="sr-only">60% Complete</span>
 							</div>
 						</div>						
@@ -646,8 +273,8 @@
 													<th colspan="2">일자</th>
 													<th>업무시작</th>
 													<th>업무종료</th>
-													<th>총 근무시간</th>
-													<th>근무시간 상세</th>
+													<th>근무시간</th>
+													<th>연장 근무시간</th>
 													<th>승인요청 내역</th>
 												</tr>
 											</thead>
@@ -664,8 +291,8 @@
 													<th colspan="2">일자</th>
 													<th>업무시작</th>
 													<th>업무종료</th>
-													<th>총 근무시간</th>
-													<th>근무시간 상세</th>
+													<th>근무시간</th>
+													<th>연장 근무시간</th>
 													<th>승인요청 내역</th>
 												</tr>
 											</thead>
@@ -673,14 +300,10 @@
 												<tr>
 													<td>29</td>
 													<td>목</td>
-													<td>13:23:02 
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>17:51:56
-														<span class="badge badge-pill badge-success ml-2 font-weight-normal py-1 px-2">ip</span>
-													</td>
-													<td>4h 28m 12s</td>
-													<td>기본 4h 28m 12s / 연장 0h 0m 0s</td>
+													<td>13:23:02 </td>
+													<td>17:51:56</td>
+													<td>04:28:12</td>
+													<td>00:00:00</td>
 													<td>완료 (연차 8.00h)</td>
 												</tr>																								
 											</tbody>
@@ -690,8 +313,9 @@
 						</div>
 					</div>
             </div>
+            </form>
            	</div>
-            
+           
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
@@ -802,7 +426,9 @@
     <script src="${path}/resources/assets/libs/moment/min/moment.min.js"></script>
     <script src="${path}/resources/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
     <script src="${path}/resources/assets/extra-libs/date-paginator/bootstrap-datepaginator.min.js"></script>
-    <script>
+	<script type="text/javascript">		
+		
+		// 날짜 표
         var datepaginator = function () {
             return {
                 init: function () {
@@ -824,9 +450,67 @@
                 }
             }
         }();
-        jQuery(document).ready(function () {
-            datepaginator.init()
+        
+        $(document).ready(function(){
+            datepaginator.init();
+            // 현재 날짜
+            var currentDate = new Date(); 
+    	    var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate()
+    	    
+        	// *주차 계산
+    		var today = currentDate.getDate();		
+    	    var start;
+    	    var end;
+    	      	
+    		if(1 <= today && today <= 7){			
+    	    	start = 1;
+    	    	end = 7;
+    	    	if(${selectweek eq null}){ $(".week").html("1주차"); }
+    		} else if(8 <= today && today <= 14){
+    			start = 8;
+    	    	end = 14;   
+    	    	if(${selectweek eq null}){	$(".week").html("2주차"); }
+    		}
+    	    else if(15 <= today && today <= 21){
+    	    	start = 15;
+    	    	end = 21;   
+    	    	if( ${selectweek eq null}){ $(".week").html("3주차"); }
+    	    } else{
+    	    	start = 22;
+    	    	end = 31;   
+    	    	if( ${selectweek eq null}){ $(".week").html("4주차"); }
+    	    }
+    		console.log(today + ", " + start + ", " + end);
+    		
+    		$(".selectweek").change(function(){
+                var weekVal =  $(this).val();
+                console.log(weekVal);
+                
+                if(weekVal == '1주차'){
+                	location.href = '${path}/attendanceWeek.at?start='+ 1 + "&end=" + 7 + "&week=" + "1주차";
+        	    	$(".week").html("1주차");
+                }
+                else if(weekVal == '2주차'){
+                	location.href = '${path}/attendanceWeek.at?start='+ 8 + "&end=" + 14 + "&week=" + "2주차";
+        	    	$(".week").html("2주차");
+                }
+                else if(weekVal == '3주차'){
+                	location.href = '${path}/attendanceWeek.at?start='+ 15 + "&end=" + 21 + "&week=" + "3주차";
+        	    	$(".week").html("3주차");
+                }
+                else if(weekVal == '4주차'){
+                	location.href = '${path}/attendanceWeek.at?start='+ 22 + "&end=" + 31 + "&week=" + "4주차";
+        	    	$(".week").html("4주차");
+                }
+            })
+    		
+    		// 이번주 근무조회
+    		$(".getweek").click(function(){
+            	location.href = '${path}/attendanceWeek.at?start='+ start + "&end=" + end;
+    		});                     
+             
         });
-    </script>  
+
+	</script>  
 </body>
 </html>

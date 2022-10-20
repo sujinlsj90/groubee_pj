@@ -6,14 +6,19 @@ public class AnnualDTO {
 
 	private String annual_id; // 연차 신청 번호
 	private String id; // 사번
+	private String image; // 프로필 사진
 	private String name; // 이름
 	private String depart_name; // 부서명
 	private Date today; // 신청일
-	private int annual; // 연차 1 반차 0
-	private int annualtotal; // 총 연차(연 기본 15)
-	private int annualuse; // 연차 사용량
-	private int annualrest; // 잔여 연차	
-	private String state; // 상태 (신청, 확인, 반려, 완료, 취소)
+	private String year; // 신청 연
+	private String month; // 신청 월
+	private Date annual_in; // 연차 시작일
+	private Date annual_out; // 연차 종료일
+	private String annual; // 연차  반차 
+	private double annualtotal; // 총 연차(연 기본 15)
+	private double annualuse; // 연차 사용량
+	private double annualrest; // 잔여 연차	
+	private String state; // 상태 (신청, 확인, 반려, 완료, 취소)	
 	
 	public AnnualDTO() {}
 
@@ -31,6 +36,14 @@ public class AnnualDTO {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public String getName() {
@@ -57,35 +70,51 @@ public class AnnualDTO {
 		this.today = today;
 	}
 
-	public int getAnnual() {
+	public Date getAnnual_in() {
+		return annual_in;
+	}
+
+	public void setAnnual_in(Date annual_in) {
+		this.annual_in = annual_in;
+	}
+
+	public Date getAnnual_out() {
+		return annual_out;
+	}
+
+	public void setAnnual_out(Date annual_out) {
+		this.annual_out = annual_out;
+	}
+
+	public String getAnnual() {
 		return annual;
 	}
 
-	public void setAnnual(int annual) {
+	public void setAnnual(String annual) {
 		this.annual = annual;
 	}
 
-	public int getAnnualtotal() {
+	public double getAnnualtotal() {
 		return annualtotal;
 	}
 
-	public void setAnnualtotal(int annualtotal) {
+	public void setAnnualtotal(double annualtotal) {
 		this.annualtotal = annualtotal;
 	}
 
-	public int getAnnualuse() {
+	public double getAnnualuse() {
 		return annualuse;
 	}
 
-	public void setAnnualuse(int annualuse) {
+	public void setAnnualuse(double annualuse) {
 		this.annualuse = annualuse;
 	}
 
-	public int getAnnualrest() {
+	public double getAnnualrest() {
 		return annualrest;
 	}
 
-	public void setAnnualrest(int annualrest) {
+	public void setAnnualrest(double annualrest) {
 		this.annualrest = annualrest;
 	}
 
@@ -97,11 +126,29 @@ public class AnnualDTO {
 		this.state = state;
 	}
 
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
 	@Override
 	public String toString() {
-		return "AnnualDTO [annual_id=" + annual_id + ", id=" + id + ", name=" + name + ", depart_name=" + depart_name
-				+ ", today=" + today + ", annual=" + annual + ", annualtotal=" + annualtotal + ", annualuse="
-				+ annualuse + ", annualrest=" + annualrest + ", state=" + state + "]";
-	}	
+		return "AnnualDTO [annual_id=" + annual_id + ", id=" + id + ", image=" + image + ", name=" + name
+				+ ", depart_name=" + depart_name + ", today=" + today + ", year=" + year + ", month=" + month
+				+ ", annual_in=" + annual_in + ", annual_out=" + annual_out + ", annual=" + annual + ", annualtotal="
+				+ annualtotal + ", annualuse=" + annualuse + ", annualrest=" + annualrest + ", state=" + state + "]";
+	}
+	
 	
 }

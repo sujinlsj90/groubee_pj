@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.tutorial.service.AttendanceServiceImpl;
+import com.spring.tutorial.service.HumanServiceImpl;
 
 
 @Controller
@@ -23,71 +24,62 @@ public class AttendanceController {
 	@Autowired
 	AttendanceServiceImpl service;
 	
+	@Autowired
+	HumanServiceImpl service_h;
+	
 	private static final Logger logger = LoggerFactory.getLogger(AttendanceController.class);
 
 	// 나의 근태 현황 (일일 근태)
 	@RequestMapping("attendance.at")
 	public String attendance(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
-		logger.info("controller > attendance.at");
+		logger.info("controller > attendance.at");		
 		service.attendance(req, model);
 		
 		return "attendance/attendance";
 	}
 	
+	
 	// 업무 시작
 	@RequestMapping("attendin.at")
-	public String attendin(HttpServletRequest req, HttpServletResponse res, Model model) 
+	public void attendin(HttpServletRequest req, HttpServletResponse res, Model model) 
 			throws ServletException, IOException{
 		logger.info("controller > attendin.at");
 		service.attendin(req, model);
 		
 		String viewPage = req.getContextPath() + "/attendance.at";
-		res.sendRedirect(viewPage);
-		return null;
+		res.sendRedirect(viewPage);		
 	}
+		
 	
 	// 업무 종료
 	@RequestMapping("attendout.at")
-	public String attendout(HttpServletRequest req, HttpServletResponse res, Model model) 
+	public void attendout(HttpServletRequest req, HttpServletResponse res, Model model) 
 			throws ServletException, IOException{
 		logger.info("controller > attendout.at");
 		service.attendout(req, model);
 
 		String viewPage = req.getContextPath() + "/attendance.at";
-		res.sendRedirect(viewPage);
-		return null;
+		res.sendRedirect(viewPage);		
 	}
 	
-	// 연장 시작
-	@RequestMapping("overin.at")
-	public String overin(HttpServletRequest req, HttpServletResponse res, Model model) 
+	// 누적  근무 계산 > workweek.jsp > ajax > /attendance.at
+	@RequestMapping("worktime.at")
+	public String worktime(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
-		logger.info("controller > overin.at");
-		service.overin(req, model);
+		logger.info("controller > worktime.at");
+		service.worktime(req, model);
 
-		String viewPage = req.getContextPath() + "/attendance.at";
-		res.sendRedirect(viewPage);
-		return null;
-	}	
-	
-	// 연장 종료
-	@RequestMapping("overout.at")
-	public String overout(HttpServletRequest req, HttpServletResponse res, Model model) 
-			throws ServletException, IOException{
-		logger.info("controller > overout.at");
-		service.overout(req, model);
-
-		String viewPage = req.getContextPath() + "/attendance.at";
-		res.sendRedirect(viewPage);
-		return null;
+		return "attendance/workweek"; // 누적 근무 시간만 표기할  페이지 
 	}		
 	
 	// 나의 근무 조회 (주간 근태)
 	@RequestMapping("attendanceWeek.at")
 	public String attendanceWeek(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
-		logger.info("controller > attendanceWeek.at");		
+		logger.info("controller > attendanceWeek.at");
+		service.attendanceWeek(req, model); // 주간 근무 확인
+		service.attendance(req, model);	// SubMenu 시간 근태 출력용				
 		
 		return "attendance/attendanceWeek";
 	}
@@ -97,6 +89,9 @@ public class AttendanceController {
 	public String attendanceMonth(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > attendanceMonth.at");
+		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		service.attendanceMonth(req, model);
+		
 		return "attendance/attendanceMonth";
 	}
 	
@@ -105,15 +100,32 @@ public class AttendanceController {
 	public String attendanceRestInfo(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > attendanceRestInfo.at");
+		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		service.attendanceRestInfo(req, model); // 나의 연차 내역
+		
 		return "attendance/attendanceRestInfo";
 	}	
 
 	// 연장 근무 신청
 	@RequestMapping("request_over.at")
-	public String request_over(HttpServletRequest req, Model model) 
+	public String request_over(HttpServletRequest req, HttpServletResponse res, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > request_over.at");
+		service.attendance(req, model);	// SubMenu 시간 근태 출력용		
+		service_h.myHumanInfo(req, model); // 기본정보
+		
 		return "attendance/request_over";
+	}
+	
+	// 연장 근무 신청 처리
+	@RequestMapping("request_over_action.at")
+	public void request_over_action(HttpServletRequest req, HttpServletResponse res, Model model)
+			throws ServletException, IOException {
+		logger.info("controller > request_over_action.at");
+		
+		service.request_over(req, model); // 연장 근무 신청
+		String viewPage = req.getContextPath() + "/attendance.at";
+		res.sendRedirect(viewPage);
 	}
 	
 	// 연차 반차 신청
@@ -121,14 +133,31 @@ public class AttendanceController {
 	public String request_rest(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > request_rest.at");
+		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		service.attendanceRestInfo(req, model); // 나의 연차 내역
+		service_h.myHumanInfo(req, model); // 기본정보		
+		
 		return "attendance/request_rest";
-	}	
+	}
+	
+	// 연차 반차 신청 처리
+	@RequestMapping("request_rest_action.at")
+	public void request_rest_action(HttpServletRequest req, HttpServletResponse res,  Model model)
+			throws ServletException, IOException {
+		logger.info("controller > request_rest_action.at");		
+		service.request_rest(req, model); // 연차 반차 신청
+		
+		String viewPage = req.getContextPath() + "/attendanceRestInfo.at";
+		res.sendRedirect(viewPage);		
+	}
 	
 	// 부서 근태 현황
 	@RequestMapping("departWeek.at")
 	public String departWeek(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > departWeek.at");
+		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		
 		return "attendance/departWeek";
 	}
 	
@@ -137,6 +166,8 @@ public class AttendanceController {
 	public String departMonth(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > departMonth.at");
+		service.attendance(req, model); // SubMenu 시간 근태 출력용
+		
 		return "attendance/departMonth";
 	}
 	// 부서 연차 현황
@@ -144,6 +175,8 @@ public class AttendanceController {
 	public String departRestWeek(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > departRestWeek.at");
+		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		
 		return "attendance/departRestWeek";
 	}
 	
@@ -152,6 +185,8 @@ public class AttendanceController {
 	public String departRestMonth(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > departRestMonth.at");
+		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		
 		return "attendance/departRestMonth";
 	}	
 	
@@ -160,6 +195,8 @@ public class AttendanceController {
 	public String grbWeek(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > grbWeek.at");
+		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		
 		return "attendance/grbWeek";
 	}
 	
@@ -168,6 +205,8 @@ public class AttendanceController {
 	public String grbMonth(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > grbMonth.at");
+		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		
 		return "attendance/grbMonth";
 	}
 	// 전사 연차 현황
@@ -175,6 +214,8 @@ public class AttendanceController {
 	public String grbRestWeek(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > grbRestWeek.at");
+		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		
 		return "attendance/grbRestWeek";
 	}
 	
@@ -183,6 +224,8 @@ public class AttendanceController {
 	public String grbRestMonth(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > grbRestMonth.at");
+		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		
 		return "attendance/grbRestMonth";
 	}	
 }

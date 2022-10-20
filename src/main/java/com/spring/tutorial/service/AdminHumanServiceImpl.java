@@ -133,6 +133,7 @@ public class AdminHumanServiceImpl implements AdminHumanService{
 		
 	}
 
+<<<<<<< HEAD
 	//부서 상세
 	@Override
 	public void departDetailAction(HttpServletRequest req, HttpServletResponse res, Model model) {
@@ -161,6 +162,18 @@ public class AdminHumanServiceImpl implements AdminHumanService{
 		model.addAttribute("updateCnt",updateCnt );
 				
 		
+=======
+	//부서 수정
+	@Override
+	public void departUpdateAction(HttpServletRequest req, HttpServletResponse res, Model model) {
+		System.out.println("관리자 서비스 -> 부서수정 ");
+		
+		String depart_name = req.getParameter("depart_name");
+		
+		dao.departUpdate(depart_name);
+		
+		model.addAttribute("depart_name", depart_name);
+>>>>>>> c3a0afac0f9d9efa03819f80da60a2059002fd78
 	}
 
 }

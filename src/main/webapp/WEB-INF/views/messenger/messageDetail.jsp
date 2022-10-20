@@ -26,56 +26,50 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+<script type="text/javascript">
+	// 부모창 새로고침
+	opener.document.location.reload();
+</script>
 </head>
 
                 <!-- ============================================================== -->
                 <!-- message detail -->
                 <!-- ============================================================== -->
                 <div>
+                	<c:forEach var="dto" items="${list}">
                     <div class="card-body border-bottom">
-                        <h4 class="mb-0">Message</h4>
+                        <h4 class="mb-0">${dto.title}</h4>
                     </div>
                     <div class="card-body border-bottom">
-                        <div class="d-flex no-block align-items-center mb-5">
-                            <div class="mr-2"><img src="${path}/resources/assets/images/users/1.jpg" alt="user"
-                                    class="rounded-circle" width="45"></div>
-                            <div class="">
-                                <h5 class="mb-0 font-16 font-weight-medium">곽보결 <small> 대리
-                                        </small>
-                                </h5><span>기획지원팀</span> <h6><span>2022.10.04 11:00</span></h6>
-                            </div>
+                                <h5 class="mb-0 font-16 font-weight-medium">${dto.depart_name} ${dto.name}</h5>
+                                <h6 style="margin-top:10px;">${dto.send_date}</h6>
+                     </div>
+                     <div class="card-body border-bottom">
+                     	 <div class="d-flex no-block align-items-center mb-5">
+                            <div class="" style="min-height:60%;">
+                        		<div style="margin-bottom:3%;">${dto.contents}</div>
+                        	</div>
                         </div>
-                        <h4 class="mb-3">메세지 제목입니다</h4>
-                        <p>메세지 내용입니다 -- Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.Nulla
-                            consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu
-                            pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.Nulla
-                            consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu
-                            pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.</p>
                     </div>
                     <div class="card-body">
-                        <h4><i class="fa fa-paperclip mr-2 mb-2"></i> Attachments <span>(3)</span></h4>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <a href="javascript:void(0)"> <img class="img-thumbnail img-fluid" alt="attachment"
-                                        src="${path}/resources/assets/images/big/img1.jpg"> </a>
-                            </div>
-                            <div class="col-md-2">
-                                <a href="javascript:void(0)"> <img class="img-thumbnail img-fluid" alt="attachment"
-                                        src="${path}/resources/assets/images/big/img2.jpg"> </a>
-                            </div>
-                        </div>
-                        <div class="border mt-3 p-3">
-                            <p class="pb-3">click here to <a href="javascript:void(0)">Reply</a> or <a
-                                    href="javascript:void(0)">Forward</a></p>
-                        </div>
+                        <h4><i class="fa fa-paperclip mr-2 mb-2"></i>첨부파일</h4>
+                        <c:if test="${not empty dto.files}">
+                        	${dto.files}
+                        </c:if>
+                        
+                        <c:if test="${empty dto.files}">
+                        	<p>첨부된 파일이 없습니다.</p>
+                        </c:if>
+                        
+                        <div style="width:100%;">
+                        	<c:if test="${dto.trash eq 0}">
+                            <button type="submit" class="btn btn-success mt-3" style="margin-top:40px;"><i class="far fa-envelope"></i>
+                                답장</button>
+                            </c:if>
+	                        <button type="button" class="btn btn-dark mt-3" onclick="self.close()">닫기</button>
+	                    </div>
                     </div>
+                    </c:forEach>
                 </div>
     <!-- ============================================================== -->
     <!-- All Jquery -->

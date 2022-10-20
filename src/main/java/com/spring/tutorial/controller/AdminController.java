@@ -14,6 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.tutorial.service.AdminHumanServiceImpl;
+<<<<<<< HEAD
+=======
+import com.spring.tutorial.service.SecurityServiceImpl;
+>>>>>>> c3a0afac0f9d9efa03819f80da60a2059002fd78
 
 
 
@@ -25,7 +29,12 @@ public class AdminController {
 	  @Autowired 
 	  AdminHumanServiceImpl service;
 	  
+<<<<<<< HEAD
 	 
+=======
+	  @Autowired
+	  SecurityServiceImpl securityService;
+>>>>>>> c3a0afac0f9d9efa03819f80da60a2059002fd78
 	
 	
 	@RequestMapping("adminMain.ad")
@@ -62,6 +71,7 @@ public class AdminController {
 	}
 	
 	
+
 	//부서 상세
 	@RequestMapping("d_update.ad")
 	public void d_update(HttpServletRequest req, HttpServletResponse res ,Model model) 
@@ -69,6 +79,15 @@ public class AdminController {
 		logger.info("AdminController -> d_update.ad");
 		
 		service.departDetailAction(req, res, model);
+
+	//부서 수정
+	@RequestMapping("d_update.ad")
+	public void adDepart3(HttpServletRequest req, HttpServletResponse res ,Model model) 
+			throws ServletException, IOException{
+		logger.info("AdminController -> d_update.ap");
+		
+		service.departUpdateAction(req, res, model);
+
 		String viewPage = req.getContextPath() + "/adDepart.ad";
 		res.sendRedirect(viewPage);
 	}
@@ -135,22 +154,63 @@ public class AdminController {
 		return "admin/adHr/adHr2";
 	}
 	
-	
 	//보안관리-관리자기능설정
-	@RequestMapping("adSecure.ad")
-	public String adSecure(HttpServletRequest req, Model model) 
+		@RequestMapping("adSecure.ad")
+		public String adSecure(HttpServletRequest req, Model model) 
+				throws ServletException, IOException{
+			
+			logger.info("AdminController -> adSecure.ap");
+			
+			securityService.securityAdminListAc(req, model);
+			
+			return "admin/adSecure/adSecure";
+		}
+		
+		//보안관리-기능접근제한
+		@RequestMapping("adSecure2.ad")
+		public String adSecure2(HttpServletRequest req, Model model) 
+				throws ServletException, IOException{
+			
+			logger.info("AdminController -> adSecure2.ap");
+			
+			return "admin/adSecure/adSecure2";
+		}
+		
+		//보안관리-관리자 추가를 위한 사원리스트
+		@RequestMapping("adminAdd.ad")
+		public String adminAdd(HttpServletRequest req, Model model) 
+				throws ServletException, IOException{
+			
+			logger.info("AdminController -> adminAdd.ap");
+			
+			securityService.adminAddAction(req, model);
+
+			return "admin/adSecure/adminAdd";
+		}
+		
+		//보안관리 - 관리자 추가
+		@RequestMapping("adminAdd2.ad")
+		public String adminAdd2(HttpServletRequest req, Model model) 
+				throws ServletException, IOException{
+			logger.info("AdminController -> adminAdd2.ap");
+			
+			securityService.adSecurityInsert(req, model);
+			
+			return "admin/adSecure/adSecure";
+		}
+		
+		//보안관리 - 관리자 삭제
+		@RequestMapping("admin_del.ad")
+		public void admin_del(HttpServletRequest req, HttpServletResponse res, Model model)
 			throws ServletException, IOException{
-		logger.info("AdminController -> adSecure.ap");
-		return "admin/adSecure/adSecure";
-	}
-	
-	//보안관리-기능접근제한
-	@RequestMapping("adSecure2.ad")
-	public String adSecure2(HttpServletRequest req, Model model) 
-			throws ServletException, IOException{
-		logger.info("AdminController -> adSecure2.ap");
-		return "admin/adSecure/adSecure2";
-	}
+			
+			logger.info("AdminController -> admin_del.ap");
+			
+			securityService.adSecurityDelAction(req, model);
+			
+	      String viewPage = req.getContextPath() + "/adSecure.ad";
+	      res.sendRedirect(viewPage);
+		}
 	
 	
 	//서비스관리-메뉴운영권한

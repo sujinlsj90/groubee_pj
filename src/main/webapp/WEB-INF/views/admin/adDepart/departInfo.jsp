@@ -31,6 +31,10 @@
 
 <script type="text/javascript">
 
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/admin/adDepart/departInfo.jsp
+=======
+	
+>>>>>>> c3a0afac0f9d9efa03819f80da60a2059002fd78:src/main/webapp/WEB-INF/views/humanresources/humanInfo.jsp
 </script>
 
 </head>
@@ -121,7 +125,116 @@
                                 </li>
                             </ul>
                             <!-- Tabs -->
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/admin/adDepart/departInfo.jsp
                  <div class="tab-content" id="pills-tabContent">
+=======
+                            <div class="tab-content" id="pills-tabContent">
+                            
+                                <div class="tab-pane fade show active" id="current-month" role="tabpanel"
+                                    aria-labelledby="pills-timeline-tab">
+                          			  <div class="card-body">
+                                        <form class="form-horizontal form-material">
+                                            <div class="form-group">
+                                                <label class="col-md-12">이름</label>
+                                                <div class="col-md-12">
+                                                 <input type="text" placeholder="홍길동"  readonly
+                                                        class="form-control form-control-line">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="example-email" class="col-md-12">이메일</label>
+                                                <div class="col-md-12">
+                                                    <input type="email" placeholder="hong@naver.com"  readonly
+                                                        class="form-control form-control-line" name="example-email"
+                                                        id="example-email">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="col-md-12">직책</label>
+                                                <div class="col-md-12">
+                                                    <input type="text" placeholder=""
+                                                        class="form-control form-control-line">
+                                                </div>
+                                            </div>
+                                            
+                                              <div class="form-group">
+                                                <label class="col-sm-12">채용구분</label>
+                                                <div class="col-sm-12">
+                                                    <select class="form-control form-control-line">
+                                                    	<option>선택하세요</option>
+                                                        <option>경력</option>
+                                                        <option>신입</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                         
+                                            <div class="form-group">
+                                               <label class="col-md-12">생년월일</label>
+                                                <div class="col-md-12">
+                                                    <input type="Date" placeholder="123 456 7890"
+                                                        class="form-control form-control-line">
+                                                </div>
+                                            </div>
+                                               <div class="form-group">
+                                                <label class="col-md-12">입사일</label>
+                                                <div class="col-md-12">
+                                                    <input type="Date" value="password"
+                                                        class="form-control form-control-line">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12">퇴사일</label>
+                                                <div class="col-md-12">
+                                                    <input type="Date" placeholder="123 456 7890"
+                                                        class="form-control form-control-line">
+                                                </div>
+                                            </div>
+                                            
+                                             <div class="card-body bg-light">
+			                                    <div class="row">
+			                                        <div class="form-group">
+			                                                <label class="col-md-12">퇴직사유</label>
+			                                                <div class="col-md-12">
+			                                                    <textarea rows="10" cols="100"
+			                                                     placeholder="재직중이면(해당사항없음)"
+			                                                        class="form-control form-control-line"></textarea>
+			                                                </div>
+			                                            </div>
+			                                    </div>
+				                                </div>
+                                            
+                                            <div class="form-group">
+                                                <label class="col-sm-12">성별</label>
+                                                <div class="col-sm-12">
+                                                    <select class="form-control form-control-line">
+                                                    	<option>선택하세요</option>
+                                                        <option>남자</option>
+                                                        <option>여자</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-12">결혼여부</label>
+                                                <div class="col-sm-12">
+                                                    <select class="form-control form-control-line">
+                                                    	<option>선택하세요</option>
+                                                        <option>미혼</option>
+                                                        <option>기혼</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <button class="btn btn-success">저장</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                                
+>>>>>>> c3a0afac0f9d9efa03819f80da60a2059002fd78:src/main/webapp/WEB-INF/views/humanresources/humanInfo.jsp
                  <div class="tab-pane fade" id="last-month" role="tabpanel"
                      aria-labelledby="pills-profile-tab">
                      <div class="card-body">
