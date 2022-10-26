@@ -377,16 +377,47 @@ public class ApprovalDAOImpl implements ApprovalDAO{
 		
 	}
 
+	//결재자 재선택
 	@Override
 	public List<CommonDTO> reselectapprover(int doc_id) {
 		List<CommonDTO> list = sqlSession.selectList("com.spring.tutorial.dao.ApprovalDAO.reselectapprover", doc_id);
 		return list;
 	}
-
+	
+	//결재정보재선택
 	@Override
 	public List<ApprovalInfoDTO> reselectLineView(int doc_id) {
 		List<ApprovalInfoDTO> list = sqlSession.selectList("com.spring.tutorial.dao.ApprovalDAO.reselectLineView", doc_id);
 		return list;
+	}
+
+	//관리자 통합문서함
+	@Override
+	public List<ApproveDraftDTO> approvallistAdmin(Map<String, Object> map) {
+		List<ApproveDraftDTO> list = sqlSession.selectList("com.spring.tutorial.dao.ApprovalDAO.approvallistAdmin", map);
+		return list;
+	}
+
+	
+	//관리자 완료문서함 글 갯수
+	@Override
+	public int adminApprovalListCnt(Map<String, Object> map) {
+		int total = sqlSession.selectOne("com.spring.tutorial.dao.ApprovalDAO.adminApprovalListCnt", map);		
+		return total;
+	}
+
+	//관리자 문서함 전체보기
+	@Override
+	public List<ApproveDraftDTO> approvallistAdminAll(Map<String, Object> map) {
+		List<ApproveDraftDTO> list = sqlSession.selectList("com.spring.tutorial.dao.ApprovalDAO.approvallistAdminAll", map);
+		return list;
+	}
+
+	//관리자 문서함 전체보기 글갯수
+	@Override
+	public int approvallistAdminAllCnt(Map<String, Object> map) {
+		int total = sqlSession.selectOne("com.spring.tutorial.dao.ApprovalDAO.approvallistAdminAllCnt", map);		
+		return total;
 	}
 
 	

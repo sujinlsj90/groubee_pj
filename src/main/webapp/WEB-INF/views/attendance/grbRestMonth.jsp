@@ -29,15 +29,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
-<<<<<<< HEAD
-	
-=======
-	// alert("select * from grb_annual a \n join grb_member m on a.id = m.id \n where m.depart_id = 1 \n order by a.annual_id desc;");
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
-	
-</script>
-
 </head>
 
 <body>
@@ -86,46 +77,88 @@
 					<div class="bg-light p-3 d-flex align-items-center do-block">
 						<div>
 							<h4>전사 연차 통계</h4>
-							<h1>2022.10</h1>							
+							<h1>${day}</h1>							
 						</div>					
 					</div>
 					<div class="card">						
                         <div class="card-body">
                         	<div class="col-md-2">
-								<select class="form-control custom-select"
-									data-placeholder="부서 검색" tabindex="1">
-									<option value="부서 검색">부서 검색</option>
-									<option value="사업부">사업부</option>									
-									<option value="인사부">인사부</option>
-									<option value="영업부">영업부</option>
-									<option value="개발부">개발부</option>
-									<option value="경영지원부">경영지원부</option>
-									<option value="총무부">총무부</option>
+								<select class="selectyear form-control custom-select" id="selectyear" tabindex="1">
+									<option id="0" value="0">연도 선택</option>									
+									<option id="1" value="2022">2022</option>
+									<option id="2" value="2021">2021</option>
+									<option id="3" value="2020">2020</option>
+									<option id="4" value="2019">2019</option>
+									<option id="5" value="2018">2018</option>
+								</select><br><br>
+								<select class="selectmonth form-control custom-select" id="selectmonth" name="selectmonth" required>
+									<option id="0" value="0">월간 선택</option>
+									<option id="1" value="1">1월</option>
+									<option id="2" value="2">2월</option>
+									<option id="3" value="3">3월</option>
+									<option id="4" value="4">4월</option>
+									<option id="5" value="5">5월</option>
+									<option id="6" value="6">6월</option>
+									<option id="7" value="7">7월</option>
+									<option id="8" value="8">8월</option>
+									<option id="9" value="9">9월</option>
+									<option id="10" value="10">10월</option>
+									<option id="11" value="11">11월</option>
+									<option id="12" value="12">12월</option>										
 								</select>
 							</div>
 							<hr>
-                            <h4 class="card-title">전사 연차 내역</h4>
+							<h4 class="card-title">이번달 전사 연차 내역</h4>
                             <div class="container" style="align: center">
 								<div class="row">									
 									<div class="col bg-light border p-3">
-										<div>반차</div>
-										<div>57</div>
+										<div>반차 사용</div>
+										<div>${half_cnt}</div>
 									</div>
 									
 									<div class="col bg-light border p-3">
-										<div>연차</div>
-										<div>30</div>
+										<div>연차 사용</div>
+										<div>${full_cnt}</div>
+									</div>																		
+								</div>
+							</div><br><br>
+                            <h4 class="card-title">부서별 연차 내역</h4>
+                            <div class="container" style="align: center">
+								<div class="row">								
+									<div class="col bg-light border p-3">
+										<div>사업부</div>
+										<div>${bus_cnt}</div>
+									</div>									
+									<div class="col bg-light border p-3">
+										<div>영업부</div>
+										<div>${sale_cnt}</div>
+									</div>
+									<div class="col bg-light border p-3">
+										<div>개발부</div>
+										<div>${it_cnt}</div>
+									</div>
+									<div class="col bg-light border p-3">
+										<div>인사부</div>
+										<div>${human_cnt}</div>
+									</div>
+									<div class="col bg-light border p-3">
+										<div>경영지원부</div>
+										<div>${sup_cnt}</div>
+									</div>
+									<div class="col bg-light border p-3">
+										<div>총무부</div>
+										<div>${acc_cnt}</div>
 									</div>																		
 								</div>
 							</div>
 							<hr><br>
 							<!-- 부서 근태 통계 -->
-							<div class="col-lg-6">
+							<div class="col-lg-12 col-xl-6">
                        			<div class="card">
                             		<div class="card-body">
-                               			<h4 class="card-title" style="width: 400px;">전사 연차 통계</h4>
+                               			<h4 class="card-title">전사 연차 통계</h4>
                                 		<div>
-                                    		<canvas id="pie-chart" style="height: 400px;"></canvas>
+                                    		<canvas id="pie-chart"></canvas>
                                		 	</div>
                             		</div>
                         		</div>
@@ -134,87 +167,11 @@
 							<div class="col-lg-12 col-xl-6">
 								<div class="card">
 									<div class="card-body analytics-info">
-										<h4 class="card-title">전사 연차 통계</h4>
+										<h4 class="card-title">부서별 연차 통계</h4>
 										<div id="basic-doughnut" style="height: 400px;"></div>
 									</div>
 								</div>
-							</div>
-
-							<hr><br>
-							
-							<!-- Table -->
-                        	<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">전사 연차 내역</h4>
-									<h6 class="card-subtitle">연차 사용 현황</h6>
-									<table data-toggle="table" class="table table-striped no-wrap">
-										<thead>
-											<tr>												
-												<th class="name" data-sortable="true">이름</th>
-												<th class="depart" data-sortable="true">부서</th>
-												<th class="hireday" data-sortable="true">입사일</th>
-												<th class="restday" data-sortable="true">연차일</th>
-												<th class="annualtotal" data-sortable="true">발생 연차</th>
-												<th class="annualtotal" data-sortable="true">총 연차</th>
-												<th class="annualuse" data-sortable="true">사용 연차</th>
-												<th class="annualrest" data-sortable="true">잔여 연차</th>
-												<th class="state" data-sortable="true">상태</th> <!-- 재직 휴직 퇴사 -->
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><img src="${path}/resources/assets/images/users/4.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia Deshmukh</td>
-												<td>개발부</td>
-												<td>2022-01-01</td>
-												<td>2022-10-04</td>
-												<td>15</td>
-												<td>15</td>
-												<td>2</td>
-												<td>13</td>
-												<td>재직</td>
-											</tr>
-											<tr>
-												<td><img src="${path}/resources/assets/images/users/3.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia Deshmukh</td>
-												<td>개발부</td>
-												<td>2022-01-02</td>
-												<td>2022-10-04</td>
-												<td>15</td>
-												<td>15</td>
-												<td>2</td>
-												<td>13</td>
-												<td>재직</td>
-											</tr>
-											<tr>
-												<td><img src="${path}/resources/assets/images/users/2.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia Deshmukh</td>
-												<td>개발부</td>
-												<td>2022-01-03</td>
-												<td>2022-10-05</td>
-												<td>15</td>
-												<td>15</td>
-												<td>2</td>
-												<td>13</td>
-												<td>재직</td>
-											</tr>
-											<tr>
-												<td><img src="${path}/resources/assets/images/users/1.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia Deshmukh</td>
-												<td>개발부</td>
-												<td>2022-01-04</td>
-												<td>2022-10-09</td>
-												<td>15</td>
-												<td>15</td>
-												<td>2</td>
-												<td>13</td>
-												<td>재직</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-                        	<!-- Table -->	
+							</div>								
                         </div>
                     </div>												
 				</div>							
@@ -338,31 +295,32 @@
     <script src="${path}/resources/dist/js/pages/echarts/pie-doughnut/pie-doghnut.js"></script>
     <script type="text/javascript">
 		$(function () {    
+			// 전사 월간 반차, 연차 사용 통계
 			new Chart(document.getElementById("pie-chart"), {
 				type: 'pie',
 				data: {
-				  labels: ["반차", "연차"],
+				  labels: ["반차", "연차", "데이터없음"],
 				  datasets: [{
 					label: "depart attendance",
-					backgroundColor: ["#02cccd", "#ff3ca6"],
-					data: [57,30]
+					backgroundColor: ["#02cccd", "#ff3ca6", "#005ccce"],
+					data: ['${half_cnt}','${full_cnt}', '${none}']
 				  }]
 				},
 				options: {
 				  title: {
 					display: true,
-					text: 'depart annual 2022.10'
+					text: 'depart annual ${day}'
 				  }
 				}
 			});
 			
-			// based on prepared DOM, initialize echarts instance
+			// 부서별 연차+반차 cnt 통계
 	        var basicdoughnutChart = echarts.init(document.getElementById('basic-doughnut'));
 	        var option = {
 	            // Add title
 	                title: {
 	                    text: 'depart annual',
-	                    subtext: '2022.10',
+	                    subtext: '${day}',
 	                    x: 'center'
 	                },
 
@@ -370,11 +328,11 @@
 	                legend: {
 	                    orient: 'vertical',
 	                    x: 'left',
-	                    data: ['반차','연차']
+	                    data: ['사업부','영업부','개발부','인사부','경영지원부','총무부']
 	                },
 
 	                // Add custom colors
-	                color: ['#ffab2e', '#6610f2'],
+	                color: ['#ffab2e', '#3f50f6', '#dbabce', '#6610f2', "#02cccd", "#ff3ca6"],
 
 	                // Display toolbox
 	                toolbox: {
@@ -458,8 +416,12 @@
 	                        },
 
 	                        data: [	                           
-	                            {value: 57, name: '반차'},
-	                            {value: 30, name: '연차'}
+	                            {value: '${bus_cnt}', name: '사업부'},
+	                            {value: '${sale_cnt}', name: '영업부'},
+	                            {value: '${it_cnt}', name: '개발부'},
+	                            {value: '${human_cnt}', name: '인사부'},
+	                            {value: '${sup_cnt}', name: '경영지원부'},
+	                            {value: '${acc_cnt}', name: '총무부'}	                           
 	                        ]
 	                    }
 	                ]
@@ -485,6 +447,33 @@
             }
 			
 		});
+	</script>
+	<script type="text/javascript">			        
+        $(function() {
+        	// 현재 날짜
+    		var selectmonth = '${selectmonth}';
+    		var currentDate = new Date();
+    		var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getDate();
+    		var month = (currentDate.getMonth() + 1) + "월";
+    		if (selectmonth.toString().length==1) selectmonth = "0" + selectmonth;
+    		var title = currentDate.getFullYear() + "-" + selectmonth;
+    		
+    		// 연 선택시 
+    		$(".selectyear").change(function(){
+    			 var yearVal =  $(this).val();    			
+    	         console.log(yearVal);
+    	         location.href = "${path}/grbRestMonth.at?year=" + yearVal;            
+            });
+    		
+    		// 월 선택 시
+    		$(".selectmonth").change(function(){
+    			 var monthVal =  $(this).val();    			 
+    	         console.log(monthVal);
+    	         location.href = "${path}/grbRestMonth.at?month=" + monthVal;            
+            });    		
+             
+        });
+
 	</script>
 </body>
 </html>

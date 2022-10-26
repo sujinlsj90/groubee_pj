@@ -43,9 +43,7 @@ public class HumanDAOImpl implements HumanDAO{
 	@Override
 	public TeamDTO jobsfao(String id) {
 		System.out.println("dao -> 직무 담당");
-		
 		TeamDTO dto = sqlSession.selectOne("com.spring.tutorial.dao.HumanDAO.jobsfao", id);
-		
 		return dto;
 	}
 
@@ -59,15 +57,6 @@ public class HumanDAOImpl implements HumanDAO{
 		return dto;
 	}
 	
-//	//조직도 부서
-//	@Override
-//	public List<DepartDTO> groubdepart() {
-//		System.out.println("dao -> 조직도 부서");
-//		
-//		List<DepartDTO> list = sqlSession.selectList("com.spring.tutorial.dao.HumanDAO.groubdepart");
-//		
-//		return list;
-//	}
 
 	@Override //사업부
 	public List<DepartDTO> b_depart() {
@@ -217,26 +206,6 @@ public class HumanDAOImpl implements HumanDAO{
 		return list;
 	}
 
-	
-	//조직도 팀
-//	@Override
-//	public List<TeamDTO> groubTeamInfo() {
-//		System.out.println("dao -> 조직도 팀 ");
-//		
-//		List<TeamDTO> list = sqlSession.selectList("com.spring.tutorial.dao.HumanDAO.groubTeamInfo");
-//		
-//		return list;
-//	}
-//
-//	//조직도 유저
-//	@Override
-//	public List<CommonDTO> groubUser() {
-//		System.out.println("dao - 조직도 유저");
-//		
-//		List<CommonDTO> list = sqlSession.selectList("com.spring.tutorial.dao.HumanDAO.groubUser");
-//		
-//		return list;
-//	}
-	
+
 
 }

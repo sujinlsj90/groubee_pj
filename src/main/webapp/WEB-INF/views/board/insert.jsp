@@ -31,35 +31,36 @@
 <script type="text/javascript">
 
 $(function() {
-	$("#cancel_compose").click(function(){
-		location.href="${path}/board.bo";
-	})
-	
-	$("#submitBtn").click(function(){
-		
-		var title = $("#title").val();
-		var content = $("#content").val();
+   $("#cancel_compose").click(function(){
+      location.href="${path}/board.bo";
+   })
+   
+   $("#submitBtn").click(function(){
+      var title = $("#title").val();
+      // var content = $("#content").val();
+      var content = CKEDITOR.instances.content.getData(); // content ==> textarea name태그값
 
-		// 제목입력
-		if(title == "") {
-			alert("제목을 입력하세요");
-			$("#title").focus();
-			return false;
-		}
-		
-		// 내용입력
-		if(content == "") {
-			alert("내용을 입력하세요");
-			$("#content").focus();
-			return false;
-		}
-		
-		document.insertForm.action="${path}/insertAction.bo"; 
-		document.insertForm.submit();
-	})
-	
+      // 제목입력
+      if(title == "") {
+         alert("제목을 입력하세요");
+         $("#title").focus();
+         return false;
+      } else if(title.length > 16) {
+       	 alert("제목을 16자 이하로 입력해주세요.");
+       	 return false;
+      }
+      
+      // 내용입력
+      if(content == "") {
+         alert("내용을 입력하세요");
+         return false;
+      }
+      
+   });
+   
 })
 </script>
+
 
 </head>
 
@@ -144,7 +145,7 @@ $(function() {
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         
                         <!-- 관리자 카테고리 -->
-                        <c:if test="${sessionScope.memberID == '20220001'}">
+                        <c:if test="${sessionScope.authority == 'ROLE_BOARD' || sessionScope.authority == 'ROLE_ADMIN'}">
                         	<div class="btn-group mt-3" data-toggle="buttons" role="group">
                                   <label class="btn btn-outline btn-info">
                                       <div class="custom-control custom-radio">

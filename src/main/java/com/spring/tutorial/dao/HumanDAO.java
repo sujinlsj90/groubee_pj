@@ -74,13 +74,6 @@ public interface HumanDAO {
 	//조직도 총무2팀 
 	public List<TeamDTO> c_twoteam();
 	
-	//조직도 팀
-//	public List<TeamDTO> groubTeamInfo();
-//	
-//	//조직도 유저
-//	public List<CommonDTO> groubUser();
-	
-	
 	//인사평가
 	public PersonnelDTO assessment(String id);
 	
@@ -96,9 +89,6 @@ public interface HumanDAO {
 	//전체인사정보 
 	public List<CommonDTO> usersInfo();
 	
-	
-//	//인사평가 등록
-//	public int assessUpdate(PersonnelDTO dto);
 	
 
 }

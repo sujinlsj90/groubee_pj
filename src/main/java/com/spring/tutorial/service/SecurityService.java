@@ -22,4 +22,8 @@ public interface SecurityService {
 	
 	public void adSecurityDelAction(HttpServletRequest req, Model model)
 		throws ServletException, IOException;
+	
+	public void adminAuthorityAction(HttpServletRequest req, Model model)
+		throws ServletException, IOException;
+
 }

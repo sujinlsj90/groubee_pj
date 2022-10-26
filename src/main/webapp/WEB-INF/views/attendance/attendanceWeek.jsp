@@ -90,7 +90,7 @@
 							</select> 
 							<small class="form-control-feedback"> Select Week </small><br><br>
 							<h4 class="week card-title">${selectweek}</h4>
-							<h4><a class="getweek" href="#pgr2"><small class="form-control-feedback">[Click]</small></a></h4>    						
+							<h4><a class="getweek" href="#pgr2"><small class="form-control-feedback">[주간 근무 조회]</small></a></h4>    						
 							<div class="container" style="align: center">
 								<div class="row">
 									<div class="col bg-light border p-3">
@@ -128,7 +128,7 @@
 							<div class="card">
 								<div class="card-body">																		
                                     <h4 class="card-title">주간별 근무 조회
-                                    	<a class="getweek" href="#pgr2"><small class="form-control-feedback">[Click]</small></a>										
+                                    	<a class="getweek" href="#pgr2"><small class="form-control-feedback">[주간 근무 조회]</small></a>										
 										<a class="get-code" data-toggle="collapse" href="#pgr2" aria-expanded="true">											
 											<i class="fa fa-code" title="주간 근태 확인" data-toggle="tooltip"></i><br><br>
 										</a>
@@ -153,7 +153,7 @@
 													<td colspan="6">등록하신 근태 로그가 없습니다.</td>																		
 												</tr>	
 												</c:if>
-												<c:if test="${dto.attend_id ne null}" >
+												<c:if test="${dto.attend_id ne null}" >												
 												<tr id="attendweek">
 													<td>${dto.day}</td>
 													<td>${dto.dy}</td>
@@ -189,7 +189,7 @@
 															var worktime = hour + ":" + min + ":" + sec;
 															if(worktime == "00:00:00"){ worktime = ""; }
 															console.log(worktime);															
-															document.getElementById("worktime" + ${dto.attend_id}).innerHTML = worktime;
+															document.getElementById("worktime${dto.attend_id}").innerHTML = worktime;
 														</script>														
 													</td>
 													<td id="overtime${dto.attend_id}">
@@ -225,8 +225,7 @@
 					
 					<!-- skill bars -->
 					<div class="card">
-                    	<div class="card-body">
-					
+                    	<div class="card-body">					
 						<h4 class="card-title">주간별 근태 현황</h4>						
 						<h5 class="mt-4">
 							52시간 누적 근무<span class="pull-right">${weekrate}%</span>
@@ -259,59 +258,7 @@
 							</div>
 						</div>						
 					</div>
-				</div>
-				<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-body">														
-                                        <h4 class="card-title">변경 이력</h4>
-                                        <h6 class="card-subtitle">0 회</h6>
-                                        <!-- 변경 이력이 없을 시 -->
-                                       	<table id="lang_comma_deci" class="table table-striped table-bordered display no-wrap" style="width: 100%">
-											<thead>
-												<tr>
-													<th colspan="2">일자</th>
-													<th>업무시작</th>
-													<th>업무종료</th>
-													<th>근무시간</th>
-													<th>연장 근무시간</th>
-													<th>승인요청 내역</th>
-												</tr>
-											</thead>
-											<tbody>												
-												<tr>
-													<th colspan="7" align="center">변경 이력이 없습니다.</th>
-												</tr>																								
-											</tbody>
-										</table>
-										<!-- 변경 이력 있을 시 -->
-										<table id="lang_comma_deci" class="table table-striped table-bordered display no-wrap" style="width: 100%">
-											<thead>
-												<tr>
-													<th colspan="2">일자</th>
-													<th>업무시작</th>
-													<th>업무종료</th>
-													<th>근무시간</th>
-													<th>연장 근무시간</th>
-													<th>승인요청 내역</th>
-												</tr>
-											</thead>
-											<tbody>												
-												<tr>
-													<td>29</td>
-													<td>목</td>
-													<td>13:23:02 </td>
-													<td>17:51:56</td>
-													<td>04:28:12</td>
-													<td>00:00:00</td>
-													<td>완료 (연차 8.00h)</td>
-												</tr>																								
-											</tbody>
-										</table>										                                       
-								</div>
-							</div>
-						</div>
-					</div>
+				</div>				
             </div>
             </form>
            	</div>
@@ -456,7 +403,7 @@
             // 현재 날짜
             var currentDate = new Date(); 
     	    var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate()
-    	    
+    	    var selectweek = '${selectweek}';
         	// *주차 계산
     		var today = currentDate.getDate();		
     	    var start;
@@ -465,20 +412,20 @@
     		if(1 <= today && today <= 7){			
     	    	start = 1;
     	    	end = 7;
-    	    	if(${selectweek eq null}){ $(".week").html("1주차"); }
+    	    	if(selectweek == ""){ $(".week").html("1주차"); }
     		} else if(8 <= today && today <= 14){
     			start = 8;
     	    	end = 14;   
-    	    	if(${selectweek eq null}){	$(".week").html("2주차"); }
+    	    	if(selectweek == ""){	$(".week").html("2주차"); }
     		}
     	    else if(15 <= today && today <= 21){
     	    	start = 15;
     	    	end = 21;   
-    	    	if( ${selectweek eq null}){ $(".week").html("3주차"); }
+    	    	if(selectweek == ""){ $(".week").html("3주차"); }
     	    } else{
     	    	start = 22;
     	    	end = 31;   
-    	    	if( ${selectweek eq null}){ $(".week").html("4주차"); }
+    	    	if(selectweek == ""){ $(".week").html("4주차"); }
     	    }
     		console.log(today + ", " + start + ", " + end);
     		
@@ -487,20 +434,16 @@
                 console.log(weekVal);
                 
                 if(weekVal == '1주차'){
-                	location.href = '${path}/attendanceWeek.at?start='+ 1 + "&end=" + 7 + "&week=" + "1주차";
-        	    	$(".week").html("1주차");
+                	location.href = '${path}/attendanceWeek.at?start='+ 1 + "&end=" + 7 + "&week=" + "1주차";        	    
                 }
                 else if(weekVal == '2주차'){
-                	location.href = '${path}/attendanceWeek.at?start='+ 8 + "&end=" + 14 + "&week=" + "2주차";
-        	    	$(".week").html("2주차");
+                	location.href = '${path}/attendanceWeek.at?start='+ 8 + "&end=" + 14 + "&week=" + "2주차";        	    	
                 }
                 else if(weekVal == '3주차'){
-                	location.href = '${path}/attendanceWeek.at?start='+ 15 + "&end=" + 21 + "&week=" + "3주차";
-        	    	$(".week").html("3주차");
+                	location.href = '${path}/attendanceWeek.at?start='+ 15 + "&end=" + 21 + "&week=" + "3주차";        	    	
                 }
                 else if(weekVal == '4주차'){
-                	location.href = '${path}/attendanceWeek.at?start='+ 22 + "&end=" + 31 + "&week=" + "4주차";
-        	    	$(".week").html("4주차");
+                	location.href = '${path}/attendanceWeek.at?start='+ 22 + "&end=" + 31 + "&week=" + "4주차";        	    	
                 }
             })
     		

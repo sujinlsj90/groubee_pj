@@ -29,48 +29,67 @@
 <script type="text/javascript">
 	// 부모창 새로고침
 	opener.document.location.reload();
+	
 </script>
 </head>
-
-                <!-- ============================================================== -->
-                <!-- message detail -->
-                <!-- ============================================================== -->
-                <div>
-                	<c:forEach var="dto" items="${list}">
-                    <div class="card-body border-bottom">
-                        <h4 class="mb-0">${dto.title}</h4>
-                    </div>
-                    <div class="card-body border-bottom">
-                                <h5 class="mb-0 font-16 font-weight-medium">${dto.depart_name} ${dto.name}</h5>
-                                <h6 style="margin-top:10px;">${dto.send_date}</h6>
-                     </div>
-                     <div class="card-body border-bottom">
-                     	 <div class="d-flex no-block align-items-center mb-5">
-                            <div class="" style="min-height:60%;">
-                        		<div style="margin-bottom:3%;">${dto.contents}</div>
-                        	</div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h4><i class="fa fa-paperclip mr-2 mb-2"></i>첨부파일</h4>
-                        <c:if test="${not empty dto.files}">
-                        	${dto.files}
-                        </c:if>
-                        
-                        <c:if test="${empty dto.files}">
-                        	<p>첨부된 파일이 없습니다.</p>
-                        </c:if>
-                        
-                        <div style="width:100%;">
-                        	<c:if test="${dto.trash eq 0}">
-                            <button type="submit" class="btn btn-success mt-3" style="margin-top:40px;"><i class="far fa-envelope"></i>
-                                답장</button>
-                            </c:if>
-	                        <button type="button" class="btn btn-dark mt-3" onclick="self.close()">닫기</button>
-	                    </div>
-                    </div>
-                    </c:forEach>
-                </div>
+     <!-- ============================================================== -->
+     <!-- message detail -->
+     <!-- ============================================================== -->
+     <div>
+     	<form name="detailForm" method="post" enctype="multipart/form-data" action="${path}/replyMsg.me?${_csrf.parameterName}=${_csrf.token}">
+     	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+     	<c:forEach var="dto" items="${list}">
+         <div class="card-body border-bottom">
+             <h4 class="mb-0">${dto.title}</h4>
+         </div>
+         <div class="card-body border-bottom">
+         	<input type="hidden" name="hiddenId" value="${dto.id}">
+         	<input type="hidden" name="hiddenDN" value="${dto.depart_name}">
+         	<input type="hidden" name="hiddenName" value="${dto.name}">
+         	
+         	<c:choose>
+	          <c:when test="${dto.trash eq 1} && ${dto.id eq sessionScope.memberID}">
+		      	<c:forEach var="getter_dto" items="${getter_list}">
+		        <h5 class="mb-0 font-16 font-weight-medium">${getter_dto.id} ${getter_dto.depart_name} ${getter_dto.name}</h5>
+	          	</c:forEach>
+	          </c:when>
+          
+	          <c:otherwise>
+	          	<h5 class="mb-0 font-16 font-weight-medium">${dto.id} ${dto.depart_name} ${dto.name}</h5>
+	          </c:otherwise>
+           </c:choose>
+          <h6 style="margin-top:10px;">${dto.send_date}</h6>
+          </div>
+          <div class="card-body border-bottom">
+          	 <div class="d-flex no-block align-items-center mb-5">
+                 <div style="min-height:60%;">
+             		<div style="margin-bottom:3%;">${dto.contents}</div>
+             	</div>
+             </div>
+         </div>
+         <div class="card-body">
+             <h4><i class="fa fa-paperclip mr-2 mb-2"></i>첨부파일</h4>
+             <c:if test="${not empty dto.files}">
+             	<div class="row">
+               		<a class="btn" href="${dto.files}" download>${dto.files}</a>
+               	</div>
+             </c:if>
+             
+             <c:if test="${empty dto.files}">
+             	<p>첨부된 파일이 없습니다.</p>
+             </c:if>
+             
+             <div style="width:100%;">
+             	<c:if test="${dto.trash eq 0}">
+                 <button type="submit" id="replyBtn" class="btn btn-success mt-3" style="margin-top:40px;"><i class="far fa-envelope"></i>
+                     답장</button>
+                 </c:if>
+              <button type="button" class="btn btn-dark mt-3" onclick="self.close()">닫기</button>
+          </div>
+         </div>
+         </c:forEach>
+         </form>
+     </div>
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->

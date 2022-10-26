@@ -16,6 +16,7 @@ public class BoardDTO {
 	private Date reg_date; 
 	private String board_file;
 	private int show;
+	
 	public int getNum() {
 		return num;
 	}

@@ -30,6 +30,13 @@ public class ChatDAOImpl implements ChatDAO {
 		return createResult;
 	}
 	
+	// 사원 채팅방에 존재하는지 체크
+	public int checkMember(Map<String, Object> map) {
+		System.out.println("== ChatDAOImpl - checkMember() ==");
+		
+		return sqlSession.selectOne("com.spring.tutorial.dao.ChatDAO.checkMember", map);
+	}
+	
 	// 채팅방 멤버 추가
 	@Override
 	public void inviteMember(Map<String, Object> map) {
@@ -52,6 +59,14 @@ public class ChatDAOImpl implements ChatDAO {
 		System.out.println("== ChatDAOImpl - enter() ==");
 		
 		return sqlSession.selectOne("com.spring.tutorial.dao.ChatDAO.enter",chatroom_num);
+	}
+	
+	// 채팅방 나가기
+	@Override
+	public void exit(Map<String, Object> map) {
+		System.out.println("== ChatDAOImpl - exit() ==");
+		
+		sqlSession.delete("com.spring.tutorial.dao.ChatDAO.exit", map);
 	}
 	
 	// 채팅방에 없는 사원 목록
@@ -83,5 +98,4 @@ public class ChatDAOImpl implements ChatDAO {
 		return sqlSession.selectList("com.spring.tutorial.dao.ChatDAO.selectMsg", roomId);
 	}
 
-	
 }

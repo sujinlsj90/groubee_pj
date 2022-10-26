@@ -148,7 +148,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<!-- 사용 이력 없을 시 -->
+												<!-- 사용 이력 없을 시 -->
 												<c:forEach var="dto" items="${annual}">
 													<c:if test="${dto.annual_id eq null}" >
 													<tr>

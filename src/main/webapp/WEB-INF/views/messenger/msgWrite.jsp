@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp" %> 
+<%@page import="java.io.OutputStream"%>
+<%@page import="java.io.FileInputStream"%>
+<%@page import="java.io.File"%>
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -38,28 +41,6 @@ $(document).ready(function() {
 	    placeholder: '  받는사람'
 	});
 
-	/* $('#msgPerson').on('select2:select', function(e) {
-		var id = e.params.data.id;
-		var value = $(this).val();
-		if (id == 'ALL') {
-			$('#example').val(null);
-		  $('#example').val('ALL').trigger('change');
-		} else {
-			$('#all').prop('selected', false).trigger('change');
-		}
-	});
-	
-	$('select').change(function () {
-	    var opt = $(this).find(':selected');
-	    var sel = opt.text();
-	    var og = opt.closest('optgroup').attr('label');
-	    //var og = opt.parents('optgroup').prop('label');
-	    
-	    alert(sel);
-	    /* alert(og); */
-/*	}); */
-	
-	
 	
 });
 
@@ -75,6 +56,7 @@ $(function() {
 		document.submitMsgForm.action ="${path}/tempoMsg.me?${_csrf.parameterName}=${_csrf.token}";
 		document.submitMsgForm.submit();
 	});
+	
 });
 </script>
 
@@ -127,18 +109,8 @@ $(function() {
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <div class="form-group">
                             	<select id="msgPerson" multiple="multiple" name="msgPerson" style="width:100%;" required>
-                            		<%-- 
-                            		<c:forEach var="dto" items="${list}" var="dto2" items="${list2}">
-	                            		<optgroup label="${dto.depart_name}">
-										    <option value="${dto.depart_name}|${dto2.name}">${dto2.name}</option>
-										</optgroup>
-									</c:forEach>
-									 --%>
 									<c:forEach var="dto" items="${list}">
-										<%-- <optgroup label="${dto.depart_name}"> --%>
-									    	<%-- <option value="${dto.depart_name}|${dto.name}">${dto.depart_name} ${dto.name}</option> --%>
-									    	<option value="${dto.id}">${dto.id} ${dto.depart_name} ${dto.name}</option>
-									   <!--  </optgroup> -->
+									    <option value="${dto.id}">${dto.id} ${dto.depart_name} ${dto.name}</option>
 									</c:forEach>
 								</select>
                             </div>
@@ -150,7 +122,7 @@ $(function() {
                             <h4 style="margin-top:10px;">첨부파일</h4>
                             <div class="dropzone" id="dzid">
                                 <div class="fallback">
-                                    <input name="file" type="file" multiple />
+                                    <input type="file" name="files">
                                 </div>
                             </div>
                             <button type="button" id="sendBtn" class="btn btn-success mt-3"><i class="far fa-envelope"></i>
@@ -161,17 +133,6 @@ $(function() {
                         </form>
                         <!-- Action part -->
                     </div>
-                </div>
-            </div>
-            <!-- ============================================================== -->
-            <!-- End footer -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- End PAge Content -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->

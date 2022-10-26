@@ -100,16 +100,15 @@ public class MessageController {
 		return "messenger/messageDetail_tempo";
 	}
 	
-	
 	// 메세지보기 - 휴지통
 	@RequestMapping("messageDetail_trash.me")
 	public String messageDetail_trash(HttpServletRequest req, Model model) 
 			throws ServletException, IOException{
 		logger.info("MessegeController -> messageDetail_trash.me");
 		
-		service.chkDetail(req, model);
+		service.chkDetail_trash(req, model);
 		
-		return "messenger/messageDetail";
+		return "messenger/messageDetail_trash";
 	}
 	
 	// 재발송
@@ -141,6 +140,17 @@ public class MessageController {
 		logger.info("MessegeController -> sendMsg.me");
 		
 		service.sendMessage(req, model);
+		
+		return "messenger/sendMsg";
+	}
+	
+	// 임시보관에서 메세지 보내기 
+	@RequestMapping("sendMsg_tempo.me") // MultipartHttpServletRequest
+	public String sendMsg_tempo(MultipartHttpServletRequest req, Model model) 
+			throws ServletException, IOException{
+		logger.info("MessegeController -> sendMsg_tempo.me");
+		
+		service.sendMessage_tempo(req, model);
 		
 		return "messenger/sendMsg";
 	}
@@ -208,7 +218,7 @@ public class MessageController {
 		
 		service.cancleMsg(req, model);
 		
-		return "messenger/msgState";
+		return "messenger/cancleMsgDetail";
 	}
 	
 	// 임시저장
@@ -222,16 +232,17 @@ public class MessageController {
 		return "messenger/tempoMsgDetail";
 	}
 	
-	// 임시저장 불러오기
-//	@RequestMapping("getTempoMsgDetail.me") // HttpServletRequest
-//	public String getTempoMsgDetail(MultipartHttpServletRequest req, Model model) 
-//			throws ServletException, IOException{
-//		logger.info("MessegeController -> getTempoMsgDetail.me");
-//		
-//		service.getTempoMessage(req, model);
-//		
-//		return "messenger/messageDetail_tempo";
-//	}
+	// 답장
+	@RequestMapping("replyMsg.me") // MultipartHttpServletRequest
+	public String replyMsg(MultipartHttpServletRequest req, Model model) 
+			throws ServletException, IOException{
+		logger.info("MessegeController -> replyMsg.me");
+		
+		service.replyMsgDetail(req, model); // 답장 받을 사람 가져오기
+		service.selectRecipient(req, model); // 받을사람 리스트
+		
+		return "messenger/msgBox/replyMsgDetail";
+	}
 	
 	
 	

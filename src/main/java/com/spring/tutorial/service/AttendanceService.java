@@ -47,4 +47,14 @@ public interface AttendanceService {
 	
 	// 전사 연차 내역
 	public void annualGrb(HttpServletRequest req, Model model);
+	
+	// ------- 관리자
+	// 회사 정보
+	public void companyInfo(HttpServletRequest req, Model model);
+	
+	// 서비스 메뉴
+	public void serviceMenu(HttpServletRequest req, Model model);
+	
+	// 회사 내규
+	public void companyAttend(HttpServletRequest req, Model model);
 }

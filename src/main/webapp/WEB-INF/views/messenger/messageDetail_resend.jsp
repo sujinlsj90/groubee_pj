@@ -30,17 +30,25 @@
 	// 부모창 새로고침
 	opener.document.location.reload();
 	
-	// cancleMsgBtn
-	$('#cancleMsgBtn').click(function() {
-		//document.detailForm.action ="${path}/cancleMsg.me";
-		document.detailForm.submit();
+	$(function() {
+		// cancleMsgBtn
+		$('#cancleMsgBtn').click(function() {
+			document.detailForm.action ="${path}/cancleMsg.me?${_csrf.parameterName}=${_csrf.token}";
+			document.detailForm.submit();
+		});
 	});
 	
+	// cancleMsgBtn
+	/* $('#cancleMsgBtn').click(function() {
+		//document.detailForm.action ="${path}/cancleMsg.me";
+		document.detailForm.submit();
+	}); */
+	
 	// resendMsgBtn
-	$('#resendMsgBtn').click(function() {
+	/* $('#resendMsgBtn').click(function() {
 		//document.detailForm.action ="${path}/resendMsg.me";
 		document.detailForm.submit();
-	});
+	}); */
 	
 	
 </script>
@@ -50,15 +58,21 @@
                 <!-- message detail -->
                 <!-- ============================================================== -->
                 <div>
-                	<form name="detailForm">
+                	<form name="detailForm" method="post" enctype="multipart/form-data" action="${path}/replyMsg.me?${_csrf.parameterName}=${_csrf.token}">
                 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	                	<c:forEach var="dto" items="${list}">
+	                	<input type="hidden" name="message_num" value="${dto.message_num}">
 	                    <div class="card-body border-bottom">
 	                        <h4 class="mb-0">${dto.title}</h4>
 	                    </div>
 	                    <div class="card-body border-bottom">
-	                                <h5 class="mb-0 font-16 font-weight-medium">${dto.depart_name} ${dto.name}</h5>
-	                                <h6 style="margin-top:10px;">${dto.send_date}</h6>
+	                    <c:forEach var="getter_dto" items="${getter_list}">
+	                    	<h5 class="mb-0 font-16 font-weight-medium">${getter_dto.id} ${getter_dto.depart_name} ${getter_dto.name}</h5>
+	                    	<input type="hidden" name="hiddenId" value="${getter_dto.id}">
+	                    	<input type="hidden" name="hiddenDN" value="${getter_dto.depart_name}">
+			         		<input type="hidden" name="hiddenName" value="${getter_dto.name}">
+	                    </c:forEach>
+	                    	<h6 style="margin-top:10px;">${dto.send_date}</h6>
 	                     </div>
 	                     <div class="card-body border-bottom">
 	                     	 <div class="d-flex no-block align-items-center mb-5">
@@ -70,13 +84,13 @@
 	                    <div class="card-body">
 	                        <h4><i class="fa fa-paperclip mr-2 mb-2"></i>첨부파일</h4>
 	                        <div class="row">
-	                            <p>${dto.files}</p>
+	                        	<a class="btn" href="${dto.files}" download>${dto.files}</a>
 	                        </div>
 	                        	<c:if test="${chkReadDate == 0 && dto.state ne 2}">
-	                            <button type="button" id="cancleMsgBtn" class="btn btn-success mt-3" onclick="${path}/cancleMsg.me?message_num=${message_num}" style="margin-top:40px;"><i class="far fa-envelope"></i>
+	                            <button type="button" id="cancleMsgBtn" class="btn btn-success mt-3" onclick="location.href='${path}/cancleMsg.me?${_csrf.parameterName}=${_csrf.token}'" style="margin-top:40px;"><i class="far fa-envelope"></i>
 	                                발신취소</button>
 	                            </c:if>
-	                            <button type="button" id="resendMsgBtn" class="btn btn-success mt-3" onclick="${path}/resendMsg.me?message_num=${message_num}" style="margin-top:40px;"><i class="far fa-envelope"></i>
+	                            <button type="submit" id="resendMsgBtn" class="btn btn-success mt-3" style="margin-top:40px;"><i class="far fa-envelope"></i>
 	                                재발신</button>
 		                        <button type="button" class="btn btn-dark mt-3" onclick="self.close()">닫기</button>
 	                    </div>

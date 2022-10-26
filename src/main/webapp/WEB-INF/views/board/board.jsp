@@ -106,19 +106,16 @@
                             </c:if>
                                 
                             </div>
-                            <div class="ml-auto">
-                                <input placeholder="검색어 입력" type="text" class="form-control">
-                            </div>
                         </div>
                     </div>
                     <!-- Action part -->
                     <!-- Button group part -->
                     <div class="bg-light p-3 d-flex align-items-center do-block">
                         <div class="btn-group mt-1 mb-1">
-                            <div class="custom-control custom-checkbox">
+                            <!-- <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input sl-all" id="cstall">
                                 <label class="custom-control-label" for="cstall">Check All</label>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="ml-auto">
                             <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
@@ -126,8 +123,8 @@
                                         class="mdi mdi-reload"></i></button>
                                 <button type="button" class="btn btn-outline-secondary font-18"><i
                                         class="mdi mdi-alert-octagon"></i></button> -->
-                                <button type="button" class="btn btn-outline-secondary font-18"><i
-                                        class="mdi mdi-delete"></i></button>
+                                <!-- <button type="button" class="btn btn-outline-secondary font-18"><i
+                                        class="mdi mdi-delete"></i></button> -->
                             </div>
                             <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
                                 <!-- <div class="btn-group" role="group">
@@ -155,30 +152,26 @@
                     <!-- Mail list-->
                     <div class="table-responsive">
                         <table class="table email-table no-wrap table-hover v-middle" style="width:99%;">
+                        	<thead>
+                        		<tr>
+                        			<th class="user-name px-1 py-2">작성자</th>
+                        			<th colspan="2" class="py-2 px-3 no-wrap text-truncate">제목</th>
+                        			<th class="time text-right">작성일</th>
+                        		</tr>
+                        	</thead>
                             <tbody>
 <!-- 게시판 목록 -->
                                 
                                <c:forEach var="dto" items="${list}">
                                <!-- row -->
                                 <tr class="">
-                                    <!-- label -->
-                                    <td class="chb">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="cst4">
-                                            <label class="custom-control-label" for="cst4">&nbsp;</label>
-                                        </div>
-                                    </td>
-                                    <!-- star -->
-                                    <td class="starred px-1 py-2"><!-- <i class="far fa-star"></i> --></td>
                                     <!-- User -->
-                                    <td class="user-image p-2"><%-- <img src="${path}/resources/assets/images/users/4.jpg" alt="user"
-                                            class="rounded-circle" width="30"> --%></td>
                                     <td class="user-name px-1 py-2">
                                         <h6 class="mb-0 text-truncate">${dto.id}</h6>
                                     </td>
                                     <!-- Message -->
                                     <c:if test="${dto.category == 2}">
-                                    	<td class="py-2 px-3 no-wrap text-truncate" style="widht:50%;">
+                                    	<td class="py-2 px-3 no-wrap text-truncate" style="width:50%;">
 											<a class="link font-weight-medium" href="detail.bo?num=${dto.num}">
 											<span class="badge badge-danger mr-2">필독</span>
 											<span class="blue-grey-text text-darken-4">${dto.title} [${dto.comment_cnt}]</span>
@@ -223,170 +216,6 @@
                         </nav>
                     </div>
                 </div>
-                <!-- ============================================================== -->
-                <!-- Right Part  Mail Compose -->
-                <!-- ============================================================== -->
-                
-<!-- 글쓰기 -->                
-                <%-- <div class="right-part mail-compose overflow-auto" style="display: none;">
-                    <div class="p-4 border-bottom">
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <h4>글쓰기</h4>
-                                <span>새로운 글을 작성하세요</span>
-                            </div>
-                            <div class="ml-auto">
-                                <button id="cancel_compose" class="btn btn-dark">Back</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Action part -->
-                    <!-- Button group part -->
-                    <div class="card-body">
-                        <form>
-                        <!-- 시큐리티 적용 -->
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                            <div class="form-group">
-                                <input type="text" id="example-subject" name="example-subject" class="form-control"
-                                    placeholder="제목을 입력하세요">
-                            </div>
-                            <div id="summernote"></div>
-                            <h4>첨부파일</h4>
-                            <div class="dropzone" id="dzid">
-                                <div class="fallback">
-                                    <input name="file" type="file" multiple />
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-success mt-3">
-                                		글 올리기</button>
-                            <button type="submit" class="btn btn-dark mt-3">작성 취소</button>
-                        </form>
-                        <!-- Action part -->
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- Right Part  Mail detail -->
-                <!-- ============================================================== -->
-                <div class="right-part mail-details overflow-auto" style="display: none;">
-                    <div class="card-body bg-light">
-                        <button type="button" id="back_to_inbox" class="btn btn-outline-secondary font-18 mr-2"><i
-                                class="mdi mdi-arrow-left"></i></button>
-                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                            <button type="button" class="btn btn-outline-secondary font-18"><i
-                                    class="mdi mdi-reply"></i></button>
-                            <button type="button" class="btn btn-outline-secondary font-18"><i
-                                    class="mdi mdi-alert-octagon"></i></button>
-                            <button type="button" class="btn btn-outline-secondary font-18"><i
-                                    class="mdi mdi-delete"></i></button>
-                        </div>
-                        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
-                            <div class="btn-group" role="group">
-                                <button id="email-dd3" type="button"
-                                    class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-folder font-18 "></i>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="email-dd3"> <a class="dropdown-item"
-                                        href="javascript:void(0)">Dropdown link</a> <a class="dropdown-item"
-                                        href="javascript:void(0)">Dropdown link</a> </div>
-                            </div>
-                            <div class="btn-group" role="group">
-                                <button id="email-dd4" type="button"
-                                    class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-label font-18"></i>
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="email-dd4"> <a class="dropdown-item"
-                                        href="javascript:void(0)">Dropdown link</a> <a class="dropdown-item"
-                                        href="javascript:void(0)">Dropdown link</a> </div>
-                            </div>
-                        </div>
-                    </div> --%>
-                    
-                    
-<!-- 게시물 상세 페이지 -->
-                    <%-- <div class="card-body border-bottom">
-                        <h4 class="mb-0">${dto.title}</h4>
-                    </div>
-                    <div class="card-body border-bottom">
-                        <div class="d-flex no-block align-items-center mb-5">
-                            <div class="mr-2"><img src="${path}/resources/assets/images/users/1.jpg" alt="user"
-                                    class="rounded-circle" width="45"></div>
-                            <div class="">
-                                <h5 class="mb-0 font-16 font-weight-medium">${dto.name}<small> ( hgover@gmail.com
-                                        )</small>
-                                </h5><span>${dto.reg_date}</span>
-                            </div>
-                        </div>
-                        <p>${dto.content}</p>
-                    </div>
-                    
-                    <div class="card-body">
-                        <h4><i class="fa fa-paperclip mr-2 mb-2"></i> Attachments <span>(3)</span></h4>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <a href="${dto.board_file}" download> <img class="img-thumbnail img-fluid" alt="attachment"
-                                        src="${dto.board_file}"> </a>
-                            </div>
-                            <div class="col-md-2">
-                                <a href="#" download> <img class="img-thumbnail img-fluid" alt="attachment"
-                                        src="${path}/resources/assets/images/big/img2.jpg"> </a>
-                            </div>
-                        </div>
-                        <div class="card-body border-bottom">
-	                        <div class="border mt-3 p-3">
-		                        <form>
-	                            	<p class="pb-3" style="float:left">닉네임</p>
-	                            	<button class="btn btn-primary" type="submit" style="float:right">등록</button>
-		                            <textarea class="form-control" placeholder="댓글을 입력하세요."></textarea>
-		                        </form>
-	                        </div>
-                        </div>
-                        <div class="card-body border-bottom">
-                        	<div>
-                       				<p class="pb-3" style="float:left">닉네임</p>
-                       				<button type="submit" class="btn waves-effect waves-light btn-outline-secondary" style="float:right"><i class="fas fa-times"></i></button>
-                        	</div>
-                        	<div style="clear:both">
-                       				<p>댓글내용</p>
-                        	</div>
-                        </div>
-                        <div class="card-body border-bottom">
-                        	<div>
-                       				<strong class="pb-3" style="float:left">닉네임</strong>
-                       				<button type="submit" class="btn waves-effect waves-light btn-outline-secondary" style="float:right"><i class="fas fa-times"></i></button>
-                        	</div>
-                        	<div style="clear:both">
-                       				<p>댓글내용</p>
-                        	</div>
-                        </div>
-                        <div class="card-body border-bottom">
-                        	<div>
-                       				<strong class="pb-3" style="float:left">닉네임</strong>
-                       				<button type="submit" class="btn waves-effect waves-light btn-outline-secondary" style="float:right"><i class="fas fa-times"></i></button>
-                        	</div>
-                        	<div style="clear:both">
-                       				<p>댓글내용</p>
-                        	</div>
-                        </div>
-                        <div class="card-body border-bottom">
-                        	<div>
-                       				<strong class="pb-3" style="float:left">닉네임</strong>
-                       				<button type="submit" class="btn waves-effect waves-light btn-outline-secondary" style="float:right"><i class="fas fa-times"></i></button>
-                        	</div>
-                        	<div style="clear:both">
-                       				<p>댓글내용</p>
-                        	</div>
-                        </div>
-                        <div class="card-body border-bottom">
-                        	<div>
-                       				<strong class="pb-3" style="float:left">닉네임</strong>
-                       				<button type="submit" class="btn waves-effect waves-light btn-outline-secondary" style="float:right"><i class="fas fa-times"></i></button>
-                        	</div>
-                        	<div style="clear:both">
-                       				<p>댓글내용</p>
-                        	</div>
-                        </div>
-                    </div>
-                </div> --%>
             </div>
             <!-- ============================================================== -->
             <!-- footer -->

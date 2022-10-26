@@ -17,15 +17,6 @@ public interface HumanService {
 	//조직도 목록
 	public void groubInfo(HttpServletRequest req, Model model);
 	
-	//조직도 
-//	public void groubDepart(HttpServletRequest req, Model model);
-//	
-//	//조직도팀
-//	public void groubTeamInfo(HttpServletRequest req, Model model) throws ServletException , IOException;
-//	
-//	//조직도 유저
-//	public void groubMember(HttpServletRequest req, Model model);
-	
 	//인사평가
 	public void memberAssessment(HttpServletRequest req, Model model);
 	

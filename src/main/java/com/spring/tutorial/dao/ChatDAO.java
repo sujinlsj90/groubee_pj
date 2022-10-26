@@ -26,4 +26,7 @@ public interface ChatDAO {
 	
 	// 채팅방에 있는 사원 목록
 	public List<WorkerDTO> chatMemberList(String chatroom_num);
+
+	// 채팅방 나가기
+	public void exit(Map<String, Object> map);
 }

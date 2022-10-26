@@ -25,55 +25,26 @@ public class HumanServiceImpl implements HumanService{
 	@Autowired
 	HumanDAOImpl dao;
 	
-
 	
 	//기본정보
 	@Override
 	public void memberInfo(HttpServletRequest req, Model model) {
 		System.out.println("서비스 -> 기본정보");
-		
+		try {
 		String id = (String) req.getSession().getAttribute("memberID");
 		
 		CommonDTO dto =  dao.selecthuman(id);
 		
 		model.addAttribute("dto", dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			
+		}
+		
 	}
 	
 	
-	//조직도 부서
-//	@Override
-//	public void groubDepart(HttpServletRequest req, Model model) {
-//		System.out.println("서비스 -> 조직도 부서");
-//		
-//		List<DepartDTO> list = dao.groubdepart();
-//		
-//		model.addAttribute("list", list);
-//		
-//	}
-	
-
-	//조직도 팀
-//	@Override
-//	public void groubTeamInfo(HttpServletRequest req, Model model) throws ServletException , IOException{
-//		System.out.println("서비스 -> 조직도 팀");
-//		
-//		List<TeamDTO> list2 = dao.groubTeamInfo();
-//		model.addAttribute("list2", list2);
-//		
-//	}
-//	
-//	//조직도 유저
-//	@Override
-//	public void groubMember(HttpServletRequest req, Model model) {
-//		System.out.println("서비스 -> 조직도 유저");
-//		
-//		List<CommonDTO> list3 = dao.groubUser();
-//		
-//		model.addAttribute("list3", list3);
-//		
-//	}
-//
-//
 	//인사평가
 	@Override
 	public void memberAssessment(HttpServletRequest req, Model model) {
@@ -136,8 +107,6 @@ public class HumanServiceImpl implements HumanService{
 		System.out.println("서비스 -> 전체인사정보 ");
 		
 		List<CommonDTO> list = dao.usersInfo();
-		
-		
 		
 		model.addAttribute("list", list);
 		

@@ -23,7 +23,19 @@ public interface AdminHumanService {
 	//전체부서정보
 	public void departsAction(HttpServletRequest req,Model model);
 	
-	//부서정보 수정
+	//부서정보 삭제
 	public void departUpdateAction(HttpServletRequest req, HttpServletResponse res  ,Model model);
+	
+	//부서가입처리
+	public void departInsertAction(HttpServletRequest req,Model model);
+	
+	//팀 생성
+	public void teamInsertAction(HttpServletRequest req,Model model);
+	
+	//팀 배정
+	public void teamUpdateAction(HttpServletRequest req,Model model);
+	
+	//인자 평가
+	public void humanAppraisalAction(HttpServletRequest req ,Model model);
 
 }

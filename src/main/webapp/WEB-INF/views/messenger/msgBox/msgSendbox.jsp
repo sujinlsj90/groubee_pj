@@ -58,6 +58,10 @@
         border-radius: 2px;
         transform: scale(1) translate(-50%, -50%) 
     }
+    
+    .text-right{
+      width:18%;
+   }
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -206,6 +210,9 @@
 	                                        <!-- User -->
 		                                    <td class="user-name px-1 py-2" style="width:10%;">
 		                                        <h6 class="mb-0 text-truncate font-weight-medium">${dto.id} ${dto.depart_name} ${dto.name}</h6>
+		                                        <input type="hidden" name="hiddenId" value="${dto.id}">
+		                                        <input type="hidden" name="hiddenDepart_name" value="${dto.depart_name}">
+		                                        <input type="hidden" name="hiddenName" value="${dto.name}">
 		                                    </td>
 		                                    <!-- Message -->
 		                                    <td class="py-2 px-3 no-wrap text-truncate">

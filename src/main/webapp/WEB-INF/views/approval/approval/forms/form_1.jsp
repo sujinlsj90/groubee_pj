@@ -64,16 +64,16 @@
 <table style="border: 0px solid rgb(0, 0, 0); width: 800px; font-family: malgun gothic, dotum, arial, tahoma; margin-top: 1px; border-collapse: collapse;">
 <tr>
 <br>
-;&nbsp;<button type="button" id = "approvereq">결재요청</button> ;&nbsp;
+
+&nbsp;<button type="button" id = "approvereq">결재요청</button> &nbsp;
 <button type="button" id = "tempsave">임시저장</button> &nbsp;
 </tr>
 <hr>
 <!-- Header --> 
    <colgroup> 
-    <col width="310"> 
+    <col width="310">
     <col width="400"> 
    </colgroup> 
-   
 	<tbody>
 		<tr>
 			<td style="background: rgb(255, 255, 255); padding: 0px !important; border: 0px currentColor; border-image: none; height: 70px; text-align: center; color: black; font-size: 36px; font-weight: bold; vertical-align: top;" colspan="2">

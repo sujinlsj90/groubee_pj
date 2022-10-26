@@ -16,9 +16,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="${path}/resources/assets/images/favicon.png">
     <title>Groubee - 전사 근태 통계</title>	
 	<link rel="canonical" href="https://www.wrappixel.com/templates/severny-admin-template/" />
-    <!-- This Page CSS -->
-    <link href="${path}/resources/assets/libs/summernote/dist/summernote-bs4.css" rel="stylesheet">
-    <link href="${path}/resources/assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet">    
+    <!-- This Page CSS -->   
     <link href="${path}/resources/assets/libs/bootstrap-table/dist/bootstrap-table.min.css" rel="stylesheet" type="text/css" />
     <!-- Custom CSS -->
     <link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
@@ -28,15 +26,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-
-<script type="text/javascript">
-<<<<<<< HEAD
-		
-=======
-	// alert("select * from grb_attendance a \n join grb_member m on a.id = m.id \n order by a.attend_id desc;");	
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
-	
-</script>
 
 </head>
 
@@ -79,7 +68,8 @@
 				<!-- ============================================================== -->
 				<!-- Right Part -->
 				<!-- ============================================================== -->
-
+				<form name="grbmonthform" method="post">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">                
 				<div class="right-part mail-list overflow-auto"
 					style="height: 100%;">
 					<!-- Action part -->
@@ -87,66 +77,89 @@
 					<div class="bg-light p-3 d-flex align-items-center do-block">
 						<div>
 							<h4>전사 근태 통계</h4>
-							<h1>2022.10</h1>
+							<h1 class="title"></h1>
 						</div>
 					</div>
 					<div class="card">
 						<div class="card-body">
-							<div class="col-md-2">
-								<select class="form-control custom-select"
-									data-placeholder="부서 검색" tabindex="1">
-									<option value="부서 검색">부서 검색</option>
-									<option value="사업부">사업부</option>
-									<option value="인사부">인사부</option>
-									<option value="영업부">영업부</option>
-									<option value="개발부">개발부</option>
-									<option value="경영지원부">경영지원부</option>
-									<option value="총무부">총무부</option>
-								</select>
+							<div class="col-md-4">
+								<select class="selectdepart form-control custom-select" tabindex="1">
+									<option id="0" value="0">부서 선택</option>
+									<option id="1" value="사업부">사업부</option>									
+									<option id="2" value="인사부">인사부</option>
+									<option id="3" value="영업부">영업부</option>
+									<option id="4" value="개발부">개발부</option>
+									<option id="5" value="경영지원부">경영지원부</option>
+									<option id="6" value="총무부">총무부</option>
+								</select><br><br>
+								<select class="selectmonth form-control custom-select" id="selectmonth" name="selectmonth" required>
+									<option id="0" value="0">월간 선택</option>
+									<option id="1" value="1">1월</option>
+									<option id="2" value="2">2월</option>
+									<option id="3" value="3">3월</option>
+									<option id="4" value="4">4월</option>
+									<option id="5" value="5">5월</option>
+									<option id="6" value="6">6월</option>
+									<option id="7" value="7">7월</option>
+									<option id="8" value="8">8월</option>
+									<option id="9" value="9">9월</option>
+									<option id="10" value="10">10월</option>
+									<option id="11" value="11">11월</option>
+									<option id="12" value="12">12월</option>										
+								</select>																 
 							</div>
+								
 							<hr>
-							<h4 class="card-title">전사 근태 통계</h4>
+							<h4 class="card-title">${depart_name} 근태 통계</h4>
 							<div class="container" style="align: center">
 								<div class="row">
 									<div class="col bg-light border p-3">
-										<div>출근 미체크</div>
-										<div>7</div>
+										<div>업무</div>
+										<div>${attendin_cnt}</div>
 									</div>
 									<div class="col bg-light border p-3">
-										<div>퇴근 미체크</div>
-										<div>7</div>
+										<div>업무종료</div>
+										<div>${attendout_cnt}</div>
+									</div>
+									<div class="col bg-light border p-3">
+										<div>연장</div>
+										<div>${over_cnt}</div>
 									</div>
 									<div class="col bg-light border p-3">
 										<div>지각</div>
-										<div>-</div>
-									</div>
-									<div class="col bg-light border p-3">
-										<div>반차</div>
-										<div>-</div>
-									</div>
-									<div class="col bg-light border p-3">
-										<div>결근</div>
-										<div>1</div>
+										<div>${late_cnt}</div>
 									</div>
 									<div class="col bg-light border p-3">
 										<div>연차</div>
-										<div>1</div>
+										<div>${full_cnt}</div>
 									</div>
 									<div class="col bg-light border p-3">
-										<div>미인증</div>
-										<div>2</div>
+										<div>반차</div>
+										<div>${half_cnt}</div>
+									</div>								
+									<div class="col bg-light border p-3">
+										<div>누적시간</div>
+										<div>${fullmonth}</div>
 									</div>
+									<div class="col bg-light border p-3">
+										<div>업무시간</div>
+										<div>${workmonth}</div>
+									</div>
+									<div class="col bg-light border p-3">
+										<div>연장시간</div>
+										<div>${overmonth}</div>
+									</div>									
 								</div>
 							</div>
 							<hr>
 							<br>
 							<!-- 부서 근태 통계 -->
-							<div class="col-lg-6">
+							<div class="col-lg-12 col-xl-6">
 								<div class="card">
 									<div class="card-body">
-										<h4 class="card-title" style="width: 400px;">전사 근태 통계</h4>
+										<h4 class="card-title">${depart_name} 근태 통계</h4>
 										<div>
-											<canvas id="pie-chart" style="height: 400px;"></canvas>
+											<canvas id="pie-chart"></canvas>
 										</div>
 									</div>
 								</div>
@@ -155,221 +168,52 @@
 							<div class="col-lg-12 col-xl-6">
 								<div class="card">
 									<div class="card-body analytics-info">
-										<h4 class="card-title">전사 근태 통계</h4>
+										<h4 class="card-title">${depart_name} 근태 통계</h4>
 										<div id="basic-doughnut" style="height: 400px;"></div>
 									</div>
 								</div>
 							</div>
-
-							<hr>
 							<br>
-
-							<!-- Table -->
+							<!-- skill bars -->
 							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">전사 근태 내역</h4>
-									<h6 class="card-subtitle"></h6>
-									<table data-toggle="table" class="table table-striped no-wrap">
-										<thead>
-											<tr>
-												<th class="name" data-sortable="true">이름</th>
-												<th class="depart" data-sortable="true">부서</th>
-												<th class="workWeek" data-sortable="true">주간 누적 근무</th>
-												<th data-sortable="true">월</th>
-												<th data-sortable="true">화</th>
-												<th data-sortable="true">수</th>
-												<th data-sortable="true">목</th>
-												<th data-sortable="true">금</th>
-												<th data-sortable="true">토</th>
-												<th data-sortable="true">일</th>
-												<!-- 재직 휴직 퇴사 -->
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><img
-													src="${path}/resources/assets/images/users/4.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia
-													Deshmukh</td>
-												<td>사업부</td>
-												<td>6h 28m 24s</td>
-												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-											</tr>
-											<tr>
-												<td><img
-													src="${path}/resources/assets/images/users/3.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia
-													Deshmukh</td>
-												<td>사업부</td>
-												<td>6h 28m 24s</td>
-												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-											</tr>
-											<tr>
-												<td><img
-													src="${path}/resources/assets/images/users/2.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia
-													Deshmukh</td>
-												<td>사업부</td>
-												<td>6h 28m 24s</td>
-												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-											</tr>
-											<tr>
-												<td><img
-													src="${path}/resources/assets/images/users/1.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia
-													Deshmukh</td>
-												<td>사업부</td>
-												<td>6h 28m 24s</td>
-												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-											</tr>
-											<tr>
-												<td><img
-													src="${path}/resources/assets/images/users/4.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia
-													Deshmukh</td>
-												<td>인사부</td>
-												<td>6h 28m 24s</td>
-												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-											</tr>
-											<tr>
-												<td><img
-													src="${path}/resources/assets/images/users/3.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia
-													Deshmukh</td>
-												<td>인사부</td>
-												<td>6h 28m 24s</td>
-												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-											</tr>
-											<tr>
-												<td><img
-													src="${path}/resources/assets/images/users/2.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia
-													Deshmukh</td>
-												<td>인사부</td>
-												<td>6h 28m 24s</td>
-												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-											</tr>
-											<tr>
-												<td><img
-													src="${path}/resources/assets/images/users/1.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia
-													Deshmukh</td>
-												<td>인사부</td>
-												<td>6h 28m 24s</td>
-												<td>기본 2h 37m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 3h 51m 7s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 9s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-												<td>기본 0h 0m 0s<br>연장 0h 0m 0s
-												</td>
-											</tr>
-										</tbody>
-									</table>
+		                    	<div class="card-body">					
+								<h4 class="card-title">전사 근무 통계</h4>						
+								<h5 class="mt-4">
+									월간 누적 근무<span class="pull-right">${monthrate}%</span>
+								</h5>
+								<div class="progress">
+									<div
+										class="progress-bar bg-danger wow animated progress-animated"
+										style="width: ${monthrate}%; height: 6px;" role="progressbar">
+										<span class="sr-only">60% Complete</span>
+									</div>
 								</div>
+								<h5 class="mt-4">
+									월간 업무 시간<span class="pull-right">${workrate}%</span>
+								</h5>
+								<div class="progress ">
+									<div
+										class="progress-bar bg-info wow animated progress-animated"
+										style="width: ${workrate}%; height: 6px;" role="progressbar">
+										<span class="sr-only">60% Complete</span>
+									</div>
+								</div>						
+								<h5 class="mt-4">
+									월간 연장 시간<span class="pull-right">${overrate}%</span>
+								</h5>
+								<div class="progress">
+									<div
+										class="progress-bar bg-success wow animated progress-animated"
+										style="width: ${overrate}%; height: 6px;" role="progressbar">
+										<span class="sr-only">60% Complete</span>
+									</div>
+								</div>						
 							</div>
-							<!-- Table -->
+						</div>							
 						</div>
 					</div>
 				</div>
+				</form>
 			</div>
 			<!-- ============================================================== -->
             <!-- footer -->
@@ -493,17 +337,23 @@
 			new Chart(document.getElementById("pie-chart"), {
 				type: 'pie',
 				data: {
-				  labels: ["출근 미체크", "퇴근 미체크", "지각", "결근", "반차", "연차", "미인증"],
+				  labels: ["출근", "퇴근", "연장", "지각", "연차", "반차", "정보없음"],
 				  datasets: [{
-					label: "depart attendance",
-					backgroundColor: ["#02cccd", "#ff3ca6","#6610f2","#ffab2e","#7820f2", "005ccce", "#fffcce"],
-					data: [7,7,0,0,1,1,2]
+					label: "attendance",
+					backgroundColor: ["#02cccd", "#ff3ca6","#6610f2","#ffab2e", "005ccce", "#ffab2e", "005ccce"],
+					data: ['${attendin_cnt}'
+						,'${attendout_cnt}'
+						,'${over_cnt}'
+						,'${late_cnt}'
+						,'${full_cnt}'
+						,'${half_cnt}'
+						, '${none}']
 				  }]
 				},
 				options: {
 				  title: {
 					display: true,
-					text: 'depart attendance 2022.10'
+					text: 'attendance ${day}'
 				  }
 				}
 			});
@@ -513,8 +363,8 @@
 	        var option = {
 	            // Add title
 	                title: {
-	                    text: 'depart attandence',
-	                    subtext: '2022.10',
+	                    text: 'attandence',
+	                    subtext: '${day}',
 	                    x: 'center'
 	                },
 
@@ -522,11 +372,11 @@
 	                legend: {
 	                    orient: 'vertical',
 	                    x: 'left',
-	                    data: ['출근','퇴근','지각','반차','연차']
+	                    data: ['출근','퇴근', '연장', '지각', '정보없음']
 	                },
 
 	                // Add custom colors
-	                color: ['#ffab2e', '#3f50f6', '#212529', '#ff3ca6', '#6610f2'],
+	                color: ['#ffab2e', '#3f50f6', '#dbabce', '#6610f2', '#005ccce'],
 
 	                // Display toolbox
 	                toolbox: {
@@ -610,11 +460,12 @@
 	                        },
 
 	                        data: [
-	                            {value: 35, name: '출근'},
-	                            {value: 27, name: '퇴근'},
-	                            {value: 5, name: '지각'},
-	                            {value: 10, name: '반차'},
-	                            {value: 2, name: '연차'}
+	                            {value: '${attendin_cnt}', name: '출근'},
+	                            {value: '${attendout_cnt}', name: '퇴근'},
+	                            {value: '${over_cnt}', name: '연장'},
+	                            {value: '${late_cnt}', name: '지각'},
+	                            {value: '${none}', name: '정보없음'}
+	                            
 	                        ]
 	                    }
 	                ]
@@ -640,6 +491,41 @@
             }
 			
 		});
+	</script>
+	<script type="text/javascript">				
+        
+        $(function() {
+        	// 현재 날짜
+    		var selectmonth = '${selectmonth}';
+    		var currentDate = new Date();
+    		var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getDate();
+    		var month = (currentDate.getMonth() + 1) + "월";
+    		if (selectmonth.toString().length==1) selectmonth = "0" + selectmonth;
+    		var title = currentDate.getFullYear() + "-" + selectmonth;
+    		
+    		
+    		if(selectmonth == ""){	
+    			$(".month").html(month); 
+    			title = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1);
+    		}		
+    		$(".title").html(title); 
+    		
+    		// 부서 선택 시
+    		$(".selectdepart").change(function(){   			
+   			 	var depart_name = $(this).val();    	        
+   	         	console.log(depart_name);
+   	         	location.href = "${path}/grbMonth.at?depart_name=" + depart_name;            
+           }); 
+    		
+    		// 월 선택 시 
+    		$(".selectmonth").change(function(){
+    			 var monthVal =  $(this).val();    	    	         
+    	         console.log(monthVal);
+    	         location.href = "${path}/grbMonth.at?month=" + monthVal;            
+            });    		                 
+             
+        });
+
 	</script>
 </body>
 </html>

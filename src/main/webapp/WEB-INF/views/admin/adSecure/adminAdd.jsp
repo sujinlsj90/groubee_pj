@@ -9,11 +9,19 @@
 
 	<script type="text/javascript">
 	 
-		/* 
-		function ChangeValue(){
-			var administrator = $(".administrator${dto.id} option:selected").val();
-			alert("value:" + administrator);
-		}
+	/* window.onload=function(){  
+		 var pop_btn = document.getElementById('pop_btn');  
+		 pop_btn.onclick=function(){   
+			 document.myForm.target= opener.name; //호출하고자하는 부모창의 이름  
+			 document.myForm.submit(); // 폼 전송   
+			 self.close(); //창 닫기   } }; */
+	 
+			/*  window.opener.name = "parentPage"; // 부모창의 이름 설정
+			     document.popForm.target = "parentPage"; // 타켓을 부모창으로 설정
+			     document.popForm.action = "/target/parentPage2.do";  //부모창에 호출될 url 
+			     document.popForm.submit();
+			     self.close();
+			 출처: https://tnsgud.tistory.com/579 [Soon Gud Story:티스토리]
 		 */
 		$(function(){
 			$("#all_check").change(function() {
@@ -22,56 +30,21 @@
 		      });
 			//수정
 			$("#checkAdd").click(function(){
-				
-				if(confirm("관리자를 추가하시겠습니까?")){					
-			 	
-				/* var select = document.getElementById('administrator');
-			    var option = select.options[select.selectedIndex];
-
-			    document.getElementById('value').value = option.value; */
-			    /* document.getElementById('text').value = option.text; */			
-				
-			    // location.href = '${path}/adminAdd2.ad?administrator='+administrator+'&id='+id;\
-			   
-      			//var cartQuan= $(this).prev().prev().val();
-			    
-			   /*  var adminprev = $(this).data("num");
-			    var administrator = $(this).next().val();
-			    alert(adminprev+","+administrator); */
-				
-			    
-			    document.adminAddGroubee.action = "${path}/adminAdd2.ad?"
-				document.adminAddGroubee.submit();
-				
-				//window.open("about:blank", "_self").close();
-				}
+				/* if( $('input:checkbox[name="chk_secure"]:checked').value() != null ){ */
+					if(confirm("관리자를 추가하시겠습니까?")){
+					
+						document.adminAddGroubee.target= opener.adSecureGroubee; //호출하고자하는 부모창의 이름  (form name) //부모 페이지로 컨트롤러 리다이렉트
+					    document.adminAddGroubee.action = "${path}/adminAdd2.ad" // 폼 전송   
+					    document.adminAddGroubee.submit();
+					    opener.reloadPage();
+					    self.close();
+					}
+				/* }else {
+					alert("선택");
+				} */
+			});
 		});
-	});
-		/*  
-	   //개별체크시 개별체크의 name 속성을 checked로 변경
-	   $(".p_selectChk").change(function(){
-		      if($(this).prop("checked")){
-		         $(this).attr("name", "checked");
-		      }else{
-		         $(this).attr("name", "check")
-		      }
-		      
-		      if ($(this).find('.p_selectChk').is(":checked")){   //체크가 되어있는경우
-		    	  var administrator = $(this).find('#administrator').is(":selected").val();   
-		      }
-	   });
-		  */
-/* 	   $('.p_selectChk').change(function(){      //개별 체크박스 변동이 생기면
-		      var administrator = [];
-		      
-		      $(".admin_detail").each(function(index, element){
-		         if ($(this).find('.p_selectChk').is(":checked")){   //체크가 되어있는경우
-		        	 administrator += $(this).find('#administrator').val();
-		         }
-		      });		      
-		     
-		   }); */
-	   
+			
 	</script>
 
 </head>
@@ -80,13 +53,13 @@
 	<div class="card-body">
         <h4 class="card-title">관리자 추가</h4>
         <br>
-        <button type ="button" class="btn btn-secondary" id="checkAdd">운영자 추가</button>
+        <br><br>
+        <button type="button" class="btn btn-secondary" id="checkAdd">운영자 추가</button>
         <br><br>
         <div class="table-responsive">
-        	<form name="adminAddGroubee" method="post">
+        	<form name="adminAddGroubee" method="post" action = "${path}/adminAdd2.ad">
         		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	            <table class="tablesaw no-wrap table-bordered table-hover table" data-tablesaw>
-	              
 	                    <tr>
 	                        <th scope="col" class="border">
 	                        	<label for="all_check">
@@ -121,16 +94,17 @@
 	                        <td>${dto.state}</td>
 	                        <td>${dto.hireday}</td>
 	                        <td>	                        	     
-	                        	<input type="hidden" class="adminprev" name="adminprev" id="adminprev" data-num="${dto.id}">                 	
-		                        <select class="administrator" id="administrator" name="administrator" onchange="ChangeValue();">
-									<option value="0">선택</option> 
-									<option value="근태관리">근태관리</option>
-									<option value="인사관리">인사관리</option>
-									<option value="결제문서관리">결제문서관리</option>
-									<option value="게시판관리">게시판관리</option>
-									<option value="메신저관리">메신저관리</option>
-									<option value="서비스관리">서비스관리</option>
-									<option value="보안관리">보안관리</option>
+		                        <select class="administrator" id="administrator" name="administrator">
+									<option label="선택">선택</option> 
+									<option value="ROLE_ATTEND">근태관리</option>
+									<option value="ROLE_APPROVAL">결재문서관리</option>
+									<option value="ROLE_SECURE">보안관리</option>
+									<option value="ROLE_DEPARTMENT">부서관리</option>
+									<option value="ROLE_SERVICE">서비스관리</option>
+									<option value="ROLE_HUMAN">인사관리</option>
+									<option value="ROLE_BOARD">게시판관리</option>
+									<option value="ROLE_NOTEBOX">쪽지함관리</option>
+									
 								</select>
 	                        </td>                                                
 	                    </tr>

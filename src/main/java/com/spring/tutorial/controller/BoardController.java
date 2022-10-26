@@ -87,15 +87,17 @@ public class BoardController {
 		return "board/edit";
 	}
 	
-//	// 게시판 수정 처리
-//	@RequestMapping("boardEditAction.bo")
-//	public void board_updateAction(MultipartHttpServletRequest req, HttpServletResponse res,  Model model)
-//			throws ServletException, IOException {
-//		logger.info("[url => /board_updateAction.bo]");
-//		service.boardUpdateAction(req, model);
-//		String viewPage = req.getContextPath() + "/boardList.bo";
-//        res.sendRedirect(viewPage);
-//	}
+	// 게시판 수정 처리
+	@RequestMapping("boardEditAction.bo")
+	public void board_updateAction(HttpServletRequest req,HttpServletResponse res, Model model)
+			throws ServletException, IOException {
+		logger.info("[url => /boardEditAction.bo]");
+		
+		service.boardUpdateAction(req, model);
+		
+        String viewPage = req.getContextPath() + "/board.bo";
+        res.sendRedirect(viewPage);
+	}
 	
 	
 	// 게시판 삭제처리
@@ -126,6 +128,16 @@ public class BoardController {
 			throws ServletException, IOException {
 		logger.info("[url => /commentAdd.bo]");
 		service.commentAdd(req, model);
+		
+		return "board/comment";
+	}
+	
+	// 댓글 삭제
+	@RequestMapping("commentDelete.bo")
+	public String commentDelete(HttpServletRequest req, Model model)
+			throws ServletException, IOException {
+		logger.info("[url => /commentDelete.bo]");
+		service.commentDelete(req, model);
 		
 		return "board/comment";
 	}

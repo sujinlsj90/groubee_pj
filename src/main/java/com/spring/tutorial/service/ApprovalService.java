@@ -116,4 +116,11 @@ public interface ApprovalService {
 	//결재정보수정정보 뿌리기
 	public void reselectLineViewAction(HttpServletRequest req, Model model);
 	
+	//관리자 통합문서함
+	public void adminApprovallistAction(HttpServletRequest req, Model model);
+	
+	//관리자통합문서함 전체보기
+	public void adminApprovallistAllAction(HttpServletRequest req, Model model);
+	
+	
 }

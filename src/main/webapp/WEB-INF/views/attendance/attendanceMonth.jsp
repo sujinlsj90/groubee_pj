@@ -98,27 +98,43 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
-								<div class="card-body">																		
-                                        <h4 class="month card-title"></h4>
-                                        <h4>
-                                        	<a class="get-code" data-toggle="collapse" href="#pgr2" aria-expanded="true">
-                                        	<i class="fa fa-code" title="월 근태 확인" data-toggle="tooltip"></i></a>
-                                        </h4>                                       
-                                        <div class="collapse mt-3 well" id="pgr2" aria-expanded="true">
-                                            <div class="table-responsive">
-											<table id="lang_comma_deci" class="table table-striped table-bordered display no-wrap" style="width: 100%">
-											<thead>
-												<tr>
-													<th colspan="2">일자</th>
-													<th>업무시작</th>
-													<th>업무종료</th>
-													<th>근무 시간</th>
-													<th>연장 시간</th>
-													<th>근무 형태</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="dto" items="${month}" varStatus="status">
+								<div class="card-body">
+									<select class="selectmonth form-control custom-select col-md-4" id="selectmonth" name="selectmonth" required>
+										<option id="0" value="0">월간 선택</option>
+										<option id="1" value="1">1월</option>
+										<option id="2" value="2">2월</option>
+										<option id="3" value="3">3월</option>
+										<option id="4" value="4">4월</option>
+										<option id="5" value="5">5월</option>
+										<option id="6" value="6">6월</option>
+										<option id="7" value="7">7월</option>
+										<option id="8" value="8">8월</option>
+										<option id="9" value="9">9월</option>
+										<option id="10" value="10">10월</option>
+										<option id="11" value="11">11월</option>
+										<option id="12" value="12">12월</option>										
+									</select>
+									<small class="form-control-feedback"> Select Month </small><br><br>																		
+                                    <h4 class="month card-title">${selectmonth}월</h4>
+                                    <h4> 
+                                      	<a class="get-code" data-toggle="collapse" href="#pgr2" aria-expanded="true">[click]
+                                       	<i class="fa fa-code" title="월 근태 확인" data-toggle="tooltip"></i></a>
+                                    </h4>                                       
+                                    <div class="collapse mt-3 well" id="pgr2" aria-expanded="true">
+                                        <div class="table-responsive">
+										<table id="lang_comma_deci" class="table table-striped table-bordered display no-wrap" style="width: 100%">
+										<thead>
+											<tr>
+												<th colspan="2">일자</th>
+												<th>업무시작</th>
+												<th>업무종료</th>
+												<th>근무 시간</th>
+												<th>연장 시간</th>
+												<th>근무 형태</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="dto" items="${month}" varStatus="status">
 												<c:if test="${dto.attend_id eq null}" >
 												<tr>
 													<td colspan="6">등록된 근태 내역이 없습니다.</td>																		
@@ -181,14 +197,14 @@
 													<td id="state">${dto.state}</td>
 												</tr>												
 												</c:if>
-												</c:forEach>																						
-											</tbody>
-											</table>
-										</div>
-                                        </div>
-                                        <div class="list-group"> 
-                                        	<a href="javascript:void(0)" class="list-group-item active">Cras justo odio</a>
-                                        </div>
+											</c:forEach>																						
+										</tbody>
+										</table>
+									</div>
+                                    </div>
+                                    <div class="list-group"> 
+                                      	<a href="javascript:void(0)" class="list-group-item active">Cras justo odio</a>
+                                    </div>
 								</div>
 							</div>
 						</div>
@@ -365,18 +381,24 @@
 <script type="text/javascript">            
 	$(function() {
 		// 현재 날짜
+		var selectmonth = '${selectmonth}';
 		var currentDate = new Date();
 		var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getDate();
 		var month = (currentDate.getMonth() + 1) + "월";
-		var title = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1);
-
+		if (selectmonth.toString().length==1) selectmonth = "0" + selectmonth;
+		var title = currentDate.getFullYear() + "-" + selectmonth;
+		
+		if(selectmonth == ""){	
+			$(".month").html(month); 
+			title = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1);
+		}		
 		$(".title").html(title);
-		$(".month").html(month);
-
-		// 월  근태 현황
-		$(".getmonth").click(function() {
-			location.href = '${path}/attendanceMonth.at';
-		});
+		
+		$(".selectmonth").change(function(){
+            var monthVal =  $(this).val();             
+            console.log(monthVal);            
+            location.href = "${path}/attendanceMonth.at?month=" + monthVal;            
+        })
 	});
 </script>  
 </body>

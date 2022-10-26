@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.tutorial.service.AttendanceServiceImpl;
 import com.spring.tutorial.service.HumanServiceImpl;
 
 @Controller
@@ -31,7 +32,6 @@ public class HumanController {
    @RequestMapping("humanMain.hu")
    public String humanMain(HttpServletRequest req , Model model) {
       logger.info("url -> humanMain.hu");
-      
       service.memberInfo(req, model);
       service_p.memberAssessment(req, model);
       service_t.jobsfao(req, model);
@@ -52,9 +52,8 @@ public class HumanController {
    
    //전체인사정보
    @RequestMapping("userHuman.hu")
-   public String userHuman(HttpServletRequest req , Model model) {
+   public String userHuman(HttpServletRequest req , Model model)  throws ServletException , IOException{
       logger.info("url -> userHuman.hu");
-      
       service.usersHuman(req, model);
       
       return "humanresources/userHuman";
@@ -64,11 +63,7 @@ public class HumanController {
    @RequestMapping("groub.hu")
    public String img(HttpServletRequest req , Model model)  throws ServletException , IOException{
       logger.info("url -> groub.hu");
-      
       service.groubInfo(req, model);
-      //service.groubDepart(req, model);
-      //service_t.groubTeamInfo(req, model);
-      //service_p.groubMember(req, model);
       
       return  "humanresources/groub";
    }

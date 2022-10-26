@@ -58,6 +58,10 @@
         border-radius: 2px;
         transform: scale(1) translate(-50%, -50%)
     }
+    
+    .text-right{
+      width:18%;
+   }
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -114,7 +118,7 @@
 		// returnDeleteBtn
 		$('#returnDeleteBtn').click(function() {
 			if (confirm("메세지를 복원하시겠습니까?")) {
-				document.msgListForm.action ="${path}/returnDeleteMsg.me";
+				document.msgListForm.action ="${path}/returnTrash.me";
 				document.msgListForm.submit();
 	        } else {
 	            alert("메세지 복원을 취소하셨습니다.");
@@ -209,7 +213,7 @@
 	                    	<div class="table-responsive">
 		                        <table class="table email-table no-wrap table-hover v-middle">
 		                            <tbody>
-		                            <c:forEach var="dto" items="${list}">
+		                            <c:forEach var="dto" items="${list}" varStatus="status">
 		                                <!-- row -->
 		                                <tr class="unread">
 		                                    <!-- label -->
@@ -226,7 +230,13 @@
 				                                    </td> 
 				                                    <!-- User -->
 				                                    <td class="user-name px-1 py-2" style="width:10%; color:#3f50f6;">
-				                                        <h6 class="mb-0 text-truncate font-weight-medium">${dto.id} ${dto.depart_name} ${dto.name}</h6>
+				                                    <c:if test="${dto.id eq sessionScope.memberID}">
+				                                        <h6 class="mb-0 text-truncate font-weight-medium">${dto.getter_id} ${dto.depart_name} ${dto.name}</h6>
+				                                    </c:if>
+				                                    
+				                                    <c:if test="${dto.id != sessionScope.memberID}">
+				                                    	<h6 class="mb-0 text-truncate font-weight-medium">${list_get[status.index].id} ${list_get[status.index].depart_name} ${list_get[status.index].name}</h6>
+				                                    </c:if>
 				                                    </td>
 				                                    <td style="width:10px;">
 				                                    	<c:if test="${dto.id eq sessionScope.memberID}">
@@ -235,44 +245,49 @@
 				                                    </td>
 				                                    <!-- Message -->
 				                                    <td class="py-2 px-3 no-wrap text-truncate">
-														<a href="javascript:void(0)" onclick="window.open('${path}/messageDetail.me?message_num=${dto.message_num}',
+														<a href="javascript:void(0)" onclick="window.open('${path}/messageDetail_trash.me?message_num=${dto.message_num}',
 														'Message Detail','left=500, top=100, width=600, height=600, location=no, status=no, scrollbars=yes');">
 			                                           		<span class="blue-grey-text text-darken-4">${dto.title}</span>
 			                                        	</a>
 		                                        	</td> 		
 			                            		</c:if>
-			                                           	
-		                                       	<!-- 읽음 -->
-		                                       	<c:if test="${dto.state eq 1}">
-		                                       		<td class="chb" style="padding-right:0; width:5%;">
-			                                        	<div class="custom-control custom-checkbox" style="width:0.1px;">
-			                                            	<input type="checkbox" name="chkList" class="chkList" value="${dto.message_num}">
-			                                            	<label for="${dto.message_num}"></label>
-			                                        	</div>
-			                                    	</td>
-			                                    	<td class="py-2 px-3 no-wrap text-truncate" style="width:5%;">
-			                                        	<i class="fas fa-envelope-open"></i>&nbsp;
-			                                        </td>  	
-			                                        <!-- User -->
-				                                    <td class="user-name px-1 py-2" style="width:10%;">
-				                                        <h6 class="mb-0 text-truncate font-weight-medium">${dto.id} ${dto.depart_name} ${dto.name}</h6>
+			                            		
+			                            		<!-- 읽음 -->
+			                            		<c:if test="${dto.state eq 1}">
+				                                    <td class="chb" style="padding-right:0; width:5%;">
+				                                        <div class="custom-control custom-checkbox" style="width:0.1px;">
+				                                            <input type="checkbox" name="chkList" class="chkList chk" value="${dto.message_num}">
+				                                            <label for="${dto.message_num}"></label>
+				                                        </div>
 				                                    </td>
 				                                    <td class="py-2 px-3 no-wrap text-truncate" style="width:5px;">
+				                                        <i class="fas fa-envelope-open"></i>&nbsp;
+				                                    </td> 
+				                                    <!-- User -->
+				                                    <td class="user-name px-1 py-2" style="width:10%;">
+				                                    <c:if test="${dto.id eq sessionScope.memberID}">
+				                                        <h6 class="mb-0 text-truncate font-weight-medium">${dto.getter_id} ${dto.depart_name} ${dto.name}</h6>
+				                                    </c:if>
+				                                    
+				                                    <c:if test="${dto.id != sessionScope.memberID}">
+				                                    	<h6 class="mb-0 text-truncate font-weight-medium">${list_get[status.index].id} ${list_get[status.index].depart_name} ${list_get[status.index].name}</h6>
+				                                    </c:if>
+				                                    </td>
+				                                    <td style="width:10px;">
 				                                    	<c:if test="${dto.id eq sessionScope.memberID}">
 				                                    		<span class="badge badge-danger mr-2">보냄</span>
 				                                    	</c:if>
-		                                           	</td>
+				                                    </td>
 				                                    <!-- Message -->
 				                                    <td class="py-2 px-3 no-wrap text-truncate">
-														<a href="javascript:void(0)" onclick="window.open('${path}/messageDetail.me?message_num=${dto.message_num}',
-														'Message Detail','left=500, top=100, width=600, height=600, location=no, status=no, scrollbars=yes');"
-														style="color:#000;">
-			                                           		<span class="blue-grey-text text-darken-4">${dto.title}</span>
+														<a href="javascript:void(0)" onclick="window.open('${path}/messageDetail_trash.me?message_num=${dto.message_num}',
+														'Message Detail','left=500, top=100, width=600, height=600, location=no, status=no, scrollbars=yes'); style="color:#000;">
+			                                           		<span class="text-darken-4" style="color:#000;">${dto.title}</span>
 			                                        	</a>
 		                                        	</td> 		
-					                            </c:if>
-			                                    
-			                                    <!-- Attachment -->
+			                            		</c:if>
+			                            		
+			                            		<!-- Attachment -->
 			                                    <td class="clip px-1 py-2">
 			                                    	<c:if test="${not empty dto.files}">
 			                                    	<i class="fa fa-paperclip"></i>
@@ -280,7 +295,6 @@
 			                                    </td>
 			                                    <!-- Time -->
 			                                    <td class="time text-right">${dto.send_date}</td>
-		                                </tr>
 		                            </c:forEach>
 		                    		</tbody>
 		                        </table>

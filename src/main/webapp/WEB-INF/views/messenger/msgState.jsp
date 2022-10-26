@@ -44,6 +44,8 @@
 			//window.location="${path}/msgIndex.me";
 		</script>
 	</c:if>
+	
+	
 	<!-- 컨텐츠 종료 -->
 	
 </body>

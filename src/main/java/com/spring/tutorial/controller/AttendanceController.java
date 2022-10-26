@@ -112,7 +112,7 @@ public class AttendanceController {
 			throws ServletException, IOException {
 		logger.info("controller > request_over.at");
 		service.attendance(req, model);	// SubMenu 시간 근태 출력용		
-		service_h.myHumanInfo(req, model); // 기본정보
+		service_h.memberInfo(req, model); // 기본정보
 		
 		return "attendance/request_over";
 	}
@@ -135,7 +135,7 @@ public class AttendanceController {
 		logger.info("controller > request_rest.at");
 		service.attendance(req, model);	// SubMenu 시간 근태 출력용
 		service.attendanceRestInfo(req, model); // 나의 연차 내역
-		service_h.myHumanInfo(req, model); // 기본정보		
+		service_h.memberInfo(req, model); // 기본정보		
 		
 		return "attendance/request_rest";
 	}
@@ -157,6 +157,8 @@ public class AttendanceController {
 			throws ServletException, IOException {
 		logger.info("controller > departWeek.at");
 		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		service_h.memberInfo(req, model); // 기본정보
+		service.attendDepart(req, model);
 		
 		return "attendance/departWeek";
 	}
@@ -166,7 +168,8 @@ public class AttendanceController {
 	public String departMonth(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > departMonth.at");
-		service.attendance(req, model); // SubMenu 시간 근태 출력용
+		service.attendance(req, model); // SubMenu 시간 근태 출력용		
+		service.attendDepart(req, model);
 		
 		return "attendance/departMonth";
 	}
@@ -176,6 +179,7 @@ public class AttendanceController {
 			throws ServletException, IOException {
 		logger.info("controller > departRestWeek.at");
 		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		service.annualDepart(req, model);
 		
 		return "attendance/departRestWeek";
 	}
@@ -186,6 +190,7 @@ public class AttendanceController {
 			throws ServletException, IOException {
 		logger.info("controller > departRestMonth.at");
 		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		service.annualDepart(req, model);
 		
 		return "attendance/departRestMonth";
 	}	
@@ -196,6 +201,7 @@ public class AttendanceController {
 			throws ServletException, IOException {
 		logger.info("controller > grbWeek.at");
 		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		service.attendGrb(req, model);
 		
 		return "attendance/grbWeek";
 	}
@@ -206,15 +212,18 @@ public class AttendanceController {
 			throws ServletException, IOException {
 		logger.info("controller > grbMonth.at");
 		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		service.attendGrb(req, model);
 		
 		return "attendance/grbMonth";
 	}
+	
 	// 전사 연차 현황
 	@RequestMapping("grbRestWeek.at")
 	public String grbRestWeek(HttpServletRequest req, Model model) 
 			throws ServletException, IOException {
 		logger.info("controller > grbRestWeek.at");
 		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		service.annualGrb(req, model);
 		
 		return "attendance/grbRestWeek";
 	}
@@ -225,6 +234,7 @@ public class AttendanceController {
 			throws ServletException, IOException {
 		logger.info("controller > grbRestMonth.at");
 		service.attendance(req, model);	// SubMenu 시간 근태 출력용
+		service.annualGrb(req, model);
 		
 		return "attendance/grbRestMonth";
 	}	

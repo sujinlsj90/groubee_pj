@@ -55,12 +55,17 @@
                     </button>
             </div>
          </div>
-         <div class="profile-section">
-            <p class="font-weight-bold mb-0 font-18">${sessionScope.memberName} ${sessionScope.memberRank}</p>
-            <span class="op-7 font-14">${sessionScope.memberDepart}</span><br>
-            <button type="button" id="btnLogout" class="btn waves-effect waves-light btn-rounded btn-outline-light" onClick="location.href='login.co'">logout</button>
-            <!-- <button id="logout" onClick="location.href='login.co'">logout</button> -->
-         </div>
+			<div class="profile-section">
+				<p class="font-weight-bold mb-0 font-18">${sessionScope.memberName} ${sessionScope.memberRank}</p>
+				<span class="op-7 font-14">${sessionScope.memberDepart}</span><br>
+				
+				<c:if test="${sessionScope.memberID == null}">
+					<button type="button" id="btnLogout" class="btn waves-effect waves-light btn-rounded btn-outline-light" onClick="location.href='login.co'">LOGIN</button>
+				</c:if>
+				<c:if test="${sessionScope.memberID != null}">
+					<button id="logout" class="btn waves-effect waves-light btn-rounded btn-outline-light" onClick="location.href='logout.co'">LOGOUT</button>
+				</c:if>
+			</div>
       </div>
       <!-- Sidebar scroll-->
       <div class="scroll-sidebar">
@@ -77,7 +82,7 @@
                                 aria-expanded="false"><i data-feather="clipboard" class="feather-icon"></i><span
                                     class="hide-menu">전자결재</span></a></li>
                         <li class="sidebar-item"> 
-                        <a class="sidebar-link sidebar-link" href="#" onclick="window.open('${path}/chat.ch', '그루비 채팅', 'width=20%');"
+                        <a class="sidebar-link sidebar-link" href="#" onclick="window.open('${path}/chat.ch', '그루비 채팅','top=100, left=300, width=900, height=800, status=no, menubar=no, toolbar=no, resizable=no');"
                                 aria-expanded="false"><i data-feather="message-circle" class="feather-icon"></i><span
                                     class="hide-menu">채팅</span></a></li>
                          <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="msgIndex.me"
@@ -92,6 +97,8 @@
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="board.bo"
                                 aria-expanded="false"><i data-feather="layout" class="feather-icon"></i><span
                                     class="hide-menu">게시판</span></a></li>
+                        <li class="alert alert-warning" role="alert" id="pushAlarm" style="position: fixed; bottom: 0;left: 0; width:18%; display:none;">
+						</li>                         
                       </ul>
                   </nav>
              </div>

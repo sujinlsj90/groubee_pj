@@ -319,7 +319,7 @@
 	$(function(){		
 		// cancel
 		$('#cancel').click(function(){
-			location.href = "${path}/login.co";
+			window.history.back();
 		});
 	});
 	</script>

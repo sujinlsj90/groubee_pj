@@ -12,6 +12,9 @@ public interface MessageDAO {
 	// 메세지 보내기
 	public int messageSend(MessageDTO dto);
 	
+	// 메세지 보내기 - 임시보관
+	public int messageSend_tempo(MessageDTO dto);
+	
 	// 받은메세지 리스트
 	public List<MessageDTO> getMsgList(String getter_id);
 	
@@ -21,8 +24,11 @@ public interface MessageDAO {
 	// 임시보관함 리스트
 	public List<MessageDTO> tempoMsgList(String id);
 	
-	// 휴지통 리스트
+	// 휴지통 리스트 => 보낸메세지
 	public List<MessageDTO> trashMsgList(String getter_id);
+	
+	// 휴지통 리스트 => 받은메세지
+	public List<MessageDTO> trashMsgList_get(String getter_id);
 	
 	// 메세지 읽기
 	public List<MessageDTO> readMsgDetail(int message_num);
@@ -59,5 +65,11 @@ public interface MessageDAO {
 	
 	// 메세지 임시저장 불러오기
 	public List<MessageDTO> getTempoMsg(int message_num);
+	
+	// 임시보관함 메세지 전송 후 상태 변경
+	public int updateHolding(int message_num);
+	
+	// 받은 사람 이름 가져오기 - 상세페이지
+	public List<MessageDTO> getter_info(int message_num);
 	
 }

@@ -58,6 +58,10 @@
         border-radius: 2px;
         transform: scale(1) translate(-50%, -50%)
     }
+    
+    .text-right{
+      width:18%;
+   }
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -252,12 +256,12 @@
 				                                    </td>
 				                                    <!-- Message -->
 				                                    <td class="py-2 px-3 no-wrap text-truncate">
-														<a href="javascript:void(0)" onclick="window.open('${path}/messageDetail.me?message_num=${dto.message_num}',
+				                                    	<a href="javascript:void(0)" onclick="window.open('${path}/messageDetail.me?message_num=${dto.message_num}',
 														'Message Detail','left=500, top=100, width=600, height=600, location=no, status=no, scrollbars=yes');"
 														style="color:#000;">
 			                                           		<span class="blue-grey-text text-darken-4">${dto.title}</span>
 			                                        	</a>
-		                                        	</td> 		
+		                                        	</td> 
 					                            </c:if>
 			                                    
 			                                    <!-- Attachment -->

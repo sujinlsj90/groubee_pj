@@ -87,15 +87,16 @@ $("#admin_del").click(function(){
             <div class="page-breadcrumb">
 				<div class="row">
 					<div class="col-7 align-self-center">
-						<h4 class="page-title text-truncate text-dark font-weight-medium mb-1">
-							Admin Security</h4>
+						<h2 class="page-title text-truncate text-dark font-weight-medium mb-1">
+							Admin Security</h2>
+							<br>
 						<div class="d-flex align-items-center">
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb m-0 p-0">
 									<li class="breadcrumb-item active">
-									<a href="${path}/adminMain.ad">Home</a></li>
-									<li class="breadcrumb-item active"aria-current="page">
-									<a href="${path}/adSecure.ad">Admin Authority</a></li>
+									<a href="${path}/adminMain.ad"><h2>Home</h2></a></li>
+									<%-- <li class="breadcrumb-item active"aria-current="page">
+									<a href="${path}/adSecure.ad">Admin Authority</a></li> --%>
 								</ol>
 							</nav>
 						</div>
@@ -109,23 +110,23 @@ $("#admin_del").click(function(){
                 <!-- *************************************************************** -->
                 <!-- Start First Cards -->
                 <!-- *************************************************************** -->
-                <div class="row button-group">
+               <%--  <div class="row button-group">
 				    <div class="col-lg-2 col-md-4">
 				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure.ad'">관리자 권한</button>
 				    </div>
 				    <div class="col-lg-2 col-md-4">
 				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adSecure2.ad'">기능 접근 제한</button>
 				    </div>
-				</div>
-                <br><br>
+				</div> --%>
+            
                 
-                <div class="left-part list-of-tasks">
+                <!-- <div class="left-part list-of-tasks">
 	                <a class="ti-menu ti-close btn btn-success show-left-part d-block d-md-none" href="javascript:void(0)"></a>
 	                <div class="scrollable" style="height:100%;">
 	                	<h4>권한 목록</h4>
-	                   <!--  <div class="p-3">
+	                    <div class="p-3">
 	                        <a class="waves-effect waves-light btn btn-info d-block" href="javascript: void(0)" id="add-task"> + 추가</a>
-	                    </div> -->
+	                    </div>
 	                    <div class="divider"></div>
 	                    <ul class="list-group">
 	                       
@@ -155,9 +156,10 @@ $("#admin_del").click(function(){
 	                        </li>
 	                    </ul>
 	                </div>
-	            </div>
-	            
-	            <div class="right-part mail-list overflow-auto">
+	            </div> -->
+	           
+	            <br><br>
+	            <div class="right-part mail-list overflow-auto" style="margin-left:0;">
                     <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">기본 관리자 (모든권한)</h4>
@@ -201,8 +203,40 @@ $("#admin_del").click(function(){
                                                 	(${dto.email_in})
                                                 </td>                                                
                                                 <td>${dto.depart_name}</td>
-                                                <td>${dto.administrator}</td>
-                                                <td>${dto.hireday}</td>                                                
+                                                
+                                                <c:if test="${dto.authority eq 'ROLE_ATTEND'}">
+                                                <td>근태관리자</td>
+                                                </c:if>
+                                                
+                                                <c:if test="${dto.authority eq 'ROLE_APPROVAL'}">
+                                                <td>결재문서관리자</td>
+                                                </c:if>
+                                                
+                                                <c:if test="${dto.authority eq 'ROLE_SECURE'}">
+                                                <td>보안관리자</td>
+                                                </c:if>
+                                                
+                                                <c:if test="${dto.authority eq 'ROLE_BOARD'}">
+                                                <td>게시판관리자</td>
+                                                </c:if>
+                                                
+                                                <c:if test="${dto.authority eq 'ROLE_HUMAN'}">
+                                                <td>인사관리자</td>
+                                                </c:if>
+                                                
+                                                <c:if test="${dto.authority eq 'ROLE_NOTEBOX'}">
+                                                <td>쪽지함관리자</td>
+                                                </c:if>
+                                               
+                                                <c:if test="${dto.authority eq 'ROLE_DEPARTMENT'}">
+                                                <td>부서관리자</td>
+                                                </c:if>
+                                                
+                                                <c:if test="${dto.authority eq 'ROLE_SERVICE'}">
+                                                <td>서비스관리자</td>
+                                                </c:if>
+                                                <td>${dto.adminhire}</td>  
+                                                                                              
                                             </tr>	
                                         
                                         </c:forEach>
@@ -212,7 +246,7 @@ $("#admin_del").click(function(){
                             </div>
                         </div>               
                     <br><br>
-                       <div class="card">
+                    <!--    <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">권한설정</h4>
                                 <br>
@@ -436,7 +470,7 @@ $("#admin_del").click(function(){
                                     </table>
                                 </div>
                             </div>
-                        </div>  
+                        </div>   -->
                 </div>
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -57,16 +58,13 @@ public class ApprovalServiceImpl implements ApprovalService {
 		dao.approvalInfoDelete();
 		if (getter_id != null) {
 			for (int i = 0; i < getter_id.length; i++) {
-				System.out.println(category + ", " + id + ", " + getter_id[i]);
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("category", category);
 				map.put("id", id);
 				map.put("getter_id", getter_id[i]);
-
 				dao.approvalInfoInsert(map);
 			}
 		} else {
-			System.out.println("결재정보 저장에 실패했습니다");
 		}
 	}
 	
@@ -145,14 +143,11 @@ public class ApprovalServiceImpl implements ApprovalService {
 		String co_approve = req.getParameter("co_approve");
 		String getter_id = req.getParameter("getter_id");
 		int load_id = Integer.parseInt(req.getParameter("load_id"));
-
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("co_approve", co_approve);
 		map.put("getter_id", getter_id);
 		map.put("load_id", load_id);
-
 		dao.updateCoApproval(map);
-
 	}
 
 	// 결재라인 개별삭제
@@ -200,7 +195,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 			String saveDir = req.getSession().getServletContext().getRealPath("/resources/draftupload/");
 			System.out.println("saveDir: " + saveDir);
 
-			String realDir = saveDir;
+			String realDir = "C:/file/upload/";
 			System.out.println("realDir: " + saveDir);
 			FileInputStream fis = null;
 			FileOutputStream fos = null;
@@ -283,7 +278,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 			String saveDir = req.getSession().getServletContext().getRealPath("/resources/draftupload/");
 			System.out.println("saveDir: " + saveDir);
 
-			String realDir = saveDir;
+			String realDir = "C:/file/upload/";
 			System.out.println("realDir: " + saveDir);
 			FileInputStream fis = null;
 			FileOutputStream fos = null;
@@ -365,14 +360,13 @@ public class ApprovalServiceImpl implements ApprovalService {
 		Map<String, Object> map2 = new HashMap<>();
 		map2.put("id", id);
 		map2.put("stateid", stateid);
-		// 5-1. 전체 게시글 갯수 카운트
 
 		int total = dao.boardCnt(map2);
 		System.out.println("게시물 total : " + total);
 		paging.setTotalCount(total);
 
-		int start = paging.getStartRow(); // 페이지별 시작 번호
-		int end = paging.getEndRow(); // 페이지별 끝번호
+		int start = paging.getStartRow(); 
+		int end = paging.getEndRow(); 
 		System.out.println("start: " + start);
 
 		Map<String, Object> map = new HashMap<>();
@@ -380,13 +374,11 @@ public class ApprovalServiceImpl implements ApprovalService {
 		map.put("end", end);
 		map.put("id", id);
 
-		// 5-2. 게시글 목록
 		List<ApproveDraftDTO> list = null;
 		if (total > 0) {
 			list = dao.onapproval(map);
 		}
 
-		// 6단계. jsp로 처리 결과 전달
 		model.addAttribute("id", id);
 		model.addAttribute("list", list);
 		model.addAttribute("paging", paging);
@@ -412,27 +404,24 @@ public class ApprovalServiceImpl implements ApprovalService {
 		Map<String, Object> map2 = new HashMap<>();
 		map2.put("id", id);
 		map2.put("stateid", stateid);
-		// 5-1. 전체 게시글 갯수 카운트
 
 		int total = dao.comapprovalcnt(map2);
 		System.out.println("게시물 total : " + total);
 		paging.setTotalCount(total);
 
-		int start = paging.getStartRow(); // 페이지별 시작 번호
-		int end = paging.getEndRow(); // 페이지별 끝번호
+		int start = paging.getStartRow(); 
+		int end = paging.getEndRow(); 
 
 		Map<String, Object> map = new HashMap<>();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("id", id);
 
-		// 5-2. 게시글 목록
 		List<ApproveDraftDTO> list = null;
 		if (total > 0) {
 			list = dao.comapproval(map);
 		}
 
-		// 6단계. jsp로 처리 결과 전달
 		model.addAttribute("id", id);
 		model.addAttribute("list", list);
 		model.addAttribute("paging", paging);
@@ -457,27 +446,24 @@ public class ApprovalServiceImpl implements ApprovalService {
 		Map<String, Object> map2 = new HashMap<>();
 		map2.put("id", id);
 		map2.put("stateid", stateid);
-		// 5-1. 전체 게시글 갯수 카운트
 
 		int total = dao.boardCnt(map2);
 		System.out.println("게시물 total : " + total);
 		paging.setTotalCount(total);
 
-		int start = paging.getStartRow(); // 페이지별 시작 번호
-		int end = paging.getEndRow(); // 페이지별 끝번호
+		int start = paging.getStartRow(); 
+		int end = paging.getEndRow(); 
 
 		Map<String, Object> map = new HashMap<>();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("id", id);
 
-		// 5-2. 게시글 목록
 		List<ApproveDraftDTO> list = null;
 		if (total > 0) {
 			list = dao.rejapproval(map);
 		}
 
-		// 6단계. jsp로 처리 결과 전달
 		model.addAttribute("id", id);
 		model.addAttribute("list", list);
 		model.addAttribute("paging", paging);
@@ -502,7 +488,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 		Map<String, Object> map2 = new HashMap<>();
 		map2.put("id", id);
 		map2.put("stateid", stateid);
-		// 5-1. 전체 게시글 갯수 카운트
 
 		int total = dao.boardCnt(map2);
 		System.out.println("게시물 total : " + total);
@@ -585,9 +570,9 @@ public class ApprovalServiceImpl implements ApprovalService {
 
 		// 기안문서정보
 		List<ApproveDraftDTO> list = dao.selectDraftInfo(load_id);
-		// 기안사원정보
-		List<ApprovalInfoDTO> list2 = dao.selectGetterInfo(load_id);
 		// 결재라인사원정보
+		List<ApprovalInfoDTO> list2 = dao.selectGetterInfo(load_id);
+		// 기안사원정보
 		List<ApprovalInfoDTO> list3 = dao.selectapproverAfterApp(load_id);
 
 		model.addAttribute("list", list);
@@ -618,7 +603,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 		String saveDir = req.getSession().getServletContext().getRealPath("/resources/draftupload/");
 		System.out.println("saveDir : " + saveDir);
 
-		String realDir = saveDir;
+		String realDir = "C:/file/upload/";
 		System.out.println("realDir : " + realDir);
 
 		String files1 = "";
@@ -715,7 +700,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 		String saveDir = req.getSession().getServletContext().getRealPath("/resources/draftupload/"); // upload경로
 		System.out.println("saveDir : " + saveDir);
 
-		String realDir = saveDir;
+		String realDir = "C:/file/upload/";
 		System.out.println("realDir : " + realDir);
 
 		String files1 = "";
@@ -1058,7 +1043,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 				System.out.println("id: " + id[i]);
 			}
 		} else {
-			System.out.println("회람에 실패했습니다");
 		}
 
 		// 기안문서정보
@@ -1112,6 +1096,158 @@ public class ApprovalServiceImpl implements ApprovalService {
 		model.addAttribute("list", list);
 		model.addAttribute("load_id", load_id);
 
+	}
+
+	//관리자 통합문서함
+	@Override
+	public void adminApprovallistAction(HttpServletRequest req, Model model) {
+		
+		String stateid = req.getParameter("stateid");
+		String pageNum = req.getParameter("pageNum");
+		String category = req.getParameter("category");		
+		System.out.println("stateid : " + stateid);
+		Paging paging = new Paging(pageNum);
+		List<ApproveDraftDTO> list = new ArrayList<ApproveDraftDTO>();
+		
+		if(category == null) {
+		Map<String, Object> map2 = new HashMap<>();
+		map2.put("stateid", stateid);
+		
+		int total = dao.approvallistAdminAllCnt(map2);
+		paging.setTotalCount(total);
+
+		int start = paging.getStartRow();
+		int end = paging.getEndRow();
+		
+		Map<String, Object> map = new HashMap<>();
+			map.put("start", start);
+			map.put("end", end);
+			map.put("stateid", stateid);
+
+		if (total > 0) {
+			list = dao.approvallistAdminAll(map);
+		}
+		} else {
+			Map<String, Object> map2 = new HashMap<>();
+			if (category != null) {
+			map2.put("category", category);
+			map2.put("stateid", stateid);
+			} else {
+				category = "내부기안";
+				map2.put("category", category);
+				map2.put("stateid", stateid);
+				System.out.println("2category = " + category);
+			}
+				
+			int total = dao.adminApprovalListCnt(map2);
+			System.out.println("게시물 total : " + total);
+			paging.setTotalCount(total);
+
+			int start = paging.getStartRow();
+			int end = paging.getEndRow();
+			
+			Map<String, Object> map = new HashMap<>();
+			if (category != null){
+				map.put("start", start);
+				map.put("end", end);
+				map.put("category", category);
+				map.put("stateid", stateid);
+			} else {
+				category = "내부기안";
+				map.put("start", start);
+				map.put("end", end);
+				map.put("category", category);
+				map.put("stateid", stateid);
+			}
+			
+			String statename = null;
+			ApproveDraftDTO dto = new ApproveDraftDTO();
+//			List<ApproveDraftDTO> list = new ArrayList<ApproveDraftDTO>();
+			if (total > 0) {
+				list = dao.approvallistAdmin(map);
+				statename = list.get(0).getState();
+			}
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("stateid", stateid);
+}
+
+
+	//관리자 통합문서함 - 전체보기
+	@Override
+	public void adminApprovallistAllAction(HttpServletRequest req, Model model) {
+		
+			String stateid = req.getParameter("stateid");
+			String pageNum = req.getParameter("pageNum");
+			String category = req.getParameter("category");		
+			System.out.println("stateid : " + stateid);
+			Paging paging = new Paging(pageNum);
+			List<ApproveDraftDTO> list = new ArrayList<ApproveDraftDTO>();
+			
+			if(category == null) {
+			Map<String, Object> map2 = new HashMap<>();
+			map2.put("stateid", stateid);
+			
+			int total = dao.approvallistAdminAllCnt(map2);
+			System.out.println("게시물 total : " + total);
+			paging.setTotalCount(total);
+
+			int start = paging.getStartRow();
+			int end = paging.getEndRow();
+			
+			Map<String, Object> map = new HashMap<>();
+				map.put("start", start);
+				map.put("end", end);
+				map.put("stateid", stateid);
+
+			if (total > 0) {
+				list = dao.approvallistAdminAll(map);
+			}
+			} else {
+				Map<String, Object> map2 = new HashMap<>();
+				if (category != null) {
+				map2.put("category", category);
+				map2.put("stateid", stateid);
+				} else {
+					category = "내부기안";
+					map2.put("category", category);
+					map2.put("stateid", stateid);
+					System.out.println("2category = " + category);
+				}
+					
+				int total = dao.adminApprovalListCnt(map2);
+				System.out.println("게시물 total : " + total);
+				paging.setTotalCount(total);
+
+				int start = paging.getStartRow();
+				int end = paging.getEndRow();
+				
+				Map<String, Object> map = new HashMap<>();
+				if (category != null){
+					map.put("start", start);
+					map.put("end", end);
+					map.put("category", category);
+					map.put("stateid", stateid);
+				} else {
+					category = "내부기안";
+					map.put("start", start);
+					map.put("end", end);
+					map.put("category", category);
+					map.put("stateid", stateid);
+				}
+				
+				String statename = null;
+				ApproveDraftDTO dto = new ApproveDraftDTO();
+//				List<ApproveDraftDTO> list = new ArrayList<ApproveDraftDTO>();
+				if (total > 0) {
+					list = dao.approvallistAdmin(map);
+					statename = list.get(0).getState();
+				}
+			}
+			
+			model.addAttribute("list", list);
+			model.addAttribute("stateid", stateid);
 	}
 
 

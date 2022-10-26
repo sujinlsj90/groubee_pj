@@ -103,7 +103,7 @@
                                         <h6 class="mb-0 text-truncate font-weight-medium">문서번호</h6>
                                     </td>
                                     <td class="user-name px-1 py-2"> 
-                                        <h6 class="mb-0 text-truncate font-weight-medium">기안자</h6>
+                                        <h6 class="mb-0 text-truncate font-weight-medium">카테고리</h6>
                                     </td>
                                     <td class="py-2 px-3 no-wrap text-truncate"> 
                                         <h6 class="mb-0 text-truncate font-weight-medium">문서제목</h6>
@@ -120,7 +120,7 @@
                                     <td class="user-name px-1 py-2">
                                         <h6 class="mb-0 text-truncate font-weight-medium">bee-22-${dto.doc_id}</h6>
                                     </td>
-                                    <td class="user-name px-1 py-2">${dto.name}</td>
+                                    <td class="user-name px-1 py-2">${dto.category}</td>
                                     <td class="py-2 px-3 no-wrap text-truncate"> 
                                            <a onclick="window.open('${path}/comcheckoutDetail.fo?doc_id=${dto.doc_id}','기안문서','width=850,height=1100,scrollbars=yes');" href="${path}/comapproval.ap?stateid=com"> <span class="blue-grey-text text-darken-4">${dto.title}</span></a>
                                     </td>

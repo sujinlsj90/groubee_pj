@@ -98,11 +98,12 @@ function openWindowPop(url, name){
                               
                              <br />
                              <button class="btn btn-circle btn-secondary"> 
-                             <a href="javascript:openWindowPop('http://192.168.219.101/roundcube/', 'popup');" >
-                             <i data-feather="mail"></i>
+                             <a href="javascript:openWindowPop('http://192.168.219.107/roundcube/', 'popup');" >
+                             <i class="mr-2 mdi mdi-email-open-outline"></i>
                              </a></button>
-                             <button class="btn btn-circle btn-secondary"><a href="#"><i class="mr-2 mdi mdi-message-outline"></i></a></button>
-                             <button class="btn btn-circle btn-secondary"><a href="#"><i class="fab fa-youtube"></i></a></button>
+                             <button class="btn btn-circle btn-secondary"
+                              onclick="window.open('${path}/chat.ch', '그루비 채팅','top=100, left=300, width=900, height=800, status=no, menubar=no, toolbar=no, resizable=no');">
+                             <i class="mr-2 mdi mdi-comment-multiple-outline"></i></button>
                             </div>
                         </div>
                        
@@ -306,14 +307,14 @@ function openWindowPop(url, name){
                                       <div class="form-group">
                                           <label class="col-md-12">평가자</label>
                                           <div class="col-md-12">
-                                              <input type="text" value="${dto2.p_name}"
+                                              <input type="text" value="${dto2.p_id} ${dto2.depart_name} ${dto2.name} ${dto2.rank}" 
                                                   class="form-control form-control-line" readonly>
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <label class="col-md-12">평가년도</label>
                                           <div class="col-md-12">
-                                              <input type="Date" readonly value="${dto2.p_year}"
+                                              <input type="Date" readonly value="${dto2.p_day}"
                                                   class="form-control form-control-line">
                                           </div>
                                       </div>
@@ -459,6 +460,7 @@ function openWindowPop(url, name){
     <script src="${path}/resources/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="${path}/resources/dist/js/custom.min.js"></script>
+    <!-- ============================================================== -->
 </body>
 
 </html>

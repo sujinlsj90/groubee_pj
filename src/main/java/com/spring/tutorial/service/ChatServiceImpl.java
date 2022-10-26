@@ -52,13 +52,15 @@ public class ChatServiceImpl implements ChatService {
 		String chatroom_num = req.getParameter("chatroom_num");
 		map.put("chatroom_num", chatroom_num);
 		
-		// 추가할 멤버의 id
+		// 추가할 멤버의 id 
 		String[] id_arr = req.getParameterValues("chkList");
 		if(id_arr != null) {
 			for(int i=0; i<id_arr.length; i++) {
 				String id = id_arr[i];
 				map.put("id", id);
-				dao.inviteMember(map);
+				if(dao.checkMember(map) == 0) { // 채팅방에 없는 경우에만
+					dao.inviteMember(map);
+				}
 			}
 		}
 		
@@ -90,11 +92,26 @@ public class ChatServiceImpl implements ChatService {
 		List<WorkerDTO> workerList = dao.workerList(chatroom_num);
 		List<WorkerDTO> chatMemberList = dao.chatMemberList(chatroom_num);
 		List<ChatMessageDTO> msgList = dao.selectMsg(chatroom_num);
-		System.out.println("msgList : " + msgList);
 		
 		model.addAttribute("room", room);
 		model.addAttribute("workerList", workerList);
 		model.addAttribute("chatMemberList", chatMemberList);
 		model.addAttribute("msgList",msgList);
+	}
+	
+	// 채팅방 나가기
+	public void exit(HttpServletRequest req, Model model) {
+		System.out.println("ChatService => enter()");
+		
+		String chatroom_num = req.getParameter("chatroom_num");
+		String id = req.getParameter("id");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("chatroom_num", chatroom_num);
+		map.put("id", id);
+		
+		System.out.println("나가는 사람 : " + id + ", 채팅방 : " + chatroom_num);
+		
+		dao.exit(map);
 	}
 }

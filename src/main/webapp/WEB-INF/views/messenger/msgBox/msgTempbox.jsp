@@ -58,6 +58,10 @@
         border-radius: 2px;
         transform: scale(1) translate(-50%, -50%)
     }
+    
+    .text-right{
+      width:18%;
+   }
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -113,13 +117,6 @@
 		});
 		/* document.getElementById('forTempoDetail').submit(); */
 		
-		function tempoNew() {
-			var newTempoDetail = window.open('Message Detail','left=500, top=100, width=600, height=600, location=no, status=no, scrollbars=yes');
-			var tempoForm = document.getElementById('forTempoDetailForm');
-			tempoForm.action = ${path}/messageDetail_tempo.me?message_num=${dto.message_num}
-			tempoForm.target = 'newPopup';
-			tempoForm.submit();
-		}
 		
 	});
 	

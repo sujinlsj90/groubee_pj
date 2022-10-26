@@ -152,13 +152,11 @@
 												class="comp_wrap" data-cid="1"
 												data-dsl="{{label:draftDept}}" data-wrapper=""
 												style="font-family: &amp; amp; amp; quot; malgun gothic&amp;amp; amp; quot; , dotum , arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;"
-												data-value="" data-autotype=""> <span
-													class="comp_item"
-													style="font-family: &amp; amp; amp; quot; malgun gothic&amp;amp; amp; quot; , dotum , arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">
-														<c:forEach var="dto2" items="${list2}" varStatus="status"
-															begin="0" end="0">
-					${dto2.depart_name}
-					</c:forEach>
+												data-value="" data-autotype=""> 
+												<span class="comp_item" style="font-family: &amp; amp; amp; quot; malgun gothic&amp;amp; amp; quot; , dotum , arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">
+														<c:forEach var="dto2" items="${list3}" varStatus="status" begin="0" end="0">
+															${dto2.depart_name}
+														</c:forEach>
 												</span> <span contenteditable="false" class="comp_active"
 													style="display: none; font-family: &amp; amp; amp; quot; malgun gothic&amp;amp; amp; quot; , dotum , arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">
 														<span class="Active_dot1"
@@ -229,10 +227,9 @@
 												data-value="" data-autotype=""> <span
 													class="comp_item"
 													style="font-family: &amp; amp; amp; quot; malgun gothic&amp;amp; amp; quot; , dotum , arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">
-														<c:forEach var="dto2" items="${list2}" varStatus="status"
-															begin="0" end="0">
-					${dto2.name} ${dto2.rank}
-					</c:forEach>
+														<c:forEach var="dto2" items="${list3}" varStatus="status" begin="0" end="0">
+															${dto2.name} ${dto2.rank}
+														</c:forEach>
 												</span> <span contenteditable="false" class="comp_active"
 													style="display: none; font-family: &amp; amp; amp; quot; malgun gothic&amp;amp; amp; quot; , dotum , arial, tahoma; font-size: 9pt; line-height: normal; margin-top: 0px; margin-bottom: 0px;">
 														<span class="Active_dot1"

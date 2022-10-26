@@ -26,9 +26,9 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	// 게시글 갯수 구하기
 	@Override
-	public int boardCnt(String category) {
+	public int boardCnt(Map<String, Object> map) {
 		System.out.println("DAO - boardCnt");
-		return sqlSession.selectOne("com.spring.tutorial.dao.BoardDAO.boardCnt", category);
+		return sqlSession.selectOne("com.spring.tutorial.dao.BoardDAO.boardCnt", map);
 	}
 	
 	// 게시글 상세페이지
@@ -52,18 +52,25 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.insert("com.spring.tutorial.dao.BoardDAO.boardInsert", dto);
 	}
 	
-//	// 게시글 수정처리
-//	@Override
-//	public void updateBoard(BoardDTO dto) {
-//		System.out.println("DAO - updateBoard");
-//		sqlSession.update("com.spring.tutorial.dao.BoardDAO.updateBoard",dto);
-//	}
-//
+	// 게시글 수정처리
+	@Override
+	public void updateBoard(BoardDTO dto) {
+		System.out.println("DAO - updateBoard");
+		sqlSession.update("com.spring.tutorial.dao.BoardDAO.updateBoard",dto);
+	}
+
 	// 게시글 삭제처리
 	@Override
-	public void boardDelete(int num) {
+	public void boardDelete(String num) {
 		System.out.println("DAO - delete");
 		sqlSession.update("com.spring.tutorial.dao.BoardDAO.boardDelete",num);
+	}
+
+	// 게시글 영구삭제
+	@Override
+	public void boardDelete2(String num) {
+		System.out.println("DAO - delete2");
+		sqlSession.update("com.spring.tutorial.dao.BoardDAO.boardDelete2",num);
 	}
 	
 	// 댓글목록
@@ -78,6 +85,13 @@ public class BoardDAOImpl implements BoardDAO {
 	public void commentAdd(BoardCommentDTO dto) {
 		System.out.println("DAO - commentAdd");
 		sqlSession.insert("com.spring.tutorial.dao.BoardDAO.commentAdd", dto);
+	}
+
+	// 댓글 삭제처리
+	@Override
+	public void commentDelete(int comment_num) {
+		System.out.println("DAO - commentDelete");
+		sqlSession.delete("com.spring.tutorial.dao.BoardDAO.commentDelete",comment_num);
 	}
 
 }

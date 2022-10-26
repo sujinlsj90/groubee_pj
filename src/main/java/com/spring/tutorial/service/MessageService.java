@@ -46,13 +46,13 @@ public interface MessageService {
 	public void chkDetail(HttpServletRequest req, Model model)
 			throws ServletException, IOException;
 	
+	// 메세지 확인 - 휴지통
+	public void chkDetail_trash(HttpServletRequest req, Model model)
+			throws ServletException, IOException;
+	
 	// 메세지 확인 - 임시보관함
 	public void chkDetailTempo(HttpServletRequest req, Model model)
 			throws ServletException, IOException;
-	
-	// 메세지 보내기 처리
-//	public void submitMsgService(HttpServletRequest req, Model model)
-//			throws ServletException, IOException;
 	
 	// 메세지 읽음 상태로 변경
 	public void changeState_read(HttpServletRequest req, Model model)
@@ -90,4 +90,11 @@ public interface MessageService {
 	public void getTempoMessage(MultipartHttpServletRequest req, Model model)
 			throws ServletException, IOException;
 	
+	// 답장
+	public void replyMsgDetail(MultipartHttpServletRequest req, Model model)
+			throws ServletException, IOException;
+	
+	// 임시보관함에서 발송하기
+	public void sendMessage_tempo(MultipartHttpServletRequest req, Model model) 
+			throws ServletException, IOException;
 }

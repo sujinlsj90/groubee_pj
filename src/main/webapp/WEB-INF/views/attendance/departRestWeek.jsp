@@ -32,15 +32,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<script type="text/javascript">
-<<<<<<< HEAD
-	
-=======
-	// alert("select * from grb_annual a \n join grb_member m on a.id = m.id \n where  m.depart_id = 1 \n order by a.annual_id desc;");
->>>>>>> b4f3977aaa326688f4936a7984d699252978e042
-	
-</script>
-
 </head>
 
 <body>
@@ -88,6 +79,7 @@
 						<div class="card-body">
 							<h4 class="card-title">
 								<strong>부서 연차 내역</strong>
+								<br>${day}
 							</h4>
 							<div id="paginator2"></div>
 						</div>
@@ -95,101 +87,140 @@
 
 					<div class="card">
 						<div class="card-body">
-							<div class="col-md-2">
-								<select class="form-control custom-select"
-									data-placeholder="부서 검색" tabindex="1">
-									<option value="부서 검색">부서 검색</option>
-									<option value="사업부">사업부</option>
-									<option value="인사부">인사부</option>
-									<option value="영업부">영업부</option>
-									<option value="개발부">개발부</option>
-									<option value="경영지원부">경영지원부</option>
-									<option value="총무부">총무부</option>
-								</select>
+							<div class="col-md-4">								
+								<select class="selectmonth form-control custom-select" id="selectmonth" name="selectmonth" required>
+									<option id="0" value="0">월간 선택</option>
+									<option id="1" value="1">1월</option>
+									<option id="2" value="2">2월</option>
+									<option id="3" value="3">3월</option>
+									<option id="4" value="4">4월</option>
+									<option id="5" value="5">5월</option>
+									<option id="6" value="6">6월</option>
+									<option id="7" value="7">7월</option>
+									<option id="8" value="8">8월</option>
+									<option id="9" value="9">9월</option>
+									<option id="10" value="10">10월</option>
+									<option id="11" value="11">11월</option>
+									<option id="12" value="12">12월</option>										
+								</select>																 
 							</div>
-							<hr>							
+							<br>							
 							<!-- Table -->
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">부서원 연차 내역</h4>
+									<h4 class="card-title">부서원 연차 내역
+										<a class="get-code" data-toggle="collapse" href="#pgr2" aria-expanded="true">											
+											<i class="fa fa-code" title="부서 연차 내역 확인" data-toggle="tooltip"></i><br><br>
+										</a>
+									</h4>
 									<h6 class="card-subtitle">연차 사용 현황</h6>
-									<table data-toggle="table" class="table table-striped no-wrap">
-										<thead>
-											<tr>
-												<th class="name" data-sortable="true">이름</th>
-												<th class="depart" data-sortable="true">부서</th>
-												<th class="hireday" data-sortable="true">입사일</th>
-												<th class="restday" data-sortable="true">연차일</th>
-												<th class="annualtotal" data-sortable="true">발생 연차</th>
-												<th class="annualtotal" data-sortable="true">총 연차</th>
-												<th class="annualuse" data-sortable="true">사용 연차</th>
-												<th class="annualrest" data-sortable="true">잔여 연차</th>
-												<th class="state" data-sortable="true">상태</th>
-												<!-- 재직 휴직 퇴사 -->
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><img
-													src="${path}/resources/assets/images/users/4.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia
-													Deshmukh</td>
-												<td>개발부</td>
-												<td>2022-01-01</td>
-												<td>2022-10-04</td>
-												<td>15</td>
-												<td>15</td>
-												<td>2</td>
-												<td>13</td>
-												<td>재직</td>
-											</tr>
-											<tr>
-												<td><img
-													src="${path}/resources/assets/images/users/3.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia
-													Deshmukh</td>
-												<td>개발부</td>
-												<td>2022-01-02</td>
-												<td>2022-10-04</td>
-												<td>15</td>
-												<td>15</td>
-												<td>2</td>
-												<td>13</td>
-												<td>재직</td>
-											</tr>
-											<tr>
-												<td><img
-													src="${path}/resources/assets/images/users/2.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia
-													Deshmukh</td>
-												<td>개발부</td>
-												<td>2022-01-03</td>
-												<td>2022-10-05</td>
-												<td>15</td>
-												<td>15</td>
-												<td>2</td>
-												<td>13</td>
-												<td>재직</td>
-											</tr>
-											<tr>
-												<td><img
-													src="${path}/resources/assets/images/users/1.jpg"
-													alt="user" width="40" class="rounded-circle" name="profile">Genelia
-													Deshmukh</td>
-												<td>개발부</td>
-												<td>2022-01-04</td>
-												<td>2022-10-09</td>
-												<td>15</td>
-												<td>15</td>
-												<td>2</td>
-												<td>13</td>
-												<td>재직</td>
-											</tr>											
-										</tbody>
-									</table>
+									<div class="collapse mt-3 well" id="pgr2" aria-expanded="true">
+										<div class="table-responsive">
+											<table id="lang_comma_deci"
+												class="table table-striped table-bordered display no-wrap"
+												style="width: 100%">
+												<thead>
+													<tr>
+														<th>이름</th>
+														<th>부서</th>
+														<th>신청일</th>
+														<th>시작일</th>
+														<th>종료일</th>
+														<th>발생 연차</th>
+														<th>사용 연차</th>
+														<th>잔여 연차</th>
+														<th>상태</th>
+														<!-- 연차 종류 -->
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach var="dto" items="${annual}">
+														<c:if test="${dto.annual_id eq null}">
+															<tr>
+																<td colspan="9" align="center">연차 사용 이력이 없습니다.</td>
+															</tr>
+														</c:if>
+														<c:if test="${dto.annual_id ne null}">
+															<tr>
+																<td><img src="${dto.image}" alt="user" width="40"
+																	class="rounded-circle"> ${dto.name}</td>
+																<td>${dto.depart_name}</td>
+																<td>${dto.annual}</td>
+																<td>${dto.annual_in}</td>
+																<td>${dto.annual_out}</td>
+																<td>${dto.annualtotal}</td>
+																<td>${dto.annualuse}</td>
+																<td>${dto.annualrest}</td>
+																<td>${dto.state}</td>
+															</tr>
+														</c:if>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="list-group">
+										<a href="javascript:void(0)" class="list-group-item active">
+										Cras justo odio</a>
+									</div>
 								</div>
 							</div>
 							<!-- Table -->
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-body">
+							<div class="col-md-4">
+								<select class="selectyear form-control custom-select" id="selectyear" tabindex="1">
+									<option id="0" value="0">연도 선택</option>									
+									<option id="1" value="2022">2022</option>
+									<option id="2" value="2021">2021</option>
+									<option id="3" value="2020">2020</option>
+									<option id="4" value="2019">2019</option>
+									<option id="5" value="2018">2018</option>
+								</select>
+							</div>							
+							<hr>														
+							<!-- 연간 부서원 연차 현황  -->							
+							<h4 class="card-title"></h4>
+							<div class="container" style="align: center">							
+							<c:forEach var="dto" items="${departMember}">								
+								<c:if test="${dto.id eq null}" >
+								<div class="row">									
+									부서원 정보가 없습니다.																	
+								</div>			
+								</c:if>
+								<c:if test="${dto.id ne null}" >
+								<div class="row">
+									<div class="col bg-light border p-3">
+										<div>
+											<img src="${dto.image}" alt="user" width="40" class="rounded-circle">
+											${dto.name}
+                                        </div>										
+									</div>
+									<div class="col bg-light border p-3">										
+										<div>${dto.depart_name}</div>									
+									</div>
+									<div class="col bg-light border p-3">
+										<div>입사일</div>
+										<div>${dto.hireday}</div>									
+									</div>									
+									<div class="col bg-light border p-3">
+										<div>발생 연차</div>
+										<div>${dto.annualtotal}</div>									
+									</div>									
+									<div class="col bg-light border p-3">
+										<div>사용 연차</div>
+										<div>${dto.annualuse}</div>
+									</div>
+									<div class="col bg-light border p-3">
+										<div>잔여 연차</div>
+										<div>${dto.annualrest}</div>
+									</div>																
+								</div>
+								</c:if>
+							</c:forEach>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -328,13 +359,42 @@
                             onSelectedDateChanged: function (a, t) {
                                 alert("Selected date: " + moment(t).format("Do, MMM YYYY"))
                             }
-                        })
+                        }) 
                 }
             }
         }();
         jQuery(document).ready(function () {
             datepaginator.init()
         });
-    </script>  
+    </script>
+    
+    <script type="text/javascript">				
+        
+        $(function() {
+        	// 현재 날짜
+    		var selectmonth = '${selectmonth}';
+    		var currentDate = new Date();
+    		var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getDate();
+    		var month = (currentDate.getMonth() + 1) + "월";
+    		if (selectmonth.toString().length==1) selectmonth = "0" + selectmonth;
+    		var title = currentDate.getFullYear() + "-" + selectmonth;
+    		  	    
+    		
+    		$(".selectmonth").change(function(){
+    			 var monthVal =  $(this).val();    			   	        
+    	         console.log(monthVal);
+    	         location.href = "${path}/departRestWeek.at?month=" + monthVal;            
+            });  
+    		
+    		$(".selectyear").change(function(){
+   			 var yearVal =  $(this).val();    			   	        
+   	         console.log(yearVal);
+   	         location.href = "${path}/departRestWeek.at?year=" + yearVal;            
+           });    		                 
+            
+             
+        });
+
+	</script>  
 </body>
 </html>

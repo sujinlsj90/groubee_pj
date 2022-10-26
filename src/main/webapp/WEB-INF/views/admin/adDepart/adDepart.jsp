@@ -30,7 +30,13 @@
 <![endif]-->
 
 <script type="text/javascript">
-	
+
+function btn_Delete_depart(){
+	confirm('삭제하시겠습니까?')
+	document.d_form.action ="${path}/departInsert.ad";
+	document.d_form.submit(depart_name);
+}
+ 
 </script>
 
 </head>
@@ -94,19 +100,48 @@
                 <!-- *************************************************************** -->
                 <div class="row button-group">
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adDepart.ad'">부서 지정</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adDepart.ad'">부서리스트</button>
 				    </div>
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adDepart2.ad'">부서 설계</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/departInfo.ad'">부서/팀 설계</button>
 				    </div>
-				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/join.co'">사원 등록</button>
-				    </div>
-
 
 				</div>
                 <br><br>
-                <img src = "${path}/resources/images/adminImages/부서관리-부서미지정.JPG">
+      <!-- multi-column ordering -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">전체 부서정보</h4>
+                                <div class="table-responsive">
+                                <form name = "departeditForm" name="d_form" method = "post">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                    <table id="multi_col_order"
+                                        class="table table-striped table-bordered display no-wrap" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>부서</th>
+                                                <th>삭제</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach var="dto" items="${list}">
+                                            <tr>
+                                                <td>${dto.depart_name}</td>
+                                                <td>
+                                               		<input type="button" value="삭제" onclick="window.location='${path}/departDelete.ad?depart_name=${dto.depart_name}'">
+                                                </td>
+                                            </tr>
+                        	           </c:forEach>
+                                        </tbody>
+                                    </table>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- *************************************************************** -->
                 <!-- End Top Leader Table -->
                 <!-- *************************************************************** -->
@@ -230,6 +265,10 @@
     <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
     <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
     <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
+    <!--This page plugins -->
+    <script src="${path}/resources/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="${path}/resources/dist/js/pages/datatable/datatable-basic.init.js"></script>
+</body>
 </body>
 
 </html>

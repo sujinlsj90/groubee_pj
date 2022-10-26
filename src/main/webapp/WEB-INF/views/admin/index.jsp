@@ -100,34 +100,38 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-lg-12 col-md-12 col-sm-12">
-									<h3 class="box-title mt-5">General Info</h3>
+									<h3 class="box-title mt-5">${month}</h3>
+									<h3 class="box-title mt-5">Company Info</h3>
 									<div class="table-responsive">
 										<table class="table">
 											<tbody>
 												<tr>
-													<td width="390">Brand</td>
-													<td>Groubee</td>
+													<td>Company No</td>
+													<td>${dto.company_id}</td>
 												</tr>
 												<tr>
-													<td>Type</td>
-													<td>Group Ware</td>
+													<td>Brand</td>
+													<td>${dto.c_name}</td>
+												</tr>												
+												<tr>
+													<td>Address</td>
+													<td>${dto.c_address}</td>
 												</tr>
 												<tr>
-													<td>URL</td>
-													<td>www.groubee.com</td>
+													<td>사업자번호</td>
+													<td>${dto.c_number}</td>
 												</tr>
+																								
 												<tr>
 													<td>ID</td>
-													<td>admin</td>
+													<td>${sessionScope.memberID}</td>
 												</tr>
 												<tr>
-													<td>Since</td>
-													<td>2022-10-09</td>
+													<td>Name</td>
+													<td>${sessionScope.memberName}</td>
 												</tr>
-												<tr>
-													<td>Storage</td>
-													<td>20G</td>
-												</tr>
+												
+
 												<!-- Row -->
 											</tbody>
 										</table>
@@ -137,18 +141,18 @@
 							<div class="row">
 								<!-- Column -->
 								<div class="col-sm-12 col-md-6">
-									<div class="card bg-success">
+									<div class="Approval card bg-success">
 										<div class="card-body text-white">
 											<div class="d-flex flex-row">
 												<h2 class="align-self-center mb-0">
 													<i class="ti-wallet"></i>
 												</h2>
 												<div class="p-2 align-self-center">
-													<h4 class="mb-0">Total Income</h4>
-													<span>Income</span>
+													<h4 class="mb-0">Total Approval</h4>
+													<span>Approval</span>
 												</div>
 												<div class="ml-auto align-self-center">
-													<h2 class="font-weight-medium mb-0">$2900</h2>
+													<h2 class="font-weight-medium mb-0">${approvalCnt}</h2>
 												</div>
 											</div>
 										</div>
@@ -157,7 +161,7 @@
 								<!-- Column -->
 								<!-- Column -->
 								<div class="col-sm-12 col-md-6">
-									<div class="card bg-info">
+									<div class="Members card bg-info">
 										<div class="card-body text-white">
 											<div class="d-flex flex-row">
 												<h2 class="align-self-center mb-0">
@@ -165,10 +169,10 @@
 												</h2>
 												<div class="p-2 align-self-center">
 													<h4 class="mb-0">Members</h4>
-													<span>employee</span>
+													<span>Alive employee</span>
 												</div>
 												<div class="ml-auto align-self-center">
-													<h2 class="font-weight-medium mb-0">200</h2>
+													<h2 class="font-weight-medium mb-0">${memberCnt}</h2>
 												</div>
 											</div>
 										</div>
@@ -177,7 +181,7 @@
 								<!-- Column -->
 								<!-- Column -->
 								<div class="col-sm-12 col-md-6">
-									<div class="card bg-cyan">
+									<div class="Attandence card bg-cyan">
 										<div class="card-body text-white">
 											<div class="d-flex flex-row">
 												<h2 class="align-self-center mb-0">
@@ -188,7 +192,7 @@
 													<span>with annual</span>
 												</div>
 												<div class="ml-auto align-self-center">
-													<h2 class="font-weight-medium mb-0">2022-10-09</h2>
+													<h2 class="font-weight-medium mb-0">${day}</h2>
 												</div>
 											</div>
 										</div>
@@ -197,7 +201,7 @@
 								<!-- Column -->
 								<!-- Column -->
 								<div class="col-sm-12 col-md-6">
-									<div class="card bg-orange">
+									<div class="Tasks card bg-orange">
 										<div class="card-body text-white">
 											<div class="d-flex flex-row">
 												<h2 class="align-self-center mb-0">
@@ -205,7 +209,7 @@
 												</h2>
 												<div class="p-2 align-self-center">
 													<h4 class="mb-0">Total Tasks</h4>
-													<span>menu</span>
+													<span>secure</span>
 												</div>
 												<div class="ml-auto align-self-center">
 													<h2 class="font-weight-medium mb-0">management</h2>
@@ -214,116 +218,86 @@
 										</div>
 									</div>
 								</div>
-								<!-- Column -->
-								<!-- Row -->
-								<div class="card-group">
-									<!-- Column -->
-									<div class="card">
-										<div class="card-body text-center">
-											<h4 class="text-center text-info">Total Member</h4>
-											<h2>256</h2>
-											<div class="row pt-2 pb-2">
-												<!-- Column -->
-												<div class="col text-center align-self-center">
-													<div data-label="78%"
-														class="css-bar mb-0 css-bar-primary css-bar-40">
-														<i class="display-4 mdi mdi-account-circle"></i>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6 col-sm-12">
-													<h4 class="font-weight-medium mb-0">
-														<i class="ti-angle-up text-success"></i> <br> 200
-													</h4>
-													<!-- 재직자 -->
-												</div>
-												<div class="col-md-6 col-sm-12">
-													<h4 class="font-weight-medium mb-0">
-														<i class="ti-angle-down text-danger"></i> <br> 56
-													</h4>
-													<!-- 휴직, 퇴사자 -->
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- Column -->
-									<!-- Column -->
-									<div class="card">
-										<div class="card-body text-center">
-											<h4 class="text-center text-danger">Total Visit</h4>
-											<h2>1200</h2>
-											<div class="row pt-2 pb-2">
-												<!-- Column -->
-												<div class="col text-center align-self-center">
-													<div data-label="89%"
-														class="css-bar mb-0 css-bar-danger css-bar-40">
-														<i class="display-4 mdi mdi-star-circle"></i>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6 col-sm-12">
-													<h4 class="font-weight-medium mb-0">
-														<i class="ti-angle-up text-success"></i> <br> 1345
-													</h4>
-												</div>
-												<div class="col-md-6 col-sm-12">
-													<h4 class="font-weight-medium mb-0">
-														<i class="ti-angle-down text-danger"></i> <br> 145
-													</h4>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- Column -->
-									<!-- Column -->
-									<div class="card">
-										<div class="card-body text-center">
-											<h4 class="text-center text-cyan">Storage rate</h4>
-											<h2>12000</h2>
-											<!-- 현재 저장소 사용중인 용량 -->
-											<div class="row pt-2 pb-2">
-												<!-- Column -->
-												<div class="col text-center align-self-center">
-													<div data-label="96%"
-														class="css-bar mb-0 css-bar-success css-bar-40">
-														<i class="display-4 mdi mdi-briefcase-check"></i>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-md-6 col-sm-12">
-													<h4 class="font-weight-medium mb-0">
-														<i class="ti-angle-up text-success"></i> <br> 12465
-														MB
-													</h4>
-													<!-- 저장소에 올라간 데이터 총량 -->
-												</div>
-												<div class="col-md-6 col-sm-12">
-													<h4 class="font-weight-medium mb-0">
-														<i class="ti-angle-down text-danger"></i> <br> 465 MB
-													</h4>
-													<!-- 저장소에서 삭제 요청된 데이터 보관량 -->
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- Column -->
-								</div>
-								<!-- End Row card group -->
 							</div>
-							<!-- Row -->
 						</div>
 					</div>
 				</div>
+
+				<div class="card">
+					<div class="card-body">
+						<!-- 부서 근태 통계 -->
+
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title">전사 근태 통계</h4>
+								<div>
+									<canvas id="pie-chart"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="card">
+						<div class="card-body analytics-info">
+							<h4 class="card-title">전사 근태 통계</h4>
+							<div id="basic-doughnut" style="height: 400px;"></div>
+						</div>
+					</div>
+
+					<br>
+					<!-- skill bars -->
+
+					<div class="card-body">
+						<h4 class="card-title">전사 근무 통계</h4>
+						<h5 class="mt-4">
+							월간 누적 근무<span class="pull-right">${monthrate}%</span>
+						</h5>
+						<div class="progress">
+							<div
+								class="progress-bar bg-danger wow animated progress-animated"
+								style="width: ${monthrate}%; height: 6px;" role="progressbar">
+								<span class="sr-only">60% Complete</span>
+							</div>
+						</div>
+						<h5 class="mt-4">
+							월간 업무 시간<span class="pull-right">${workrate}%</span>
+						</h5>
+						<div class="progress ">
+							<div class="progress-bar bg-info wow animated progress-animated"
+								style="width: ${workrate}%; height: 6px;" role="progressbar">
+								<span class="sr-only">60% Complete</span>
+							</div>
+						</div>
+						<h5 class="mt-4">
+							월간 연장 시간<span class="pull-right">${overrate}%</span>
+						</h5>
+						<div class="progress">
+							<div class="progress-bar bg-success wow animated progress-animated"
+								style="width: ${overrate}%; height: 6px;" role="progressbar">
+								<span class="sr-only">60% Complete</span>
+							</div>
+						</div>
+
+					</div>
+
+
+					<div class="card">
+						<div class="card-body analytics-info">
+							<h4 class="card-title">부서별 연차 통계</h4>
+							<div id="basic-doughnut2" style="height: 400px;"></div>
+						</div>
+					</div>
+				</div>
+
+
 				<!-- Column -->
-				<div class="col-lg-12">
+				<!-- <div class="col-lg-12">
 					<div class="card">
 						<div class="card-body">
 							<h3 class="box-title mt-5">부서별 업무시간 통계</h3>
 							<div class="row">
-								<!-- column -->
+								column
 								<div class="col-lg-12">
 									<div class="card">
 										<div class="card-body">
@@ -364,12 +338,12 @@
 										</div>
 									</div>
 								</div>
-								<!-- column -->
+								column
 							</div>
-							<!-- row  -->
+							row 
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>			
 			<!-- *************************************************************** -->
 			<!-- End Top Leader Table -->
@@ -496,9 +470,14 @@
     <script src="${path}/resources/assets/libs/raphael/raphael.min.js"></script>
     <script src="${path}/resources/assets/libs/morris.js/morris.min.js"></script>
     <script src="${path}/resources/dist/js/pages/morris/morris-data.js"></script>
+    <!-- Chart JS -->
+    <script src="${path}/resources/dist/js/pages/chartjs/chartjs.init.js"></script>
+    <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>    
+    <script src="${path}/resources/assets/libs/echarts/dist/echarts-en.min.js"></script>
+    <script src="${path}/resources/dist/js/pages/echarts/pie-doughnut/pie-doghnut.js"></script>
     
    	<script type="text/javascript">
-   	/* $(function () {
+   	$(function () {
    	    "use strict";
    	Morris.Area({
    	        element: 'morris-area-chart',
@@ -574,8 +553,336 @@
    	        resize: true
    	        
    	    });
-    }); */
+    });
     </script>
+    
+    <script type="text/javascript">				
+		
+		
+        $(function() {                	
+        	// 현재 날짜
+    		var selectmonth = '${selectmonth}';
+    		var currentDate = new Date();
+    		var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1) + "-" + currentDate.getDate();
+    		var month = (currentDate.getMonth() + 1) + "월";
+    		if (selectmonth.toString().length==1) selectmonth = "0" + selectmonth;
+    		var title = currentDate.getFullYear() + "-" + selectmonth;
+    		
+    		
+    		if(selectmonth == ""){	
+    			$(".month").html(month); 
+    			title = currentDate.getFullYear() + "-" + (currentDate.getMonth() + 1);
+    		}		
+    		$(".title").html(title);    		    		
+    		
+    		// Total Approval 클릭 시 
+    		$(".Approval").click(function(){
+    			 var monthVal =  $(this).val();    	    	         
+    	         console.log(monthVal);
+    	         location.href = "${path}/approvalad.apad?stateid=com";            
+            }); 
+    		
+    		// Members 클릭 시 
+    		$(".Members").click(function(){
+    			 var monthVal =  $(this).val();    	    	         
+    	         console.log(monthVal);
+    	         location.href = "${path}/adHr.ad";            
+            }); 
+    		
+    		// Total Attandence 클릭 시 
+    		$(".Attandence").click(function(){
+    			 var monthVal =  $(this).val();    	    	         
+    	         console.log(monthVal);
+    	         location.href = "${path}/adAttend.ad";            
+            }); 
+    		
+    		// Total Tasks 클릭 시 
+    		$(".Tasks").click(function(){
+    			 var monthVal =  $(this).val();    	    	         
+    	         console.log(monthVal);
+    	         location.href = "${path}/adSecure.ad";            
+            }); 
+    		
+        });
+
+	</script>
+    <script type="text/javascript">
+	 	
+		$(function () {    
+			new Chart(document.getElementById("pie-chart"), {
+				type: 'pie',
+				data: {
+				  labels: ["출근", "퇴근", "연장", "지각", "연차", "반차", "정보없음"],
+				  datasets: [{
+					label: "attendance",
+					backgroundColor: ["#02cccd", "#ff3ca6","#6610f2","#ffab2e", '#3f50f6', '#dbabce', "005ccce"],
+					data: ['${attendin_cnt}'
+						,'${attendout_cnt}'
+						,'${over_cnt}'
+						,'${late_cnt}'
+						,'${full_cnt}'
+						,'${half_cnt}'
+						, '${none}']
+				  }]
+				},
+				options: {
+				  title: {
+					display: true,
+					text: 'attendance ${day}'
+				  }
+				}
+			});
+			
+			// based on prepared DOM, initialize echarts instance
+	        var basicdoughnutChart = echarts.init(document.getElementById('basic-doughnut'));
+	        var option = {
+	            // Add title
+	                title: {
+	                    text: 'attandence',
+	                    subtext: '${day}',
+	                    x: 'center'
+	                },
+
+	                // Add legend
+	                legend: {
+	                    orient: 'vertical',
+	                    x: 'left',
+	                    data: ['출근','퇴근', '연장', '지각', '정보없음']
+	                },
+
+	                // Add custom colors
+	                color: ['#ffab2e', '#3f50f6', '#dbabce', '#6610f2', '#005ccce'],
+
+	                // Display toolbox
+	                toolbox: {
+	                    show: true,
+	                    orient: 'vertical',
+	                    feature: {
+	                        mark: {
+	                            show: true,
+	                            title: {
+	                                mark: 'Markline switch',
+	                                markUndo: 'Undo markline',
+	                                markClear: 'Clear markline'
+	                            }
+	                        },
+	                        dataView: {
+	                            show: true,
+	                            readOnly: false,
+	                            title: 'View data',
+	                            lang: ['View chart data', 'Close', 'Update']
+	                        },
+	                        magicType: {
+	                            show: true,
+	                            title: {
+	                                pie: 'Switch to pies',
+	                                funnel: 'Switch to funnel',
+	                            },
+	                            type: ['pie', 'funnel'],
+	                            option: {
+	                                funnel: {
+	                                    x: '25%',
+	                                    y: '20%',
+	                                    width: '50%',
+	                                    height: '70%',
+	                                    funnelAlign: 'left',
+	                                    max: 1548
+	                                }
+	                            }
+	                        },
+	                        restore: {
+	                            show: true,
+	                            title: 'Restore'
+	                        },
+	                        saveAsImage: {
+	                            show: true,
+	                            title: 'Same as image',
+	                            lang: ['Save']
+	                        }
+	                    }
+	                },
+
+	                // Enable drag recalculate
+	                calculable: true,
+
+	                // Add series
+	                series: [
+	                    {
+	                        name: 'Browsers',
+	                        type: 'pie',
+	                        radius: ['50%', '70%'],
+	                        center: ['50%', '57.5%'],
+	                        itemStyle: {
+	                            normal: {
+	                                label: {
+	                                    show: true
+	                                },
+	                                labelLine: {
+	                                    show: true
+	                                }
+	                            },
+	                            emphasis: {
+	                                label: {
+	                                    show: true,
+	                                    formatter: '{b}' + '\n\n' + '{c} ({d}%)',
+	                                    position: 'center',
+	                                    textStyle: {
+	                                        fontSize: '17',
+	                                        fontWeight: '500'
+	                                    }
+	                                }
+	                            }
+	                        },
+
+	                        data: [
+	                            {value: '${attendin_cnt}', name: '출근'},
+	                            {value: '${attendout_cnt}', name: '퇴근'},
+	                            {value: '${over_cnt}', name: '연장'},
+	                            {value: '${late_cnt}', name: '지각'},
+	                            {value: '${none}', name: '정보없음'}
+	                            
+	                        ]
+	                    }
+	                ]
+	        };
+	    
+	     // 부서별 연차+반차 cnt 통계
+           	var basicdoughnutChart2 = echarts.init(document.getElementById('basic-doughnut2'));
+           	var option2 = {
+               // Add title
+                   title: {
+                       text: 'depart annual',
+                       subtext: '${day}',
+                       x: 'center'
+                   },
+
+                   // Add legend
+                   legend: {
+                       orient: 'vertical',
+                       x: 'left',
+                       data: ['사업부','영업부','개발부','인사부','경영지원부','총무부']
+                   },
+
+                   // Add custom colors
+                   color: ['#ffab2e', '#3f50f6', '#dbabce', '#6610f2', "#02cccd", "#ff3ca6"],
+
+                   // Display toolbox
+                   toolbox: {
+                       show: true,
+                       orient: 'vertical',
+                       feature: {
+                           mark: {
+                               show: true,
+                               title: {
+                                   mark: 'Markline switch',
+                                   markUndo: 'Undo markline',
+                                   markClear: 'Clear markline'
+                               }
+                           },
+                           dataView: {
+                               show: true,
+                               readOnly: false,
+                               title: 'View data',
+                               lang: ['View chart data', 'Close', 'Update']
+                           },
+                           magicType: {
+                               show: true,
+                               title: {
+                                   pie: 'Switch to pies',
+                                   funnel: 'Switch to funnel',
+                               },
+                               type: ['pie', 'funnel'],
+                               option: {
+                                   funnel: {
+                                       x: '25%',
+                                       y: '20%',
+                                       width: '50%',
+                                       height: '70%',
+                                       funnelAlign: 'left',
+                                       max: 1548
+                                   }
+                               }
+                           },
+                           restore: {
+                               show: true,
+                               title: 'Restore'
+                           },
+                           saveAsImage: {
+                               show: true,
+                               title: 'Same as image',
+                               lang: ['Save']
+                           }
+                       }
+                   },
+
+                   // Enable drag recalculate
+                   calculable: true,
+
+                   // Add series
+                   series: [
+                       {
+                           name: 'Browsers',
+                           type: 'pie',
+                           radius: ['50%', '70%'],
+                           center: ['50%', '57.5%'],
+                           itemStyle: {
+                               normal: {
+                                   label: {
+                                       show: true
+                                   },
+                                   labelLine: {
+                                       show: true
+                                   }
+                               },
+                               emphasis: {
+                                   label: {
+                                       show: true,
+                                       formatter: '{b}' + '\n\n' + '{c} ({d}%)',
+                                       position: 'center',
+                                       textStyle: {
+                                           fontSize: '17',
+                                           fontWeight: '500'
+                                       }
+                                   }
+                               }
+                           },
+
+                           data: [                              
+                               {value: '${bus_cnt}', name: '사업부'},
+                               {value: '${sale_cnt}', name: '영업부'},
+                               {value: '${it_cnt}', name: '개발부'},
+                               {value: '${human_cnt}', name: '인사부'},
+                               {value: '${sup_cnt}', name: '경영지원부'},
+                               {value: '${acc_cnt}', name: '총무부'}                              
+                           ]
+                       }
+                   ]
+           };
+       
+           basicdoughnutChart2.setOption(option2);
+	        
+	        basicdoughnutChart.setOption(option);
+			
+			// Resize chart on menu width change and window resize
+            $(window).on('resize', resize);
+            $(".sidebartoggler").on('click', resize);
+
+            // Resize function
+            function resize() {
+                setTimeout(function() {
+
+                    // Resize chart
+                    basicpieChart.resize();
+                    basicdoughnutChart.resize();
+                    customizedChart.resize();
+                    nestedChart.resize();
+                    poleChart.resize();
+                }, 200);
+            }
+			
+		});
+		
+	</script>
 </body>
 
 </html>

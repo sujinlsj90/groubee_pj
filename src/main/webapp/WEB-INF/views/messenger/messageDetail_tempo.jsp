@@ -65,16 +65,11 @@ $(document).ready(function() {
 
 $(function() {
 	// sendBtn
-	$('#sendBtn').click(function() {
-		document.submitMsgForm.action ="${path}/sendMsg.me?${_csrf.parameterName}=${_csrf.token}";
+	$('#sendBtn').click(function() {          
+		document.submitMsgForm.action ="${path}/sendMsg_tempo.me?${_csrf.parameterName}=${_csrf.token}";
 		document.submitMsgForm.submit();
 	});
 	
-	// cancleMsgBtn
-	$('#tempoBtn').click(function() {
-		document.submitMsgForm.action ="${path}/tempoMsg.me?${_csrf.parameterName}=${_csrf.token}";
-		document.submitMsgForm.submit();
-	});
 });
 </script>
 
@@ -126,39 +121,31 @@ $(function() {
                         <form method="post" name="submitMsgForm" enctype="multipart/form-data">
                         	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         	<c:forEach var="dto" items="${list}">
+                        	<input type="hidden" name="message_num" value="${dto.message_num}">
+                        	<input type="hidden" name="hiddenfiles" value="${dto.files}">
                             <div class="form-group">
                             	<select id="msgPerson" multiple="multiple" name="msgPerson" style="width:100%;" required>
-                            		<%-- 
-                            		<c:forEach var="dto" items="${list}" var="dto2" items="${list2}">
-	                            		<optgroup label="${dto.depart_name}">
-										    <option value="${dto.depart_name}|${dto2.name}">${dto2.name}</option>
-										</optgroup>
-									</c:forEach>
-									 --%>
-										<%-- <optgroup label="${dto.depart_name}"> --%>
-									    	<%-- <option value="${dto.depart_name}|${dto.name}">${dto.depart_name} ${dto.name}</option> --%>
-									    	<option value="${dto.getter_id}" selected>${dto.getter_id} ${dto.depart_name} ${dto.name}</option>
-									    	<option value="${dto.id}">${dto.id} ${dto.depart_name} ${dto.name}</option>
-									   <!--  </optgroup> -->
+							    	<option value="${dto.getter_id}" selected>${dto.getter_id} ${dto.depart_name} ${dto.name}</option>
+							    	<option value="${dto.id}">${dto.id} ${dto.depart_name} ${dto.name}</option>
 								</select>
                             </div>
                             <div class="form-group">
                                 <input type="text" id="example-subject" name="example-subject" class="form-control"
                                     placeholder="제목" value="${dto.title}">
-                            </div>																		<!-- data-sample-short -->
+                            </div>
                             <textarea cols="80" id="testedit1" name="testedit1" rows="10" data-sample="2" data-sample-short>${dto.contents}</textarea>
                             <h4 style="margin-top:10px;">첨부파일</h4>
                             <div class="dropzone" id="dzid">
                                 <div class="fallback">
-                                    <input name="file" type="file" files="${dto.files}" /> <!-- multiple -->
-                                    <c:if test="${not empty dto.files}">
-                                    	${dto.files}
-                                    </c:if>
+                                    <input name="files" type="file" files="${dto.files}" readonly>
+	                                <div class="row">
+		                        		<a class="btn" href="${dto.files}" download>${dto.files}</a>
+		                        	</div>
                                 </div>
                             </div>
                             </c:forEach>
                             <button type="button" id="sendBtn" class="btn btn-success mt-3"><i class="far fa-envelope"></i>
-                                보내기</button>
+                                	보내기</button>
                             <button type="button" class="btn btn-dark mt-3" onclick="self.close()">닫기</button>
                         </form>
                         <!-- Action part -->

@@ -20,7 +20,6 @@ public class ApproveDraftDTO extends ApprovalInfoDTO{
 	private String form_name;
 	
 	public ApproveDraftDTO() {}
-
 	
 
 	public String getNonfiles() {
@@ -38,7 +37,6 @@ public class ApproveDraftDTO extends ApprovalInfoDTO{
 	public void setStateid(String stateid) {
 		this.stateid = stateid;
 	}
-
 
 	public Date getUpday() {
 		return upday;

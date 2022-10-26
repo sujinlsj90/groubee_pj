@@ -527,4 +527,54 @@
 			SELECT count(*) FROM grb_approvalInfo where load_id = #{load_id} and getter_id = #{id}
 		</select>
 		
+		<!-- 관리자 완료문서함 -->
+		<select id = "approvallistAdmin" resultType="com.spring.tutorial.dto.ApproveDraftDTO" parameterType="java.util.Map">
+			<![CDATA[
+			  SELECT *
+				 FROM (SELECT A.*, rownum as rn
+				            FROM (select * from grb_draft 
+				                    where category = #{category} 
+				                    and stateid = #{stateid}
+				                    order by doc_id desc) A
+				       )
+				WHERE rn >= 1 AND rn <= 10
+			 ]]>
+		</select>
+		
+		
+		<!-- 관리자 문서함 글 갯수 -->
+		<select id = "adminApprovalListCnt" resultType="int" parameterType="java.util.Map">
+			  SELECT count(*)
+				 FROM (SELECT A.*, rownum as rn
+				            FROM (select * from grb_draft 
+				                    where category = #{category} 
+				                    and stateid = #{stateid}
+				                    order by doc_id desc) A
+				       )
+		</select>
+		
+		
+		<!-- 관리자 완료문서함 전체보기 -->
+		<select id = "approvallistAdminAll" resultType="com.spring.tutorial.dto.ApproveDraftDTO" parameterType="java.util.Map">
+			<![CDATA[
+			  SELECT *
+				 FROM (SELECT A.*, rownum as rn
+				            FROM (select * from grb_draft 
+				                    where stateid = #{stateid}
+				                    order by doc_id desc) A
+				       )
+				WHERE rn >= 1 AND rn <= 10
+			 ]]>
+		</select>
+		
+				<!-- 관리자 문서함 글 갯수 -->
+		<select id = "approvallistAdminAllCnt" resultType="int" parameterType="java.util.Map">
+			  SELECT count(*)
+				 FROM (SELECT A.*, rownum as rn
+				            FROM (select * from grb_draft 
+				                    where stateid = #{stateid}
+				                    order by doc_id desc) A
+				       )
+		</select>
+		
      </mapper>

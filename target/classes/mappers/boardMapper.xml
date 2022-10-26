@@ -15,7 +15,7 @@
 		            FROM (SELECT num, category, id, title, content, read_cnt,
 		            			 (SELECT COUNT(*) FROM grb_comment WHERE board_num = b.num) comment_cnt, reg_date, board_file, show
                     		FROM grb_board b
-		                    WHERE show = 1
+		                    WHERE show = #{show}
 		                      AND category IN (#{category},2)
 		                    ORDER BY category DESC, num DESC
 		                ) A
@@ -25,8 +25,8 @@
 	</select>
 	
 	<!-- 게시글 갯수 구하기 -->
-	<select id="boardCnt" parameterType="String" resultType="int">
-		SELECT count(*) as cnt FROM grb_board WHERE category IN (#{category},2)
+	<select id="boardCnt" parameterType="java.util.Map" resultType="int">
+		SELECT count(*) as cnt FROM grb_board WHERE category IN (#{category},2) AND show = #{show}
 	</select>
    	
    	<!-- 게시글 상세페이지 -->
@@ -52,15 +52,28 @@
 	</insert>
 	
 	<!-- 게시글 삭제처리 -->
-	<update id="boardDelete" parameterType="int">
+	<update id="boardDelete" parameterType="String">
 		UPDATE grb_board 
 		   SET show = 0
 		 WHERE num = #{num}
 	</update>
 	
+	<!-- 게시글 영구삭제 -->
+	<delete id="boardDelete2" parameterType="String">
+		DELETE FROM grb_board 
+		 WHERE num = #{num}
+	</delete>
+	
+	<!-- 게시글 수정처리 -->
+	<update id="updateBoard" parameterType="com.spring.tutorial.dto.BoardDTO">
+		UPDATE grb_board 
+		   SET category = #{category}, title = #{title}, content = #{content}
+		 WHERE num = #{num}
+	</update>
+	
 	<!-- 댓글목록 처리 -->
 	<select id="comment" parameterType="int" resultType="com.spring.tutorial.dto.BoardCommentDTO">
-		 SELECT m.name, c.writer, c.content, c.reg_date
+		 SELECT m.name, c.writer, c.content, c.reg_date, c.comment_num
 		  FROM grb_comment c
 		  JOIN grb_member m
 		    ON c.writer = m.id
@@ -73,5 +86,10 @@
 		INSERT INTO grb_comment(comment_num, board_num, writer, content, reg_date)
 			VALUES(grb_comment_seq.nextval, #{board_num}, #{writer}, #{content}, sysdate)
 	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="commentDelete" parameterType="int">
+	DELETE FROM grb_comment WHERE comment_num = #{comment_num}
+	</delete>
      
 </mapper>	

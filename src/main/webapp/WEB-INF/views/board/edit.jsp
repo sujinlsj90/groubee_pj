@@ -33,7 +33,29 @@
 $(function() {
 	$("#cancel_compose").click(function(){
 		location.href="${path}/board.bo";
-	})
+	});
+	
+	$("#submitBtn").click(function(){
+      var title = $("#title").val();
+      var content = CKEDITOR.instances.content.getData(); // content ==> textarea id값 name값 CKEDITOR.replace('값') 동일하게 주기
+      
+   // 제목입력
+      if(title == "") {
+         alert("제목을 입력하세요");
+         $("#title").focus();
+         return false;
+      } else if(title.length > 16) {
+       	 alert("제목을 16자 이하로 입력해주세요.");
+       	 return false;
+      }
+      
+      // 내용입력
+      if(content == "") {
+         alert("내용을 입력하세요");
+         return false;
+      }
+      
+   });
 	
 })
 </script>
@@ -116,58 +138,55 @@ $(function() {
                     <!-- Action part -->
                     <!-- Button group part -->
                     <div class="card-body">
-                        <form action="${path}/editAction.bo" > <!-- enctype="multipart/form-data" -->
-                        <!-- 시큐리티 적용 -->
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                        
-                        <!-- 관리자 카테고리 -->
-                        	<div class="btn-group mt-3" data-toggle="buttons" role="group">
-                                  <label class="btn btn-outline btn-info">
-                                      <div class="custom-control custom-radio">
-                                          <input type="radio" id="customRadio1" name="category" value="0"
-                                              class="custom-control-input" <c:if test="${dto.category==0}">checked</c:if>>
-                                          <label class="custom-control-label" for="customRadio1"> <i
-                                                  class="ti-check text-active" aria-hidden="true"></i>
-                                              	일반게시판</label>
-                                      </div>
-                                  </label>
-                                  <label class="btn btn-outline btn-info">
-                                      <div class="custom-control custom-radio">
-                                          <input type="radio" id="customRadio2" name="category" value="1"
-                                              class="custom-control-input" <c:if test="${dto.category==1}">checked</c:if>>
-                                          <label class="custom-control-label" for="customRadio2"> <i
-                                                  class="ti-check text-active" aria-hidden="true"></i>
-                                              	공지사항</label>
-                                      </div>
-                                  </label>
-                                  <label class="btn btn-outline btn-info active">
-                                      <div class="custom-control custom-radio">
-                                          <input type="radio" id="customRadio3" name="category" value="2"
-                                              class="custom-control-input" <c:if test="${dto.category==2}">checked</c:if>>
-                                          <label class="custom-control-label" for="customRadio3"> <i
-                                                  class="ti-check text-active" aria-hidden="true"></i>
-                                              	필독</label>
-                                      </div>
-                                  </label>
-                              </div>
-                       <!-- 관리자 카테고리 -->
-                            <div class="form-group">
-                                <input type="text" id="example-subject" name="title" class="form-control" value="${dto.title}"
-                                    placeholder="제목을 입력하세요">
-                            </div>
-                            
-                            <!-- <div id="summernote"></div> -->
-                             <textarea cols="80" id="testedit1" name="content" rows="10">
-                             	${dto.content}
-                			</textarea>
-                            
-                            <%-- <div class="dropzone" id="dzid">
-                                <div class="fallback">
-                                    <input name="file" type="file" value="${dto.board_file}" multiple  />
-                                </div>
-                            </div> --%>
-                            <button type="submit" class="btn btn-success mt-3">
-                                		작성완료</button>
+                        <form name="editForm" method="post" action="${path}/boardEditAction.bo"> <!-- enctype="multipart/form-data" -->
+	                        <!-- 시큐리티 적용 -->
+	                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+	                        <input type="hidden" name="num" value="${dto.num}">
+	                        
+	                        <!-- 관리자 카테고리 -->
+	                        <c:if test="${sessionScope.authority == 'ROLE_BOARD' || sessionScope.authority == 'ROLE_ADMIN'}">
+	                        	<div class="btn-group mt-3" data-toggle="buttons" role="group">
+	                                  <label class="btn btn-outline btn-info">
+	                                      <div class="custom-control custom-radio">
+	                                          <input type="radio" id="customRadio1" name="category" value="0"
+	                                              class="custom-control-input" <c:if test="${dto.category==0}">checked</c:if>>
+	                                          <label class="custom-control-label" for="customRadio1"> <i
+	                                                  class="ti-check text-active" aria-hidden="true"></i>
+	                                              	일반게시판</label>
+	                                      </div>
+	                                  </label>
+	                                  <label class="btn btn-outline btn-info">
+	                                      <div class="custom-control custom-radio">
+	                                          <input type="radio" id="customRadio2" name="category" value="1"
+	                                              class="custom-control-input" <c:if test="${dto.category==1}">checked</c:if>>
+	                                          <label class="custom-control-label" for="customRadio2"> <i
+	                                                  class="ti-check text-active" aria-hidden="true"></i>
+	                                              	공지사항</label>
+	                                      </div>
+	                                  </label>
+	                                  <label class="btn btn-outline btn-info active">
+	                                      <div class="custom-control custom-radio">
+	                                          <input type="radio" id="customRadio3" name="category" value="2"
+	                                              class="custom-control-input" <c:if test="${dto.category==2}">checked</c:if>>
+	                                          <label class="custom-control-label" for="customRadio3"> <i
+	                                                  class="ti-check text-active" aria-hidden="true"></i>
+	                                              	필독</label>
+	                                      </div>
+	                                  </label>
+	                              </div>
+	                        </c:if>
+	                       <!-- 관리자 카테고리 -->
+	                            <div class="form-group">
+	                                <input type="text" id="title" name="title" class="form-control" value="${dto.title}"
+	                                    placeholder="제목을 입력하세요">
+	                            </div>
+	                            
+	                             <textarea cols="80" id="content" name="content" rows="10">
+	                             	${dto.content}
+	                			</textarea>
+	                            
+	                            <button type="submit" id="submitBtn" class="btn btn-success mt-3">
+	                                		작성완료</button>
                         </form>
                         <!-- Action part -->
                     </div>
@@ -325,7 +344,7 @@ $(function() {
         });
     </script>
     <script data-sample="2">
-        CKEDITOR.replace('testedit1', {
+        CKEDITOR.replace('content', {
             height: 400
         });
     </script>

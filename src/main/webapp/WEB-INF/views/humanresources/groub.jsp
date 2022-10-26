@@ -29,6 +29,7 @@
  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>
         $(document).ready(function(){
+        	collapsed: false
             $("#spreadBtn01").click(function(){
                 if($("#hiddenList01").is(":visible")){
                     $("#hiddenList01").slideUp();
@@ -39,6 +40,7 @@
         });
 
         $(document).ready(function(){
+        	collapsed: false
             $("#spreadBtn2").click(function(){
                 if($("#hiddenList02").is(":visible")){
                     $("#hiddenList02").slideUp();
@@ -49,6 +51,7 @@
         });
 
         $(document).ready(function(){
+        	collapsed: false
             $("#spreadBtn3").click(function(){
                 if($("#hiddenList03").is(":visible")){
                     $("#hiddenList03").slideUp();
@@ -59,6 +62,7 @@
         });
         
         $(document).ready(function(){
+        	collapsed: false
             $("#spreadBtn4").click(function(){
                 if($("#hiddenList04").is(":visible")){
                     $("#hiddenList04").slideUp();
@@ -69,6 +73,7 @@
         });
         
         $(document).ready(function(){
+        	collapsed: false
             $("#spreadBtn5").click(function(){
                 if($("#hiddenList05").is(":visible")){
                     $("#hiddenList05").slideUp();
@@ -79,6 +84,7 @@
         });
         
         $(document).ready(function(){
+        	collapsed: false
             $("#spreadBtn6").click(function(){
                 if($("#hiddenList06").is(":visible")){
                     $("#hiddenList06").slideUp();
@@ -89,7 +95,6 @@
         });
 
         $(document).ready(function(){
-        	
             $("#spreadBtn11").click(function(){
                if($("#hiddenList11").is(":visible")){
                 	$("#hiddenList11").slideUp();
@@ -117,7 +122,7 @@
                 } else {
                     $('#hiddenList14').slideDown();
                 }
-            })
+            });
              $("#spreadBtn15").click(function(){
               if($("#hiddenList15").is(":visible")){
                     $("#hiddenList15").slideUp();
@@ -151,48 +156,6 @@
                       $("#hiddenList19").slideUp();
                  }else{
                       $("#hiddenList19").slideDown();
-                   }
-               }); 
-            $("#spreadBtn20").click(function(){
-                if($("#hiddenList20").is(":visible")){
-                      $("#hiddenList20").slideUp();
-                 }else{
-                      $("#hiddenList20").slideDown();
-                   }
-               }); 
-            $("#spreadBtn21").click(function(){
-                if($("#hiddenList21").is(":visible")){
-                      $("#hiddenList21").slideUp();
-                 }else{
-                      $("#hiddenList21").slideDown();
-                   }
-               }); 
-            $("#spreadBtn22").click(function(){
-                if($("#hiddenList22").is(":visible")){
-                      $("#hiddenList22").slideUp();
-                 }else{
-                      $("#hiddenList22").slideDown();
-                   }
-               }); 
-            $("#spreadBtn20").click(function(){
-                if($("#hiddenList20").is(":visible")){
-                      $("#hiddenList20").slideUp();
-                 }else{
-                      $("#hiddenList20").slideDown();
-                   }
-               }); 
-            $("#spreadBtn21").click(function(){
-                if($("#hiddenList21").is(":visible")){
-                      $("#hiddenList21").slideUp();
-                 }else{
-                      $("#hiddenList21").slideDown();
-                   }
-               }); 
-            $("#spreadBtn22").click(function(){
-                if($("#hiddenList22").is(":visible")){
-                      $("#hiddenList22").slideUp();
-                 }else{
-                      $("#hiddenList22").slideDown();
                    }
                }); 
             $("#spreadBtn20").click(function(){
@@ -257,7 +220,7 @@
     </script>
     
  <script>
- /* 사업1팀 */
+
  function b_Info(id){
     $.ajax({
        url: "${path}/myHuman.hu?id="+id+"&${_csrf.parameterName}=${_csrf.token}",
@@ -615,7 +578,9 @@
                      <a href="#">${i_dto.team_name}</a>
                       <ul id="hiddenList18" class="btn1">
                        <c:forEach var="i_two" items="${i_twoteam}">
-                         <li><a href="#" onclick="i_Info2(${i_two.id})">${i_two.name}</a></li>
+                         <li><a href="#" onclick="i_Info2(${i_two.id})">
+                         ${i_two.name}</a>
+                         </li>
                        </c:forEach>
                      </ul>  
                    	</li>

@@ -33,26 +33,10 @@
 </script>
 </head>
 <body>
-	<%-- <!-- insert 실패 -->
-	<c:if test="${insertState == 0}">
-		<div>
-			<p>메세지 전송에 실패했습니다.</p>
-		</div>
-	</c:if>
-	
-	<!-- insert 성공 -->
-	<c:if test="${insertState == 1}">
-		<div>
-			<p>성공적으로 메세지를 전송하였습니다.</p>
-		</div>
-	</c:if>
-	<!-- 컨텐츠 종료 -->
- --%>
-	<div>
-		<p style="font-size:25px; text-align:center; margin-top:300px; margin-bottom:150px;">메세지 임시보관이 완료되었습니다.</p>
+	<div style="position:relative;">
+		<p style="width:100%; font-size:25px; text-align:center; margin-top:250px; margin-bottom:150px;">메세지 임시보관이 완료되었습니다.</p>
 		
-		<button type="button" class="btn btn-dark mt-3" onclick="self.close()" style="width:100px; height:auto; margin-left:375px;">닫기</button>
+		<button type="button" class="btn btn-dark mt-3" onclick="self.close()" style="width:100px; height:auto; position:absolute; left:50%; transform:translate(-50%,0); /* margin-left:375px; */">닫기</button>
 	</div>
-
 </body>
 </html>

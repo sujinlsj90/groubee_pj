@@ -110,6 +110,9 @@ function memberDel(id){
 				    <div class="col-lg-2 col-md-4">
 				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/join.co'">사원 등록</button>
 				    </div>
+				     <div class="col-lg-2 col-md-4">
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adHr2.ad'">인사평가</button>
+				    </div>
 				</div>
                 <br><br>
                 
@@ -128,10 +131,8 @@ function memberDel(id){
                                                 <th>부서</th>
                                                 <th>직급</th>
                                                 <th>이름</th>
-                                                <th>이메일</th>
                                                 <th>핸드폰</th>
-                                                <th>수정</th>
-                                                <th>삭제</th>
+                                                <th>버튼</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -141,12 +142,9 @@ function memberDel(id){
                                                 <td>${dto.depart_name} </td>
                                                 <td>${dto.rank}</td>
                                                 <td>${dto.name}</td>
-                                                <td>${dto.email_in}</td>
                                                 <td>${dto.tel}</td>
                                                 <td>
 													<input type="button" value="수정" onclick="window.location='${path}/joinDetail.ad?id=${dto.id}'">
-												</td>
-                                                <td>
 													<input class="btnDelete" type="button" value="삭제" onclick="memberDel(${dto.id})">
 												</td>
                                             </tr>
@@ -154,12 +152,12 @@ function memberDel(id){
                                         </tbody>
                                        <tfoot>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>사번</th>
+                                                <th>부서</th>
+                                                <th>직급</th>
+                                                <th>이름</th>
+                                                <th>이메일 </th>
+                                                <th>핸드폰</th>
                                             </tr>
                                         </tfoot>
                                     </table>

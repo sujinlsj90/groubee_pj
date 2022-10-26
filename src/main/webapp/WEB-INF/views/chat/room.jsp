@@ -11,43 +11,8 @@
 	
 	<link href="${path}/resources/dist/css/style.min.css" rel="stylesheet">
 
-<style>
-   input[type="checkbox"] {
-        -webkit-appearance: none;
-        position: relative;
-        width: 16px;
-        height: 16px;
-        cursor: pointer;
-        outline: none !important;
-        border: 1px solid #3e5569;
-        border-radius: 2px;
-        background: #fbfbfb;
-    }
- 
-    input[type="checkbox"]::before {
-        content: "\2713";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        overflow: hidden;
-        transform: scale(0) translate(-50%, -50%);
-        line-height: 1;
-    }
- 
-    input[type="checkbox"]:checked {
-        background-color: #3f50f6;
-        border-color: rgba(255, 255, 255, 0.3);
-        color: white;
-    }
- 
-    input[type="checkbox"]:checked::before {
-        border-radius: 2px;
-        transform: scale(1) translate(-50%, -50%)
-    }
-</style>
-
 <script type="text/javascript">
-var timestamp = new Date().getHours() + ":" + new Date().getMinutes();
+var timestamp = '';
 var roomName = '${room.chatroom_name}';
 var roomId = '${room.chatroom_num}';
 var userId = '${sessionScope.memberID}';
@@ -55,31 +20,37 @@ var name = null;
 
 $(function(){
 	
-    //1. SockJS를 내부에 들고있는 stomp를 내어줌
-    
-    //2. connection이 맺어지면 실행
-    /* if(stompIsConnected) {
-    	console.log(stompIsConnected);
-    } */
-    
+	$("#chatBox").animate({
+	      scrollTop: $("#chatBox").get(0).scrollHeight
+	    }, 100);
+	
     stomp.connect({}, function (){
-       console.log("STOMP Connection");
-       
-       
-		// subscribe(path, callback)
 		
-       // 2-1. 연결시 "/sub/chat/room/" + roomId 구독, callback 함수 실행
+       // 소켓 연결시 "/sub/chat/room/" + roomId 구독, callback 함수 실행
        stomp.subscribe("/sub/chat/room/" + roomId, function (chat) {
            var content = JSON.parse(chat.body);
 
            var writer = content.writer;
            var message = content.message;
-           var name = content.name
+           var name = content.name;
+           var invite = content.invite;
            
            var str = '';
 
-           // 채팅한 사람과 로그인 세션 아이디가 같을 경우
-           if(writer === userId){
+           if(invite != null) {
+        	   str = "<li class='middle'>";
+               str += "<div class='chat-content'>";
+               str += "<div class='box bg-light-success'>"+ message + "</div>";
+               str += "</div>";
+               str += "</li>";
+               $("#msgArea").append(str);
+               $("#chatBox").animate({
+         	      scrollTop: $("#chatBox").get(0).scrollHeight
+         	    }, 100);
+               
+           } 
+           else if(writer === userId){ // 채팅한 사람과 로그인 세션 아이디가 같을 경우
+        	   timestamp = new Date().getHours() + ":" + new Date().getMinutes();
                str = "<li class='odd chat-item'>";
                str += "<div class='chat-content'>";
                str += "<div class='box bg-light-success'>"+ message + "</div>";
@@ -87,9 +58,12 @@ $(function(){
                str += "<div class='chat-time'>" + timestamp + "</div>";
                str += "</li>";
                $("#msgArea").append(str);
+               $("#chatBox").animate({
+          	      scrollTop: $("#chatBox").get(0).scrollHeight
+          	    }, 100);
            }
-        	// 채팅한 사람과 로그인 세션 아이디가 다를 경우
-           else{
+           else{ // 채팅한 사람과 로그인 세션 아이디가 다를 경우
+        	   timestamp = new Date().getHours() + ":" + new Date().getMinutes();
         	   str = "<li class='chat-item'>";
                str += "<div class='chat-content'>";
                str += "<h6 class='font-medium'>" + writer +"("+name+")" + "</h6>";
@@ -98,37 +72,26 @@ $(function(){
                str += "<div class='chat-time'>" + timestamp + "</div>";
                str += "</li>";
                $("#msgArea").append(str);
+               $("#chatBox").animate({
+          	      scrollTop: $("#chatBox").get(0).scrollHeight
+          	    }, 100);
            }
            
        });
-		// send(path, header, message)
-       // 2-2. 연결 됐을 때, /pub/chat/enter 로 메세지 보내기
-       stomp.send('/pub/chat/enter', {}, JSON.stringify({roomId: roomId, writer: userId, name: name}));
        
     });
     
     // 엔터치면 메세지 전송
     $("#msg").keypress(function(e){
     	if(e.keyCode == 13) {
-    		// 입력한 메세지 값
+    		
             var msg = document.getElementById("msg");
             console.log(userId + ":" + msg.value);
             
 	    	if (msg.value != '') {
-	    		// 메세지 보내기
 	            stomp.send('/pub/chat/message', {}, JSON.stringify({"roomId": roomId, "message": msg.value, "writer": userId}));
-	            // 메세지창 초기화
 		    	msg.value = '';
 	            
-		    	var chatbox = $(".chat-box");
-		    	//.animate({ scrollTop: chatbox.scrollHeight }, 1000);
-		    	//chatbox.scrollTop = chatbox.scrollHeight;
-		    	// chatbox.scrollIntoView();
-		    	//setTimeout(() => {
-		    	//	chatbox.scrollTop = chatbox.scrollHeight + 100;
-		        //}, [200]);
-		    	
-
 	    	} else {
 	    		alert('메세지를 입력하세요.');
 	    	}
@@ -137,87 +100,105 @@ $(function(){
     
     // 초대하기
     $("#inviteBtn").click(function(){
+    	var id_arr = [];
+    	// var name_arr = [];
+		$(".chkList:checked").each(function(){
+			id_arr.push($(this).val());
+			// name_arr.push($(this).data("name"));
+		});
+		// name_str = JSON.stringify(name_arr);
+		id_str = JSON.stringify(id_arr);
+		
     	document.inviteForm.submit();
+    	stomp.send('/pub/chat/invite', {}, JSON.stringify({"roomId": roomId, "writer": userId, "invite": id_str}));
+    });
+    
+    // 나가기
+    $("#exitBtn").click(function(){
+    	if(confirm("나의 채팅방 목록에서 완전히 사라집니다. 정말로 나가시겠습니까?")) {
+    		location.href = "${path}/chat/exit?chatroom_num=" + roomId + "&id=" + userId;
+    		stomp.send('/pub/chat/close', {}, JSON.stringify({"roomId": roomId, "message": msg.value, "writer": userId}));
+    		self.close();
+    		opener.document.location.reload();
+    	}
     });
     
 });
-
-function checked(id) {
-	var box = $("#checkbox"+id)
-	var ischecked = box.prop("checked");
-	
-	if(ischecked) {
-		box.prop('checked',false);
-	}
-	else {
-		box.prop('checked',true);
-	}
-}
 </script>
 </head>
 <body>
-                    <div class="p-4 chat-box-inner-part">
-                    
-                     <div class="card chatting-box mb-0" style="display: block;"> <!-- style="display: block;" -->
-                            <div class="card-body">
-                            
-                            	<!-- 현재 채팅방 이름 -->
-                                <div class="chat-meta-user pb-3 border-bottom">
-                                    <div class="current-chat-user-name">
-                                        <span class="font-12 text-nowrap d-block text-muted text-truncate">
-                                            <img src="${path}/resources/assets/images/users/1.jpg" alt="dynamic-image" class="rounded-circle" width="45">
-                                            <span class="name font-weight-bold ml-2" style="padding-right:10px">${room.chatroom_name}</span>
-                                            <c:forEach var="dto" items="${chatMemberList}">
-                                            <span style="padding-left:10px">${dto.name}${dto.rank}</span>
-                                            </c:forEach>
-                                        </span>
-                                    </div>
-                                </div>
-                                
-                                
-                                <!-- 채팅내용 -->
-                                <!--  scrollable -->
-                                <div class="chat-box scrollable" style="height:calc(100vh - 360px);">
-	                                <ul class="chat-list active-chat" id="msgArea">
-										<!-- 채팅방 대화창   --> 
-										<c:forEach var="dto" items="${msgList}">
-											<c:if test="${sessionScope.memberID == dto.writer}">
-									               <li class='odd chat-item'>
-										               <div class='chat-content'>
-											               <div class='box bg-light-success'>${dto.message}</div>
-											               <br>
-											           </div>
-										               <div class='chat-time'>${dto.regdate}</div>
-									               </li>
-									         </c:if>
-								        	<c:if test="${sessionScope.memberID != dto.writer}">
-								        	   <li class='chat-item'>
+               <div class="p-4 chat-box-inner-part">
+               
+                <div class="card chatting-box mb-0" style="display: block;">
+                       <div class="card-body">
+                       	<!-- 현재 채팅방 이름 -->
+                           <div class="chat-meta-user pb-3 border-bottom">
+                               <div class="current-chat-user-name">
+                                   <span class="font-12 text-nowrap d-block text-muted text-truncate">
+                                       <img src="${path}/resources/assets/images/users/1.jpg" alt="dynamic-image" class="rounded-circle" width="45">
+                                       <span class="name font-weight-bold ml-2" style="padding-right:10px">${room.chatroom_name}</span>
+                                       <c:forEach var="dto" items="${chatMemberList}">
+                                       <span style="padding-left:10px">${dto.name}${dto.rank}</span>
+                                       </c:forEach>
+                                   </span>
+                               </div>
+                           </div>
+                           
+                           
+                           <!-- 채팅내용 -->
+                           <div class="chat-box scrollable" style="height:calc(100vh - 360px);" id="chatBox">
+                            <ul class="chat-list active-chat" id="msgArea">
+								<!-- 채팅방 대화창   --> 
+								<c:forEach var="dto" items="${msgList}">
+									<c:if test="${sessionScope.memberID == dto.writer}">
+							               <li class='odd chat-item'>
 								               <div class='chat-content'>
-								               <h6 class='font-medium'>${dto.writer}(${dto.name})</h6>
-								               <div class='box bg-light-info'>${dto.message}</div>
-								               </div>
+									               <div class='box bg-light-success'>${dto.message}</div>
+									               <br>
+									           </div>
 								               <div class='chat-time'>${dto.regdate}</div>
-								               </li>
-								           </c:if>
-										
-										</c:forEach>
-										
-									</ul>
-                                </div>
-                            </div>
-                            
-                            <div class="card-body border-top border-bottom chat-send-message-footer">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="input-field mt-0 mb-0">
-                                        	<input type="text" id="msg" class="form-control border-0" placeholder="Type and hit enter">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
+							               </li>
+							         </c:if>
+							         <c:if test="${dto.invite != null}">
+							         		<li class='middle'>
+								               <div class='chat-content'>
+									               <div class='box bg-light-success'>${dto.message}</div>
+									               <br>
+									           </div>
+								               <div class='chat-time'>${dto.regdate}</div>
+							               </li>
+			   	   								 </c:if>
+						        	 <c:if test="${sessionScope.memberID != dto.writer}">
+						        	   <li class='chat-item'>
+							               <div class='chat-content'>
+							               <h6 class='font-medium'>${dto.writer}(${dto.name})</h6>
+							               <div class='box bg-light-info'>${dto.message}</div>
+							               </div>
+							               <div class='chat-time'>${dto.regdate}</div>
+						               </li>
+						             </c:if>
+								
+								</c:forEach>
+							</ul>
+                           </div>
+                       </div>
+                       
+                       <div class="card-body border-top border-bottom chat-send-message-footer">
+                           <div class="row">
+                               <div class="col-12">
+                                   <div class="input-field mt-0 mb-0">
+                                   	<input type="text" id="msg" class="form-control border-0" placeholder="Type and hit enter">
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   
+                   <div style="align:right;">
+                       <a href="javascript:void(0)" class="nav-link btn-primary rounded-pill d-flex align-items-center px-3" id="exitBtn" style="width:150px;">
+                   		<i class="fas fa-user-plus"></i><span class="d-none d-md-block font-14" style="padding-left:30%">나가기</span></a>
+               	</div>
+               </div>
    <!-- ============================================================== -->
    <!-- 멤버 초대 토글 -->
    <!-- ============================================================== -->
@@ -245,11 +226,7 @@ function checked(id) {
 	                                <c:forEach var="dto" items="${workerList}"> 
 	                                    <a href="javascript:void(0)" onclick="checked(${dto.id});"
 	                                    class="chat-user message-item align-items-center border-bottom px-3 py-2">
-	                                    <input type="checkbox" name="chkList" class="chkList chk" id="checkbox${dto.id}" value="${dto.id}">
-	                                        <%-- <span class="user-img"> 
-	                                            <img src="${path}/resources/assets/images/users/1.jpg" alt="user" class="img-fluid rounded-circle" width="40"> 
-	                                            <span class="profile-status online float-right"></span> 
-	                                        </span> --%>
+	                                    <input type="checkbox" name="chkList" class="chkList chk" id="checkbox${dto.id}" value="${dto.id}" data-name="${dto.name}">
 	                                        <div class="mail-contnet w-75 d-inline-block v-middle pl-2">
 	                                            <h6 class="message-title  mb-0 mt-1" data-username="Pavan kumar">${dto.name}</h6>
 	                                            <span class="font-12 text-nowrap d-block text-muted text-truncate">${dto.depart_name}</span>  
@@ -264,7 +241,7 @@ function checked(id) {
                         </ul>
                     </div>
                 </div>
-		    </aside>
+	</aside>
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
@@ -275,7 +252,6 @@ function checked(id) {
     <script src="${path}/resources/dist/js/feather.min.js"></script>
     <!--Custom JavaScript -->
     <script src="${path}/resources/dist/js/custom.min.js"></script>
-    <!-- chat.js 지우면 검색이 안되고 있으면 엔터로 입력이 안됨 채팅 input class에서 message-type-box 빼기 -->
     <script src="${path}/resources/dist/js/pages/chat/chat.js"></script>
     <!--This page JavaScript -->
     <script src="${path}/assets/libs/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js"></script>

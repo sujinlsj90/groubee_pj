@@ -1,6 +1,7 @@
 package com.spring.tutorial.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.tutorial.dto.CommonDTO;
 import com.spring.tutorial.dto.DepartDTO;
+import com.spring.tutorial.dto.PersonnelDTO;
+import com.spring.tutorial.dto.TeamDTO;
 
 @Repository
 public class AdminHumanDAOImpl implements AdminHumanDAO{
@@ -61,13 +64,76 @@ public class AdminHumanDAOImpl implements AdminHumanDAO{
 		return list;
 	}
 
-	//부서 수정
+	//부서 삭제
 	@Override
 	public int departUpdate(String depart_name) {
-		System.out.println("관리자dao -> 부서수정");
+		System.out.println("관리자dao -> 부서삭제");
 		
-	    int updateCnt = sqlSession.update("com.spring.tutorial.dao.AdminHumanDAO.departUpdate", depart_name);
-		return updateCnt;
+	   int d_deleteCnt = sqlSession.update("com.spring.tutorial.dao.AdminHumanDAO.departUpdate", depart_name);
+	   return d_deleteCnt;
 	}
+
+	//부서가입 처리
+	@Override
+	public int deaprtInsert(DepartDTO dto) {
+		System.out.println("관리자 dao -> 부서가입처리");
+		int insertCnt = sqlSession.insert("com.spring.tutorial.dao.AdminHumanDAO.deaprtInsert", dto);
+		return insertCnt;
+	}
+
+	//팀 생성
+	@Override
+	public int teamInsert(TeamDTO dto) {
+		System.out.println("관리자 dao -> 팀 생성");
+		
+		int t_insertCnt = sqlSession.insert("com.spring.tutorial.dao.AdminHumanDAO.teamInsert", dto);
+		return t_insertCnt;
+	}
+
+	//팀 배정
+	@Override
+	public int humanUpdate(TeamDTO dto) {
+		System.out.println("관리자dao -> 팀 배정");
+		
+		int h_updateCnt = sqlSession.update("com.spring.tutorial.dao.AdminHumanDAO.humanUpdate", dto);
+		return h_updateCnt;
+	}
+	
+	//팀 배정 member
+	@Override
+	public void ht_update(Map<String, Object> map) {
+		System.out.println("관리자dao -> 팀 배정 멤버");
+		sqlSession.update("com.spring.tutorial.dao.AdminHumanDAO.ht_update", map);
+	}
+	//부서별 팀 
+	@Override
+	public List<TeamDTO> teamSelectbyDepart() {
+		List<TeamDTO> list = sqlSession.selectList("com.spring.tutorial.dao.AdminHumanDAO.teamSelectbyDepart");
+		return list;
+	}
+
+//	@Override
+//	public int humanInsertaa(PersonnelDTO dto) {
+//		System.out.println("관리자dao -> 인사평가");
+//			int a_insertCnt = sqlSession.insert("com.spring.tutorial.dao.AdminHumanDAO.humanInsertaa", dto);
+//		return a_insertCnt;
+//	}
+	
+	public int insertandupdate(Map<String, Object> map) {
+		System.out.println("관리자 dao -> insertandupdate");
+		int a_selectCnt = sqlSession.selectOne("com.spring.tutorial.dao.AdminHumanDAO.a_select", map);
+			System.out.println(a_selectCnt);
+		  if(a_selectCnt == 0 ) {
+			  sqlSession.insert("com.spring.tutorial.dao.AdminHumanDAO.a_insert", map); 
+		  	
+		} else{
+			 sqlSession.update("com.spring.tutorial.dao.AdminHumanDAO.a_update",map); 
+			 }
+			 
+		return a_selectCnt;
+		  }
+
+	
+
 
 }

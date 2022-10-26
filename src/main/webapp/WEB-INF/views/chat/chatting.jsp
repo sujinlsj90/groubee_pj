@@ -30,9 +30,6 @@ $(function(){
 	// 채팅방 목록
 	rooms();
 	
-	$(".service-panel-toggle").click();
-
-
 });
 
 function rooms(){

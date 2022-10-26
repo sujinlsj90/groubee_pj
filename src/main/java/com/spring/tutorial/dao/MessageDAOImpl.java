@@ -34,6 +34,16 @@ public class MessageDAOImpl implements MessageDAO {
 		
 		return insertState;
 	}
+	
+	// 메세지 보내기 - 임시보관
+	@Override
+	public int messageSend_tempo(MessageDTO dto) {
+		System.out.println("dao => 메세지 보내기 - 임시보관");
+		
+		int updateState = sqlSession.update("com.spring.tutorial.dao.MessageDAO.messageSend_tempo", dto);
+		
+		return updateState;
+	}
 
 	// 받은메세지 리스트
 	@Override
@@ -65,12 +75,22 @@ public class MessageDAOImpl implements MessageDAO {
 		return list;
 	}
 
-	// 휴지통 리스트
+	// 휴지통 리스트 => 보낸메세지
 	@Override
 	public List<MessageDTO> trashMsgList(String getter_id) {
-		System.out.println("dao - 휴지통 리스트");
+		System.out.println("dao - 휴지통 리스트 => 보낸메세지");
 		
 		List<MessageDTO> list = sqlSession.selectList("com.spring.tutorial.dao.MessageDAO.trashMsgList", getter_id);
+		
+		return list;
+	}
+	
+	// 휴지통 리스트 => 받은메세지
+	@Override
+	public List<MessageDTO> trashMsgList_get(String getter_id) {
+		System.out.println("dao - 휴지통 리스트 => 받은메세지");
+		
+		List<MessageDTO> list = sqlSession.selectList("com.spring.tutorial.dao.MessageDAO.trashMsgList_get", getter_id);
 		
 		return list;
 	}
@@ -165,10 +185,10 @@ public class MessageDAOImpl implements MessageDAO {
 		return chkReadDate;
 	}
 	
-	// 메세지 임시저장
+	// 메세지 임시보관
 	@Override
 	public int sendTempoMsg(MessageDTO dto) {
-		System.out.println("dao - 메세지 임시저장");
+		System.out.println("dao - 메세지 임시보관");
 		
 		int InsertState = sqlSession.insert("com.spring.tutorial.dao.MessageDAO.sendTempoMsg", dto);
 			
@@ -195,11 +215,26 @@ public class MessageDAOImpl implements MessageDAO {
 		return list;
 	}
 	
-	// 메세지 임시저장 수정후 전송
-	
+	// 임시보관함 메세지 전송 후 상태 변경
+	@Override
+	public int updateHolding(int message_num) {
+		System.out.println("dao - 임시보관함 메세지 전송 후 상태 변경");
+		
+		int updateState = sqlSession.update("com.spring.tutorial.dao.MessageDAO.updateHolding", message_num);
+		
+		return updateState;
+	}
 
-	
-	
+	// 받은 사람 이름 가져오기 - 상세페이지
+	@Override
+	public List<MessageDTO> getter_info(int message_num) {
+		System.out.println("dao - 받은 사람 이름 가져오기 - 상세페이지");
+		
+		List<MessageDTO> getter_list = sqlSession.selectList("com.spring.tutorial.dao.MessageDAO.getter_info", message_num);
+		
+		return getter_list;
+	}
+
 	
 	
 	

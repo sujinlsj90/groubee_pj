@@ -35,24 +35,32 @@ public class BoardServiceImpl implements BoardService {
 		// 페이지 번호 클릭시
 		String pageNum = req.getParameter("pageNum");
 		String category = req.getParameter("category");
+		String show = req.getParameter("show");
+		
 		if(category == null) {
-			category = "0";
+			category = "0"; // 자유게시판
 		}
-		
+		if(show == null) {
+			show = "1"; // 보이기
+		}
+		System.out.println(category+"/"+show);
 		Paging paging = new Paging(pageNum);
-		
+		Map<String,Object> map = new HashMap<>();
 		// 5-1. 전체 게시글 갯수 카운트
-		int total = dao.boardCnt(category);
+		map.put("category",category);
+		map.put("show",show);
+		int total = dao.boardCnt(map);
 		System.out.println("게시물 total : " + total);
 		paging.setTotalCount(total);
 		
 		int start = paging.getStartRow(); // 페이지별 시작 번호
 		int end = paging.getEndRow();		// 페이지별 끝번호
 		
-		Map<String,Object> map = new HashMap<>();
+		
 		map.put("start",start);
 		map.put("end",end);
 		map.put("category",category);
+		map.put("show",show);
 		
 		// 5-2. 게시글 목록
 		List<BoardDTO> list = null;
@@ -64,6 +72,7 @@ public class BoardServiceImpl implements BoardService {
 		model.addAttribute("category",category);
 		model.addAttribute("list", list);
 		model.addAttribute("paging", paging);
+		model.addAttribute("show", show);
 		
 	}
 	// 게시글 상세페이지
@@ -129,24 +138,28 @@ public class BoardServiceImpl implements BoardService {
 	
 	
 
-//	// 게시글 수정처리
-//	@Override
-//	public void boardUpdateAction(HttpServletRequest req, Model model) 
-//			throws ServletException, IOException {
-//		System.out.println("서비스 => 게시글 수정처리");
-//		
-//		// 3단계. 화면으로부터 입력받은 값, hidden 값을 받는다.
-//		BoardDTO dto = new BoardDTO();
-//		dto.setNum(Integer.parseInt(req.getParameter("num")));
-//		dto.setCategory(req.getParameter("category"));
-//		dto.setTitle(req.getParameter("title"));
-//		dto.setContent(req.getParameter("content"));
-//		
-//		// 5단계. 게시글 수정 처리
-//		dao.updateBoard(dto);
-//		
-//	}
-//	
+	// 게시글 수정처리
+	@Override
+	public void boardUpdateAction(HttpServletRequest req, Model model) 
+			throws ServletException, IOException {
+		System.out.println("서비스 => 게시글 수정처리");
+		
+		// 3단계. 화면으로부터 입력받은 값, hidden 값을 받는다.
+		BoardDTO dto = new BoardDTO();
+		dto.setNum(Integer.parseInt(req.getParameter("num")));
+		String category = req.getParameter("category");
+		if(category == null) {
+			category = "0";
+		}
+		dto.setCategory(category);
+		dto.setTitle(req.getParameter("title"));
+		dto.setContent(req.getParameter("content"));
+		
+		// 5단계. 게시글 수정 처리
+		dao.updateBoard(dto);
+		
+	}
+	
 	// 게시글 삭제처리
 	@Override
 	public void boardDelete(HttpServletRequest req, Model model) 
@@ -154,11 +167,27 @@ public class BoardServiceImpl implements BoardService {
 		System.out.println("서비스 => 게시글 삭제처리");
 		
 		// 3단계. 화면으로부터 입력받은 값을 받는다.
-		int num = Integer.parseInt(req.getParameter("num"));
+		String[] num = req.getParameterValues("num");
 		
-		// 5단계. 게시글 삭제 처리
-		dao.boardDelete(num);
+		for(int i=0; i<num.length; i++) {
+			// 5단계. 게시글 삭제 처리
+			dao.boardDelete(num[i]);
+		}
+	}
+	
+	// 게시글 영구삭제
+	@Override
+	public void boardDelete2(HttpServletRequest req, Model model) 
+			throws ServletException, IOException {
+		System.out.println("서비스 => 게시글 삭제처리");
 		
+		// 3단계. 화면으로부터 입력받은 값을 받는다.
+		String[] num = req.getParameterValues("num");
+		
+		for(int i=0; i<num.length; i++) {
+			// 5단계. 게시글 삭제 처리
+			dao.boardDelete2(num[i]);
+		}
 	}
 
 	// 댓글목록 처리
@@ -199,6 +228,21 @@ public class BoardServiceImpl implements BoardService {
 		// 실행이 끝나면 board_detail.jsp의 comment_add() 콜백함수(success)의 result
 	}
 
+	// 댓글 삭제처리
+	@Override
+	public void commentDelete(HttpServletRequest req, Model model) 
+			throws ServletException, IOException {
+		System.out.println("서비스 => commentDelete");
+		
+		// 3단계. 화면으로부터 입력받은 값을 받는다.
+		int comment_num = Integer.parseInt(req.getParameter("comment_num"));
+		
+		// 5단계. 댓글 insert
+		dao.commentDelete(comment_num);
+		
+		// 실행이 끝나면 board_detail.jsp의 comment_add() 콜백함수(success)의 result
+	}
+	
 	
 
 }

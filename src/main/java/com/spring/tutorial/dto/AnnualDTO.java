@@ -9,6 +9,7 @@ public class AnnualDTO {
 	private String image; // 프로필 사진
 	private String name; // 이름
 	private String depart_name; // 부서명
+	private Date hireday; // 입사일
 	private Date today; // 신청일
 	private String year; // 신청 연
 	private String month; // 신청 월
@@ -142,13 +143,22 @@ public class AnnualDTO {
 		this.month = month;
 	}
 
+	public Date getHireday() {
+		return hireday;
+	}
+
+	public void setHireday(Date hireday) {
+		this.hireday = hireday;
+	}
+
 	@Override
 	public String toString() {
 		return "AnnualDTO [annual_id=" + annual_id + ", id=" + id + ", image=" + image + ", name=" + name
-				+ ", depart_name=" + depart_name + ", today=" + today + ", year=" + year + ", month=" + month
-				+ ", annual_in=" + annual_in + ", annual_out=" + annual_out + ", annual=" + annual + ", annualtotal="
-				+ annualtotal + ", annualuse=" + annualuse + ", annualrest=" + annualrest + ", state=" + state + "]";
+				+ ", depart_name=" + depart_name + ", hireday=" + hireday + ", today=" + today + ", year=" + year
+				+ ", month=" + month + ", annual_in=" + annual_in + ", annual_out=" + annual_out + ", annual=" + annual
+				+ ", annualtotal=" + annualtotal + ", annualuse=" + annualuse + ", annualrest=" + annualrest
+				+ ", state=" + state + "]";
 	}
-	
+
 	
 }

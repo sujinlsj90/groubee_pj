@@ -7,9 +7,14 @@ public class ChatMessageDTO {
     private String message;	// 메세지
     private String name;	// 작성자 이름
     private String regdate;	// 작성일
+    private String invite;	// 초대받은사람
     
-    
-    
+	public String getInvite() {
+		return invite;
+	}
+	public void setInvite(String invite) {
+		this.invite = invite;
+	}
 	public String getRegdate() {
 		return regdate;
 	}

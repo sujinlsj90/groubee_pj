@@ -92,12 +92,12 @@
                           </tbody>
                          <tfoot>
                               <tr>
-                                  <th>Name</th>
-                                  <th>Position</th>
-                                  <th>Office</th>
-                                  <th>Age</th>
-                                  <th>Start date</th>
-                                  <th>Salary</th>
+                                 <th>사번</th>
+                                 <th>부서</th>
+                                 <th>직급</th>
+                                 <th>이름</th>
+                                 <th>이메일</th>
+                                 <th>핸드폰</th>
                               </tr>
                           </tfoot>
                       </table>

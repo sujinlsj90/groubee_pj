@@ -16,8 +16,9 @@
    	
    	<!-- 인사평가 -->
    	<select id="assessment" parameterType="String" resultType="com.spring.tutorial.dto.PersonnelDTO">
-   		select * from grb_personnel
-		where id= #{id}
+   		select * from grb_personnel p
+   		join grb_member m on m.id = p.p_id
+		where p.id= #{id}
    	</select>
    	
    	<!-- 직무&담당 -->

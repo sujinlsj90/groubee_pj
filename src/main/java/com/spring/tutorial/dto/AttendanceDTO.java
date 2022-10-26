@@ -10,6 +10,7 @@ public class AttendanceDTO {
 	private String name; // 이름
 	private String depart_name; // 부서명
 	private Date today; // 근태로그 
+	private Date hireday; // 입사일
 	private Timestamp attendin; // 출근
 	private Timestamp attendout; // 퇴근
 	private int result; // 업무 여부 (0 업무종료 1 업무)
@@ -22,7 +23,6 @@ public class AttendanceDTO {
 	private String month; // 월
 	private String day; // 일
 	private String dy; // 요일
-
 	
 	public AttendanceDTO() {}
 
@@ -162,13 +162,22 @@ public class AttendanceDTO {
 		this.dy = dy;
 	}
 
+	public Date getHireday() {
+		return hireday;
+	}
+
+	public void setHireday(Date hireday) {
+		this.hireday = hireday;
+	}
+
 	@Override
 	public String toString() {
 		return "AttendanceDTO [attend_id=" + attend_id + ", id=" + id + ", name=" + name + ", depart_name="
-				+ depart_name + ", today=" + today + ", attendin=" + attendin + ", attendout=" + attendout + ", result="
-				+ result + ", worktime=" + worktime + ", overtime=" + overtime + ", latetime=" + latetime
-				+ ", departuretime=" + departuretime + ", state=" + state + ", year=" + year + ", month=" + month
-				+ ", day=" + day + ", dy=" + dy + "]";
-	}		
+				+ depart_name + ", today=" + today + ", hireday=" + hireday + ", attendin=" + attendin + ", attendout="
+				+ attendout + ", result=" + result + ", worktime=" + worktime + ", overtime=" + overtime + ", latetime="
+				+ latetime + ", departuretime=" + departuretime + ", state=" + state + ", year=" + year + ", month="
+				+ month + ", day=" + day + ", dy=" + dy + "]";
+	}
+
 	
 }

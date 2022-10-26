@@ -167,17 +167,23 @@ function comment_add() {
                             <c:if test="${dto.category==1}">
 	                            <h4>공지사항</h4>
                             </c:if>
+                            
+                         
                         <div class="ml-auto">
                             <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
                                 <div class="btn-group" role="group">
+                                	<c:if test="${sessionScope.memberID == dto.id || sessionScope.authority == 'ROLE_BOARD' || sessionScope.authority == 'ROLE_ADMIN'}">
                                     <button id="email-dd1" type="button"
                                         class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false"><i
                                         class="mdi mdi-delete"></i> </button>
+                                        
+                                    
                                     <div class="dropdown-menu" aria-labelledby="email-dd1"> 
 	                                    <a class="dropdown-item" id="boardEdit">수정</a> 
 	                                    <a class="dropdown-item" id="boardDelete">삭제</a>
 	                                </div>
+	                                </c:if>
                                 </div>
                             </div>
                         </div>
@@ -187,6 +193,7 @@ function comment_add() {
 <!-- 게시물 상세 페이지 -->
                     <div class="card-body border-bottom">
                         <h4 class="mb-0">${dto.title}</h4>
+                        <h6 style="float:right">${dto.reg_date}</h6>
                     </div>
                     <div class="card-body border-bottom">
                         <div class="d-flex no-block align-items-center mb-5">
@@ -200,20 +207,10 @@ function comment_add() {
                         <p>${dto.content}</p>
                     </div>
                     
-                    <div class="card-body">
-                        <h4><i class="fa fa-paperclip mr-2 mb-2"></i>첨부파일</h4>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <a href="${dto.board_file}" download> <img alt="attachment"
-                                        src="${dto.board_file}"> </a>
-                            </div>
-                        </div>
-                        
-                        
 <!-- 댓글 -->                        
                         <div class="card-body border-bottom">
 	                        <div class="border mt-3 p-3">
-                            	<p class="pb-3" style="float:left">${sessionScope.memberID}</p>
+                            	<p class="pb-3" style="float:left">${sessionScope.memberName} / ${sessionScope.memberID}</p>
                             	<button id="insertBtn" class="btn btn-primary" style="float:right">등록</button>
 	                            <textarea id="commentbox" class="form-control" placeholder="댓글을 입력하세요."></textarea>
 	                        </div>

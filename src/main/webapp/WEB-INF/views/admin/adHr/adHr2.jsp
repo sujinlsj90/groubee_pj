@@ -66,6 +66,24 @@
         <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
+           <div class="page-breadcrumb">
+			<div class="row">
+				<div class="col-7 align-self-center">
+					<h4 class="page-title text-truncate text-dark font-weight-medium mb-1">
+						Admin HumanResources</h4>
+					<div class="d-flex align-items-center">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb m-0 p-0">
+								<li class="breadcrumb-item active">
+								<a href="${path}/adminMain.ad">Home</a></li>
+								<li class="breadcrumb-item active"aria-current="page">
+								<a href="${path}/adHr.ad">Employee Management</a></li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
             <!-- ============================================================== -->
             <!-- ============================================================== -->
             <!-- Container fluid  -->
@@ -75,17 +93,85 @@
                 <!-- Start First Cards -->
                 <!-- *************************************************************** -->
                 <div class="row button-group">
+				      <div class="row button-group">
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adHr.ad'">사원통합관리</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adHr.ad'">사원 통합 관리</button>
 				    </div>
 				    <div class="col-lg-2 col-md-4">
-				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adHr2.ad'">사원등록</button>
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/join.co'">사원 등록</button>
+				    </div>
+				     <div class="col-lg-2 col-md-4">
+				        <button type="button" class="btn btn-rounded btn-block btn-outline-info" onclick = "location.href='${path}/adHr2.ad'">인사평가</button>
 				    </div>
 				</div>
+				</div>
                 <br><br>
-                <img src = "${path}/resources/images/adminImages/인사관리-사원등록.jpg">
-                <!-- *************************************************************** -->
-                <!-- End Top Leader Table -->
+                 <!-- Individual column searching (text inputs) -->
+   			<div class="row">
+           <div class="col-12">
+          <div class="card">
+              <hr class="mt-0">
+             <form class="form-horizontal form-material" action="${path}/appupdate.ad"  method="post" name="">
+               <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                          <div class="form-group">
+                            
+                            <div class="form-group">
+                              <label class="id">평가대상자</label>
+                              
+                              <select class="selecthuman form-control custom-select" id="id" name="id" required>
+								<option value="">선택</option>
+								<c:forEach var="dto2" items="${list2}">
+								<option id="${dto2.id}" value="${dto2.id} ${dto2.depart_name} ${dto2.team_name} ${dto2.name}" >${dto2.depart_name} ${dto2.team_name} ${dto2.name}</option>
+								</c:forEach>										
+							  </select>		
+							  
+                          </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="p_id">평가자</label>
+                             <div class="col-md-12">
+                                 <input type="text" id="p_id" name="p_id" size="50" value="${sessionScope.memberID}"
+                                     class="form-control form-control-line" readonly >
+                             </div>
+                         </div>
+                          <div class="form-group">
+                             <label class="p_day">평가년도</label>
+                             <div class="col-md-12">
+                                 <input type="Date" id="p_day" name="p_day" maxlength="20">
+                             </div>
+                         </div>
+                          <div class="form-group">
+                             <label class="p_able">역량</label>
+                             <div class="col-md-12">
+                                 <input type="text" id="p_able" name="p_able"  >
+                             </div>
+                         </div>
+                          <div class="form-group">
+                             <label class="p_output">성과</label>
+                             <div class="col-md-12">
+                                 <input type="text" id="p_output" name="p_output" >
+                             </div>
+                         </div>
+                         <div class="form-group">
+                             <label class="col-md-12">의견</label>
+                             <div class="col-md-12">
+                                 <textarea rows="5" id="p_comment" name="p_comment" 
+                                     class="form-control form-control-line">
+                                     </textarea>
+                                 </div>
+                             </div>
+                          <div class="card-body">
+                           <div class="form-group mb-0 text-right">
+                            <button type="submit" 
+                                class="btn btn-info waves-effect waves-light">저장</button>
+                            <button type="reset"
+                                class="btn btn-dark waves-effect waves-light">취소</button>
+                        </div>
+                    </div>
+                         </form>
+                     </div>
+                 </div>
+            </div>
                 <!-- *************************************************************** -->
             </div>
             <!-- ============================================================== -->
@@ -94,9 +180,6 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer text-center text-muted">
-                Copyright 2019. All Rights Reserved by Severny Admin
-            </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
@@ -207,6 +290,23 @@
     <script src="${path}/resources/assets/libs/chart.js/dist/Chart.min.js"></script>
     <script src="${path}/resources/assets/libs/gaugeJS/dist/gauge.min.js"></script>
     <script src="${path}/resources/dist/js/pages/dashboards/dashboard1.js"></script>
+      <!--This page plugins -->
+    <script src="${path}/resources/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="${path}/resources/dist/js/pages/datatable/datatable-api.init.js"></script>
 </body>
-
+<script type="text/javascript">
+	var human;
+	var id;
+	$(function () {  
+		$(".selecthuman").change(function(){
+			 human =  $(this).val();    	    	         
+	         
+	         id = human.split(" ");
+	         
+	         // location.href = "${path}/appupdate.ad?id=" + id[0] + "&depart_name=" + id[1] + "&team_name=" + id[2] + "&name=" + id[3];            
+       });    		
+		console.log(human);
+		console.log(id);
+	});
+</script>
 </html>

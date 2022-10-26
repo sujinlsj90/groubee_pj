@@ -3,12 +3,11 @@ package com.spring.tutorial.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.spring.tutorial.dto.SecurityAdminListDTO;
-import com.spring.tutorial.dto.SecurityDTO;
+import com.spring.tutorial.dto.CommonDTO;
 
 public interface SecurityDAO {
 
-	public List<SecurityDTO> adminAddList(Map<String, Object> map);
+	public List<CommonDTO> adminAddList(Map<String, Object> map);
 	
 	public int adminAddListCnt();
 	
@@ -18,7 +17,8 @@ public interface SecurityDAO {
 	
 	public void insertAdmin(Map<String, Object> map);
 	
-	public List<SecurityAdminListDTO> securityAdminList();
+	public List<CommonDTO> securityAdminList();
 	
 	public void adSecurityDel(String id);
+	
 }

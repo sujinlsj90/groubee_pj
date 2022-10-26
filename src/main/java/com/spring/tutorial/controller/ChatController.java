@@ -76,9 +76,19 @@ public class ChatController {
     @RequestMapping("chat/invite")
     public String invite(HttpServletRequest req, Model model){
     	logger.info("# ChatController - invite()");
+    	
     	service.inviteMember(req, model);
     	service.enter(req, model);
         return "chat/room";
     }
 
+    // 채팅방 나가기
+    @RequestMapping("chat/exit")
+    public void exit(HttpServletRequest req, Model model){
+    	logger.info("# ChatController - enter()");
+    	
+    	service.exit(req, model);
+    	
+        // return "chat/room";
+    }
 }

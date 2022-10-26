@@ -7,8 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.tutorial.dto.SecurityAdminListDTO;
-import com.spring.tutorial.dto.SecurityDTO;
+import com.spring.tutorial.dto.CommonDTO;
 
 @Repository
 public class SecurityDAOImpl implements SecurityDAO{
@@ -17,10 +16,10 @@ public class SecurityDAOImpl implements SecurityDAO{
 	SqlSession sqlSession;
 	
 	@Override
-	public List<SecurityDTO> adminAddList(Map<String, Object> map) {
+	public List<CommonDTO> adminAddList(Map<String, Object> map) {
 		System.out.println("디버깅 SecurityDAOImpl => adminAddList");
 		
-		List<SecurityDTO> list =sqlSession.selectList("com.spring.tutorial.dao.SecurityDAO.adminAddList", map);
+		List<CommonDTO> list =sqlSession.selectList("com.spring.tutorial.dao.SecurityDAO.adminAddList", map);
 		
 		return list;
 	}
@@ -60,10 +59,10 @@ public class SecurityDAOImpl implements SecurityDAO{
 	}
 
 	@Override
-	public List<SecurityAdminListDTO> securityAdminList() {
+	public List<CommonDTO> securityAdminList() {
 		System.out.println("디버깅 SecurityDAOImpl => securityAdminList");
 		
-		List<SecurityAdminListDTO> list = sqlSession.selectList("com.spring.tutorial.dao.SecurityDAO.securityAdminList");
+		List<CommonDTO> list = sqlSession.selectList("com.spring.tutorial.dao.SecurityDAO.securityAdminList");
 		
 		return list;
 	}
@@ -71,11 +70,8 @@ public class SecurityDAOImpl implements SecurityDAO{
 	@Override
 	public void adSecurityDel(String id) {
 		
-		sqlSession.delete("com.spring.tutorial.dao.SecurityDAO.adSecurityDel", id);
+		sqlSession.update("com.spring.tutorial.dao.SecurityDAO.adSecurityDel", id);
 		
 	}
-
-	
-
 	
 }

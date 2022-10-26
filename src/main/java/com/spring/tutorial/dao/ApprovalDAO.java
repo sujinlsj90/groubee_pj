@@ -147,4 +147,17 @@ public interface ApprovalDAO {
 	
 	// 저장된 결재 정보 뿌리기
 	public List<ApprovalInfoDTO> reselectLineView(int doc_id);
+	
+	// 관리자 완료문서함
+	public List<ApproveDraftDTO> approvallistAdmin(Map<String, Object> map);
+	
+	// 관리자 완료문서함 글 갯수
+	public int adminApprovalListCnt(Map<String, Object> map);
+	
+	//관리자 문서함 전체보기
+	public List<ApproveDraftDTO> approvallistAdminAll(Map<String, Object> map);
+	
+	// 관리자 문서함 전체보기 글 갯수
+	public int approvallistAdminAllCnt(Map<String, Object> map);
+	
 }

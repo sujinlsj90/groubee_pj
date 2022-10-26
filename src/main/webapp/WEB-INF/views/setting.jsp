@@ -26,14 +26,12 @@
 <script>
 var sessionID = ${sessionScope.memberID};
 var stomp = null;
-var stompIsConnected = false;
 $(function() {
 	// 웹소켓 연결
 	var sockJs = new SockJS("${path}/stomp");
 	stomp = Stomp.over(sockJs);
 	
 	stomp.connect({}, function (){
-		console.log("STOMP Connection - setting");
 		
 		// 해당 주소로 오는 메세지 받음
 		stomp.subscribe("/sub/alarm/"+sessionID , function(message) {
@@ -44,7 +42,15 @@ $(function() {
 	        var message = content.message;
 	        
 	        console.log("roomId : " + roomId + ", name : " + name + ", message : " + message);
-	        alert(name+" : " +message);
+	        var str = "<a href=\"${path}/chat/room?chatroom_num=" + roomId 
+	        		+ "\" onclick=\"window.open(this.href,'_blank', 'width=20%'); return false;\" class='alert-link'>"
+	        		+ name + " : " + message + "</a>";
+	        $("#pushAlarm").html(str);
+	        $("#pushAlarm").css('display', 'block');
+	        
+	        setTimeout(function() {
+	        	$("#pushAlarm").css('display', 'none');
+	        }, 6000);
 			
 		});
 		

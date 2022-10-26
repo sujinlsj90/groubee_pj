@@ -71,26 +71,6 @@
                  <div class="card-body">
                     <form name = "selectform" action = "${path}/selectAppAction.ap" method = "post"> 
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">  
-                     <div>
-                     <h5 class="card-title">카테고리선택</h5>
-                     <h6 class="card-subtitle">카테고리를 선택하세요</h6>
-                       <select class="select2 form-control custom-select" name = "category" id = "category" style="width: 100%; height:36px;" required>
-                         <optgroup label="일반">
-                             <option value="내부기안">내부기안</option>
-                             <option value="외부공문">외부공문</option>
-                         </optgroup>
-                         <optgroup label="교육">
-                             <option value="">교육</option>
-                             <option value="교육신청">교육신청</option>
-                             <option value="교육보고">교육보고</option>
-                         </optgroup>
-                         <optgroup label="사업진행">
-                             <option value="마케팅">마케팅</option>
-                             <option value="IT">IT</option>
-                         </optgroup>
-                      </select>
-                      </div>
-                      <br><hr><br> 
 		                <div class="row">
 		                    <div class="col-12">
 		                        <div class="card">
@@ -107,7 +87,26 @@
 		                                </select>
 		                              	<!-- 결재선 표기 위치 -->
 		                              	<div id = "load_line"></div>
-		                                <br>
+		                                <br><hr>
+		                            	 <div>
+					                     <h5 class="card-title">카테고리선택</h5>
+					                     <h6 class="card-subtitle">카테고리를 선택하세요</h6>
+					                       <select class="select2 form-control custom-select" name = "category" id = "category" style="width: 100%; height:36px;" required>
+					                         <optgroup label="일반">
+					                             <option value="내부기안">내부기안</option>
+					                             <option value="외부공문">외부공문</option>
+					                         </optgroup>
+					                         <optgroup label="교육">
+					                             <option value="">교육</option>
+					                             <option value="교육신청">교육신청</option>
+					                             <option value="교육보고">교육보고</option>
+					                         </optgroup>
+					                         <optgroup label="사업진행">
+					                             <option value="마케팅">마케팅</option>
+					                             <option value="IT">IT</option>
+					                         </optgroup>
+					                      </select>
+				                      </div>
 		                            </div>
 		                        </div>
 		                    </div>
