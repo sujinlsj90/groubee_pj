@@ -162,7 +162,7 @@ $("#admin_del").click(function(){
 	            <div class="right-part mail-list overflow-auto" style="margin-left:0;">
                     <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">기본 관리자 (모든권한)</h4>
+                                <h4 class="card-title">메뉴 별 관리자 권한설정</h4>
                                 <br>
                                 <a class="btn btn-secondary" href="javascript:openWindowPop('${path}/adminAdd.ad', 'popup');" role="button">운영자 추가</a>
                                 <button type ="button" class="btn btn-secondary" id="admin_del">운영자 삭제</button>

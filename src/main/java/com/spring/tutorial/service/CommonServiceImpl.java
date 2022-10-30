@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.spring.tutorial.dao.AttendanceDAO;
 import com.spring.tutorial.dao.CommonDAO;
 import com.spring.tutorial.dto.CommonDTO;
 import com.spring.tutorial.util.EmailChkHandler;
@@ -25,6 +26,9 @@ public class CommonServiceImpl implements CommonService {
 	// 비밀번호 암호화 클래스
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	AttendanceDAO dao_at;
 		
 	// 사원 등록 시큐리티 (암호화된 비밀번호 추가, 이메일 인증키 추가, 가입성공 시 이메일 인증 추가)
 	@Override
@@ -87,6 +91,7 @@ public class CommonServiceImpl implements CommonService {
 		dto.setAddress(req.getParameter("address")); // 주소
 		dto.setRank(req.getParameter("rank")); // 직책
 		dto.setDepart_name(req.getParameter("depart_name")); // 부서명
+		dto.setImage("/tutorial/resources/assets/images/users/3.jpg"); // 이미지 set 
 		// 시큐리티
 	    String key = EmailChkHandler.getKey();
 	    dto.setKey(key);		
@@ -218,9 +223,10 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public void emailChkAction(HttpServletRequest req, Model model) {
 		 String key = req.getParameter("key");
-	      int selectCnt = dao.selectKey(key);
+	      int selectCnt = dao.selectKey(key);      
 	      
 	      if(selectCnt == 1) {
+	    	 dao_at.newannual(); // 이메일 인증 시 연차 발생
 	         int insertCnt = dao.updateGrade(key);
 	         model.addAttribute("insertCnt", insertCnt);
 	      }		

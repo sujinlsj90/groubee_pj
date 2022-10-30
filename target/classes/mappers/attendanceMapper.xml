@@ -147,9 +147,9 @@
       </select>
       
       <!-- 사원 등록 시 연차 발생 -->
-      <insert id="newannual" parameterType="java.util.Map">  
+      <insert id="newannual">  
          INSERT INTO grb_annual (annual_id, id)
-         VALUES((SELECT NVL(Max(annual_id)+1,1) FROM grb_annual), #{id})
+         VALUES((SELECT NVL(Max(annual_id)+1,1) FROM grb_annual), (SELECT Max(id) FROM grb_member))
       </insert>
       
       <!-- 연도별 내 연차 내역 -->

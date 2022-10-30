@@ -90,13 +90,13 @@
                                     class="hide-menu">쪽지</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="humanMain.hu"
                                 aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
-                                    class="hide-menu">인사관리</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="attendance.at"
-                                aria-expanded="false"><i data-feather="pie-chart" class="feather-icon"></i><span
-                                    class="hide-menu">근태관리</span></a></li>
+                                    class="hide-menu">인사관리</span></a></li>                       
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="board.bo"
                                 aria-expanded="false"><i data-feather="layout" class="feather-icon"></i><span
                                     class="hide-menu">게시판</span></a></li>
+                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="attendance.at"
+                                aria-expanded="false"><i data-feather="pie-chart" class="feather-icon"></i><span
+                                    class="hide-menu">근태관리</span></a></li>            
                         <li class="alert alert-warning" role="alert" id="pushAlarm" style="position: fixed; bottom: 0;left: 0; width:18%; display:none;">
 						</li>                         
                       </ul>

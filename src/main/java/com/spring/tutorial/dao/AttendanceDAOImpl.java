@@ -173,9 +173,9 @@ public class AttendanceDAOImpl implements AttendanceDAO{
 	
 	// 사원 등록 발생 연차
 	@Override
-	public int newannual(String id) {
+	public int newannual() {
 		System.out.println("dao : newannual");
-		int insertCnt = sqlSession.insert("com.spring.tutorial.dao.AttendanceDAO.newannual", id);
+		int insertCnt = sqlSession.insert("com.spring.tutorial.dao.AttendanceDAO.newannual");
 
 		return insertCnt;
 	}

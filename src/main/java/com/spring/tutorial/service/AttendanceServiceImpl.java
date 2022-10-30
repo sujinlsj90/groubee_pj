@@ -433,9 +433,8 @@ public class AttendanceServiceImpl implements AttendanceService {
 	public void newannual(HttpServletRequest req, Model model) {
 		try {
 			System.out.println("service : newannual");
-			String id = (String) req.getSession().getAttribute("memberID");			
 						
-			int insertCnt = dao.newannual(id); 		
+			int insertCnt = dao.newannual(); 		
 			
 			model.addAttribute("insertCnt", insertCnt);			
 		} catch(Exception e) {
